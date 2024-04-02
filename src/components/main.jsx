@@ -9,7 +9,6 @@ import Preloader from "./preloader/Preloader"
 const MainComponent = () => {
   const [preloaderLoaded, setPreloaderLoaded] = useState(false);
 
-	console.log('123');
 	useEffect(() => {
 		const preloaderTimeout = setTimeout(() => {
 			setPreloaderLoaded(true);
