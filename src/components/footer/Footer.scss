@@ -1,0 +1,76 @@
+// variables
+$mobile: 1399.98px;
+$desktop: 1919.98px;
+
+.footerMain {
+	position: relative;
+	z-index: 10;
+	.soundToggler {
+		@media (max-width: $mobile) {
+			display: none;
+		}
+	}
+	display: flex;
+	width: 120rem;
+	margin: 0 auto;
+	padding: 1.75rem 0;
+		@media (max-width: $desktop) {
+			width: 90rem;
+		}
+		@media (max-width: $mobile) {
+			margin-top: 1.875rem;
+			padding: 0;
+		}
+	&__container {
+		padding: 0 130px;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		@media (max-width: $desktop) {
+			padding: 0 8.125rem;
+		}
+	}
+	&__socials {
+		display: flex;
+		flex-direction: row;
+		gap: 0.75rem;
+		@media (max-width: $mobile) {
+			display: none;
+		}
+	}
+	&__twBtn {
+		border: 0.125rem solid #fff;
+		border-radius: 3.75rem;
+		padding: 1rem 1.0625rem 0.875rem 0.8125rem;
+		width: 3.125rem;
+		height: 3.125rem;
+		font-weight: 600;
+		font-size: 1rem;
+		text-transform: uppercase;
+		color: #fff;
+	}
+	&__twBtn:hover {
+		transition: .25s;
+		color: #000000;
+		background-color: #ffffff;
+		cursor: pointer;
+	}
+	&__tgBtn {
+		border: 0.125rem solid #fff;
+		border-radius: 3.75rem;
+		padding: 1rem 1.0625rem 0.875rem 0.8125rem;
+		width: 3.125rem;
+		height: 3.125rem;
+		font-weight: 600;
+		font-size: 1rem;
+		text-transform: uppercase;
+		color: #fff;
+	}
+	&__tgBtn:hover {
+		transition: .25s;
+		color: #000000;
+		background-color: #ffffff;
+		cursor: pointer;
+	}
+}

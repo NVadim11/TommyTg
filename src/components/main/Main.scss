@@ -1,0 +1,998 @@
+// variables
+$mobile: 1399.98px;
+$desktop: 1919.98px;
+
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// height: 100vh;
+	// background-image: url("../../img/bg.png");
+	// background-repeat: no-repeat;
+	// background-position: center;
+	// background-size: cover;
+	// position: relative;
+	z-index: 10;
+}
+
+.mainContent {
+	&__container {
+	padding: 0 130px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 5.25rem 0 0 0;
+	width: 120rem;
+	margin: 0 auto;
+	position: relative;
+	z-index: 1000;
+	@media (max-width: $desktop) {
+		width: 90rem;
+		padding: 0 8.125rem;
+	}
+		@media (max-width: $mobile) {
+			width: 100%;
+			max-width: 560px;
+			padding: 0 1.25rem;
+	}
+	}
+	&__gradient {
+			display: flex;
+			z-index: 5;
+	}
+	&__phaseOne {
+		height: 581px;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		@media (max-width: $mobile) {
+			height: 100%;
+			flex-direction: column;
+		}
+		.mainContent__catBox {
+			margin: 0;
+			position: absolute;
+			right: 667.5px;
+			@media (max-width: $desktop) {
+				right: 427.3px;
+			}
+			@media (max-width: $mobile) {
+				position: relative;
+				order: 2;
+				right: 0;
+			}
+			img {
+				width: 22.5rem;
+				@media (max-width: $mobile) {
+					width: 295px;
+					margin: 0;
+				}
+			}
+		}
+		.mainContent__startBtn-box {
+			@media (max-width: $mobile) {
+				display: none;
+			}
+		}
+	}
+	&__phaseTwo {
+		height: 581px;
+		position: relative;
+		display: flex;
+		// align-items: center;
+		@media (max-width: $mobile) {
+			height: 100%;
+			flex-direction: column;
+		}
+		.mainContent__catBox {
+			margin: 0;
+			position: absolute;
+			right: 667.5px;
+			@media (max-width: $desktop) {
+				right: 427.3px;
+			}
+			@media (max-width: $mobile) {
+				position: relative;
+				order: 2;
+				right: 0;
+			}
+			img {
+				width: 22.5rem;
+				@media (max-width: $mobile) {
+					width: 295px;
+					margin: 0;
+				}
+			}
+		}
+		@media (max-width: $mobile) {
+				height: 100%;
+		} 
+		.gameContentBox {
+			display: flex;
+			align-items: center;
+			margin: 0 auto;
+			@media (max-width: $mobile) {
+				position: relative;
+				order: 2;
+				right: 0;
+				justify-content: center;
+				margin-top: 1.875rem;
+			}
+			&__box {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				img {
+					@media (max-width: $mobile) {
+						scale: 0.7;
+					}
+				}
+			}
+		}
+}
+	&__tapCat {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		right: 250px;
+		border-radius: 60px;	
+		width: 120px;
+		height: 120px;
+		background: #292f4f;
+		border: 0.50px solid rgba(255, 255, 255, 0.3);
+		opacity: 1;
+		animation: fadeOut 5s forwards;
+		@media (max-width: $desktop) {
+			right: 150px;
+		} 
+		@media (max-width: $mobile) {
+			right: -7.5rem;
+		} 
+		@media (max-width: 35rem) {
+			width: 5rem;
+			height: 5rem;
+		} 
+		p {
+			margin-bottom: 5px;			
+			font-size: 16px;
+			@media (max-width: 35rem) {
+				font-size: 0.75rem;
+			} 
+		}
+	}
+	@keyframes fadeOut {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+	&__infoBlock {		
+		// position: absolute;
+		// bottom: 100px;
+		display: flex;
+		flex-direction: column;
+		width: 385px;
+		@media (max-width: $mobile) {
+			order: 1;
+			position: relative;
+			bottom: 0;
+		}
+	}
+	&__title {
+		h4 {
+			// margin: 5.375rem 0 0 0;
+			font-weight: 900;
+			font-size: 2.5rem;
+			line-height: 100%;
+			max-width: 23.75rem;
+			@media (max-width: $mobile) {
+				// margin: 1.875rem 0 0 0;
+				font-size: 1.5rem;
+				max-width: 100%;
+				text-align: center;
+			}
+		}
+		@media (max-width: $mobile) {
+			margin-top: 3.75rem;
+		}
+	}
+	&__descr {
+		p {
+			margin: 2.1875rem 0 0 0;
+			max-width: 23.75rem;
+			font-weight: 400;
+			font-size: 1.125rem;
+			line-height: 130%;
+			@media (max-width: $mobile) {
+					font-size: 0.875rem;
+					max-width: 100%;
+					text-align: center;
+					margin: 0.9375rem 0 0 0;
+					display: none;
+			}
+		}
+	}
+	&__descrMob {
+		p {
+			margin: 2.1875rem 0 0 0;
+			max-width: 23.75rem;
+			font-weight: 400;
+			font-size: 1.125rem;
+			line-height: 130%;
+			display: none;
+			@media (max-width: $mobile) {
+					font-size: 0.875rem;
+					max-width: 100%;
+					text-align: center;
+					margin: 0.9375rem 0 0 0;
+					display: flex;
+					flex-direction: column;
+			}
+		}
+
+	}
+	&__form {
+			// position: absolute;	
+			right: 0;
+			bottom: 0;
+			padding: 2.1875rem 1.875rem;
+			border-radius: 20px;
+			width: fit-content;
+			height: fit-content;
+			display: flex;
+			flex-direction: column;
+			background: rgba(0, 0, 0, 0.3);
+			z-index: 1000;
+			@media (max-width: $mobile) {
+				padding: 1.875rem 0.8125rem 2.1875rem 0.8125rem;
+				position: relative;
+				display: flex;
+				align-self: center;
+				order: 4;
+				width: auto;
+				margin-top: 1.875rem;
+			}
+			.mainContent__startBtn {
+				margin-top: 0.9375rem;
+				border: 2px solid #fff;
+				border-radius: 60px;			
+				padding: 0.875rem 0.9063rem 13px 0.9063rem;
+				font-size: 1rem;
+				width: fit-content;
+				align-self: center;
+			}
+	}
+	&__guideItems {
+		text-align: center;
+		position: absolute;
+		p {
+			margin-top: 10px;
+			font-weight: 500;
+			font-size: 12px;
+			line-height: 124%;
+			text-align: center;
+			color: #fff;
+		}
+	}
+	&__refFriends {
+		position: absolute;
+		scale: 140%;
+		left: 31.875rem;
+		top: -10.625rem;
+		width: 6.25rem;
+		@media (max-width: $desktop) {
+			left: 22.5rem;
+		}
+		@media (max-width: $mobile) {
+			scale: 80%;
+			top:25rem;
+			left: 120px;
+		}
+		@media (max-width: 47.9988rem) {
+			scale: 60%;
+			top:20rem;
+			left: 80px;
+		}
+	}
+	&__petCat {
+		position: absolute;
+		scale: 140%;
+		left: 35.625rem;
+		top: 7.5rem;
+		width: 6.25rem;
+		@media (max-width: $desktop) {
+			left: 22.5rem;
+		}
+		@media (max-width: $mobile) {
+			top: 20rem;
+			left: -10.625rem;
+			scale: 80%;
+		}
+		@media (max-width: 47.9988rem) {
+			scale: 60%;
+			top: 14.375rem;
+			left: -11.25rem;
+		}
+	}
+	&__earnPoins {
+		position: absolute;
+		scale: 140%;
+		left: 1100px;
+		top: -4.375rem;
+		width: 6.25rem;
+		@media (max-width: $desktop) {
+			left: 45.625rem;
+		}
+		@media (max-width: $mobile) {
+			top:230px;
+			left: 90px;
+			scale: 80%;
+		}
+		@media (max-width: 47.9988rem) {
+			scale: 60%;
+			top:11.875rem;
+			left: 90px;
+		}
+	}
+	&__startBtn-box {
+		margin-top: 45px;
+		display: flex;
+		max-width: fit-content;
+		@media (max-width: $mobile) {
+			order:3;
+	}
+	}
+	&__startBtn {
+    transition: opacity 0.25s;
+		display: flex;
+		align-items: center;
+		border: 0.125rem solid #fff;
+		border-radius: 3.75rem;
+		font-weight: 600;
+		font-size: 1.375rem;
+		padding: 1.4063rem 39px 1.3438rem 2.4375rem;
+		background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
+		svg {
+				margin-left: 0.625rem;
+				transition: .25s;
+		}
+		@media (max-width: $mobile) {
+				font-size: 1.125rem;
+				padding: 1.25rem 3rem 1.25rem 3rem;
+		}
+	}
+	&__startBtn:hover {
+		background: linear-gradient(180deg, #c09aff 0%, #691ee2 90.83%);
+		@media (max-width: $mobile) {
+		background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
+	}
+	}
+
+	&__catBox {
+			margin: 0;
+			position: absolute;
+			right: 667.5px;
+			justify-content: center;	
+			z-index: 5;
+			margin-top: 0;
+			display: flex;
+			align-self: center;
+			flex-direction: column;
+			align-items: center;
+			// width: 385px;
+			// height: 581px;
+			@media (max-width: $desktop) {
+				right: 427.3px;
+			}
+			@media (max-width: $mobile) {
+				width: 15rem;
+		}
+			img {
+					// width: 210px;
+					@media (max-width: $mobile) {
+							width: 9.6875rem;
+					}
+			}
+			object {
+					width: 13.125rem;
+					@media (max-width: $mobile) {
+							width: 9.6875rem;
+					}
+			}
+			svg {
+					width: 13.125rem;
+					@media (max-width: $mobile) {
+							width: 9.6875rem;
+					}
+			}
+	}
+	&__catIdle {
+			z-index: 15;
+	}
+	&__catMeow {
+			z-index: 15;
+	}
+	&__catMeow:hover {
+		cursor: pointer;
+	}
+	&__energyBox {
+			position: absolute;
+			width: 13.75rem;
+			margin-top: 7.5rem;
+			@media (max-width: $mobile) {
+					position: relative;
+					order: 4;
+					top: 0;
+					left: 0;
+					margin: 2.125rem 0 1.875rem 0;
+					width: 100%;
+			 }
+	}
+	&__energyContainer {
+			display: flex;
+			flex-direction: row;
+			font-weight: 600;
+			font-size: 1.375rem;
+			color: #fff;
+			align-items: center;
+			.energyCount {
+					margin-left: 7px;
+			}
+			@media (max-width: $mobile) {
+					font-size: 1.125rem;
+			 }
+			 img {
+				width: 1.9375rem;
+				height: 1.5rem;
+			 }
+	}
+	&__energyValue {
+			display: flex;
+			flex-direction: row;
+	}
+	&__energyBar {
+			margin-top: 0.625rem;
+			box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+			background: rgba(0, 0, 0, 0.16);
+			justify-content: flex-start;
+			align-items: center;
+			position: relative;
+			display: flex;
+			border-radius: 1.25rem;
+			width: 13.3125rem;
+			height: 0.9375rem;
+			progress {
+				border-radius: 20px;
+				width: 100%;
+				height: 100%;
+			}
+			progress::-webkit-progress-bar {
+				background-color: rgba(0, 0, 0, 0.16);
+				border-radius: 1.25rem;;
+				box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+			}
+			progress::-webkit-progress-value {
+				background: linear-gradient(146deg, #decaff 0%, #691ee2 100%);
+				border-radius: 1.25rem;;
+				box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+			}
+			@media (max-width: $mobile) {
+				width: 100%;
+			}
+	}
+	&__energyHint {
+		margin-top: 1.25rem;
+		p {
+			font-weight: 500;
+			font-size: 1rem;
+			line-height: 130%;
+			color: #fff;
+		}
+	}
+	&__coins {
+		margin-top: 7.5rem;
+		position: absolute;
+		right: 0;
+		@media (max-width: $mobile) {
+			position: relative;
+			justify-content: center;
+			margin-top: 2.5rem;
+			display: flex;
+	   }
+	}
+	&__coinBox {
+			// position: absolute;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			top: 1.25rem;
+			right: 1.25rem;
+			padding: 0.6875rem 0.875rem 0.6875rem 0.875rem;
+			box-shadow: inset -0.25rem -0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+			background: rgba(0, 0, 0, 0.05); 
+			border-radius: 1.25rem;
+				@media (max-width: $mobile) {
+				 position: relative;
+				 order: 1;
+				 padding: 0.4375rem 0.625rem;
+				 width: 8.75rem;
+				 align-self: center;
+				 justify-content: center;
+				 right: 0;
+				 top: 0;
+				 margin: 2.375rem 0 0 0;
+			}
+	}
+	&__coinImg {
+			display: flex;
+			align-items: center;
+			margin-right: 0.625rem;
+			width: 51px;
+			height: 52px;
+			img {
+					width: 100%;
+			}
+			@media (max-width: $mobile) {
+				 width: 2rem;
+				 height: 2.0625rem;
+			 }
+	}
+	&__coinAmount {   
+			display: flex;
+			align-items: center;
+			span {
+					padding-top: 0.9375rem;
+					display: flex;
+					text-align: center;    
+					font-weight: 600;
+					font-size: 3.5rem;
+					color: #fff;
+					@media (max-width: $mobile) {
+						 font-size: 2.1875rem;
+						}
+			}
+	}
+	&__backBtn-box {
+		display: flex;
+		position: absolute;
+		bottom: 0;
+		border-radius: 3.75rem;
+		overflow: hidden;
+		z-index: 100;
+		@media (max-width: $mobile) {
+			top: 40px;
+			right: 0;
+			display: block;
+		   }
+	}
+	&__backBtn {  
+			z-index: 10;
+			flex-direction: row;
+			align-items: center;
+			text-align: center;
+			// position: absolute;
+			// bottom: 0;
+			border: 0.125rem solid rgba(255, 255, 255, 0.5);
+			border-radius: 3.75rem;
+			// padding: 1.125rem 1.5625rem 0.9375rem 1.4375rem;
+			padding: 1.4063rem 2.4375rem 1.3438rem 2.4375rem;
+			button {
+					font-weight: 600;
+					font-size: 1.375rem;
+					line-height: 95%;
+					color: rgba(255, 255, 255, 0.5);
+			}
+			@media (max-width: $mobile) {
+					top: 0.9375rem;
+					padding: 0.625rem 0.625rem 0.4375rem 0.625rem;
+				 }
+				 span {
+		@media (max-width: $mobile) {
+			display: none;
+		}
+	}
+	svg {
+		display: none;
+		@media (max-width: $mobile) {
+			display: flex;
+		}
+	}
+	}
+	&__backBtn:hover {
+			cursor: pointer;
+			border: 0.125rem solid #fff;
+			@media (max-width: $mobile) {
+					border-color: rgba(255, 255, 255, 0.5);
+			}
+			button {
+					color: #fff;
+					@media (max-width: $mobile) {
+							color: rgba(255, 255, 255, 0.5);
+					}
+			}
+	}
+	&__animation {
+			position: absolute;
+			width: 40rem;
+			height: 40rem;
+			display: flex;
+			align-self: center;
+			right: 33.625rem;
+			@media (max-width: $desktop) {
+				right: 18.75rem;
+			}
+			@media (max-width: $mobile) {
+				right: -50px;
+			}
+			@media (max-width: 40rem) {
+				width: 22.5rem;
+				// right: -20px;
+				right: 0;
+				left: 0;
+				margin: 0 auto;
+			}
+	}
+	&__coinOne {
+			position: absolute;
+			animation: 1.8s linear 0s infinite coinOne;
+			width: 5.8125rem;
+			height: 7rem;   
+			left: 1.25rem;
+			margin-top: 10rem;
+			@media (max-width: $mobile) {
+				width: 2.6875rem;
+				height: 2.625rem;
+				left: 11.25rem;
+				animation: 2.4s linear 0s infinite coinOne;
+			}
+			@media (max-width: 40rem) {
+				width: 2.0625rem;
+				height: 2rem;
+				left: 1.875rem;
+				animation: 3.6s linear 0s infinite coinOne;
+			}
+			img {
+					max-width: 100%;
+			}
+	}
+	&__coinTwo {
+			position: absolute;
+			right: 5rem;
+			animation: 3s linear 0s infinite coinTwo;
+			width: 5.3125rem;
+			height: 6.5rem;  
+			margin-top: 10rem;
+			@media (max-width: $mobile) {
+				right: 176px;
+				width: 45px;
+				height: 64px;  
+				animation: 3.6s linear 0s infinite coinTwo;
+			}
+			@media (max-width: 40rem) {
+				width: 35px;
+				height: 54px;
+				right: 30px;
+				animation: 5s linear 0s infinite coinOne;
+			}
+			img {
+					max-width: 100%;
+			} 
+	}
+	&__coinThree {
+			position: absolute;
+			animation: 4s linear 0s infinite coinThree;
+			width: 2.8125rem;
+			height: 4rem; 
+			left: 30%; 
+			margin-top: 15rem;
+			@media (max-width: $mobile) {
+				left: 35%; 
+				animation: 4.6s linear 0s infinite coinThree;
+				width: 35px;
+				height: 54px; 
+			}
+			@media (max-width: 40rem) {
+				left: 21%; 
+				animation: 5s linear 0s infinite coinThree;
+				width: 1.5625rem;
+				height: 2.75rem; 
+			}
+			img {
+					max-width: 100%;
+			} 
+	}
+	&__coinFour {
+			position: absolute;
+			animation: 4s linear 0s infinite coinFour;
+			width: 45px;
+			height: 64px; 
+			left: 30%; 
+			margin-top: 15rem;
+			// display: none;
+			img {
+					max-width: 100%;
+			} 
+	}
+	&__coinFive {
+			position: absolute;
+			animation: 4s linear 0s infinite coinFive;
+			width: 45px;
+			height: 64px; 
+			left: 30%; 
+			margin-top: 15rem;
+			display: none;
+			img {
+					max-width: 100%;
+			} 
+	}
+	&__coinSix {
+			position: absolute;
+			animation: 4s linear 0s infinite coinSix;
+			width: 45px;
+			height: 64px; 
+			left: 30%; 
+			margin-top: 15rem;
+			display: none;
+			img {
+					max-width: 100%;
+			} 
+	}
+	&__coinSeven {
+			position: absolute;
+			animation: 1.8s linear 0s infinite coinSeven;
+			width: 5.8125rem;
+			height: 7rem;   
+			right: 0;
+			display: none;
+			img {
+					max-width: 100%;
+			} 
+	}
+}
+
+.steps {
+	@media (max-width: $mobile) {
+		margin-top: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	&__header {
+		p {
+			font-weight: 400;
+			font-size: 1.125rem;
+			line-height: 130%;
+			color: #fff;
+			margin-bottom: 1.25rem;
+		}
+		h4 {
+			font-weight: 700;
+			font-size: 1.875rem;
+			line-height: 100%;
+			color: #fff;
+			margin-top: 1.25rem;
+			@media (max-width: $mobile) {
+				font-size: 1.25rem;
+			}
+		}
+	}
+	&__headerConnected {
+		p {
+			font-weight: 400;
+			font-size: 1.125rem;
+			line-height: 130%;
+			color: #fff;
+			margin-bottom: 1.25rem;
+		}
+		h4 {
+			font-weight: 700;
+			font-size: 1.875rem;
+			line-height: 100%;
+			color: #fff;
+			margin-top: 1.25rem;
+			@media (max-width: $mobile) {
+				font-size: 1.25rem;
+			}
+		}
+	}
+	&__items {
+
+	}
+	&__item {
+		display: flex;
+		padding: 1rem 0;
+		align-items: center;
+		justify-content: space-between;
+		width: 17.5rem;
+		border-bottom: 1px solid rgba(217, 217, 217, 0.15);
+		@media (max-width: $mobile) {			
+			justify-content: space-between;
+			flex-direction: row;
+			align-items: center;
+		}
+		p {
+			font-weight: 400;
+			font-size: 1rem;
+			line-height: 130%;
+			color: #fff;
+			display: flex;
+			flex-direction: column;
+		}
+	}
+	&__item-btn {
+		border: 0.125rem solid #fff;
+		border-radius: 3.75rem;
+		padding: 0.7813rem 0.8125rem 0.7188rem 0.8125rem;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+		width: 4.6875rem;
+		font-size: 1rem;
+		transition: .25s;
+		@media (max-width: $mobile) {
+			margin-top: 0;
+			font-size: 1rem;
+			padding: 0.625rem 0.9375rem 0.5625rem 0.9375rem;
+		}
+	}
+	&__item-btn:hover {       
+		transition: .25s;
+		color: #000000;
+		background-color: #ffffff;   
+		@media (max-width: $mobile) {
+				color: #ffffff;
+				background-color: transparent;  
+		}
+	}
+}
+
+.mainFooter {
+	display: flex;
+	// width: 120rem;
+	// margin: 0 auto;
+	// padding: 1.75rem 0;
+		@media (max-width: $desktop) {
+			// width: 90rem;
+		}
+		@media (max-width: $mobile) {
+			margin-top: 1.875rem;
+			padding: 0;
+		}
+	&__container {
+		// padding: 0 15.125rem;
+		width: 100%;
+		display: flex;
+		// justify-content: space-between;
+		// align-items: center;
+		@media (max-width: $desktop) {
+			// padding: 0 8.125rem;
+		}
+	}
+	&__socials {
+		display: flex;
+		flex-direction: row;
+		gap: 0.75rem;
+		@media (max-width: $mobile) {
+			display: none;
+		}
+	}
+	&__link {
+		border: 0.125rem solid #fff;
+		border-radius: 3.75rem;
+		padding: 1rem 1.0625rem 0.875rem 0.8125rem;
+		width: 3.125rem;
+		height: 3.125rem;
+		font-weight: 600;
+		font-size: 1rem;
+		text-transform: uppercase;
+		color: #fff;
+	}
+	&__link:hover {
+		transition: .25s;
+		color: #000000;
+		background-color: #ffffff;
+		cursor: pointer;
+	}
+}
+
+.bgImage {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	width: 100%;
+	height: calc(100% + 5.75rem);
+	top: -5.75rem;
+	transition: opacity 1s ease;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+@keyframes coinOne {
+	from {
+			transform: translateY(0px);
+			opacity: 1;
+	}
+	to {
+			transform: translateY(40rem);
+			opacity: 0.8;
+	}
+}
+@keyframes coinTwo {
+	from {
+			transform: translateY(0px);
+			opacity: 0.8;
+	}
+	to {
+			transform: translateY(30rem);
+			opacity: 0;
+			rotate: 3deg;
+	}
+}
+@keyframes coinThree {
+	from {
+			transform: translateY(0px);
+			opacity: 0.5;
+	}
+	to {
+			transform: translateY(20rem);
+			opacity: 0;
+			rotate: -11deg;
+	}
+}
+@keyframes coinFour {
+	from {
+			transform: translateY(0px);
+			opacity: 0.5;
+	}
+	to {
+			transform: translateY(20rem);
+			opacity: 0;
+			rotate: -11deg;
+	}
+}
+@keyframes coinFive {
+	from {
+			transform: translateY(0px);
+			opacity: 0.5;
+	}
+	to {
+			transform: translateY(20rem);
+			opacity: 0;
+			rotate: -11deg;
+	}
+}
+@keyframes coinSix {
+	from {
+			transform: translateY(0px);
+			opacity: 0.5;
+	}
+	to {
+			transform: translateY(20rem);
+			opacity: 0;
+			rotate: -11deg;
+	}
+}
+@keyframes coinSeven {
+	from {
+			transform: translateY(5rem);
+			opacity: 1;
+	}
+	to {
+			transform: translateY(35rem);
+			opacity: 0;
+	}
+}
+
+.mainContent__form {
+	.wallet-adapter-dropdown {
+		button:hover {
+			color: #ffffff!important;
+		}
+	}
+}
