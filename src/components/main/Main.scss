@@ -429,7 +429,7 @@ $desktop: 1919.98px;
 					order: 4;
 					top: 0;
 					left: 0;
-					margin: 2.125rem 0 1.875rem 0;
+					margin: 1.25rem 0 1.25rem 0;
 					width: 100%;
 			 }
 	}
@@ -486,10 +486,10 @@ $desktop: 1919.98px;
 			}
 	}
 	&__energyHint {
-		margin-top: 1.25rem;
+		margin-top: 0.9375rem;
 		p {
 			font-weight: 500;
-			font-size: 1rem;
+			font-size: 14px;
 			line-height: 130%;
 			color: #fff;
 		}
@@ -525,7 +525,6 @@ $desktop: 1919.98px;
 				 justify-content: center;
 				 right: 0;
 				 top: 0;
-				 margin: 2.375rem 0 0 0;
 			}
 	}
 	&__coinImg {

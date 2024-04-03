@@ -6,11 +6,12 @@ import copy from "../../img/copy.svg"
 import envelope from "../../img/envelope.svg"
 import link from "../../img/link.svg"
 // import logo from "../../img/logo.png"
+import leaderboard_icon from '../../img/leaderboard_icon.svg'
 import money from "../../img/money.svg"
 import people from "../../img/people-icon.svg"
+import referral_icon from '../../img/referral_icon.svg'
 import {
-  useGenerateCodeMutation,
-  useGetLeaderboardMutation
+  useGenerateCodeMutation
 } from "../../services/phpService"
 import { toggleMuteAllSounds } from "../../utility/Audio"
 import { useClickCount } from '../clickContext'
@@ -42,8 +43,8 @@ function Header() {
   const { clickCount } = useClickCount();
   const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
 
-  const containerRef = useRef(null);
-  const [getLeaderboard] = useGetLeaderboardMutation();
+  // const containerRef = useRef(null);
+  // const [getLeaderboard] = useGetLeaderboardMutation();
 
   // const connectSubmitHandler = async () => {
   //   try {
@@ -265,16 +266,15 @@ function Header() {
               <img src={logo} alt={logo} />
             </a>
           </div> */}
-          <div
-            className="header__leaderboard">
-            <button onClick={leaderBordBtn}>Leaderboard</button>
-          </div>
           <div className="header__mobileBtns">
             {value && totalPoints !== null && (
               <div id="header__totalScore" className="header__totalScore">
                 Total Points: <span>{totalPoints}</span>
               </div>
             )}
+                      <div className="header__leaderboard">
+            <button onClick={leaderBordBtn}>Leaderboard<img src={leaderboard_icon}/></button>
+          </div>
             <div className="soundToggler">
               {isVisible ? (
                 <div
@@ -337,13 +337,13 @@ function Header() {
             {/* <div className="header__walletBtn">
               <WalletMultiButton />
             </div> */}
-            {/* { connected && (
+            {/* { connected && ( */}
               <div className="header__inviteBtn">
                <button onClick={inviteFriendsBtn}>
-                 Invite a friend
+                 Referral<img src={referral_icon}/>
                </button>
               </div>
-            )} */}
+            {/* )} */}
             {/* <div className="header__mobileBurger hidden"
               ref={containerRef}
               onClick={toggleVisibility}

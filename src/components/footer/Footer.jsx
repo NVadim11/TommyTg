@@ -1,4 +1,7 @@
 import React, { useState } from "react"
+import pet from '../../img/pet_icon.svg'
+import shop from '../../img/shop_icon.svg'
+import tasks from '../../img/tasks_icon.svg'
 import { toggleMuteAllSounds } from '../../utility/Audio'
 import './Footer.scss'
 
@@ -33,6 +36,21 @@ function Footer() {
 				</button>
 			</div>
 				)}
+		</div>
+		<div className="footerMain__activities">
+			<button>Tastks<img src={tasks}/></button>
+			<button style={{
+				opacity: '0.5',
+        cursor: 'not-allowed',
+      }}
+      disabled
+    >Pet<img src={pet}/></button>
+			<button style={{
+				opacity: '0.5',
+        cursor: 'not-allowed',
+      }}
+      disabled
+    >Shop<img src={shop}/></button>
 		</div>
 		<div className="footerMain__socials">
 			<div className="footerMain__twBtn">
