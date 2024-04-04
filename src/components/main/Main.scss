@@ -40,42 +40,6 @@ $desktop: 1919.98px;
 			display: flex;
 			z-index: 5;
 	}
-	&__phaseOne {
-		height: 581px;
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		@media (max-width: $mobile) {
-			height: 100%;
-			flex-direction: column;
-		}
-		.mainContent__catBox {
-			margin: 0;
-			position: absolute;
-			right: 667.5px;
-			@media (max-width: $desktop) {
-				right: 427.3px;
-			}
-			@media (max-width: $mobile) {
-				position: relative;
-				order: 2;
-				right: 0;
-			}
-			img {
-				width: 22.5rem;
-				@media (max-width: $mobile) {
-					width: 295px;
-					margin: 0;
-				}
-			}
-		}
-		.mainContent__startBtn-box {
-			@media (max-width: $mobile) {
-				display: none;
-			}
-		}
-	}
 	&__phaseTwo {
 		height: 581px;
 		position: relative;
@@ -98,9 +62,8 @@ $desktop: 1919.98px;
 				right: 0;
 			}
 			img {
-				width: 22.5rem;
 				@media (max-width: $mobile) {
-					width: 295px;
+					width: 220px;
 					margin: 0;
 				}
 			}
@@ -429,7 +392,7 @@ $desktop: 1919.98px;
 					order: 4;
 					top: 0;
 					left: 0;
-					margin: 1.25rem 0 1.25rem 0;
+					margin: 40px 0 0 0;
 					width: 100%;
 			 }
 	}
@@ -489,24 +452,19 @@ $desktop: 1919.98px;
 		margin-top: 0.9375rem;
 		p {
 			font-weight: 500;
-			font-size: 14px;
+			font-size: 12px;
 			line-height: 130%;
 			color: #fff;
 		}
 	}
 	&__coins {
-		margin-top: 7.5rem;
-		position: absolute;
-		right: 0;
 		@media (max-width: $mobile) {
 			position: relative;
 			justify-content: center;
-			margin-top: 2.5rem;
 			display: flex;
 	   }
 	}
 	&__coinBox {
-			// position: absolute;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -520,7 +478,7 @@ $desktop: 1919.98px;
 				 position: relative;
 				 order: 1;
 				 padding: 0.4375rem 0.625rem;
-				 width: 8.75rem;
+				 width: fit-content;
 				 align-self: center;
 				 justify-content: center;
 				 right: 0;
@@ -545,7 +503,6 @@ $desktop: 1919.98px;
 			display: flex;
 			align-items: center;
 			span {
-					padding-top: 0.9375rem;
 					display: flex;
 					text-align: center;    
 					font-weight: 600;
@@ -553,7 +510,7 @@ $desktop: 1919.98px;
 					color: #fff;
 					@media (max-width: $mobile) {
 						 font-size: 2.1875rem;
-						}
+					}
 			}
 	}
 	&__backBtn-box {

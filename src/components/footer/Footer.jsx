@@ -1,12 +1,38 @@
 import React, { useState } from "react"
+import catCoinMove from '../../img/cat_coin_move.png'
 import pet from '../../img/pet_icon.svg'
 import shop from '../../img/shop_icon.svg'
 import tasks from '../../img/tasks_icon.svg'
 import { toggleMuteAllSounds } from '../../utility/Audio'
+import { useClickCount } from '../clickContext'
 import './Footer.scss'
 
 function Footer() {
 	const [isVisible, setIsVisible] = useState(true);
+	const [tasksOpen, setTasksOpen] = useState(false);
+  const [isShown, setIsShown] = useState(false);
+
+	const { clickCount } = useClickCount();
+
+	const popupTasksTgl = tasksOpen ? "popupTasks_show" : null;
+  const popupTasks = `popupTasks ${popupTasksTgl}`;
+
+	const tasksBtn = () => {
+    setTasksOpen(true);
+    fadeShow();
+    setIsShown(false);
+  };
+
+	const fadeShow = () => {
+    const htmlTag = document.getElementById("html");
+    if (htmlTag) htmlTag.classList.add("popupTasks-show");
+  };
+
+	const tasksCloseToggler = () => {
+    setTasksOpen(false);
+    const htmlTag = document.getElementById("html");
+    if (htmlTag) htmlTag.classList.remove("popupTasks-show");
+  };
       
 	const toggleVisibility = () => {
 		toggleMuteAllSounds();
@@ -14,7 +40,8 @@ function Footer() {
 	};
 
 	return (
-	<footer className="footerMain">
+		<>
+			<footer className="footerMain">
 		<div className="footerMain__container">
 		<div className="soundToggler">
 		{isVisible ? (
@@ -38,7 +65,7 @@ function Footer() {
 				)}
 		</div>
 		<div className="footerMain__activities">
-			<button>Tastks<img src={tasks}/></button>
+			<button onClick={tasksBtn}>Tasks<img src={tasks}/></button>
 			<button style={{
 				opacity: '0.5',
         cursor: 'not-allowed',
@@ -61,7 +88,52 @@ function Footer() {
 			</div>
 		</div>
 	</div>
-</footer>
+			</footer>
+			{tasksOpen && (
+		<div id="popupTasks" aria-hidden="true" className={popupTasks}>
+			<div className="popupTasks__wrapper">
+				<div className="popupTasks__content">
+					<button
+						onClick={tasksCloseToggler}
+						type="button"
+						className="popupTasks__close"
+					>
+						<svg
+							width="19"
+							height="19"
+							viewBox="0 0 19 19"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17"
+								stroke="white"
+								strokeWidth="3"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+					</button>
+					<div className="popupTasks__title">
+						<h4>Complete tasks 
+						and get rewarded!</h4>
+					</div>
+						<div className="popupTasks__coins">
+              <div className="popupTasks__coinBox">
+              <div className="popupTasks__coinImg" draggable="false"><img src={catCoinMove} alt="animation" 				draggable="false"/></div>
+                <div className="popupTasks__coinAmount"><span id="coinAmount">{clickCount}</span></div>
+              </div>
+            </div>
+						<div className="popupTasks__tabBtns">
+							<button>Social</button>
+							<button>Daily</button>
+							<button>Partnership</button>
+						</div>
+				</div>
+			</div>
+		</div>
+	)}
+		</>
 	)
 }
 

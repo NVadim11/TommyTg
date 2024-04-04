@@ -9,13 +9,15 @@ $desktop: 119.9988rem;
 	z-index: 100;
 	@media (max-width: $mobile) {		
 		padding: 0 20px;
+		margin-top: 20px;
+		padding-bottom: 20px;
 		height: 4.3125rem;
 		align-items: center;
 		position: relative;
 	}
 	.soundToggler {
 		position: absolute;
-		top: 75px;
+		top: 90px;
 		left: 0;
 	}
 	background: transparent;
@@ -32,16 +34,11 @@ $desktop: 119.9988rem;
 		justify-content: space-between;
 		align-items: center;
 		margin: 0 auto;
-		width: 120rem;
-		@media (max-width: $desktop) {
-			width: 90rem;
-		}
+		margin: 20px 0;
 		@media (max-width: $mobile) {
 			width: 100%;
 		}
-		@media (max-width: 26.25rem) {
-			justify-content: flex-end;
-		}
+
 	}
 	&__logo {
 		cursor: pointer;
@@ -71,26 +68,48 @@ $desktop: 119.9988rem;
 			position: relative;
 		}
 	}
+	&__inviteBtn {
+		border: 0.125rem solid #fff;
+		border-radius: 3.75rem;
+		width: 150px;
+		height: 45px;
+		padding: 10px 10px 8.5px 10px;
+		background: linear-gradient(87deg, #a67de7 0%, #691ee2 90.83%);
+		button {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		  width: 100%;
+		  height: 100%;
+		  font-weight: 600;
+		  font-size: 16px;	
+		  color: #fff;
+			img {
+				margin-left: 6px;
+				margin-bottom: 2px;
+			}
+		}
+	  }
 	&__leaderboard {
 		border: 0.125rem solid #fff;
 		border-radius: 3.75rem;
-		transition: .25s;
 		text-align: center;
 		align-items: center;
-		width: fit-content;
-		height: fit-content;
-		padding: 10px;
-		background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
+		width: 150px;
+		height: 45px;
+		padding: 10px 10px 8.5px 10px;
+		background: linear-gradient(87deg, #a67de7 0%, #691ee2 90.83%);
 		button {
 			display: flex;
-		  text-align: center;
-		  align-items: center;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
 		  width: 100%;
 		  height: 100%;
 		  font-weight: 600;
 		  font-size: 16px;
 		  color: #fff;
-			background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
 			img {
 				margin-left: 6px;	
 				margin-bottom: 2px;
@@ -113,9 +132,6 @@ $desktop: 119.9988rem;
 		z-index: 11;
 		position: relative;
 		width: 100%;
-		// @media (max-width: $mobile) {
-		// 	position: inherit;
-		// }
 	}
 	&__totalScore {
 		font-weight: 600;
@@ -182,32 +198,6 @@ $desktop: 119.9988rem;
 			}
 		}
 	}	
-	&__inviteBtn {
-		border: 0.125rem solid #fff;
-		border-radius: 3.75rem;
-		transition: .25s;
-		text-align: center;
-		align-items: center;
-		width: fit-content;
-		height: fit-content;
-		padding: 10px;
-		background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
-		button {
-			display: flex;
-		  text-align: center;
-		  align-items: center;
-		  width: 100%;
-		  height: 100%;
-		  font-weight: 600;
-		  font-size: 16px;	
-		  color: #fff;
-			background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
-			img {
-				margin-left: 6px;
-				margin-bottom: 2px;
-			}
-		}
-	  }
 	// &__airdropBtn {
 	// 	border: 0.125rem solid #fff;
 	// 	border-radius: 3.75rem;
@@ -412,7 +402,6 @@ body::after {
 		border-radius: 1.875rem;
 		backdrop-filter: blur(1.125rem);
 		background: rgba(124, 48, 247, 0.45);
-		// box-shadow: inset -0.25rem -0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 		box-shadow: inset -0.25rem -0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 		@media (max-width: $mobile) {
 			padding: 3.25rem 1.25rem;

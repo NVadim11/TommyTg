@@ -334,79 +334,13 @@ function Header() {
                 </div>
               )}
             </div>
-            {/* <div className="header__walletBtn">
-              <WalletMultiButton />
-            </div> */}
-            {/* { connected && ( */}
               <div className="header__inviteBtn">
                <button onClick={inviteFriendsBtn}>
                  Referral<img src={referral_icon}/>
                </button>
               </div>
-            {/* )} */}
-            {/* <div className="header__mobileBurger hidden"
-              ref={containerRef}
-              onClick={toggleVisibility}
-            > */}
-              {/* <div
-                className={
-                  isToggled
-                    ? "header__mobileBurger-btn is-active"
-                    : "header__mobileBurger-btn"
-                }
-              >
-                <span className="header__mobileBurger-line"></span>
-                <span className="header__mobileBurger-line"></span>
-                <span className="header__mobileBurger-line"></span>
-              </div>
-              {isShown && (
-                <div className="header__mobileMenu">
-                  <a
-                    className="header__mobileMenu-links"
-                    onClick={leaderBordBtn}
-                  >
-                    Leadboard
-                  </a>
-                  <a
-                    className="header__mobileMenu-links"
-                    onClick={inviteFriendsBtn}
-                    rel="noopener noreferrer"
-                  >
-                    Invite a friend
-                  </a>
-                  <a
-                    className="header__mobileMenu-links"
-                    onClick={airdropBtn}
-                    rel="noopener noreferrer"
-                  >
-                    Claim an airdrop
-                  </a>
-                  <a
-                    className="header__mobileMenu-links"
-                    href="https://twitter.com/TimCatSol"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    tw
-                  </a>
-                  <a
-                    className="header__mobileMenu-links"
-                    href="https://t.me/tomo_cat"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Telegram
-                  </a>
-                </div>
-              )} */}
-            {/* </div> */}
           </div>
         </div>
-        {/* <div className="header__airdropBtn">
-          <button onClick={airdropBtn}>
-            Claim an airdrop
-          </button>
-        </div> */}
       </header>
       {isLeaderboardOpen && (
         <div id="leaderboard" aria-hidden="true" className={popupClasses}>
