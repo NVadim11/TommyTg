@@ -13,6 +13,7 @@ function Footer() {
 	const [tasksOpen, setTasksOpen] = useState(false);
   const [isShown, setIsShown] = useState(false);
 	const [totalPoints, setTotalPoints] = useState(null);
+	const [walletTaskValue, setWalletTaskValue] = useState('');
 	const initLeadersRef = useRef(null);
 
 	const { clickCount } = useClickCount();
@@ -64,6 +65,29 @@ function Footer() {
 	};
 }, []);
 
+const handleChange = (event) => {
+	setWalletTaskValue(event.target.value);
+};
+
+// const handleWalletTaskSubmit = async (event) => {
+// 	event.preventDefault();
+
+// 	try {
+// 		const response = await fetch('https://example.com/api/endpoint', {
+// 			method: 'POST',
+// 			headers: {
+// 				'Content-Type': 'application/json',
+// 			},
+// 			body: JSON.stringify({ data: walletTaskValue }),
+// 		});
+
+// 		const responseData = await response.json();
+// 		setResponse(responseData.message); // assuming server sends back a message
+// 	} catch (error) {
+// 		console.error('Error:', error);
+// 	}
+// };
+
 	return (
 		<>
 			<footer className="footerMain">
@@ -106,7 +130,7 @@ function Footer() {
 		</div>
 		<div className="footerMain__socials">
 			<div className="footerMain__twBtn">
-				<a href="https://twitter.com/TimCatSol">TW</a>
+				<a href="https://twitter.com/TomoCatSol">TW</a>
 			</div>
 			<div className="footerMain__tgBtn">
 				<a href="https://t.me/tomo_cat">TG</a>
@@ -153,6 +177,31 @@ function Footer() {
 							<button>Social</button>
 							<button>Daily</button>
 							<button>Partnership</button>
+						</div>
+						<div className="popupTasks__tasks">
+							<div className="popupTasks__twitterTask">
+							<a href="https://twitter.com/TomoCatSol">TW</a>
+							</div>
+							<div className="popupTasks__tgChatTask">
+							<a href="https://twitter.com/TomoCatSol">TW</a>
+							</div>
+							<div className="popupTasks__tgChannelTask">
+							<a href="https://twitter.com/TomoCatSol">TW</a>
+							</div>
+							<div className="popupTasks__websiteTask">
+							<a href="https://twitter.com/TomoCatSol">TW</a>
+							</div>
+							<div className="popupTasks__walletTask">
+							{/* <form onSubmit={handleWalletTaskSubmit}>
+							<input
+        			  type="text"
+        			  value={walletTaskValue}
+        			  onChange={handleChange}
+        			  placeholder="Enter Solana Wallet Address"
+        			/>
+							<button type="submit">Submit</button>
+      				</form> */}
+							</div>
 						</div>
 				</div>
 			</div>

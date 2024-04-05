@@ -32,6 +32,9 @@ function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [isElementPresent, setIsElementPresent] = useState(false);
   const initLeadersRef = useRef(null);
+
+  const id_telegram = '111222333';
+
   // const wallet_address = publicKey?.toBase58();
 
   const popupClsTgl = isLeaderboardOpen ? "popupLeaderboard_show" : null;
@@ -67,11 +70,6 @@ function Header() {
   //     console.error('Error submitting data:', error.message);
   //   }
   // };
-  // useEffect(() => {
-  //   if (connected === true) {
-  //     connectSubmitHandler();
-  //   }
-  // }, [connected]);
 
   useEffect(() => {
     const observer = new MutationObserver((mutationsList) => {
@@ -105,7 +103,7 @@ function Header() {
 
   const fetchTotalPoints = async () => {
     try {
-      const response = await axios.get(`https://admin.prodtest1.space/api/telegram-id/111222333`); //telegram-id/<TG_ID>
+      const response = await axios.get(`https://admin.prodtest1.space/api/telegram-id/${id_telegram}`); //telegram-id/<TG_ID>
       setTotalPoints(response.data?.wallet_balance);
       // setTotalReferrals(response.data?.referral_balance);
     } catch (error) {
@@ -206,14 +204,14 @@ function Header() {
     setIsShown(false);  
   }
 
-  useEffect(() => {
-    if (clickCount >= 100 && !inviteAlreadySent) {
-      setInviteAlreadySent(true);
-      setTimeout(() => {
-        inviteFriendsBtn();
-      }, 5000);
-    }
-  }, [clickCount, inviteAlreadySent]);
+  // useEffect(() => {
+  //   if (clickCount >= 100 && !inviteAlreadySent) {
+  //     setInviteAlreadySent(true);
+  //     setTimeout(() => {
+  //       inviteFriendsBtn();
+  //     }, 5000);
+  //   }
+  // }, [clickCount, inviteAlreadySent]);
 
   const fadeShow = () => {
     const htmlTag = document.getElementById("html");

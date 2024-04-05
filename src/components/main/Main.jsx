@@ -254,19 +254,19 @@ useEffect(() => {
     let opacityFives = 0;
 
 
-      if (currEnergy >= 0 && currEnergy <= 250) {
+      if (currEnergy >= 0 && currEnergy <= 150) {
         activeImage = bgImages.bgImageFirst;
         opacityFirst = 1;
-      } else if (currEnergy >= 251 && currEnergy <= 500) {
+      } else if (currEnergy >= 151 && currEnergy <= 300) {
         activeImage = bgImages.bgImageSecond;
         opacitySecond = 1;
-      } else if (currEnergy >= 501 && currEnergy <= 750) {
+      } else if (currEnergy >= 301 && currEnergy <= 500) {
         activeImage = bgImages.bgImageThird;
         opacityThird = 1;
-      } else if (currEnergy >= 751 && currEnergy <= 990) {
+      } else if (currEnergy >= 501 && currEnergy <= 750) {
         activeImage = bgImages.bgImageFourth;
         opacityFourth = 1;
-      } else if (currEnergy >= 991 && currEnergy <= 1000) {
+      } else if (currEnergy >= 751 && currEnergy <= 1000) {
         activeImage = bgImages.bgImageFives;
         opacityFives = 1;
       }
@@ -280,19 +280,19 @@ useEffect(() => {
     }, [currEnergy]); 
 
     const updateCurrCoins = () => {  
-        if (currEnergy >= 0 && currEnergy <= 250) {
+        if (currEnergy >= 0 && currEnergy <= 150) {
             catIdleImage = sadIdle;
             catSpeakImage = sadSpeak;
-        } else if (currEnergy >= 251 && currEnergy <= 500) {
+        } else if (currEnergy >= 151 && currEnergy <= 300) {
             catIdleImage = normalIdle;
             catSpeakImage = normalSpeak;
-        } else if (currEnergy >= 501 && currEnergy <= 750) {
+        } else if (currEnergy >= 301 && currEnergy <= 500) {
             catIdleImage = smileIdle;
             catSpeakImage = smileSpeak;
-        } else if (currEnergy >= 751 && currEnergy <= 990) {
+        } else if (currEnergy >= 501 && currEnergy <= 750) {
             catIdleImage = happyIdle;
             catSpeakImage = happySpeak;
-        } else if (currEnergy >= 991 && currEnergy <= 1000) {
+        } else if (currEnergy >= 751 && currEnergy <= 1000) {
             catIdleImage = happyIdle;
             catSpeakImage = finalForm;
         } 
