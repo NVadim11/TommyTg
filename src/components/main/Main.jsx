@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { motion } from "framer-motion"
 import React, { useContext, useEffect, useRef, useState } from "react"
 import { useMediaQuery } from 'react-responsive'
@@ -51,13 +52,16 @@ function Main() {
     const [walletAddress, setWalletAddress] = useState('');
     const [coins, setCoins] = useState('');
 
+    const id_telegram = '111222333';
+
   //   const handleSubmit = async (event) => {
   //     event.preventDefault(); // Prevent default form submission behavior
 
   //     try {
   //         const response = await axios.post('https://admin.prodtest1.space/api/update-balance', {
   //             score: coins,
-  //             wallet_address: walletAddress
+  //             wallet_address: walletAddress,
+  //             id_telegram: id_telegram
   //         });
 
   //         console.log('Coins submitted successfully:', response.data);
@@ -298,42 +302,42 @@ useEffect(() => {
         return clickNewCoins;
     };
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         if (isCoinsChanged) {
-    //             submitData(accumulatedCoinsRef.current);
-    //             setIsCoinsChanged(false);
-    //             accumulatedCoinsRef.current = 0;
-    //         }
-    //     }, 4900);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            if (isCoinsChanged) {
+                submitData(accumulatedCoinsRef.current);
+                setIsCoinsChanged(false);
+                accumulatedCoinsRef.current = 0;
+            }
+        }, 4900);
     
-    //     return () => clearInterval(timer);
-    // }, [isCoinsChanged]);
+        return () => clearInterval(timer);
+    }, [isCoinsChanged]);
 
-    // const submitData = async (coins) => {
-    //     try {
-    //         const response = await axios.post('https://admin.prodtest1.space/api/update-balance', {
-    //             score: coins,
-    //             wallet_address: wallet_address
-    //         });
+    const submitData = async (coins) => {
+        // try {
+        //     const response = await axios.post('https://admin.prodtest1.space/api/update-balance', {
+        //         score: coins,
+        //         wallet_address: wallet_address
+        //     });
     
-    //         console.log('Coins submitted successfully:', response.data);
-    //     } catch (error) {
-    //         console.error('Error submitting coins:', error);
-    //     }
-    // //     if (id_telegram !== null) {
-    // //       try {
-    // //         const response = await axios.post('https://admin.prodtest1.space/api/update-balance', {
-    // //             score: coins,
-    // //             id_telegram: id_telegram
-    // //         });
+        //     console.log('Coins submitted successfully:', response.data);
+        // } catch (error) {
+        //     console.error('Error submitting coins:', error);
+        // }
+        if (id_telegram !== null) {
+          try {
+            const response = await axios.post('https://admin.prodtest1.space/api/update-balance', {
+                score: coins,
+                id_telegram: id_telegram
+            });
     
-    // //         console.log('Coins submitted successfully:', response.data);
-    // //     } catch (error) {
-    // //         console.error('Error submitting coins:', error);
-    // //     }
-    // //     }
-    // };
+            console.log('Coins submitted successfully:', response.data);
+        } catch (error) {
+            console.error('Error submitting coins:', error);
+        }
+        }
+    };
     
     const coinClicker = (event) => {
         if (!event.isTrusted) return;

@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import axios from 'axios'
+import React, { useEffect, useRef, useState } from "react"
 import catCoinMove from '../../img/cat_coin_move.png'
 import pet from '../../img/pet_icon.svg'
 import shop from '../../img/shop_icon.svg'
@@ -11,8 +12,12 @@ function Footer() {
 	const [isVisible, setIsVisible] = useState(true);
 	const [tasksOpen, setTasksOpen] = useState(false);
   const [isShown, setIsShown] = useState(false);
+	const [totalPoints, setTotalPoints] = useState(null);
+	const initLeadersRef = useRef(null);
 
 	const { clickCount } = useClickCount();
+
+	const id_telegram = '111222333';
 
 	const popupTasksTgl = tasksOpen ? "popupTasks_show" : null;
   const popupTasks = `popupTasks ${popupTasksTgl}`;
@@ -38,6 +43,26 @@ function Footer() {
 		toggleMuteAllSounds();
 		setIsVisible(!isVisible);
 	};
+
+	const fetchTotalPoints = async () => {
+    try {
+      const response = await axios.get(`https://admin.prodtest1.space/api/telegram-id/${id_telegram}`); //telegram-id/<TG_ID>
+      setTotalPoints(response.data?.wallet_balance);
+      // setTotalReferrals(response.data?.referral_balance);
+    } catch (error) {
+      console.error('Error fetching total points:', error.message);
+    }    
+  };
+
+	useEffect(() => {
+		fetchTotalPoints();
+		initLeadersRef.current = setInterval(() => {
+			fetchTotalPoints();
+		}, 10000); 
+	return () => {
+		clearInterval(initLeadersRef.current);
+	};
+}, []);
 
 	return (
 		<>
@@ -121,7 +146,7 @@ function Footer() {
 						<div className="popupTasks__coins">
               <div className="popupTasks__coinBox">
               <div className="popupTasks__coinImg" draggable="false"><img src={catCoinMove} alt="animation" 				draggable="false"/></div>
-                <div className="popupTasks__coinAmount"><span id="coinAmount">{clickCount}</span></div>
+                <div className="popupTasks__coinAmount"><span id="coinAmount">{totalPoints}</span></div>
               </div>
             </div>
 						<div className="popupTasks__tabBtns">

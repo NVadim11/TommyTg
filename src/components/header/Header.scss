@@ -69,6 +69,7 @@ $desktop: 119.9988rem;
 		}
 	}
 	&__inviteBtn {
+		display: none;
 		border: 0.125rem solid #fff;
 		border-radius: 3.75rem;
 		width: 150px;
@@ -92,6 +93,7 @@ $desktop: 119.9988rem;
 		}
 	  }
 	&__leaderboard {
+		margin: 0 auto;
 		border: 0.125rem solid #fff;
 		border-radius: 3.75rem;
 		text-align: center;
@@ -128,7 +130,6 @@ $desktop: 119.9988rem;
 	&__mobileBtns {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
 		z-index: 11;
 		position: relative;
 		width: 100%;

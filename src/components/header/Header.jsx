@@ -103,15 +103,15 @@ function Header() {
     setIsVisible(!isVisible);
   };
 
-  // const fetchTotalPoints = async () => {
-  //   try {
-  //     const response = await axios.get(`https://admin.prodtest1.space/api/users/${value.id_telegram}`);
-  //     setTotalPoints(response.data?.wallet_balance);
-  //     // setTotalReferrals(response.data?.referral_balance);
-  //   } catch (error) {
-  //     console.error('Error fetching total points:', error.message);
-  //   }
-  // };
+  const fetchTotalPoints = async () => {
+    try {
+      const response = await axios.get(`https://admin.prodtest1.space/api/telegram-id/111222333`); //telegram-id/<TG_ID>
+      setTotalPoints(response.data?.wallet_balance);
+      // setTotalReferrals(response.data?.referral_balance);
+    } catch (error) {
+      console.error('Error fetching total points:', error.message);
+    }    
+  };
 
   const fetchLeaderboardData = async () => {
     try {
@@ -124,8 +124,10 @@ function Header() {
 
   useEffect(() => {
       fetchLeaderboardData();
+      fetchTotalPoints();
       initLeadersRef.current = setInterval(() => {
         fetchLeaderboardData();
+        fetchTotalPoints();
       }, 10000); 
     return () => {
       clearInterval(initLeadersRef.current);
@@ -267,12 +269,12 @@ function Header() {
             </a>
           </div> */}
           <div className="header__mobileBtns">
-            {value && totalPoints !== null && (
+            {/* {value && totalPoints !== null && (
               <div id="header__totalScore" className="header__totalScore">
                 Total Points: <span>{totalPoints}</span>
               </div>
-            )}
-                      <div className="header__leaderboard">
+            )} */}
+            <div className="header__leaderboard">
             <button onClick={leaderBordBtn}>Leaderboard<img src={leaderboard_icon}/></button>
           </div>
             <div className="soundToggler">
