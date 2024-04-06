@@ -179,28 +179,26 @@ const handleChange = (event) => {
 							<button>Partnership</button>
 						</div>
 						<div className="popupTasks__tasks">
-							<div className="popupTasks__twitterTask">
-							<a href="https://twitter.com/TomoCatSol">TW</a>
+							<div className="popupTasks__task">
+								<a href="https://twitter.com/TomoCatSol">Follow Twitter</a>
 							</div>
-							<div className="popupTasks__tgChatTask">
-							<a href="https://twitter.com/TomoCatSol">TW</a>
+							<div className="popupTasks__task">
+								<a href="https://twitter.com/TomoCatSol">Follow Telegram Chat</a>
 							</div>
-							<div className="popupTasks__tgChannelTask">
-							<a href="https://twitter.com/TomoCatSol">TW</a>
+							<div className="popupTasks__task">
+								<a href="https://twitter.com/TomoCatSol">Follow Telegram Channel</a>
 							</div>
-							<div className="popupTasks__websiteTask">
-							<a href="https://twitter.com/TomoCatSol">TW</a>
+							<div className="popupTasks__task">
+								<a href="https://twitter.com/TomoCatSol">Visit Website</a>
 							</div>
 							<div className="popupTasks__walletTask">
-							{/* <form onSubmit={handleWalletTaskSubmit}>
+							<form >
 							<input
-        			  type="text"
-        			  value={walletTaskValue}
-        			  onChange={handleChange}
-        			  placeholder="Enter Solana Wallet Address"
-        			/>
+							type="text"
+							placeholder="Enter Solana Wallet Address"
+							/>
 							<button type="submit">Submit</button>
-      				</form> */}
+      				</form>
 							</div>
 						</div>
 				</div>
