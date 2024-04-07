@@ -275,3 +275,32 @@ body::after {
 		}
 	}
 }
+
+.popupTasks {
+	&__task {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		button {
+			margin-top: 10px;
+			width: 70%;
+			border: 0.125rem solid #fff;
+			border-radius: 3.75rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			height: fit-content;
+			padding: 10px;
+			padding-bottom: 8px;
+		  font-weight: 600;
+		  font-size: 14px;
+		  color: #fff;
+			background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
+		}
+		
+		button:disabled {
+			opacity: .5;
+		}
+	}
+}

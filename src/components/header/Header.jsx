@@ -1,25 +1,23 @@
 // import { useWallet } from '@solana/wallet-adapter-react'
 // import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
-import axios from 'axios'
-import React, { useContext, useEffect, useRef, useState } from "react"
-import copy from "../../img/copy.svg"
-import envelope from "../../img/envelope.svg"
-import link from "../../img/link.svg"
+import axios from "axios";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import copy from "../../img/copy.svg";
+import envelope from "../../img/envelope.svg";
+import link from "../../img/link.svg";
 // import logo from "../../img/logo.png"
-import leaderboard_icon from '../../img/leaderboard_icon.svg'
-import money from "../../img/money.svg"
-import people from "../../img/people-icon.svg"
-import referral_icon from '../../img/referral_icon.svg'
-import {
-  useGenerateCodeMutation
-} from "../../services/phpService"
-import { toggleMuteAllSounds } from "../../utility/Audio"
-import { useClickCount } from '../clickContext'
-import { AuthContext } from '../helper/contexts'
-import "./Header.scss"
+import leaderboard_icon from "../../img/leaderboard_icon.svg";
+import money from "../../img/money.svg";
+import people from "../../img/people-icon.svg";
+import referral_icon from "../../img/referral_icon.svg";
+import { useGenerateCodeMutation } from "../../services/phpService";
+import { toggleMuteAllSounds } from "../../utility/Audio";
+import { useClickCount } from "../clickContext";
+import { AuthContext } from "../helper/contexts";
+import "./Header.scss";
 
 function Header() {
-  const {value} = useContext(AuthContext);
+  const { value } = useContext(AuthContext);
   // const { connected, publicKey } = useWallet();
   const [isToggled, setIsToggled] = useState(false);
   const [isShown, setIsShown] = useState(false);
@@ -32,8 +30,6 @@ function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [isElementPresent, setIsElementPresent] = useState(false);
   const initLeadersRef = useRef(null);
-
-  const id_telegram = '111222333';
 
   // const wallet_address = publicKey?.toBase58();
 
@@ -101,32 +97,22 @@ function Header() {
     setIsVisible(!isVisible);
   };
 
-  const fetchTotalPoints = async () => {
-    try {
-      const response = await axios.get(`https://admin.prodtest1.space/api/telegram-id/${id_telegram}`); //telegram-id/<TG_ID>
-      setTotalPoints(response.data?.wallet_balance);
-      // setTotalReferrals(response.data?.referral_balance);
-    } catch (error) {
-      console.error('Error fetching total points:', error.message);
-    }    
-  };
-
   const fetchLeaderboardData = async () => {
     try {
-      const response = await axios.get(`https://admin.prodtest1.space/api/liders`);
+      const response = await axios.get(
+        `https://admin.prodtest1.space/api/liders`
+      );
       setLeaderboardData(response.data);
     } catch (error) {
-      console.error('Error fetching leaderboard data:', error.message);
+      console.error("Error fetching leaderboard data:", error.message);
     }
   };
 
   useEffect(() => {
+    fetchLeaderboardData();
+    initLeadersRef.current = setInterval(() => {
       fetchLeaderboardData();
-      fetchTotalPoints();
-      initLeadersRef.current = setInterval(() => {
-        fetchLeaderboardData();
-        fetchTotalPoints();
-      }, 10000); 
+    }, 10000);
     return () => {
       clearInterval(initLeadersRef.current);
     };
@@ -137,10 +123,10 @@ function Header() {
   //     if (Object.keys(value).length) {
   //       const res = await getLeaderboard(value.wallet_address).unwrap();
   //       setLeaderboardData(res);
-  //       fetchTotalPoints();    
+  //       fetchTotalPoints();
   //       console.log("fetched connected DB")
   //       const intervalId = setInterval(() => {
-  //         fetchTotalPoints();    
+  //         fetchTotalPoints();
   //         getLeaderboard(value.wallet_address)
   //           .unwrap()
   //           .then((data) => setLeaderboardData(data))
@@ -201,8 +187,8 @@ function Header() {
   const inviteFriendsBtn = () => {
     setInviteOpen(true);
     fadeShowInvite();
-    setIsShown(false);  
-  }
+    setIsShown(false);
+  };
 
   // useEffect(() => {
   //   if (clickCount >= 100 && !inviteAlreadySent) {
@@ -239,23 +225,29 @@ function Header() {
   }, [value]);
 
   const copyLink = async () => {
-    if ('clipboard' in navigator) {
-      return await navigator.clipboard.writeText(`${window.location.href}${code}`);
+    if ("clipboard" in navigator) {
+      return await navigator.clipboard.writeText(
+        `${window.location.href}${code}`
+      );
     } else {
-      return document.execCommand('copy', true, `${window.location.href}${code}`);
+      return document.execCommand(
+        "copy",
+        true,
+        `${window.location.href}${code}`
+      );
     }
-  }
+  };
 
   const generateCodeCallback = async () => {
     try {
-      if(value.wallet_address){
+      if (value.wallet_address) {
         const res = await generateCode(value.wallet_address).unwrap();
         res && res.code && setCode(res.code);
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   return (
     <>
@@ -273,8 +265,11 @@ function Header() {
               </div>
             )} */}
             <div className="header__leaderboard">
-            <button onClick={leaderBordBtn}>Leaderboard<img src={leaderboard_icon}/></button>
-          </div>
+              <button onClick={leaderBordBtn}>
+                Leaderboard
+                <img src={leaderboard_icon} />
+              </button>
+            </div>
             <div className="soundToggler">
               {isVisible ? (
                 <div
@@ -334,11 +329,12 @@ function Header() {
                 </div>
               )}
             </div>
-              <div className="header__inviteBtn">
-               <button onClick={inviteFriendsBtn}>
-                 Referral<img src={referral_icon}/>
-               </button>
-              </div>
+            <div className="header__inviteBtn">
+              <button onClick={inviteFriendsBtn}>
+                Referral
+                <img src={referral_icon} />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -411,11 +407,14 @@ function Header() {
           </div>
         </div>
       )}
-        {isInviteOpen && (
-          <div id="popupInvite" aria-hidden="true" className={popupInvite}>
+      {isInviteOpen && (
+        <div id="popupInvite" aria-hidden="true" className={popupInvite}>
           <div className="popupInvite__wrapper">
             <div className="popupInvite__content">
-              <button onClick={inviteCloseToggler} type="button" className="popupInvite__close"
+              <button
+                onClick={inviteCloseToggler}
+                type="button"
+                className="popupInvite__close"
               >
                 <svg
                   width="19"
@@ -434,42 +433,40 @@ function Header() {
                 </svg>
               </button>
               <h3>
-                Invite friends. 
+                Invite friends.
                 <br />
                 Get rewards together.
               </h3>
               <div className="popupInvite__header">
-                <h6>
-                  How it Works
-                </h6>
+                <h6>How it Works</h6>
                 <div className="popupInvite__refInfo">
-                <div className="popupInvite__headerDescr">
-                  <h6>
-                    Your Bonus:
-                  </h6>
-                  <div className="popupInvite__headerItem">
-                    <h3>%</h3>
-                      <h3>10</h3>
-                  </div>
-                </div>
-                {totalReferrals >= 1 && (
-                    <div className="popupInvite__headerDescr">
-                    <h6>
-                      Referred Friends:
-                    </h6>
+                  <div className="popupInvite__headerDescr">
+                    <h6>Your Bonus:</h6>
                     <div className="popupInvite__headerItem">
-                      <img src={people} alt="people"/>
-                        <h3>{totalReferrals}</h3>
+                      <h3>%</h3>
+                      <h3>10</h3>
                     </div>
                   </div>
-                )}
+                  {totalReferrals >= 1 && (
+                    <div className="popupInvite__headerDescr">
+                      <h6>Referred Friends:</h6>
+                      <div className="popupInvite__headerItem">
+                        <img src={people} alt="people" />
+                        <h3>{totalReferrals}</h3>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="popupInvite__grid">
                 <div className="popupInvite__gridItem">
                   <ul className="popupInvite__list">
                     <li className="popupInvite__list-item">
-                      <img src={envelope} alt="" className="popupInvite__icon" />
+                      <img
+                        src={envelope}
+                        alt=""
+                        className="popupInvite__icon"
+                      />
                       <div className="popupInvite__list-itemDescr">
                         <h5>Sign up</h5>
                         <p>Get your referral link and code</p>
@@ -496,15 +493,26 @@ function Header() {
                     <div className="popupInvite__item-group">
                       <p>Your link</p>
                       <p className="popupInvite__input">
-                        {code.length ? `${(window.location.href).slice(8,(window.location.href).length)}${code}` : "link"}
-                        <button onClick={() => copyLink()} className="popupInvite__input-btn">
-                            <img src={copy} alt=""/>
-                            {/* <span></span> */}
+                        {code.length
+                          ? `${window.location.href.slice(
+                              8,
+                              window.location.href.length
+                            )}${code}`
+                          : "link"}
+                        <button
+                          onClick={() => copyLink()}
+                          className="popupInvite__input-btn"
+                        >
+                          <img src={copy} alt="" />
+                          {/* <span></span> */}
                         </button>
                       </p>
                     </div>
                     <div className="popupInvite__item-group">
-                      <button className="popupInvite__submit" onClick={generateCodeCallback}>
+                      <button
+                        className="popupInvite__submit"
+                        onClick={generateCodeCallback}
+                      >
                         Generate
                       </button>
                     </div>
@@ -514,8 +522,7 @@ function Header() {
             </div>
           </div>
         </div>
-        )
-      }
+      )}
     </>
   );
 }

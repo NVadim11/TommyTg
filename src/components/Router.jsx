@@ -1,10 +1,10 @@
 // import { useWallet } from "@solana/wallet-adapter-react"
-import { useState } from "react"
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { useGetUserByWalletIdMutation } from "../services/phpService"
-import { Discord, Twitter } from "./auth"
-import { AuthContext } from "./helper/contexts"
-import MainComponent from "./main"
+import { useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+// import { useGetUserByWalletIdMutation } from "../services/phpService"
+import { Discord, Twitter } from "./auth";
+import { AuthContext } from "./helper/contexts";
+import MainComponent from "./main";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +29,12 @@ const AppRouter = () => {
   const [auth, setAuth] = useState({});
   // const { publicKey, connected } = useWallet();
   // const wallet_address = publicKey?.toBase58();
-  const [getUser] = useGetUserByWalletIdMutation();
+  // const [getUser] = useGetUserByWalletIdMutation();
 
   const contextValue = {
     value: auth,
-    setValue: setAuth
-  }
+    setValue: setAuth,
+  };
 
   // const connectSubmitHandler = async () => {
   //   try {

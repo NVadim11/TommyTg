@@ -1,37 +1,53 @@
-import AOS from "aos"
-import Footer from "./footer/Footer"
-import Header from "./header/Header"
-import Main from "./main/Main"
+import AOS from "aos";
+import Footer from "./footer/Footer";
+import Header from "./header/Header";
+import Main from "./main/Main";
 // import Landing from "./Landing";
-import { useEffect, useState } from "react"
-import Preloader from "./preloader/Preloader"
+import { useEffect, useState } from "react";
+import Preloader from "./preloader/Preloader";
+import { useGetUserByTgIdQuery } from "../services/phpService";
 
 const MainComponent = () => {
+  const tg = window.Telegram.WebApp;
+  const userId = tg.initDataUnsafe?.user?.id;
+  const localUserId = localStorage.getItem("tg_id");
   const [preloaderLoaded, setPreloaderLoaded] = useState(false);
+  const [skip, setSkip] = useState(true);
+  const { data: user } = useGetUserByTgIdQuery(userId, {
+    skip: skip,
+    pollingInterval: 10000,
+  });
 
-	useEffect(() => {
-		const preloaderTimeout = setTimeout(() => {
-			setPreloaderLoaded(true);
-		}, 2000);
+  useEffect(() => {
+    if (tg && userId) {
+      setSkip(false);
+      localStorage.setItem("tg_id", userId);
+    }
+  }, [tg, userId]);
 
-		const timeout = setTimeout(() => {
-			AOS.init({
-				easing: "custom",
-			});
-		}, 2100);
-		return () => {
-			clearTimeout(timeout);
-			clearTimeout(preloaderTimeout);
-		};
-	}, []);
+  useEffect(() => {
+    const preloaderTimeout = setTimeout(() => {
+      setPreloaderLoaded(true);
+    }, 2000);
+
+    const timeout = setTimeout(() => {
+      AOS.init({
+        easing: "custom",
+      });
+    }, 2100);
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(preloaderTimeout);
+    };
+  }, []);
   return (
     <div className="wrapper">
       <Preloader loaded={preloaderLoaded} />
-			<Header />
+      <Header />
       <main className="main">
-      <Main />
+        <Main user={user} />
       </main>
-      <Footer />
+      <Footer user={user} />
     </div>
   );
 };

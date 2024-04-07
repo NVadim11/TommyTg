@@ -1,30 +1,31 @@
-import { useContext, useEffect } from 'react'
-import { useNavigate } from "react-router-dom"
-import { useTwitterCallbackMutation } from "../../services/auth"
-import { useGetUserByWalletIdMutation } from "../../services/phpService"
-import { AuthContext } from "../helper/contexts"
+import { useContext, useEffect } from "react";
+import { useTwitterCallbackMutation } from "../../services/auth";
+// import { useGetUserByWalletIdMutation } from "../../services/phpService";
+import { AuthContext } from "../helper/contexts";
+import { useNavigate } from "react-router-dom";
 
 const Twitter = () => {
-  const {value, setValue} = useContext(AuthContext);
+  // const { value, setValue } = useContext(AuthContext);
+  const tg = window.Telegram.WebApp;
   const [request] = useTwitterCallbackMutation();
   const params = new URLSearchParams(window.location.search);
+  // const [getUser] = useGetUserByWalletIdMutation();
   const navigate = useNavigate();
-  const [getUser] = useGetUserByWalletIdMutation();
 
   const auth = async () => {
     try {
       const twitterAuth = params.get("status");
-      if (twitterAuth === 'followed') {
-        const res = await request({
-          wallet_address: value.wallet_address,
-        }).unwrap();
-        if (res.status === 201) {
-          const user = await getUser(value.wallet_address).unwrap();
-          if (user) {
-            setValue(user);
-          }
-          navigate("/", { state: { auth: true } });
-        }
+      if (twitterAuth === "followed") {
+        // const res = await request({
+        //   wallet_address: value.wallet_address,
+        // }).unwrap();
+        // if (res.status === 201) {
+        // const user = await getUser(value.wallet_address).unwrap();
+        // if (user) {
+        //   setValue(user);
+        // }
+        window.location.href = "https://twitter.com/TomoCatSol";
+        // }
       }
     } catch (e) {
       console.log(e);
@@ -32,10 +33,10 @@ const Twitter = () => {
   };
 
   useEffect(() => {
-    if (value && value?.wallet_address) {
+    if (tg) {
       auth();
     }
-  }, [value]);
+  }, [tg]);
   return <></>;
 };
 
