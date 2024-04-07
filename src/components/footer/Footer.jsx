@@ -1,23 +1,21 @@
-import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
-import catCoinMove from "../../img/cat_coin_move.png";
-import pet from "../../img/pet_icon.svg";
-import shop from "../../img/shop_icon.svg";
-import tasks from "../../img/tasks_icon.svg";
-import { toggleMuteAllSounds } from "../../utility/Audio";
-import { useClickCount } from "../clickContext";
-import "./Footer.scss";
+import React, { useState } from "react"
+import catCoinMove from "../../img/cat_coin_move.png"
+import pet from "../../img/pet_icon.svg"
+import shop from "../../img/shop_icon.svg"
+import submit from "../../img/submit.png"
+import tasks from "../../img/tasks_icon.svg"
 import {
   usePassTaskMutation,
   useSetWalletMutation,
   useUpdateBalanceMutation,
-} from "../../services/phpService";
+} from "../../services/phpService"
+import { toggleMuteAllSounds } from "../../utility/Audio"
+import "./Footer.scss"
 
 const Footer = ({ user }) => {
   const tg = window.Telegram.WebApp;
   const [isVisible, setIsVisible] = useState(true);
   const [tasksOpen, setTasksOpen] = useState(false);
-  const [isShown, setIsShown] = useState(false);
   const [passTask] = usePassTaskMutation();
   const [updateBalance] = useUpdateBalanceMutation();
   const [setWallet] = useSetWalletMutation();
@@ -29,7 +27,6 @@ const Footer = ({ user }) => {
   const tasksBtn = () => {
     setTasksOpen(true);
     fadeShow();
-    setIsShown(false);
   };
 
   const fadeShow = () => {
@@ -56,7 +53,7 @@ const Footer = ({ user }) => {
         task: "twitter",
       }).unwrap();
       await updateBalance({
-        id_telegram: user.id_telegram,
+        id_telegram: user?.id_telegram,
         score: "1000",
       }).unwrap();
     } catch (e) {
@@ -67,26 +64,38 @@ const Footer = ({ user }) => {
   const tgClick = async () => {
     tg.openTelegramLink("https://t.me/tomo_cat");
     await passTask({
-      wallet_address: "1234",
+      wallet_address: "1234", // wallet_address => id_telegram: user.id_telegram
       task: "telegram",
     }).unwrap();
     await updateBalance({
-      id_telegram: user.id_telegram,
-      score: "1000",
+      id_telegram: user?.id_telegram,
+      score: "1000", // new score according settings
     }).unwrap();
   };
+
+  // const tgClickChannel = async () => {
+  //   tg.openTelegramLink("https://t.me/tomo_cat");
+  //   await passTask({
+  //     wallet_address: "1234", // wallet_address => id_telegram: user.id_telegram
+  //     task: "telegram", // task: <new task>
+  //   }).unwrap();
+  //   await updateBalance({
+  //     id_telegram: user.id_telegram,
+  //     score: "1000",  // new score according settings
+  //   }).unwrap();
+  // };
 
   const websiteClick = async () => {
     tg.openLink("https://impex.pushit.space/");
     try {
       const res = await passTask({
-        wallet_address: "1234",
-        task: "telegram",
+        wallet_address: "1234", // wallet_address => id_telegram: user.id_telegram
+        task: "telegram", // task: <new task>
       }).unwrap();
       if (res) {
         await updateBalance({
           id_telegram: user?.id_telegram,
-          score: "1000",
+          score: "1000",  // new score according settings
         }).unwrap();
       }
     } catch (e) {
@@ -240,7 +249,7 @@ const Footer = ({ user }) => {
                     <img src={catCoinMove} alt="animation" draggable="false" />
                   </div>
                   <div className="popupTasks__coinAmount">
-                    <span id="coinAmount">{user && user.wallet_balance}</span>
+                    <span id="coinAmount">{user?.wallet_balance}</span>
                   </div>
                 </div>
               </div>
@@ -272,12 +281,13 @@ const Footer = ({ user }) => {
                   <input
                     type="text"
                     placeholder="Enter Solana Wallet Address"
+                    style={{ background: 'transparent', color: "#fff", fontSize: "0.75rem" }}
                     value={user?.wallet_address || walletVaL}
                     onChange={(e) => setWalletVal(e.target.value)}
                     disabled={user?.wallet_address}
                   />
                   {!user?.wallet_address && (
-                    <button onClick={submitWallet}>Submit</button>
+                    <button onClick={submitWallet}><img src={submit}/></button>
                   )}
                 </div>
               </div>

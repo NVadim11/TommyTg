@@ -453,6 +453,7 @@ body::after {
 	}
 	&__playerList {
 		display: flex;
+		width: 100%;
 	}
 	&__table {
 		display: flex;
@@ -465,7 +466,7 @@ body::after {
 		display: flex;
 		border-radius: 3.75rem;
 		padding: 0.9375rem 0.9375rem 0.8125rem 0.9375rem;
-		width: 26.4375rem;
+		width: 423px;
 		@media (max-width: $mobile) {
 			padding: 0.6875rem 0.6875rem 0.5625rem 0.6875rem;
 			width: 17.3125rem;

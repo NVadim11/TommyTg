@@ -1,28 +1,20 @@
 // import { useWallet } from '@solana/wallet-adapter-react'
 // import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
-import axios from "axios";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import copy from "../../img/copy.svg";
-import envelope from "../../img/envelope.svg";
-import link from "../../img/link.svg";
+import axios from "axios"
+import React, { useContext, useEffect, useRef, useState } from "react"
 // import logo from "../../img/logo.png"
-import leaderboard_icon from "../../img/leaderboard_icon.svg";
-import money from "../../img/money.svg";
-import people from "../../img/people-icon.svg";
-import referral_icon from "../../img/referral_icon.svg";
-import { useGenerateCodeMutation } from "../../services/phpService";
-import { toggleMuteAllSounds } from "../../utility/Audio";
-import { useClickCount } from "../clickContext";
-import { AuthContext } from "../helper/contexts";
-import "./Header.scss";
+import leaderboard_icon from "../../img/leaderboard_icon.svg"
+import { toggleMuteAllSounds } from "../../utility/Audio"
+import { AuthContext } from "../helper/contexts"
+import "./Header.scss"
 
-function Header() {
+const Header = ({ user }) => {
   const { value } = useContext(AuthContext);
   // const { connected, publicKey } = useWallet();
-  const [isToggled, setIsToggled] = useState(false);
-  const [isShown, setIsShown] = useState(false);
-  const [totalPoints, setTotalPoints] = useState(null);
-  const [totalReferrals, setTotalReferrals] = useState(null);
+  // const [isToggled, setIsToggled] = useState(false);
+  // const [isShown, setIsShown] = useState(false);
+  // const [totalPoints, setTotalPoints] = useState(null);
+  // const [totalReferrals, setTotalReferrals] = useState(null);
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [isLeaderboardOpen, setLeaderboardOpen] = useState(false);
   const [isInviteOpen, setInviteOpen] = useState(false);
@@ -39,33 +31,12 @@ function Header() {
   const popupInvTgl = isInviteOpen ? "popupInvite_show" : null;
   const popupInvite = `popupInvite ${popupInvTgl}`;
 
-  const { clickCount } = useClickCount();
-  const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
+  // const { clickCount } = useClickCount();
+  // const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
+  
 
   // const containerRef = useRef(null);
   // const [getLeaderboard] = useGetLeaderboardMutation();
-
-  // const connectSubmitHandler = async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       'https://admin.prodtest1.space/api/users',
-  //       {
-  //         wallet_address: wallet_address,
-  //       },
-  //       {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         }
-  //       }
-  //     );
-  //     if (response.status !== 201) {
-  //       throw new Error('Failed to submit data');
-  //     }
-  //     console.log('Data submitted successfully');
-  //   } catch (error) {
-  //     console.error('Error submitting data:', error.message);
-  //   }
-  // };
 
   useEffect(() => {
     const observer = new MutationObserver((mutationsList) => {
@@ -120,75 +91,60 @@ function Header() {
 
   // useEffect(() => {
   //   const fetchData = async () => {
-  //     if (Object.keys(value).length) {
-  //       const res = await getLeaderboard(value.wallet_address).unwrap();
+  //       const res = await getLeaderboard(user?.id_telegram).unwrap();
   //       setLeaderboardData(res);
-  //       fetchTotalPoints();
   //       console.log("fetched connected DB")
   //       const intervalId = setInterval(() => {
-  //         fetchTotalPoints();
-  //         getLeaderboard(value.wallet_address)
+  //         getLeaderboard(user?.id_telegram)
   //           .unwrap()
   //           .then((data) => setLeaderboardData(data))
   //           .catch((error) => console.error('Error refreshing leaderboard:', error));
   //           console.log("fetched connected DB with interval")
   //       }, 10000);
   //       return intervalId;
-  //     }
   //   };
+  //   fetchData();
 
-  //   let intervalId;
-
-  //   if (connected) {
-  //     fetchData().then((id) => {
-  //       intervalId = id;
-  //     });
-  //   }
+  //   let intervalId;  
 
   //   return () => {
   //     clearInterval(intervalId);
   //   };
-  // }, [value, connected]);
+  // }, [user]);
+
+  // const toggleVisibility = () => {
+  //   setIsShown(!isShown);
+  //   setIsToggled(!isToggled);
+  // };
 
   // useEffect(() => {
-  //   if (!connected) {
-  //     setTotalPoints(null);
-  //   }
-  // }, [connected]);
+  //   const handleOutsideClick = (event) => {
+  //     if (event.target.closest(".header__mobileBurger")) return;
+  //     setIsShown(false);
+  //     setIsToggled(false);
+  //   };
 
-  const toggleVisibility = () => {
-    setIsShown(!isShown);
-    setIsToggled(!isToggled);
-  };
-
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (event.target.closest(".header__mobileBurger")) return;
-      setIsShown(false);
-      setIsToggled(false);
-    };
-
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, []);
+  //   document.addEventListener("mousedown", handleOutsideClick);
+  //   return () => document.removeEventListener("mousedown", handleOutsideClick);
+  // }, []);
 
   const leaderBordBtn = () => {
     setLeaderboardOpen(true);
     fadeShow();
-    setIsShown(false);
+    // setIsShown(false);
   };
 
-  const inviteCloseToggler = () => {
-    setInviteOpen(false);
-    const htmlTag = document.getElementById("html");
-    if (htmlTag) htmlTag.classList.remove("popupInvite-show");
-  };
+  // const inviteCloseToggler = () => {
+  //   setInviteOpen(false);
+  //   const htmlTag = document.getElementById("html");
+  //   if (htmlTag) htmlTag.classList.remove("popupInvite-show");
+  // };
 
-  const inviteFriendsBtn = () => {
-    setInviteOpen(true);
-    fadeShowInvite();
-    setIsShown(false);
-  };
+  // const inviteFriendsBtn = () => {
+  //   setInviteOpen(true);
+  //   fadeShowInvite();
+  //   setIsShown(false);
+  // };
 
   // useEffect(() => {
   //   if (clickCount >= 100 && !inviteAlreadySent) {
@@ -204,10 +160,10 @@ function Header() {
     if (htmlTag) htmlTag.classList.add("popupLeaderboard-show");
   };
 
-  const fadeShowInvite = () => {
-    const htmlTag = document.getElementById("html");
-    if (htmlTag) htmlTag.classList.add("popupInvite-show");
-  };
+  // const fadeShowInvite = () => {
+  //   const htmlTag = document.getElementById("html");
+  //   if (htmlTag) htmlTag.classList.add("popupInvite-show");
+  // };
 
   const leaderboardCloseToggler = () => {
     setLeaderboardOpen(false);
@@ -215,39 +171,39 @@ function Header() {
     if (htmlTag) htmlTag.classList.remove("popupLeaderboard-show");
   };
 
-  const [code, setCode] = useState("");
-  const [generateCode] = useGenerateCodeMutation();
+  // const [code, setCode] = useState("");
+  // const [generateCode] = useGenerateCodeMutation();
 
-  useEffect(() => {
-    if (value && value.referral_code) {
-      setCode(value.referral_code);
-    }
-  }, [value]);
+  // useEffect(() => {
+  //   if (value && value.referral_code) {
+  //     setCode(value.referral_code);
+  //   }
+  // }, [value]);
 
-  const copyLink = async () => {
-    if ("clipboard" in navigator) {
-      return await navigator.clipboard.writeText(
-        `${window.location.href}${code}`
-      );
-    } else {
-      return document.execCommand(
-        "copy",
-        true,
-        `${window.location.href}${code}`
-      );
-    }
-  };
+  // const copyLink = async () => {
+  //   if ("clipboard" in navigator) {
+  //     return await navigator.clipboard.writeText(
+  //       `${window.location.href}${code}`
+  //     );
+  //   } else {
+  //     return document.execCommand(
+  //       "copy",
+  //       true,
+  //       `${window.location.href}${code}`
+  //     );
+  //   }
+  // };
 
-  const generateCodeCallback = async () => {
-    try {
-      if (value.wallet_address) {
-        const res = await generateCode(value.wallet_address).unwrap();
-        res && res.code && setCode(res.code);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const generateCodeCallback = async () => {
+  //   try {
+  //     if (value.wallet_address) {
+  //       const res = await generateCode(value.wallet_address).unwrap();
+  //       res && res.code && setCode(res.code);
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   return (
     <>
@@ -329,12 +285,12 @@ function Header() {
                 </div>
               )}
             </div>
-            <div className="header__inviteBtn">
+            {/* <div className="header__inviteBtn">
               <button onClick={inviteFriendsBtn}>
                 Referral
                 <img src={referral_icon} />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>
@@ -390,9 +346,7 @@ function Header() {
                         </div>
                         <div className="popupLeaderboard__playerName">
                           <span>
-                            {player.wallet_address.slice(0, 4) +
-                              ".." +
-                              player.wallet_address.slice(-4)}
+                            {player.wallet_address ? player.wallet_address.slice(0, 4) + ".." + player.wallet_address.slice(-4) : ''}
                           </span>
                         </div>
                         <div className="popupLeaderboard__coins">
@@ -406,8 +360,8 @@ function Header() {
             </div>
           </div>
         </div>
-      )}
-      {isInviteOpen && (
+      )}      
+      {/* {isInviteOpen && (
         <div id="popupInvite" aria-hidden="true" className={popupInvite}>
           <div className="popupInvite__wrapper">
             <div className="popupInvite__content">
@@ -504,7 +458,6 @@ function Header() {
                           className="popupInvite__input-btn"
                         >
                           <img src={copy} alt="" />
-                          {/* <span></span> */}
                         </button>
                       </p>
                     </div>
@@ -522,7 +475,7 @@ function Header() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }
