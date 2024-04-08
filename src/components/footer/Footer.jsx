@@ -63,7 +63,7 @@ const Footer = ({ user }) => {
 	};
 
 	const tgClickChat = async () => {
-		tg.openLink('https://t.me/tomo_cat');
+		tg.openLink('https://t.me/tomocat_sol');
 		try {
 			await updateBalance({
 				id_telegram: user?.id_telegram,
