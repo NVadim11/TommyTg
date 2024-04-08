@@ -1,17 +1,17 @@
-import React, { useState } from "react"
-import catCoinMove from "../../img/cat_coin_move.png"
-import checkbox from "../../img/checkbox.png"
-import pet from "../../img/pet_icon.svg"
-import shop from "../../img/shop_icon.svg"
-import submit from "../../img/submit.png"
-import tasks from "../../img/tasks_icon.svg"
+import React, { useState } from "react";
+import catCoinMove from "../../img/cat_coin_move.png";
+import checkbox from "../../img/checkbox.png";
+import pet from "../../img/pet_icon.svg";
+import shop from "../../img/shop_icon.svg";
+import submit from "../../img/submit.png";
+import tasks from "../../img/tasks_icon.svg";
 import {
   usePassTaskMutation,
   useSetWalletMutation,
   useUpdateBalanceMutation,
-} from "../../services/phpService"
-import { toggleMuteAllSounds } from "../../utility/Audio"
-import "./Footer.scss"
+} from "../../services/phpService";
+import { toggleMuteAllSounds } from "../../utility/Audio";
+import "./Footer.scss";
 
 const Footer = ({ user }) => {
   const tg = window.Telegram.WebApp;
@@ -82,7 +82,7 @@ const Footer = ({ user }) => {
     }).unwrap();
     await updateBalance({
       id_telegram: user?.id_telegram,
-      score: "10000",  // new score according settings
+      score: "10000", // new score according settings
     }).unwrap();
   };
 
@@ -96,7 +96,7 @@ const Footer = ({ user }) => {
       if (res) {
         await updateBalance({
           id_telegram: user?.id_telegram,
-          score: "3000",  // new score according settings
+          score: "3000", // new score according settings
         }).unwrap();
       }
     } catch (e) {
@@ -264,35 +264,61 @@ const Footer = ({ user }) => {
                   <button onClick={twitterClick} disabled={user?.twitter === 1}>
                     Follow Twitter
                   </button>
-                  {user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox}/>}
+                  {user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox} />}
                 </div>
                 <div className="popupTasks__task">
                   <button onClick={tgClick} disabled={user?.telegram === 1}>
                     Follow Telegram Chat
                   </button>
-                  {user?.telegram === 0 ? <p>+10000</p> : <img src={checkbox}/>}
+                  {user?.telegram === 0 ? (
+                    <p>+10000</p>
+                  ) : (
+                    <img src={checkbox} />
+                  )}
                 </div>
                 <div className="popupTasks__task">
-                  <button onClick={tgClick} disabled={user?.twitter === 1}>Follow Telegram Channel</button>
-                  {user?.twitter === null ? <p>+10000</p> : <img src={checkbox}/>}
+                  <button onClick={tgClick} disabled={user?.twitter === 1}>
+                    Follow Telegram Channel
+                  </button>
+                  {user?.twitter === null ? (
+                    <p>+10000</p>
+                  ) : (
+                    <img src={checkbox} />
+                  )}
                 </div>
                 <div className="popupTasks__task">
-                  <button onClick={websiteClick} disabled={user?.twitter === 1}>Visit Website</button>
-                  {user?.twitter === null ? <p>+3000</p> : <img src={checkbox}/>}
+                  <button onClick={websiteClick} disabled={user?.twitter === 1}>
+                    Visit Website
+                  </button>
+                  {user?.twitter === null ? (
+                    <p>+3000</p>
+                  ) : (
+                    <img src={checkbox} />
+                  )}
                 </div>
                 <div className="popupTasks__walletTask">
                   <input
                     type="text"
                     placeholder="Enter Solana Wallet Address"
-                    style={{ background: 'transparent', color: "#fff", fontSize: "0.75rem" }}
+                    style={{
+                      background: "transparent",
+                      color: "#fff",
+                      fontSize: "0.75rem",
+                    }}
                     value={user?.wallet_address || walletVaL}
                     onChange={(e) => setWalletVal(e.target.value)}
                     disabled={user?.wallet_address}
                   />
                   {!user?.wallet_address && (
-                    <button onClick={submitWallet}><img src={submit}/></button>
+                    <button onClick={submitWallet}>
+                      <img src={submit} />
+                    </button>
                   )}
-                  {!user?.wallet_address ? <p>+20000</p> : <img src={checkbox}/>}
+                  {!user?.wallet_address ? (
+                    <p>+20000</p>
+                  ) : (
+                    <img src={checkbox} />
+                  )}
                 </div>
               </div>
             </div>

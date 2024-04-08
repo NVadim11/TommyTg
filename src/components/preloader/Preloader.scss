@@ -2,70 +2,68 @@
 $mobile: 1399.98px;
 $desktop: 1919.98px;
 [data-aos] {
-    body[data-aos-easing="custom"] &,
-    &[data-aos][data-aos-easing="custom"] {
-      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      transition-duration: 800ms;
-    }
+  body[data-aos-easing="custom"] &,
+  &[data-aos][data-aos-easing="custom"] {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-duration: 800ms;
   }
-  
-  [data-aos="bounce"] {
-    --animate-duration: 1s;
-    opacity: 0;
-    transition-property: transform, opacity;
-  
-    &.aos-animate {
-      animation-duration: calc(var(--animate-duration) * 0.8);
-      animation-fill-mode: both;
-      animation-name: bounceIn;
-    }
+}
+
+[data-aos="bounce"] {
+  --animate-duration: 1s;
+  opacity: 0;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    animation-duration: calc(var(--animate-duration) * 0.8);
+    animation-fill-mode: both;
+    animation-name: bounceIn;
   }
-  
-  [data-aos="jello"] {
-    --animate-duration: 2s;
+}
+
+[data-aos="jello"] {
+  --animate-duration: 2s;
+  animation-name: jello;
+  transform-origin: center;
+  transition-property: transform, opacity;
+
+  &.aos-animate {
+    animation-duration: calc(var(--animate-duration) * 0.75);
+    animation-fill-mode: both;
     animation-name: jello;
-    transform-origin: center;
-    transition-property: transform, opacity;
-  
-    &.aos-animate {
-      animation-duration: calc(var(--animate-duration) * 0.75);
-      animation-fill-mode: both;
-      animation-name: jello;
-    }
-  
   }
-  
-  
-  .preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100svh;
-    background-color: #292F4F;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1s ease-out, visibility 0s 1s, transform 1s ease-in-out;
-    opacity: 1;
-    visibility: visible;
-    z-index: 101;
-    overflow: hidden;
-    transform-origin: center center;
-    z-index: 10000;
-    img {
-      animation-name: pulse;
-      animation-timing-function: ease-in-out;
-      animation-duration: 1.5s;
-      animation-iteration-count: infinite;
-      max-width: 200px;
-      width: 100%;
-    }
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+  background-color: #292f4f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-out, visibility 0s 1s, transform 1s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+  z-index: 101;
+  overflow: hidden;
+  transform-origin: center center;
+  z-index: 10000;
+  img {
+    animation-name: pulse;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    max-width: 200px;
+    width: 100%;
   }
-  
-  .preloader.loaded {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.5);
-  }
+}
+
+.preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.5);
+}

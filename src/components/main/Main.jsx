@@ -1,26 +1,24 @@
-import { motion } from "framer-motion"
-import React, { useEffect, useRef, useState } from "react"
-import { useMediaQuery } from "react-responsive"
-import sadIdle from "../../img/1_idle.gif"
-import sadSpeak from "../../img/1talk.gif"
-import normalIdle from "../../img/2_idle.gif"
-import normalSpeak from "../../img/2talk.gif"
-import smileIdle from "../../img/3_idle.gif"
-import smileSpeak from "../../img/3talk.gif"
-import happyIdle from "../../img/4_idle.gif"
-import happySpeak from "../../img/4talk.gif"
-import boostCoin from "../../img/boost_coin_side.png"
-import catFace from "../../img/catFace.png"
-import catCoinMove from "../../img/cat_coin_move.png"
-import finalForm from "../../img/finalForm.gif"
-import goldForm from "../../img/gold.gif"
-import smile from "../../img/smile.png"
-import {
-  useUpdateBalanceMutation,
-} from "../../services/phpService"
-import { playBoostCatClick, playSadCatClick } from "../../utility/Audio"
-import { useClickCount } from "../clickContext"
-import "./Main.scss"
+import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import sadIdle from "../../img/1_idle.gif";
+import sadSpeak from "../../img/1talk.gif";
+import normalIdle from "../../img/2_idle.gif";
+import normalSpeak from "../../img/2talk.gif";
+import smileIdle from "../../img/3_idle.gif";
+import smileSpeak from "../../img/3talk.gif";
+import happyIdle from "../../img/4_idle.gif";
+import happySpeak from "../../img/4talk.gif";
+import boostCoin from "../../img/boost_coin_side.png";
+import catFace from "../../img/catFace.png";
+import catCoinMove from "../../img/cat_coin_move.png";
+import finalForm from "../../img/finalForm.gif";
+import goldForm from "../../img/gold.gif";
+import smile from "../../img/smile.png";
+import { useUpdateBalanceMutation } from "../../services/phpService";
+import { playBoostCatClick, playSadCatClick } from "../../utility/Audio";
+import { useClickCount } from "../clickContext";
+import "./Main.scss";
 
 const Main = ({ user }) => {
   const isMobile = useMediaQuery({ maxWidth: "1439.98px" });
@@ -50,29 +48,29 @@ const Main = ({ user }) => {
 
   const pauseGame = () => {
     const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
-    const futureTimestamp = currentTimeStamp + (30 * 60); // 30 minutes from now
+    const futureTimestamp = currentTimeStamp + 30 * 60; // 30 minutes from now
     // const futureTimestamp = currentTimeStamp + (Math.random() * (2 * 60 * 60 - 30 * 60) + 30 * 60); // Random between 30 minutes and 2 hours
 
-    fetch('https://admin.prodtest1.space/api/set-activity', {
-      method: 'POST',
+    fetch("https://admin.prodtest1.space/api/set-activity", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         wallet_address: user?.wallet_address,
         timestamp: futureTimestamp,
       }),
     })
-    .then(response => {
-      if (response.ok) {
-        setGamePaused(true);
-      } else {
-        console.error('Failed to pause game');
-      }
-    })
-    .catch(error => {
-      console.error('Error pausing game:', error);
-    });
+      .then((response) => {
+        if (response.ok) {
+          setGamePaused(true);
+        } else {
+          console.error("Failed to pause game");
+        }
+      })
+      .catch((error) => {
+        console.error("Error pausing game:", error);
+      });
   };
 
   useEffect(() => {
@@ -92,14 +90,14 @@ const Main = ({ user }) => {
   useEffect(() => {
     const checkGameStatus = () => {
       fetch(`https://admin.prodtest1.space/api/telegram-id/${userId}`)
-        .then(response => {
+        .then((response) => {
           if (response.ok) {
             return response.json();
           } else {
-            throw new Error('Failed to fetch game status1231231312312312312');
+            throw new Error("Failed to fetch game status1231231312312312312");
           }
         })
-        .then(data => {
+        .then((data) => {
           const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
           const remainingTime = data.active_at - currentTimeStamp;
           if (remainingTime <= 0) {
@@ -110,8 +108,8 @@ const Main = ({ user }) => {
             setTimeRemaining(remainingTime);
           }
         })
-        .catch(error => {
-          console.error('Error checking game status:', error);
+        .catch((error) => {
+          console.error("Error checking game status:", error);
         });
     };
     checkGameStatus();
@@ -265,15 +263,15 @@ const Main = ({ user }) => {
   }, [isCoinsChanged]);
 
   const submitData = async (coins) => {
-      try {
-        await updateBalance({
-          id_telegram: user?.id_telegram,
-          score: coins,
-        }).unwrap();    
-        console.log("Coins submitted successfully");
-      } catch (error) {
-        console.error("Error submitting coins:", error);
-      }    
+    try {
+      await updateBalance({
+        id_telegram: user?.id_telegram,
+        score: coins,
+      }).unwrap();
+      console.log("Coins submitted successfully");
+    } catch (error) {
+      console.error("Error submitting coins:", error);
+    }
   };
 
   const coinClicker = (event) => {

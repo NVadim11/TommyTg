@@ -3,163 +3,181 @@
 }
 
 .wrapper {
-	background-color: #000000;
-	position: relative;
-  	min-height: 100%;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-  	// overflow: hidden;
-	// background-image: url("../src/img/bg.png");
-	// background-repeat: no-repeat;
-	// background-position: center;
-	// background-size: cover;
-	@supports (overflow: clip) {
-		overflow: clip;
-	}
-	// Притискаємо footer
-	> main {
-		flex: 1 1 auto;
-	}
-	// Фікс для слайдерів
-	> * {
-		min-width: 0;
-	}
+  background-color: #000000;
+  position: relative;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  // overflow: hidden;
+  // background-image: url("../src/img/bg.png");
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: cover;
+  @supports (overflow: clip) {
+    overflow: clip;
+  }
+  // Притискаємо footer
+  > main {
+    flex: 1 1 auto;
+  }
+  // Фікс для слайдерів
+  > * {
+    min-width: 0;
+  }
 }
 
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-Black.ttf") format("truetype");
-	font-weight: 900;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-Bold.ttf") format("truetype");
-	font-weight: 700;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-BoldItalic.ttf") format("truetype");
-	font-weight: 700;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-BlackItalic.ttf") format("truetype");
-	font-weight: 900;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-ExtraBold.ttf") format("truetype");
-	font-weight: 800;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-ExtraBoldItalic.ttf") format("truetype");
-	font-weight: 800;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-ExtraLightItalic.ttf") format("truetype");
-	font-weight: 200;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-ExtraLight.ttf") format("truetype");
-	font-weight: 200;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-Italic.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-Light.ttf") format("truetype");
-	font-weight: 300;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-LightItalic.ttf") format("truetype");
-	font-weight: 300;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-Medium.ttf") format("truetype");
-	font-weight: 500;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-MediumItalic.ttf") format("truetype");
-	font-weight: 500;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-Regular.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-SemiBold.ttf") format("truetype");
-	font-weight: 600;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-SemiBoldItalic.ttf") format("truetype");
-	font-weight: 600;
-	font-style: italic;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-ThinItalic.ttf") format("truetype");
-	font-weight: 100;
-	font-style: italics;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italics;
 }
 @font-face {
-	font-family: Grandstander;
-	font-display: swap;
-	src: local('Grandstander'), url("/fonts/Grandstander-Thin.ttf") format("truetype");
-	font-weight: 100;
-	font-style: normal;
+  font-family: Grandstander;
+  font-display: swap;
+  src: local("Grandstander"),
+    url("/fonts/Grandstander-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: WorkSans;
-	font-display: swap;
-	src: local('WorkSans'), url("/fonts/WorkSans-Medium.ttf") format("truetype");
-	font-weight: 500;
-	font-style: normal;
+  font-family: WorkSans;
+  font-display: swap;
+  src: local("WorkSans"), url("/fonts/WorkSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
 }
 
 // variables
@@ -172,76 +190,76 @@ $desktop: 1919.98px;
 
 // null
 * {
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
-	user-select: none;
-	-webkit-tap-highlight-color: transparent;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 *,
 *:before,
 *:after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 :focus,
 :active {
-	// outline: none;
+  // outline: none;
 }
 a:focus,
 a:active {
-	// outline: none;
+  // outline: none;
 }
 html,
 body {
-	height: 100%;
-	// min-width: $minWidth + px;
+  height: 100%;
+  // min-width: $minWidth + px;
 }
 body {
-	color: $mainColor;
-	line-height: 1;
-	font-family: $fontFamily;
-	font-size: 14px;
-	//text-rendering: optimizeLegibility;
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  color: $mainColor;
+  line-height: 1;
+  font-family: $fontFamily;
+  font-size: 14px;
+  //text-rendering: optimizeLegibility;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body::-webkit-scrollbar {
-  width: 0.3125rem; 
+  width: 0.3125rem;
 }
 
 body::-webkit-scrollbar-track {
-	background: rgba(15, 4, 36, 0.726);  
+  background: rgba(15, 4, 36, 0.726);
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: linear-gradient(146deg, #decaff 0%, #691ee2 100%);
-  border-radius: 1.25rem;  
-  border: 0.1875rem solid #691ee275; 
+  border-radius: 1.25rem;
+  border: 0.1875rem solid #691ee275;
 }
 input,
 button,
 textarea {
-	font-family: $fontFamily;
-	font-size: inherit;
-	line-height: inherit;
+  font-family: $fontFamily;
+  font-size: inherit;
+  line-height: inherit;
 }
 button {
-	cursor: pointer;
-	color: inherit;
-	background-color: transparent;
+  cursor: pointer;
+  color: inherit;
+  background-color: transparent;
 }
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 ul li {
-	list-style: none;
+  list-style: none;
 }
 img {
-	vertical-align: top;
+  vertical-align: top;
 }
 h1,
 h2,
@@ -249,10 +267,9 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: inherit;
-	font-size: inherit;
+  font-weight: inherit;
+  font-size: inherit;
 }
-
 
 // Common..
 .main {
@@ -263,94 +280,94 @@ h6 {
 
 .soundToggler {
   &__itemOn {
+    display: flex;
+    button {
+      width: 3.125rem;
+      height: 3.125rem;
       display: flex;
-      button {
-          width: 3.125rem;
-          height: 3.125rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 3.75rem;
-          border: 0.125rem solid #fff;
-          transition: .25s;
-          svg {
-              path {
-                  transition: .25s;
-              }
-              @media (max-width: $mobile) {
-                  height: 0.875rem;
-                  width: 1.125rem;
-              }
-          }
-          @media (max-width: $mobile) {
-              height: 2.1875rem;
-              width: 2.1875rem;
-          }
+      justify-content: center;
+      align-items: center;
+      border-radius: 3.75rem;
+      border: 0.125rem solid #fff;
+      transition: 0.25s;
+      svg {
+        path {
+          transition: 0.25s;
+        }
+        @media (max-width: $mobile) {
+          height: 0.875rem;
+          width: 1.125rem;
+        }
       }
-      button:hover {
-          background-color: #ffffff;
-          transition: .25s;
-          svg {
-              path {
-                  stroke: #000000;
-                  transition: .25s;
-                  @media (max-width: $mobile) {
-                      stroke: #ffffff;
-                  }
-              }
-          }
-          @media (max-width: $mobile) {
-              background-color: transparent;
-          }
+      @media (max-width: $mobile) {
+        height: 2.1875rem;
+        width: 2.1875rem;
       }
+    }
+    button:hover {
+      background-color: #ffffff;
+      transition: 0.25s;
+      svg {
+        path {
+          stroke: #000000;
+          transition: 0.25s;
+          @media (max-width: $mobile) {
+            stroke: #ffffff;
+          }
+        }
+      }
+      @media (max-width: $mobile) {
+        background-color: transparent;
+      }
+    }
   }
   &__itemOff {
+    display: flex;
+    button {
+      width: 3.125rem;
+      height: 3.125rem;
       display: flex;
-      button {
-          width: 3.125rem;
-          height: 3.125rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 3.75rem;
-          border: 0.125rem solid #fff;
-          transition: .25s;
-          svg {
-              path {
-                  transition: .25s;
-              }
-              @media (max-width: $mobile) {
-                  height: 0.875rem;
-                  width: 1.125rem;
-              }
-          }
-          @media (max-width: $mobile) {
-              height: 35px;
-              width: 35px;
-          }
+      justify-content: center;
+      align-items: center;
+      border-radius: 3.75rem;
+      border: 0.125rem solid #fff;
+      transition: 0.25s;
+      svg {
+        path {
+          transition: 0.25s;
+        }
+        @media (max-width: $mobile) {
+          height: 0.875rem;
+          width: 1.125rem;
+        }
       }
-      button:hover {
-          background-color: #ffffff;
-          transition: .25s;
-          svg {
-              path {
-                  transition: .25s;
-                  stroke: #000000;
-                  @media (max-width: $mobile) {
-                      stroke: #ffffff;
-                  }
-              }
-          }
-          @media (max-width: $mobile) {
-              background-color: transparent;
-          }
+      @media (max-width: $mobile) {
+        height: 35px;
+        width: 35px;
       }
+    }
+    button:hover {
+      background-color: #ffffff;
+      transition: 0.25s;
+      svg {
+        path {
+          transition: 0.25s;
+          stroke: #000000;
+          @media (max-width: $mobile) {
+            stroke: #ffffff;
+          }
+        }
+      }
+      @media (max-width: $mobile) {
+        background-color: transparent;
+      }
+    }
   }
 }
 
 ._hide {
-  display: none!important;
+  display: none !important;
 }
 ._active {
-  display: flex!important;
+  display: flex !important;
 }

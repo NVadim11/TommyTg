@@ -1,7 +1,7 @@
-import { useEffect } from "react"
-import { useTwitterCallbackMutation } from "../../services/auth"
+import { useEffect } from "react";
+import { useTwitterCallbackMutation } from "../../services/auth";
 // import { useGetUserByWalletIdMutation } from "../../services/phpService";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const Twitter = () => {
   // const { value, setValue } = useContext(AuthContext);

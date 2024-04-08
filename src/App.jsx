@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@emotion/react"
+import { ThemeProvider } from "@emotion/react";
 // import { WalletAdapterNetwork } from "@solana/wallet-adapter-base"
 // import {
 //   ConnectionProvider,
@@ -41,19 +41,19 @@ import { ThemeProvider } from "@emotion/react"
 //   WalletConnectWalletAdapter,
 //   XDEFIWalletAdapter
 // } from "@solana/wallet-adapter-wallets"
-import React from "react"
-import { Provider } from "react-redux"
-import "./App.scss"
-import AppRouter from "./components/Router"
-import { store } from "./store"
-import { theme } from "./theme"
+import React from "react";
+import { Provider } from "react-redux";
+import "./App.scss";
+import AppRouter from "./components/Router";
+import { store } from "./store";
+import { theme } from "./theme";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         {/* <Context> */}
-          <AppRouter />
+        <AppRouter />
         {/* </Context> */}
       </Provider>
     </ThemeProvider>
@@ -72,13 +72,13 @@ export default App;
 //       new SolflareWalletAdapter(),
 //       new TrezorWalletAdapter(),
 //       new AvanaWalletAdapter(),
-//       new CloverWalletAdapter(), 
+//       new CloverWalletAdapter(),
 //       new Coin98WalletAdapter(),
 //       new CoinbaseWalletAdapter(),
 //       new CoinhubWalletAdapter(),
-//       new FractalWalletAdapter(), 
-//       new HuobiWalletAdapter(), 
-//       new HyperPayWalletAdapter(), 
+//       new FractalWalletAdapter(),
+//       new HuobiWalletAdapter(),
+//       new HyperPayWalletAdapter(),
 //       new KeystoneWalletAdapter(),
 //       new KrystalWalletAdapter(),
 //       new LedgerWalletAdapter(),

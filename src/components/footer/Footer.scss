@@ -3,347 +3,345 @@ $mobile: 1399.98px;
 $desktop: 1919.98px;
 
 body::after {
-	content: "";
-	background-color: rgba(0, 0, 0, 0.25);
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	opacity: 0;
-	transition: opacity 0.8s ease 0s;
-	pointer-events: none;
-	z-index: 149;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease 0s;
+  pointer-events: none;
+  z-index: 149;
 }
 .popupTasks-show body::after {
-	opacity: 1;
+  opacity: 1;
 }
 .popupTasks {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	padding: 1.875rem 0.625rem;
-	transition: visibility 0.8s ease 0s;
-	// visibility: hidden;
-	pointer-events: none;
-	@media (max-width: $mobile) {
-		padding: 5.4375rem 1.25rem 5.4375rem 1.25rem;
-	}
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 1.875rem 0.625rem;
+  transition: visibility 0.8s ease 0s;
+  // visibility: hidden;
+  pointer-events: none;
+  @media (max-width: $mobile) {
+    padding: 5.4375rem 1.25rem 5.4375rem 1.25rem;
+  }
 }
-.popupTasks_show
- {
-	z-index: 300;
-	display: block;
-	overflow: auto;
-	pointer-events: auto;
+.popupTasks_show {
+  z-index: 300;
+  display: block;
+  overflow: auto;
+  pointer-events: auto;
 }
 .popupTasks_show .popupTasks__content {
-	display: block;
+  display: block;
 }
 .popupTasks__wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	min-height: 100%;
-	flex: 1 1 auto;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .popupTasks__content {
-	display: none;
-	transition: transform 0.3s ease 0s;
-	padding: 1.25rem;
-	width: 100%;
-	max-width: 56.25rem;
-	border-radius: 1.25rem;	
-	background: rgba(41, 47, 79, 0.9);
+  display: none;
+  transition: transform 0.3s ease 0s;
+  padding: 1.25rem;
+  width: 100%;
+  max-width: 56.25rem;
+  border-radius: 1.25rem;
+  background: rgba(41, 47, 79, 0.9);
 }
 
 .popupTasks {
-	&__wrapper {
-	}
-	&__content {	
-		display: flex;
-		position: relative;
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		border-radius: 20px;
-		width: 330px;
-	}
-	&__close {
-		position: absolute;
-		@media (max-width: $mobile) {
-			top: 1.25rem;
-			right: 1.25rem;
-		}
-		svg {
-			@media (max-width: $mobile) {
-				height: 0.9375rem;
-				width: 0.9375rem;
-			}
-		}
-	}
-	&__title {	
-		font-weight: 900;
-		line-height: 100%;
-		color: #fff;
-		@media (max-width: $mobile) {
-			font-size: 1.25rem;
-			width: 11.875rem;
-			position: relative;
-		}
-	}
-	&__coins {
-		@media (max-width: $mobile) {
-			position: relative;
-			display: flex;
-	   }
-	}
-	&__coinBox {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			top: 1.25rem;
-			right: 1.25rem;
-			margin-top: 20px;
-				@media (max-width: $mobile) {
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					position: relative;
-					order: 1;
-					width: fit-content;
-					align-self: center;
-					justify-content: center;
-					right: 0;
-					top: 0;
-			}
-	}
-	&__coinImg {
-			display: flex;
-			align-items: center;
-			margin-right: 0.625rem;
-			width: 51px;
-			height: 52px;
-			img {
-					width: 100%;
-			}
-			@media (max-width: $mobile) {
-				 width: 20px;
-				 height: 20px;
-			 }
-	}
-	&__coinAmount {   
-			display: flex;
-			align-items: center;
-			justify-content: center;			
-			span {
-					display: flex;
-					text-align: center;    
-					align-items: center;
-					justify-content: center;
-					padding-top: 4px;
-					font-weight: 600;
-					font-size: 24px;
-					color: #fff;
-					@media (max-width: $mobile) {
-						 font-size: 24px;
-					}
-			}
-	}
-	&__tabBtns {
-		margin-top: 20px;
-		padding: 10px;
-		display: flex;
-		gap: 15px;
-		flex-direction: row;
-		align-items: center;
-		text-align: center;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		background: #292f4fc5;
-		border-radius: 10px;
-		width: 290px;
-		height: 50px;
-		button {
-			border-radius: 10px;
-			border: 1px solid rgba(255, 255, 255, 0.2);
-			width: 100%;
-			padding: 10px;
-			font-size: 14px;
-		}
-	}
-}		
+  &__wrapper {
+  }
+  &__content {
+    display: flex;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    width: 330px;
+  }
+  &__close {
+    position: absolute;
+    @media (max-width: $mobile) {
+      top: 1.25rem;
+      right: 1.25rem;
+    }
+    svg {
+      @media (max-width: $mobile) {
+        height: 0.9375rem;
+        width: 0.9375rem;
+      }
+    }
+  }
+  &__title {
+    font-weight: 900;
+    line-height: 100%;
+    color: #fff;
+    @media (max-width: $mobile) {
+      font-size: 1.25rem;
+      width: 11.875rem;
+      position: relative;
+    }
+  }
+  &__coins {
+    @media (max-width: $mobile) {
+      position: relative;
+      display: flex;
+    }
+  }
+  &__coinBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    top: 1.25rem;
+    right: 1.25rem;
+    margin-top: 20px;
+    @media (max-width: $mobile) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+      order: 1;
+      width: fit-content;
+      align-self: center;
+      justify-content: center;
+      right: 0;
+      top: 0;
+    }
+  }
+  &__coinImg {
+    display: flex;
+    align-items: center;
+    margin-right: 0.625rem;
+    width: 51px;
+    height: 52px;
+    img {
+      width: 100%;
+    }
+    @media (max-width: $mobile) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &__coinAmount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      padding-top: 4px;
+      font-weight: 600;
+      font-size: 24px;
+      color: #fff;
+      @media (max-width: $mobile) {
+        font-size: 24px;
+      }
+    }
+  }
+  &__tabBtns {
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #292f4fc5;
+    border-radius: 10px;
+    width: 290px;
+    height: 50px;
+    button {
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+}
 
 .footerMain {
-	position: relative;
-	z-index: 10;
-	margin: 0 auto;
-	display: flex;
-	align-items: center;
-	.soundToggler {
-		@media (max-width: $mobile) {
-			display: none;
-		}	
-	}
-		@media (max-width: $mobile) {
-			padding: 0;
-		}
-	&__container {
-		padding: 0 20px;
-		width: fit-content;
-		display: flex;
-		align-items: center;
-	}
-	&__socials {		
-		display: none;
-		flex-direction: row;
-		gap: 0.75rem;
-		@media (max-width: $mobile) {
-			display: none;
-		}
-	}
-	&__twBtn {
-		border: 0.125rem solid #fff;
-		border-radius: 3.75rem;
-		padding: 1rem 1.0625rem 0.875rem 0.8125rem;
-		width: 3.125rem;
-		height: 3.125rem;
-		font-weight: 600;
-		font-size: 1rem;
-		text-transform: uppercase;
-		color: #fff;
-	}
-	&__twBtn:hover {
-		transition: .25s;
-		color: #000000;
-		background-color: #ffffff;
-		cursor: pointer;
-	}
-	&__tgBtn {
-		border: 0.125rem solid #fff;
-		border-radius: 3.75rem;
-		padding: 1rem 1.0625rem 0.875rem 0.8125rem;
-		width: 3.125rem;
-		height: 3.125rem;
-		font-weight: 600;
-		font-size: 1rem;
-		text-transform: uppercase;
-		color: #fff;
-	}
-	&__tgBtn:hover {
-		transition: .25s;
-		color: #000000;
-		background-color: #ffffff;
-		cursor: pointer;
-	}
-	&__activities {
-		margin-bottom: 20px;
-		gap: 10px;
-		display: flex;
-		flex-direction: row;
-		text-align: center;
-		align-items: center;
-		border: 0.0625rem solid rgba(255, 255, 255, 0.2);
-		border-radius: 3.75rem;
-		width: 100%;
-		padding: 10px;
-		background: rgba(41, 47, 79, 0.5);
-		button {
-			border: 0.125rem solid #fff;
-			border-radius: 3.75rem;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-			width: 90px;
-			height: fit-content;
-			padding: 10px;
-			padding-bottom: 8px;
-		  font-weight: 600;
-		  font-size: 14px;
-		  color: #fff;
-			background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
-			img {
-				scale: 80%;
-				padding-bottom: 4px;
-				margin-left: 4px;
-			}
-		}
-	}
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  .soundToggler {
+    @media (max-width: $mobile) {
+      display: none;
+    }
+  }
+  @media (max-width: $mobile) {
+    padding: 0;
+  }
+  &__container {
+    padding: 0 20px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+  }
+  &__socials {
+    display: none;
+    flex-direction: row;
+    gap: 0.75rem;
+    @media (max-width: $mobile) {
+      display: none;
+    }
+  }
+  &__twBtn {
+    border: 0.125rem solid #fff;
+    border-radius: 3.75rem;
+    padding: 1rem 1.0625rem 0.875rem 0.8125rem;
+    width: 3.125rem;
+    height: 3.125rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  &__twBtn:hover {
+    transition: 0.25s;
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+  &__tgBtn {
+    border: 0.125rem solid #fff;
+    border-radius: 3.75rem;
+    padding: 1rem 1.0625rem 0.875rem 0.8125rem;
+    width: 3.125rem;
+    height: 3.125rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  &__tgBtn:hover {
+    transition: 0.25s;
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+  &__activities {
+    margin-bottom: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+    border-radius: 3.75rem;
+    width: 100%;
+    padding: 10px;
+    background: rgba(41, 47, 79, 0.5);
+    button {
+      border: 0.125rem solid #fff;
+      border-radius: 3.75rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: fit-content;
+      padding: 10px;
+      padding-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
+      img {
+        scale: 80%;
+        padding-bottom: 4px;
+        margin-left: 4px;
+      }
+    }
+  }
 }
 
 .popupTasks {
-	&__task {
-		display: flex;
-		justify-content: space-between;
-		text-align: center;
-		align-items: center;
-		button {
-			margin-top: 10px;
-			width: 70%;
-			border: 0.125rem solid #fff;
-			border-radius: 3.75rem;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-			height: fit-content;
-			padding: 10px;
-			padding-bottom: 8px;
-		  font-weight: 600;
-		  font-size: 14px;
-		  color: #fff;
-			background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
-		}		
-		button:disabled {
-			opacity: .5;
-		}
-		img {
-			margin-top: 10px;
-			width: 20px;
-		}
-	}
-	&__walletTask {
-		display: flex;
-		justify-content: space-between;
-		text-align: center;
-		align-items: center;
-		margin-top: 10px;
-		width: 70%;
-		border: 0.125rem solid #fff;
-		border-radius: 60px;
-		display: flex;
-		flex-direction: row;
-		height: 36px;
-		font-weight: 600;
-		font-size: 14px;
-		color: #fff;
-		background: #ffffff00;
-		input {
-			padding-left: 10px;
-			width: 150px;
-		}
-		input::placeholder {
-			color: #fff;
-			font-size: 10px;
-		}
-		input:focus{
-			outline: none;
-	}
-		button {
-			border: 1px solid #fff;
-			border-radius: 40px;
-			padding: 2px;
-			width: 40px;
-			img {
-			width: 20px;
-			}
-		}
-		p {
-			
-		}
-	}
+  &__task {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    button {
+      margin-top: 10px;
+      width: 70%;
+      border: 0.125rem solid #fff;
+      border-radius: 3.75rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      height: fit-content;
+      padding: 10px;
+      padding-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
+    }
+    button:disabled {
+      opacity: 0.5;
+    }
+    img {
+      margin-top: 10px;
+      width: 20px;
+    }
+  }
+  &__walletTask {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 70%;
+    border: 0.125rem solid #fff;
+    border-radius: 60px;
+    display: flex;
+    flex-direction: row;
+    height: 36px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    background: #ffffff00;
+    input {
+      padding-left: 10px;
+      width: 150px;
+    }
+    input::placeholder {
+      color: #fff;
+      font-size: 10px;
+    }
+    input:focus {
+      outline: none;
+    }
+    button {
+      border: 1px solid #fff;
+      border-radius: 40px;
+      padding: 2px;
+      width: 40px;
+      img {
+        width: 20px;
+      }
+    }
+    p {
+    }
+  }
 }

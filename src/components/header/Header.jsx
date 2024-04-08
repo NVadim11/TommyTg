@@ -1,12 +1,12 @@
 // import { useWallet } from '@solana/wallet-adapter-react'
 // import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
-import axios from "axios"
-import React, { useContext, useEffect, useRef, useState } from "react"
+import axios from "axios";
+import React, { useContext, useEffect, useRef, useState } from "react";
 // import logo from "../../img/logo.png"
-import leaderboard_icon from "../../img/leaderboard_icon.svg"
-import { toggleMuteAllSounds } from "../../utility/Audio"
-import { AuthContext } from "../helper/contexts"
-import "./Header.scss"
+import leaderboard_icon from "../../img/leaderboard_icon.svg";
+import { toggleMuteAllSounds } from "../../utility/Audio";
+import { AuthContext } from "../helper/contexts";
+import "./Header.scss";
 
 const Header = ({ user }) => {
   const { value } = useContext(AuthContext);
@@ -33,7 +33,6 @@ const Header = ({ user }) => {
 
   // const { clickCount } = useClickCount();
   // const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
-  
 
   // const containerRef = useRef(null);
   // const [getLeaderboard] = useGetLeaderboardMutation();
@@ -105,7 +104,7 @@ const Header = ({ user }) => {
   //   };
   //   fetchData();
 
-  //   let intervalId;  
+  //   let intervalId;
 
   //   return () => {
   //     clearInterval(intervalId);
@@ -346,7 +345,11 @@ const Header = ({ user }) => {
                         </div>
                         <div className="popupLeaderboard__playerName">
                           <span>
-                            {player.wallet_address ? player.wallet_address.slice(0, 4) + ".." + player.wallet_address.slice(-4) : 'anonymous'}
+                            {player.wallet_address
+                              ? player.wallet_address.slice(0, 4) +
+                                ".." +
+                                player.wallet_address.slice(-4)
+                              : "anonymous"}
                           </span>
                         </div>
                         <div className="popupLeaderboard__coins">
@@ -360,7 +363,7 @@ const Header = ({ user }) => {
             </div>
           </div>
         </div>
-      )}      
+      )}
       {/* {isInviteOpen && (
         <div id="popupInvite" aria-hidden="true" className={popupInvite}>
           <div className="popupInvite__wrapper">
@@ -478,6 +481,6 @@ const Header = ({ user }) => {
       )} */}
     </>
   );
-}
+};
 
 export default Header;
