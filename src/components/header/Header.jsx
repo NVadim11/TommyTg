@@ -346,7 +346,7 @@ const Header = ({ user }) => {
                         </div>
                         <div className="popupLeaderboard__playerName">
                           <span>
-                            {player.wallet_address ? player.wallet_address.slice(0, 4) + ".." + player.wallet_address.slice(-4) : ''}
+                            {player.wallet_address ? player.wallet_address.slice(0, 4) + ".." + player.wallet_address.slice(-4) : 'anonymous'}
                           </span>
                         </div>
                         <div className="popupLeaderboard__coins">

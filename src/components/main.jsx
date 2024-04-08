@@ -1,11 +1,11 @@
-import AOS from "aos";
-import Footer from "./footer/Footer";
-import Header from "./header/Header";
-import Main from "./main/Main";
+import AOS from "aos"
+import Footer from "./footer/Footer"
+import Header from "./header/Header"
+import Main from "./main/Main"
 // import Landing from "./Landing";
-import { useEffect, useState } from "react";
-import Preloader from "./preloader/Preloader";
-import { useGetUserByTgIdQuery } from "../services/phpService";
+import { useEffect, useState } from "react"
+import { useGetUserByTgIdQuery } from "../services/phpService"
+import Preloader from "./preloader/Preloader"
 
 const MainComponent = () => {
   const tg = window.Telegram.WebApp;

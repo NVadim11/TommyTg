@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import catCoinMove from "../../img/cat_coin_move.png"
+import checkbox from "../../img/checkbox.png"
 import pet from "../../img/pet_icon.svg"
 import shop from "../../img/shop_icon.svg"
 import submit from "../../img/submit.png"
@@ -263,19 +264,21 @@ const Footer = ({ user }) => {
                   <button onClick={twitterClick} disabled={user?.twitter === 1}>
                     Follow Twitter
                   </button>
-                  {user?.twitter === 0 ? <p>+1000</p> : <p> completed </p>}
+                  {user?.twitter === 0 ? <p>+1000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__task">
                   <button onClick={tgClick} disabled={user?.telegram === 1}>
                     Follow Telegram Chat
                   </button>
-                  {user?.telegram === 0 ? <p>+1000</p> : <p> completed </p>}
+                  {user?.telegram === 0 ? <p>+1000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__task">
-                  <button onClick={tgClick}>Follow Telegram Channel</button>
+                  <button onClick={tgClick} disabled={user?.twitter === 1}>Follow Telegram Channel</button>
+                  {user?.twitter === null ? <p>+1000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__task">
-                  <button onClick={websiteClick}>Visit Website</button>
+                  <button onClick={websiteClick} disabled={user?.twitter === 1}>Visit Website</button>
+                  {user?.twitter === null ? <p>+1000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__walletTask">
                   <input
