@@ -272,6 +272,22 @@ body::after {
       }
     }
   }
+  &__activitiesHint {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 3.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    background: #7631e7;
+    transform: rotate(8deg);
+    font-weight: 400;
+    font-size: 0.625rem;
+    color: #fff;
+    padding: 0 0.5625rem;
+    top: -0.9375rem;
+    right: -1.5625rem;
+  }
 }
 
 .popupTasks {
@@ -305,22 +321,71 @@ body::after {
       width: 20px;
     }
   }
+  &__tabs-btns {
+    margin-top: 35px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    @media (max-width: 768px) {
+      margin-top: 1.5625rem;
+      justify-content: flex-start;
+      gap: 0.9375rem;
+      // justify-content: space-between;
+    }
+  }
+  &__tabs-btn {
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    z-index: 10;
+    button {
+      padding: 12px 19px 10px 19px;
+      font-weight: 600;
+      font-size: 1.375rem;
+      color: rgba(255, 255, 255);
+      opacity: 0.6;
+      text-align: start;
+      span {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+      @media (max-width: 768px) {
+        font-size: 0.875rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.625rem;
+      }
+    }
+    &.active {
+      border-bottom: 1px solid rgba(41, 47, 79);
+      border-top: 1px solid #fff;
+      border-left: 1px solid #fff;
+      border-right: 1px solid #fff;
+      overflow: hidden;
+      button {
+        opacity: 1;
+      }
+      @media (max-width: 768px) {
+        border: 1px solid #fff;
+        border-radius: 10px;
+      }
+    }
+    .footerMain__activitiesHint {
+      display: none;
+      @media (max-width: 768px) {
+        display: flex;
+        font-size: 0.625rem;
+        padding: 0;
+      }
+    }
+  }
   &__walletTask {
     display: flex;
-    justify-content: space-between;
-    text-align: center;
     align-items: center;
+    justify-content: space-between;
     margin-top: 10px;
-    width: 70%;
-    border: 0.125rem solid #fff;
-    border-radius: 60px;
-    display: flex;
-    flex-direction: row;
-    height: 36px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    background: #ffffff00;
     input {
       padding-left: 10px;
       width: 150px;
@@ -333,15 +398,38 @@ body::after {
       outline: none;
     }
     button {
-      border: 1px solid #fff;
+      box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
+      border: 2px solid #fff;
       border-radius: 40px;
       padding: 2px;
       width: 40px;
+      position: absolute;
+      height: 2.25rem;
+      top: -2px;
+      right: -2px;
       img {
         width: 20px;
       }
     }
-    p {
+    span {
+
     }
+  }
+  &__walletTask-input {
+    border: 0.125rem solid #fff;
+    border-radius: 60px;
+    height: 36px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    color: #fff;
+    background: #ffffff00;
+    position: relative;
+    text-align: center;
+    align-items: center;
+    flex-direction: row;
+    width: 70%;
+  }
+  &__walletTask-box {
   }
 }
