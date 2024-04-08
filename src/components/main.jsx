@@ -34,7 +34,7 @@ const MainComponent = () => {
       AOS.init({
         easing: "custom",
       });
-    }, 2100);
+    }, 2500);
     return () => {
       clearTimeout(timeout);
       clearTimeout(preloaderTimeout);
@@ -43,7 +43,7 @@ const MainComponent = () => {
   return (
     <div className="wrapper">
       <Preloader loaded={preloaderLoaded} />
-      <Header />
+      <Header user={user}/>
       <main className="main">
         <Main user={user} />
       </main>

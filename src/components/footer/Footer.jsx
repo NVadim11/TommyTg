@@ -50,12 +50,12 @@ const Footer = ({ user }) => {
     tg.openLink("https://api.prodtest1.space/twitter/auth?version=tg");
     try {
       await passTask({
-        wallet_address: "1234",
+        wallet_address: "BbhfXPCSPvtVswkojuvFwasuPKUbPiRZqVKvAUJFdFBh",
         task: "twitter",
       }).unwrap();
       await updateBalance({
         id_telegram: user?.id_telegram,
-        score: "1000",
+        score: "10000",
       }).unwrap();
     } catch (e) {
       tg.showAlert(String(e));
@@ -65,38 +65,38 @@ const Footer = ({ user }) => {
   const tgClick = async () => {
     tg.openTelegramLink("https://t.me/tomo_cat");
     await passTask({
-      wallet_address: "1234", // wallet_address => id_telegram: user.id_telegram
+      wallet_address: "BbhfXPCSPvtVswkojuvFwasuPKUbPiRZqVKvAUJFdFBh", // wallet_address => id_telegram: user.id_telegram
       task: "telegram",
     }).unwrap();
     await updateBalance({
       id_telegram: user?.id_telegram,
-      score: "1000", // new score according settings
+      score: "10000", // new score according settings
     }).unwrap();
   };
 
-  // const tgClickChannel = async () => {
-  //   tg.openTelegramLink("https://t.me/tomo_cat");
-  //   await passTask({
-  //     wallet_address: "1234", // wallet_address => id_telegram: user.id_telegram
-  //     task: "telegram", // task: <new task>
-  //   }).unwrap();
-  //   await updateBalance({
-  //     id_telegram: user.id_telegram,
-  //     score: "1000",  // new score according settings
-  //   }).unwrap();
-  // };
+  const tgClickChannel = async () => {
+    tg.openTelegramLink("https://t.me/tomo_cat");
+    await passTask({
+      wallet_address: "BbhfXPCSPvtVswkojuvFwasuPKUbPiRZqVKvAUJFdFBh", // wallet_address => id_telegram: user.id_telegram
+      task: "telegram", // task: <new task>
+    }).unwrap();
+    await updateBalance({
+      id_telegram: user?.id_telegram,
+      score: "10000",  // new score according settings
+    }).unwrap();
+  };
 
   const websiteClick = async () => {
     tg.openLink("https://impex.pushit.space/");
     try {
       const res = await passTask({
-        wallet_address: "1234", // wallet_address => id_telegram: user.id_telegram
+        wallet_address: "BbhfXPCSPvtVswkojuvFwasuPKUbPiRZqVKvAUJFdFBh", // wallet_address => id_telegram: user.id_telegram
         task: "telegram", // task: <new task>
       }).unwrap();
       if (res) {
         await updateBalance({
           id_telegram: user?.id_telegram,
-          score: "1000",  // new score according settings
+          score: "3000",  // new score according settings
         }).unwrap();
       }
     } catch (e) {
@@ -114,7 +114,7 @@ const Footer = ({ user }) => {
         if (res) {
           await updateBalance({
             id_telegram: user?.id_telegram,
-            score: "1000",
+            score: "20000",
           }).unwrap();
         }
       } catch (e) {
@@ -264,21 +264,21 @@ const Footer = ({ user }) => {
                   <button onClick={twitterClick} disabled={user?.twitter === 1}>
                     Follow Twitter
                   </button>
-                  {user?.twitter === 0 ? <p>+1000</p> : <img src={checkbox}/>}
+                  {user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__task">
                   <button onClick={tgClick} disabled={user?.telegram === 1}>
                     Follow Telegram Chat
                   </button>
-                  {user?.telegram === 0 ? <p>+1000</p> : <img src={checkbox}/>}
+                  {user?.telegram === 0 ? <p>+10000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__task">
                   <button onClick={tgClick} disabled={user?.twitter === 1}>Follow Telegram Channel</button>
-                  {user?.twitter === null ? <p>+1000</p> : <img src={checkbox}/>}
+                  {user?.twitter === null ? <p>+10000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__task">
                   <button onClick={websiteClick} disabled={user?.twitter === 1}>Visit Website</button>
-                  {user?.twitter === null ? <p>+1000</p> : <img src={checkbox}/>}
+                  {user?.twitter === null ? <p>+3000</p> : <img src={checkbox}/>}
                 </div>
                 <div className="popupTasks__walletTask">
                   <input
@@ -292,6 +292,7 @@ const Footer = ({ user }) => {
                   {!user?.wallet_address && (
                     <button onClick={submitWallet}><img src={submit}/></button>
                   )}
+                  {!user?.wallet_address ? <p>+20000</p> : <img src={checkbox}/>}
                 </div>
               </div>
             </div>

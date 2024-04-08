@@ -1,30 +1,29 @@
-import axios from "axios";
-import { motion } from "framer-motion";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import sadIdle from "../../img/1_idle.gif";
-import sadSpeak from "../../img/1talk.gif";
-import normalIdle from "../../img/2_idle.gif";
-import normalSpeak from "../../img/2talk.gif";
-import smileIdle from "../../img/3_idle.gif";
-import smileSpeak from "../../img/3talk.gif";
-import happyIdle from "../../img/4_idle.gif";
-import happySpeak from "../../img/4talk.gif";
-import boostCoin from "../../img/boost_coin_side.png";
-import catFace from "../../img/catFace.png";
-import catCoinMove from "../../img/cat_coin_move.png";
-import finalForm from "../../img/finalForm.gif";
-import goldForm from "../../img/gold.gif";
-import smile from "../../img/smile.png";
-import { playBoostCatClick, playSadCatClick } from "../../utility/Audio";
-import { useClickCount } from "../clickContext";
-import { AuthContext } from "../helper/contexts";
-import "./Main.scss";
+import { motion } from "framer-motion"
+import React, { useEffect, useRef, useState } from "react"
+import { useMediaQuery } from "react-responsive"
+import sadIdle from "../../img/1_idle.gif"
+import sadSpeak from "../../img/1talk.gif"
+import normalIdle from "../../img/2_idle.gif"
+import normalSpeak from "../../img/2talk.gif"
+import smileIdle from "../../img/3_idle.gif"
+import smileSpeak from "../../img/3talk.gif"
+import happyIdle from "../../img/4_idle.gif"
+import happySpeak from "../../img/4talk.gif"
+import boostCoin from "../../img/boost_coin_side.png"
+import catFace from "../../img/catFace.png"
+import catCoinMove from "../../img/cat_coin_move.png"
+import finalForm from "../../img/finalForm.gif"
+import goldForm from "../../img/gold.gif"
+import smile from "../../img/smile.png"
+import {
+  useUpdateBalanceMutation,
+} from "../../services/phpService"
+import { playBoostCatClick, playSadCatClick } from "../../utility/Audio"
+import { useClickCount } from "../clickContext"
+import "./Main.scss"
 
 const Main = ({ user }) => {
   const isMobile = useMediaQuery({ maxWidth: "1439.98px" });
-  const { value } = useContext(AuthContext);
-  const [idleState, setidleState] = useState(true);
   const [currentImage, setCurrentImage] = useState(true);
   const [coinState, setCoinState] = useState(false);
   const [currCoins, setCurrCoins] = useState(0);
@@ -35,115 +34,94 @@ const Main = ({ user }) => {
   const timeoutRef = useRef(null);
   const coinRef = useRef(null);
   const accumulatedCoinsRef = useRef(0);
-  // const { publicKey, connected } = useWallet();
-  // const wallet_address = publicKey?.toBase58();
-  // const location = useLocation();
-  // const formRef = useRef(null);
-
+  const [updateBalance] = useUpdateBalanceMutation();
   const [position, setPosition] = useState({ x: "50%", y: "50%" });
   const [boostPhase, setBoostPhase] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  const tg = window.Telegram.WebApp;
+  const userId = tg.initDataUnsafe?.user?.id;
 
   let [happinessVal, setHappinessVal] = useState(1);
   let [clickNewCoins, setClickNewCoins] = useState(1);
 
   const [gamePaused, setGamePaused] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
-  const [walletAddress, setWalletAddress] = useState("");
-  const [coins, setCoins] = useState("");
 
-  const id_telegram = "111222333";
+  const pauseGame = () => {
+    const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+    const futureTimestamp = currentTimeStamp + (30 * 60); // 30 minutes from now
+    // const futureTimestamp = currentTimeStamp + (Math.random() * (2 * 60 * 60 - 30 * 60) + 30 * 60); // Random between 30 minutes and 2 hours
 
-  //   const handleSubmit = async (event) => {
-  //     event.preventDefault(); // Prevent default form submission behavior
+    fetch('https://admin.prodtest1.space/api/set-activity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        wallet_address: user?.wallet_address,
+        timestamp: futureTimestamp,
+      }),
+    })
+    .then(response => {
+      if (response.ok) {
+        setGamePaused(true);
+      } else {
+        console.error('Failed to pause game');
+      }
+    })
+    .catch(error => {
+      console.error('Error pausing game:', error);
+    });
+  };
 
-  //     try {
-  //         const response = await axios.post('https://admin.prodtest1.space/api/update-balance', {
-  //             score: coins,
-  //             wallet_address: walletAddress,
-  //             id_telegram: id_telegram
-  //         });
+  useEffect(() => {
+    if (currEnergy === 1000) {
+      const timeoutId = setTimeout(() => {
+        pauseGame();
+        setGamePaused(true);
+        setVisible(false);
+        setCurrEnergy(0);
+      }, 10000);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [currEnergy]);
 
-  //         console.log('Coins submitted successfully:', response.data);
-  //     } catch (error) {
-  //         console.error('Error submitting coins:', error);
-  //     }
-  // };
+  useEffect(() => {
+    const checkGameStatus = () => {
+      fetch(`https://admin.prodtest1.space/api/telegram-id/${userId}`)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Failed to fetch game status1231231312312312312');
+          }
+        })
+        .then(data => {
+          const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+          const remainingTime = data.active_at - currentTimeStamp;
+          if (remainingTime <= 0) {
+            setGamePaused(false);
+            setTimeRemaining(0);
+          } else {
+            setGamePaused(true);
+            setTimeRemaining(remainingTime);
+          }
+        })
+        .catch(error => {
+          console.error('Error checking game status:', error);
+        });
+    };
+    checkGameStatus();
 
-  // const pauseGame = () => {
-  //   const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
-  //   const futureTimestamp = currentTimeStamp + (30 * 60); // 30 minutes from now
-  //   // const futureTimestamp = currentTimeStamp + (Math.random() * (2 * 60 * 60 - 30 * 60) + 30 * 60); // Random between 30 minutes and 2 hours
+    const timer = setInterval(() => {
+      checkGameStatus();
+    }, 10000);
 
-  //   fetch('https://admin.prodtest1.space/api/set-activity', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       wallet_address: wallet_address,
-  //       timestamp: futureTimestamp,
-  //     }),
-  //   })
-  //   .then(response => {
-  //     if (response.ok) {
-  //       setGamePaused(true);
-  //     } else {
-  //       console.error('Failed to pause game');
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.error('Error pausing game:', error);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if (currEnergy === 1000) {
-  //     const timeoutId = setTimeout(() => {
-  //       pauseGame();
-  //       setGamePaused(true);
-  //       setVisible(false);
-  //       setCurrEnergy(0);
-  //     }, 10000);
-  //     return () => {
-  //       clearTimeout(timeoutId);
-  //     };
-  //   }
-  // }, [currEnergy]);
-
-  // useEffect(() => {
-  //   const checkGameStatus = () => {
-  //     fetch(`https://admin.prodtest1.space/api/users/${wallet_address}`)
-  //       .then(response => {
-  //         if (response.ok) {
-  //           return response.json();
-  //         } else {
-  //           throw new Error('Failed to fetch game status');
-  //         }
-  //       })
-  //       .then(data => {
-  //         const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
-  //         const remainingTime = data.active_at - currentTimeStamp;
-  //         if (remainingTime <= 0) {
-  //           setGamePaused(false);
-  //           setTimeRemaining(0);
-  //         } else {
-  //           setGamePaused(true);
-  //           setTimeRemaining(remainingTime);
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.error('Error checking game status:', error);
-  //       });
-  //   };
-  //   checkGameStatus();
-
-  //   const timer = setInterval(() => {
-  //     checkGameStatus();
-  //   }, 10000);
-
-  //   return () => clearInterval(timer);
-  // }, [connected]);
+    return () => clearInterval(timer);
+  }, []);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -155,49 +133,14 @@ const Main = ({ user }) => {
 
   const { incrementClickCount } = useClickCount();
 
-  const handleCoinClick = () => {
-    incrementClickCount();
-  };
-
-  // const connectSubmitHandler = async () => {
-  //     try {
-  //       const response = await axios.post(
-  //         'https://admin.prodtest1.space/api/users',
-  //         {
-  //           wallet_address: wallet_address,
-  //         },
-  //         {
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           }
-  //         }
-  //       );
-  //       if (response.status !== 201) {
-  //         throw new Error('Failed to submit data');
-  //       }
-  //       console.log('Data submitted successfully');
-  //     } catch (error) {
-  //       console.error('Error submitting data:', error.message);
-  //     }
-  //   };
-  //   useEffect(() => {
-  //     if (connected === true) {
-  //       connectSubmitHandler();
-  //     }
-  //   }, [connected]);
-
-  const boostClickedHandler = () => {
-    handleBoostClick();
-  };
-
   const handleBoostClick = () => {
     const prevHappinessVal = happinessVal;
     const prevClickNewCoins = clickNewCoins;
 
     setBoostPhase(true);
     setVisible(false);
-    setHappinessVal(2);
-    setClickNewCoins(6);
+    setHappinessVal(4);
+    setClickNewCoins(8);
 
     setTimeout(() => {
       setHappinessVal(prevHappinessVal);
@@ -301,6 +244,14 @@ const Main = ({ user }) => {
     return clickNewCoins;
   };
 
+  const handleCoinClick = () => {
+    incrementClickCount();
+  };
+
+  const boostClickedHandler = () => {
+    handleBoostClick();
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
       if (isCoinsChanged) {
@@ -314,31 +265,15 @@ const Main = ({ user }) => {
   }, [isCoinsChanged]);
 
   const submitData = async (coins) => {
-    // try {
-    //     const response = await axios.post('https://admin.prodtest1.space/api/update-balance', {
-    //         score: coins,
-    //         wallet_address: wallet_address
-    //     });
-
-    //     console.log('Coins submitted successfully:', response.data);
-    // } catch (error) {
-    //     console.error('Error submitting coins:', error);
-    // }
-    if (id_telegram !== null) {
       try {
-        const response = await axios.post(
-          "https://admin.prodtest1.space/api/update-balance",
-          {
-            score: coins,
-            id_telegram: id_telegram,
-          }
-        );
-
-        console.log("Coins submitted successfully:", response.data);
+        await updateBalance({
+          id_telegram: user?.id_telegram,
+          score: coins,
+        }).unwrap();    
+        console.log("Coins submitted successfully");
       } catch (error) {
         console.error("Error submitting coins:", error);
-      }
-    }
+      }    
   };
 
   const coinClicker = (event) => {
@@ -360,43 +295,6 @@ const Main = ({ user }) => {
     setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
     accumulatedCoinsRef.current += clickNewCoins;
   };
-
-  // useEffect(() => {
-  //     if (!connected) {
-  //         setCurrCoins(0);
-  //     }
-  // }, [connected]);
-
-  // const startFarm = () => {
-  //     setCurrentImage(true);
-  //     setidleState(prevState => !prevState);
-  // };
-
-  // const stopFarm = () => {
-  //     setCurrentImage(false);
-  //     setBoostPhase(false)
-  //     setCoinState(false);
-  //     setidleState(prevState => !prevState);
-  //     setCoinState(false);
-  //     setBoostPhase(false);
-  //     setVisible(false)
-  // };
-
-  // const loginTwitter = async () => {
-  //     try {
-  //       // const res = await requestAuth().unwrap();
-  //       window.location.href = `https://api.prodtest1.space/twitter/auth`;
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     if (location.state && location.state?.auth) {
-  //       executeScroll();
-  //       window.history.replaceState({}, "");
-  //     }
-  //   }, []);
 
   return (
     <div className="mainContent">

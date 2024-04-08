@@ -60,7 +60,7 @@ body::after {
 	width: 100%;
 	max-width: 56.25rem;
 	border-radius: 1.25rem;	
-	background: rgba(41, 47, 79, 0.5);
+	background: rgba(41, 47, 79, 0.9);
 }
 
 .popupTasks {
@@ -308,6 +308,8 @@ body::after {
 	}
 	&__walletTask {
 		display: flex;
+		justify-content: space-between;
+		text-align: center;
 		align-items: center;
 		margin-top: 10px;
 		width: 70%;
@@ -315,7 +317,6 @@ body::after {
 		border-radius: 60px;
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
 		height: 36px;
 		font-weight: 600;
 		font-size: 14px;
@@ -340,6 +341,9 @@ body::after {
 			img {
 			width: 20px;
 			}
+		}
+		p {
+			
 		}
 	}
 }
