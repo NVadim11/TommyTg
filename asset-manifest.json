@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/TommyTg/static/css/main.a338c287.css",
-    "main.js": "/TommyTg/static/js/main.1dec132f.js",
+    "main.css": "/TommyTg/static/css/main.30112b95.css",
+    "main.js": "/TommyTg/static/js/main.39475c11.js",
     "static/media/1_idle.gif": "/TommyTg/static/media/1_idle.3966a07355ead4addd83.gif",
     "static/media/gold.gif": "/TommyTg/static/media/gold.23112a1dd6c37a63d424.gif",
     "static/media/4_idle.gif": "/TommyTg/static/media/4_idle.d02a5ac57c3408f525b0.gif",
@@ -37,22 +37,16 @@
     "static/media/boost.mp3": "/TommyTg/static/media/boost.33f654621a9e6b1b5ded.mp3",
     "static/media/4talk.mp3": "/TommyTg/static/media/4talk.192f06d7f8a8f0986397.mp3",
     "static/media/cat_coin_move.png": "/TommyTg/static/media/cat_coin_move.2f49d18bd82513621914.png",
-    "static/media/people-icon.svg": "/TommyTg/static/media/people-icon.f416f02a404341fe3e57ff92a082672b.svg",
-    "static/media/money.svg": "/TommyTg/static/media/money.1cec3ae150a11392284a9cc6bb76ba3e.svg",
     "static/media/tasks_icon.svg": "/TommyTg/static/media/tasks_icon.18f97b46c808d514576c5de1d12bb42c.svg",
-    "static/media/envelope.svg": "/TommyTg/static/media/envelope.81382d0fd7a7fa80722341631b2a3ee9.svg",
     "static/media/shop_icon.svg": "/TommyTg/static/media/shop_icon.646b9f22e4c9d0195436b349ade1a4b9.svg",
-    "static/media/referral_icon.svg": "/TommyTg/static/media/referral_icon.2cc4ce6672d0ddcbeb7cc126c7c82d6a.svg",
-    "static/media/link.svg": "/TommyTg/static/media/link.f71365e59d99b2e9e290c97516f5e973.svg",
     "static/media/leaderboard_icon.svg": "/TommyTg/static/media/leaderboard_icon.23a4fe86c97990cb9c49266ad5f2c87e.svg",
-    "static/media/copy.svg": "/TommyTg/static/media/copy.7f86c828162b5b60758a61c526137384.svg",
     "static/media/pet_icon.svg": "/TommyTg/static/media/pet_icon.15cde0c0e7252fc814145b7cd06fe9c8.svg",
     "index.html": "/TommyTg/index.html",
-    "main.a338c287.css.map": "/TommyTg/static/css/main.a338c287.css.map",
-    "main.1dec132f.js.map": "/TommyTg/static/js/main.1dec132f.js.map"
+    "main.30112b95.css.map": "/TommyTg/static/css/main.30112b95.css.map",
+    "main.39475c11.js.map": "/TommyTg/static/js/main.39475c11.js.map"
   },
   "entrypoints": [
-    "static/css/main.a338c287.css",
-    "static/js/main.1dec132f.js"
+    "static/css/main.30112b95.css",
+    "static/js/main.39475c11.js"
   ]
 }
