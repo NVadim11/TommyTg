@@ -48,7 +48,7 @@ const Main = ({ user }) => {
 
 	const pauseGame = () => {
 		const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
-		const futureTimestamp = currentTimeStamp + 30 * 60; // 30 minutes from now
+		const futureTimestamp = currentTimeStamp + 60 * 60; // 1h
 		// const futureTimestamp = currentTimeStamp + (Math.random() * (2 * 60 * 60 - 30 * 60) + 30 * 60); // Random between 30 minutes and 2 hours
 
 		fetch('https://admin.prodtest1.space/api/set-activity', {
@@ -57,7 +57,7 @@ const Main = ({ user }) => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				wallet_address: user?.wallet_address,
+				id_telegram: userId,
 				timestamp: futureTimestamp,
 			}),
 		})
@@ -75,15 +75,10 @@ const Main = ({ user }) => {
 
 	useEffect(() => {
 		if (currEnergy === 1000) {
-			const timeoutId = setTimeout(() => {
-				pauseGame();
-				setGamePaused(true);
-				setVisible(false);
-				setCurrEnergy(0);
-			}, 10000);
-			return () => {
-				clearTimeout(timeoutId);
-			};
+			pauseGame();
+			setGamePaused(true);
+			setVisible(false);
+			setCurrEnergy(0);
 		}
 	}, [currEnergy]);
 
@@ -94,7 +89,7 @@ const Main = ({ user }) => {
 					if (response.ok) {
 						return response.json();
 					} else {
-						throw new Error('Failed to fetch game status1231231312312312312');
+						throw new Error('Failed to fetch game status');
 					}
 				})
 				.then((data) => {
