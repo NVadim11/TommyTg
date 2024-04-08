@@ -262,10 +262,23 @@ const Footer = ({ user }) => {
 									</div>
 								</div>
 							</div>
-							<div className='popupTasks__tabBtns'>
-								<button>Social</button>
-								<button>Daily</button>
-								<button>Partnership</button>
+							<div className='popupTasks__tabs-btns'>
+								<div className='popupTasks__tabs-btn active'>
+									<button>Social</button>
+								</div>
+								<div className='popupTasks__tabs-btn'>
+									<button>
+										Daily <span>(Coming Soon)</span>
+									</button>
+									<div className='footerMain__activitiesHint'>Coming Soon</div>
+								</div>
+								<div className='popupTasks__tabs-btn'>
+									<button>
+										Partnership <span>(Coming Soon)</span>
+									</button>
+									<div className='footerMain__activitiesHint'>Coming Soon</div>
+								</div>
+								<div className='popupTasks__tabs-line'></div>
 							</div>
 							<div className='popupTasks__tasks'>
 								<div className='popupTasks__task'>
@@ -300,28 +313,32 @@ const Footer = ({ user }) => {
 									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__walletTask'>
-									<input
-										type='text'
-										placeholder='Enter Solana Wallet Address'
-										style={{
-											background: 'transparent',
-											color: '#fff',
-											fontSize: '0.75rem',
-										}}
-										value={user?.wallet_address || walletVaL}
-										onChange={(e) => setWalletVal(e.target.value)}
-										disabled={user?.wallet_address}
-									/>
-									{!user?.wallet_address && (
-										<button onClick={submitWallet}>
-											<img src={submit} />
-										</button>
-									)}
-									{!user?.wallet_address ? (
-										<p>+20000</p>
-									) : (
-										<img src={checkbox} />
-									)}
+									<div className='popupTasks__walletTask-input'>
+										<input
+											type='text'
+											placeholder='Enter Solana Wallet Address'
+											style={{
+												background: 'transparent',
+												color: '#fff',
+												fontSize: '0.75rem',
+											}}
+											value={user?.wallet_address || walletVaL}
+											onChange={(e) => setWalletVal(e.target.value)}
+											disabled={user?.wallet_address}
+										/>
+										{!user?.wallet_address && (
+											<button onClick={submitWallet}>
+												<img src={submit} />
+											</button>
+										)}
+									</div>
+									<div className='popupTasks__walletTask-box'>
+										{!user?.wallet_address ? (
+											<p>+20000</p>
+										) : (
+											<img src={checkbox} />
+										)}
+									</div>
 								</div>
 							</div>
 						</div>
