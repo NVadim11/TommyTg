@@ -444,7 +444,7 @@ const Main = ({ user }) => {
 							</p>
 						</div>
 					</div>
-					{visible ? (
+					{!gamePaused && visible ? (
 						<motion.div
 							initial={{
 								y: 7,
