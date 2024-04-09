@@ -455,7 +455,7 @@ const Header = ({ user }) => {
 											<img src={money} alt='' className='popupInvite__icon' />
 											<div className='popupInvite__list-itemDescr'>
 												<h5>Get rewards</h5>
-												<p>Receive up to 2k$ for your friends' staking CRO</p>
+												<p>Receive 10% of your friends’ staking</p>
 											</div>
 										</li>
 									</ul>
