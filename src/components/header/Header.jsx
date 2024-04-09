@@ -1,41 +1,29 @@
-// import { useWallet } from '@solana/wallet-adapter-react'
-// import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 import axios from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-// import logo from "../../img/logo.png"
+import React, { useEffect, useRef, useState } from 'react';
+import envelope from '../../img/envelope.svg';
 import leaderboard_icon from '../../img/leaderboard_icon.svg';
+import link from '../../img/link.svg';
+import money from '../../img/money.svg';
+import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
-import { AuthContext } from '../helper/contexts';
 import './Header.scss';
 
 const Header = ({ user }) => {
-	const { value } = useContext(AuthContext);
-	// const { connected, publicKey } = useWallet();
-	// const [isToggled, setIsToggled] = useState(false);
-	// const [isShown, setIsShown] = useState(false);
-	// const [totalPoints, setTotalPoints] = useState(null);
-	// const [totalReferrals, setTotalReferrals] = useState(null);
+	const [isToggled, setIsToggled] = useState(false);
+	const [isShown, setIsShown] = useState(false);
+	const [totalPoints, setTotalPoints] = useState(null);
+	const [totalReferrals, setTotalReferrals] = useState(null);
 	const [leaderboardData, setLeaderboardData] = useState([]);
 	const [isLeaderboardOpen, setLeaderboardOpen] = useState(false);
 	const [isInviteOpen, setInviteOpen] = useState(false);
-
 	const [isVisible, setIsVisible] = useState(true);
 	const [isElementPresent, setIsElementPresent] = useState(false);
 	const initLeadersRef = useRef(null);
-
-	// const wallet_address = publicKey?.toBase58();
-
 	const popupClsTgl = isLeaderboardOpen ? 'popupLeaderboard_show' : null;
 	const popupClasses = `popupLeaderboard ${popupClsTgl}`;
 
 	const popupInvTgl = isInviteOpen ? 'popupInvite_show' : null;
 	const popupInvite = `popupInvite ${popupInvTgl}`;
-
-	// const { clickCount } = useClickCount();
-	// const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
-
-	// const containerRef = useRef(null);
-	// const [getLeaderboard] = useGetLeaderboardMutation();
 
 	useEffect(() => {
 		const observer = new MutationObserver((mutationsList) => {
@@ -80,52 +68,58 @@ const Header = ({ user }) => {
 
 	useEffect(() => {
 		fetchLeaderboardData();
+		setTotalReferrals(user?.referrals_count);
+		setTotalPoints(user?.wallet_balance);
 		initLeadersRef.current = setInterval(() => {
 			fetchLeaderboardData();
+			setTotalReferrals(user?.referrals_count);
+			setTotalPoints(user?.wallet_balance);
 		}, 10000);
 		return () => {
 			clearInterval(initLeadersRef.current);
 		};
-	}, []);
+	}, [user]);
 
 	// useEffect(() => {
-	//   const fetchData = async () => {
-	//       const res = await getLeaderboard(user?.id_telegram).unwrap();
-	//       setLeaderboardData(res);
-	//       console.log("fetched connected DB")
-	//       const intervalId = setInterval(() => {
-	//         getLeaderboard(user?.id_telegram)
-	//           .unwrap()
-	//           .then((data) => setLeaderboardData(data))
-	//           .catch((error) => console.error('Error refreshing leaderboard:', error));
-	//           console.log("fetched connected DB with interval")
-	//       }, 10000);
-	//       return intervalId;
-	//   };
-	//   fetchData();
+	// 	const fetchData = async () => {
+	// 		const res = await getLeaderboard(user?.id_telegram).unwrap();
+	// 		setLeaderboardData(res);
+	// 		console.log('fetched connected DB');
+	// 		const intervalId = setInterval(() => {
+	// 			getLeaderboard(user?.id_telegram)
+	// 				.unwrap()
+	// 				.then((data) => setLeaderboardData(data))
+	// 				.catch((error) =>
+	// 					console.error('Error refreshing leaderboard:', error)
+	// 				);
+	// 			console.log('fetched connected DB with interval');
+	// 		}, 10000);
+	// 		return intervalId;
+	// 	};
+	// 	fetchData();
 
-	//   let intervalId;
+	// 	let intervalId;
 
-	//   return () => {
-	//     clearInterval(intervalId);
-	//   };
+	// 	return () => {
+	// 		clearInterval(intervalId);
+	// 	};
 	// }, [user]);
 
-	// const toggleVisibility = () => {
-	//   setIsShown(!isShown);
-	//   setIsToggled(!isToggled);
-	// };
+	const toggleVisibility = () => {
+		setIsShown(!isShown);
+		setIsToggled(!isToggled);
+	};
 
-	// useEffect(() => {
-	//   const handleOutsideClick = (event) => {
-	//     if (event.target.closest(".header__mobileBurger")) return;
-	//     setIsShown(false);
-	//     setIsToggled(false);
-	//   };
+	useEffect(() => {
+		const handleOutsideClick = (event) => {
+			if (event.target.closest('.header__mobileBurger')) return;
+			setIsShown(false);
+			setIsToggled(false);
+		};
 
-	//   document.addEventListener("mousedown", handleOutsideClick);
-	//   return () => document.removeEventListener("mousedown", handleOutsideClick);
-	// }, []);
+		document.addEventListener('mousedown', handleOutsideClick);
+		return () => document.removeEventListener('mousedown', handleOutsideClick);
+	}, []);
 
 	const leaderBordBtn = () => {
 		setLeaderboardOpen(true);
@@ -133,17 +127,17 @@ const Header = ({ user }) => {
 		// setIsShown(false);
 	};
 
-	// const inviteCloseToggler = () => {
-	//   setInviteOpen(false);
-	//   const htmlTag = document.getElementById("html");
-	//   if (htmlTag) htmlTag.classList.remove("popupInvite-show");
-	// };
+	const inviteCloseToggler = () => {
+		setInviteOpen(false);
+		const htmlTag = document.getElementById('html');
+		if (htmlTag) htmlTag.classList.remove('popupInvite-show');
+	};
 
-	// const inviteFriendsBtn = () => {
-	//   setInviteOpen(true);
-	//   fadeShowInvite();
-	//   setIsShown(false);
-	// };
+	const inviteFriendsBtn = () => {
+		setInviteOpen(true);
+		fadeShowInvite();
+		setIsShown(false);
+	};
 
 	// useEffect(() => {
 	//   if (clickCount >= 100 && !inviteAlreadySent) {
@@ -159,10 +153,10 @@ const Header = ({ user }) => {
 		if (htmlTag) htmlTag.classList.add('popupLeaderboard-show');
 	};
 
-	// const fadeShowInvite = () => {
-	//   const htmlTag = document.getElementById("html");
-	//   if (htmlTag) htmlTag.classList.add("popupInvite-show");
-	// };
+	const fadeShowInvite = () => {
+		const htmlTag = document.getElementById('html');
+		if (htmlTag) htmlTag.classList.add('popupInvite-show');
+	};
 
 	const leaderboardCloseToggler = () => {
 		setLeaderboardOpen(false);
@@ -214,17 +208,44 @@ const Header = ({ user }) => {
             </a>
           </div> */}
 					<div className='header__mobileBtns'>
-						{/* {value && totalPoints !== null && (
-              <div id="header__totalScore" className="header__totalScore">
-                Total Points: <span>{totalPoints}</span>
-              </div>
-            )} */}
-						<div className='header__leaderboard'>
-							<button onClick={leaderBordBtn}>
-								Leaderboard
-								<img src={leaderboard_icon} />
-							</button>
+						{user && totalPoints !== null && (
+							<div id='header__totalScore' className='header__totalScore'>
+								Total Points: <span>{totalPoints}</span>
+							</div>
+						)}
+						<div className='header__tgBtns'>
+							<div className='header__leaderboard'>
+								<button onClick={leaderBordBtn}>
+									Leaderboard
+									<img src={leaderboard_icon} />
+								</button>
+							</div>
+							<div className='header__inviteBtn'>
+								<button onClick={inviteFriendsBtn}>
+									Referral
+									<svg
+										width='20'
+										height='20'
+										viewBox='0 0 20 20'
+										fill='none'
+										xmlns='http://www.w3.org/2000/svg'
+									>
+										<g clipPath='url(#clip0_4005_343)'>
+											<path
+												d='M10.4167 9.95801C10.8194 9.51356 11.1285 9.00662 11.3438 8.43717C11.559 7.86773 11.6667 7.27745 11.6667 6.66634C11.6667 6.05523 11.559 5.46495 11.3438 4.89551C11.1285 4.32606 10.8194 3.81912 10.4167 3.37467C11.25 3.48579 11.9444 3.85384 12.5 4.47884C13.0556 5.10384 13.3333 5.83301 13.3333 6.66634C13.3333 7.49967 13.0556 8.22884 12.5 8.85384C11.9444 9.47884 11.25 9.8469 10.4167 9.95801ZM15 16.6663V14.1663C15 13.6663 14.8889 13.1906 14.6667 12.7393C14.4444 12.2879 14.1528 11.8886 13.7917 11.5413C14.5 11.7913 15.1562 12.1143 15.7604 12.5101C16.3646 12.9059 16.6667 13.458 16.6667 14.1663V16.6663H15ZM16.6667 10.833V9.16634H15V7.49967H16.6667V5.83301H18.3333V7.49967H20V9.16634H18.3333V10.833H16.6667ZM6.66667 9.99967C5.75 9.99967 4.96528 9.67329 4.3125 9.02051C3.65972 8.36773 3.33333 7.58301 3.33333 6.66634C3.33333 5.74967 3.65972 4.96495 4.3125 4.31217C4.96528 3.6594 5.75 3.33301 6.66667 3.33301C7.58333 3.33301 8.36806 3.6594 9.02083 4.31217C9.67361 4.96495 10 5.74967 10 6.66634C10 7.58301 9.67361 8.36773 9.02083 9.02051C8.36806 9.67329 7.58333 9.99967 6.66667 9.99967ZM0 16.6663V14.333C0 13.8608 0.121528 13.4268 0.364583 13.0309C0.607639 12.6351 0.930556 12.333 1.33333 12.1247C2.19444 11.6941 3.06944 11.3712 3.95833 11.1559C4.84722 10.9406 5.75 10.833 6.66667 10.833C7.58333 10.833 8.48611 10.9406 9.375 11.1559C10.2639 11.3712 11.1389 11.6941 12 12.1247C12.4028 12.333 12.7257 12.6351 12.9688 13.0309C13.2118 13.4268 13.3333 13.8608 13.3333 14.333V16.6663H0ZM6.66667 8.33301C7.125 8.33301 7.51736 8.16981 7.84375 7.84342C8.17014 7.51704 8.33333 7.12467 8.33333 6.66634C8.33333 6.20801 8.17014 5.81565 7.84375 5.48926C7.51736 5.16287 7.125 4.99967 6.66667 4.99967C6.20833 4.99967 5.81597 5.16287 5.48958 5.48926C5.16319 5.81565 5 6.20801 5 6.66634C5 7.12467 5.16319 7.51704 5.48958 7.84342C5.81597 8.16981 6.20833 8.33301 6.66667 8.33301ZM1.66667 14.9997H11.6667V14.333C11.6667 14.1802 11.6285 14.0413 11.5521 13.9163C11.4757 13.7913 11.375 13.6941 11.25 13.6247C10.5 13.2497 9.74306 12.9684 8.97917 12.7809C8.21528 12.5934 7.44444 12.4997 6.66667 12.4997C5.88889 12.4997 5.11806 12.5934 4.35417 12.7809C3.59028 12.9684 2.83333 13.2497 2.08333 13.6247C1.95833 13.6941 1.85764 13.7913 1.78125 13.9163C1.70486 14.0413 1.66667 14.1802 1.66667 14.333V14.9997Z'
+												fill='white'
+											/>
+										</g>
+										<defs>
+											<clipPath id='clip0_4005_343'>
+												<rect width='20' height='20' fill='white' />
+											</clipPath>
+										</defs>
+									</svg>
+								</button>
+							</div>
 						</div>
+
 						<div className='soundToggler'>
 							{isVisible ? (
 								<div
@@ -284,12 +305,6 @@ const Header = ({ user }) => {
 								</div>
 							)}
 						</div>
-						{/* <div className="header__inviteBtn">
-              <button onClick={inviteFriendsBtn}>
-                Referral
-                <img src={referral_icon} />
-              </button>
-            </div> */}
 					</div>
 				</div>
 			</header>
@@ -364,121 +379,121 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 			)}
-			{/* {isInviteOpen && (
-        <div id="popupInvite" aria-hidden="true" className={popupInvite}>
-          <div className="popupInvite__wrapper">
-            <div className="popupInvite__content">
-              <button
-                onClick={inviteCloseToggler}
-                type="button"
-                className="popupInvite__close"
-              >
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17"
-                    stroke="white"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              <h3>
-                Invite friends.
-                <br />
-                Get rewards together.
-              </h3>
-              <div className="popupInvite__header">
-                <h6>How it Works</h6>
-                <div className="popupInvite__refInfo">
-                  <div className="popupInvite__headerDescr">
-                    <h6>Your Bonus:</h6>
-                    <div className="popupInvite__headerItem">
-                      <h3>%</h3>
-                      <h3>10</h3>
-                    </div>
-                  </div>
-                  {totalReferrals >= 1 && (
-                    <div className="popupInvite__headerDescr">
-                      <h6>Referred Friends:</h6>
-                      <div className="popupInvite__headerItem">
-                        <img src={people} alt="people" />
-                        <h3>{totalReferrals}</h3>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="popupInvite__grid">
-                <div className="popupInvite__gridItem">
-                  <ul className="popupInvite__list">
-                    <li className="popupInvite__list-item">
-                      <img
-                        src={envelope}
-                        alt=""
-                        className="popupInvite__icon"
-                      />
-                      <div className="popupInvite__list-itemDescr">
-                        <h5>Sign up</h5>
-                        <p>Get your referral link and code</p>
-                      </div>
-                    </li>
-                    <li className="popupInvite__list-item">
-                      <img src={link} alt="" className="popupInvite__icon" />
-                      <div className="popupInvite__list-itemDescr">
-                        <h5>Invite</h5>
-                        <p>Friends via the referral link</p>
-                      </div>
-                    </li>
-                    <li className="popupInvite__list-item">
-                      <img src={money} alt="" className="popupInvite__icon" />
-                      <div className="popupInvite__list-itemDescr">
-                        <h5>Get rewards</h5>
-                        <p>Receive up to 2k$ for your friends' staking CRO</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div className="popupInvite__gridItem">
-                  <div className="popupInvite__item-box">
-                    <div className="popupInvite__item-group">
-                      <p>Your link</p>
-                      <p className="popupInvite__input">
-                        {code.length
-                          ? `${window.location.href.slice(
-                              8,
-                              window.location.href.length
-                            )}${code}`
-                          : "link"}
-                        <button
-                          onClick={() => copyLink()}
-                          className="popupInvite__input-btn"
-                        >
-                          <img src={copy} alt="" />
-                        </button>
-                      </p>
-                    </div>
-                    <div className="popupInvite__item-group">
-                      <button
-                        className="popupInvite__submit"
-                        onClick={generateCodeCallback}
-                      >
-                        Generate
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )} */}
+			{isInviteOpen && (
+				<div id='popupInvite' aria-hidden='true' className={popupInvite}>
+					<div className='popupInvite__wrapper'>
+						<div className='popupInvite__content'>
+							<button
+								onClick={inviteCloseToggler}
+								type='button'
+								className='popupInvite__close'
+							>
+								<svg
+									width='19'
+									height='19'
+									viewBox='0 0 19 19'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path
+										d='M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17'
+										stroke='white'
+										strokeWidth='3'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+									/>
+								</svg>
+							</button>
+							<h3>
+								Invite friends.
+								<br />
+								Get rewards together.
+							</h3>
+							<div className='popupInvite__header'>
+								<h6>How it Works</h6>
+								<div className='popupInvite__refInfo'>
+									<div className='popupInvite__headerDescr'>
+										<h6>Your Bonus:</h6>
+										<div className='popupInvite__headerItem'>
+											<h3>%</h3>
+											<h3>10</h3>
+										</div>
+									</div>
+									{totalReferrals >= 1 && (
+										<div className='popupInvite__headerDescr'>
+											<h6>Referred Friends:</h6>
+											<div className='popupInvite__headerItem'>
+												<img src={people} alt='people' />
+												<h3>{totalReferrals}</h3>
+											</div>
+										</div>
+									)}
+								</div>
+							</div>
+							<div className='popupInvite__grid'>
+								<div className='popupInvite__gridItem'>
+									<ul className='popupInvite__list'>
+										<li className='popupInvite__list-item'>
+											<img
+												src={envelope}
+												alt=''
+												className='popupInvite__icon'
+											/>
+											<div className='popupInvite__list-itemDescr'>
+												<h5>Sign up</h5>
+												<p>Get your referral link and code</p>
+											</div>
+										</li>
+										<li className='popupInvite__list-item'>
+											<img src={link} alt='' className='popupInvite__icon' />
+											<div className='popupInvite__list-itemDescr'>
+												<h5>Invite</h5>
+												<p>Friends via the referral link</p>
+											</div>
+										</li>
+										<li className='popupInvite__list-item'>
+											<img src={money} alt='' className='popupInvite__icon' />
+											<div className='popupInvite__list-itemDescr'>
+												<h5>Get rewards</h5>
+												<p>Receive up to 2k$ for your friends' staking CRO</p>
+											</div>
+										</li>
+									</ul>
+								</div>
+								{/* <div className='popupInvite__gridItem'>
+									<div className='popupInvite__item-box'>
+										<div className='popupInvite__item-group'>
+											<p>Your link</p>
+											<p className='popupInvite__input'>
+												{code.length
+													? `${window.location.href.slice(
+															8,
+															window.location.href.length
+													  )}${code}`
+													: 'link'}
+												<button
+													onClick={() => copyLink()}
+													className='popupInvite__input-btn'
+												>
+													<img src={copy} alt='' />
+												</button>
+											</p>
+										</div>
+										<div className='popupInvite__item-group'>
+											<button
+												className='popupInvite__submit'
+												onClick={generateCodeCallback}
+											>
+												Generate
+											</button>
+										</div>
+									</div>
+								</div> */}
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
 		</>
 	);
 };

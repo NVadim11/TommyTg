@@ -84,7 +84,7 @@ const Main = ({ user }) => {
 
 	useEffect(() => {
 		const checkGameStatus = () => {
-			fetch(`https://admin.prodtest1.space/api/telegram-id/${userId}`)
+			fetch(`https://admin.prodtest1.space/api/telegram-id/321967834`) // api/telegram-id/${userId}`)
 				.then((response) => {
 					if (response.ok) {
 						return response.json();
