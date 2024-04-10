@@ -294,17 +294,10 @@ const Footer = ({ user }) => {
 									{user?.tg_chat === 0 ? <p>+10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
-									<button
-										onClick={tgClickChannel}
-										disabled={user?.tg_channel === 1}
-									>
+									<button onClick={tgClickChannel} disabled={user?.tg_channel === 1}>
 										Follow Telegram Channel
 									</button>
-									{user?.tg_channel === 0 ? (
-										<p>+10000</p>
-									) : (
-										<img src={checkbox} />
-									)}
+									{user?.tg_channel === 0 ? <p>+10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={websiteClick} disabled={user?.website === 1}>
@@ -333,11 +326,7 @@ const Footer = ({ user }) => {
 										)}
 									</div>
 									<div className='popupTasks__walletTask-box'>
-										{!user?.wallet_address ? (
-											<p>+20000</p>
-										) : (
-											<img src={checkbox} />
-										)}
+										{!user?.wallet_address ? <p>+20000</p> : <img src={checkbox} />}
 									</div>
 								</div>
 							</div>

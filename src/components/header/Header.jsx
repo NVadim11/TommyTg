@@ -33,10 +33,7 @@ const Header = ({ user }) => {
 					if (targetElement) {
 						setIsElementPresent(true);
 					}
-				} else if (
-					mutation.type === 'childList' &&
-					mutation.removedNodes.length > 0
-				) {
+				} else if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
 					const targetElement = document.getElementById('header__totalScore');
 					if (!targetElement) {
 						setIsElementPresent(false);
@@ -57,9 +54,7 @@ const Header = ({ user }) => {
 
 	const fetchLeaderboardData = async () => {
 		try {
-			const response = await axios.get(
-				`https://admin.prodtest1.space/api/liders`
-			);
+			const response = await axios.get(`https://admin.prodtest1.space/api/liders`);
 			setLeaderboardData(response.data);
 		} catch (error) {
 			console.error('Error fetching leaderboard data:', error.message);
@@ -248,10 +243,7 @@ const Header = ({ user }) => {
 
 						<div className='soundToggler'>
 							{isVisible ? (
-								<div
-									className='soundToggler__itemOn'
-									onClick={toggleVisibilitySound}
-								>
+								<div className='soundToggler__itemOn' onClick={toggleVisibilitySound}>
 									<button>
 										<svg
 											width='23'
@@ -276,10 +268,7 @@ const Header = ({ user }) => {
 									</button>
 								</div>
 							) : (
-								<div
-									className='soundToggler__itemOff'
-									onClick={toggleVisibilitySound}
-								>
+								<div className='soundToggler__itemOff' onClick={toggleVisibilitySound}>
 									<button>
 										<svg
 											width='26'
@@ -434,11 +423,7 @@ const Header = ({ user }) => {
 								<div className='popupInvite__gridItem'>
 									<ul className='popupInvite__list'>
 										<li className='popupInvite__list-item'>
-											<img
-												src={envelope}
-												alt=''
-												className='popupInvite__icon'
-											/>
+											<img src={envelope} alt='' className='popupInvite__icon' />
 											<div className='popupInvite__list-itemDescr'>
 												<h5>Sign up</h5>
 												<p>Get your referral link and code</p>
