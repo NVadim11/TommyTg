@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import sadIdle from '../../img/1_idle.gif';
@@ -49,11 +49,13 @@ const Main = ({ user }) => {
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
 
-	const pauseGame = () => {
-		const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
-		const futureTimestamp = currentTimeStamp + 60 * 60; // 1h
-		// const futureTimestamp = currentTimeStamp + (Math.random() * (2 * 60 * 60 - 30 * 60) + 30 * 60); // Random between 30 minutes and 2 hours
+	const currentTimeStamp = Math.floor(Date.now() / 1000);
+	const futureTimestamp = currentTimeStamp + 60 * 60; // 60 * 60
+	const remainingTime = value.active_at - currentTimeStamp;
+	const placeholderTIme = futureTimestamp - currentTimeStamp;
 
+	const pauseGame = () => {
+		setGamePaused(true);
 		fetch('https://admin.prodtest1.space/api/set-activity', {
 			method: 'POST',
 			headers: {
@@ -81,41 +83,25 @@ const Main = ({ user }) => {
 			pauseGame();
 			setGamePaused(true);
 			setVisible(false);
-			setCurrEnergy(0);
 		}
 	}, [currEnergy]);
 
 	useEffect(() => {
 		const checkGameStatus = () => {
-			fetch(`https://admin.prodtest1.space/api/telegram-id/${userId}`)
-				.then((response) => {
-					if (response.ok) {
-						return response.json();
-					} else {
-						throw new Error('Failed to fetch game status');
-					}
-				})
-				.then((data) => {
-					const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
-					const remainingTime = data.active_at - currentTimeStamp;
-					if (remainingTime <= 0) {
-						setGamePaused(false);
-						setTimeRemaining(0);
-					} else {
-						setGamePaused(true);
-						setTimeRemaining(remainingTime);
-					}
-				})
-				.catch((error) => {
-					console.error('Error checking game status:', error);
-				});
+			if (remainingTime <= 0) {
+				setGamePaused(false);
+				setTimeRemaining(0);
+			} else {
+				setGamePaused(true);
+				setCurrEnergy(0);
+				setTimeRemaining(remainingTime);
+			}
 		};
 		checkGameStatus();
 
 		const timer = setInterval(() => {
 			checkGameStatus();
-		}, 10000);
-
+		}, 1000);
 		return () => clearInterval(timer);
 	}, []);
 
@@ -281,8 +267,6 @@ const Main = ({ user }) => {
 	};
 
 	const coinClicker = (event) => {
-	
-
 		if (!event.isTrusted) return;
 		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
 			playBoostCatClick();
@@ -302,8 +286,6 @@ const Main = ({ user }) => {
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
-
-		console.log("Coin Clicked");
 	};
 
 	return (
@@ -346,41 +328,41 @@ const Main = ({ user }) => {
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>
 					<div className='gameContentBox'>
-						<div className='gameContentBox__box'>
-							{gamePaused && timeRemaining > 0 && (
-								<>
-									<p
-										style={{
-											fontSize: '22px',
-											textAlign: 'center',
-											alignContent: 'center',
-										}}
-									>
-										Time remaining: {formatTime(timeRemaining)} minutes
-									</p>
-									<img
-										src={catFace}
-										alt='cat face'
-										style={{
-											width: '275px',
-											marginTop: '15px',
-										}}
-									/>
-									<p
-										style={{
-											fontSize: '16px',
-											textAlign: 'center',
-											alignContent: 'center',
-											marginTop: '15px',
-										}}
-									>
-										Tomo is tired, comeback when timer is over.
-									</p>
-								</>
-							)}
-						</div>
-
-						{!gamePaused && timeRemaining <= 0 && (
+						{gamePaused ? (
+							<div className='gameContentBox__box'>
+								<p
+									style={{
+										fontSize: '22px',
+										textAlign: 'center',
+										alignContent: 'center',
+									}}
+								>
+									Time remaining:{' '}
+									{timeRemaining
+										? formatTime(timeRemaining)
+										: formatTime(placeholderTIme)}{' '}
+									minutes
+								</p>
+								<img
+									src={catFace}
+									alt='cat face'
+									style={{
+										width: '275px',
+										marginTop: '15px',
+									}}
+								/>
+								<p
+									style={{
+										fontSize: '16px',
+										textAlign: 'center',
+										alignContent: 'center',
+										marginTop: '15px',
+									}}
+								>
+									Tomo is tired, comeback when timer is over.
+								</p>
+							</div>
+						) : (
 							<>
 								{currentImage ? (
 									<div className='mainContent__catBox' onClick={coinClicker}>

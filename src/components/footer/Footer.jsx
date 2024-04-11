@@ -95,7 +95,7 @@ const Footer = ({ user }) => {
 	};
 
 	const websiteClick = async () => {
-		tg.openLink('https://impex.pushit.space/');
+		tg.openLink('http://tomocat.com/');
 		try {
 			const res = await passTask({
 				id_telegram: user?.id_telegram,

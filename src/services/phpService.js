@@ -1,11 +1,11 @@
 // Need to use the React-specific entry point to import createApi
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 // Define a service using a base URL and expected endpoints
 export const phpApi = createApi({
   reducerPath: "phpApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://admin.prodtest1.space/api" }),
-  tagTypes: ["Php", "Php2", "Twitter"],
+  tagTypes: ["Php"],
   endpoints: (builder) => ({
     getUserByTgId: builder.query({
       query: (id) => ({
