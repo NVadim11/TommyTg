@@ -51,7 +51,7 @@ const Main = ({ user }) => {
 
 	const currentTimeStamp = Math.floor(Date.now() / 1000);
 	const futureTimestamp = currentTimeStamp + 60 * 60; // 60 * 60
-	const remainingTime = value.active_at - currentTimeStamp;
+	const remainingTime = user.active_at - currentTimeStamp;
 	const placeholderTIme = futureTimestamp - currentTimeStamp;
 
 	const pauseGame = () => {
