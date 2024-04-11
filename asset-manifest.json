@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/TommyTg/static/css/main.a7194c9e.css",
-    "main.js": "/TommyTg/static/js/main.f1c6a968.js",
+    "main.css": "/TommyTg/static/css/main.8d6df3bb.css",
+    "main.js": "/TommyTg/static/js/main.8e00c622.js",
     "static/media/3_idle.gif": "/TommyTg/static/media/3_idle.9d181b5ef893d2e55709.gif",
     "static/media/4_idle.gif": "/TommyTg/static/media/4_idle.02b5a7cff89325ef99e8.gif",
     "static/media/2_idle.gif": "/TommyTg/static/media/2_idle.3fb24a4ad0f627977574.gif",
@@ -46,11 +46,11 @@
     "static/media/leaderboard_icon.svg": "/TommyTg/static/media/leaderboard_icon.23a4fe86c97990cb9c49266ad5f2c87e.svg",
     "static/media/pet_icon.svg": "/TommyTg/static/media/pet_icon.15cde0c0e7252fc814145b7cd06fe9c8.svg",
     "index.html": "/TommyTg/index.html",
-    "main.a7194c9e.css.map": "/TommyTg/static/css/main.a7194c9e.css.map",
-    "main.f1c6a968.js.map": "/TommyTg/static/js/main.f1c6a968.js.map"
+    "main.8d6df3bb.css.map": "/TommyTg/static/css/main.8d6df3bb.css.map",
+    "main.8e00c622.js.map": "/TommyTg/static/js/main.8e00c622.js.map"
   },
   "entrypoints": [
-    "static/css/main.a7194c9e.css",
-    "static/js/main.f1c6a968.js"
+    "static/css/main.8d6df3bb.css",
+    "static/js/main.8e00c622.js"
   ]
 }
