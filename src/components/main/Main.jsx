@@ -46,7 +46,6 @@ const Main = ({ user }) => {
 	const [gamePaused, setGamePaused] = useState(false);
 	const [timeRemaining, setTimeRemaining] = useState(0);
 
-	const [animationCoords, setAnimationCoords] = useState({ x: 0, y: 0 });
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
 
@@ -269,26 +268,6 @@ const Main = ({ user }) => {
 			console.error('Error submitting coins:', error);
 		}
 	};
-
-	// const clickerAnimation = (event) => {
-	// 	// Получаем координаты клика
-	// 	const x = event.pageX - event.currentTarget.offsetLeft;
-	// 	const y = event.pageY - event.currentTarget.offsetTop;
-
-	// 	console.log(`Click coordinates - x: ${x}, y: ${y}`);
-
-	// 	setClickX(x);
-	// 	setClickY(y);
-
-	// 	// Увеличиваем счетчик кликов
-	// 	setClickCount(clickCount + 1);
-
-	// 	// Удаление анимации через 1 секунду
-	// 	// setTimeout(() => {
-	// 	// 	setClickX(null);
-	// 	// 	setClickY(null);
-	// 	// }, 1000);
-	// };
 
 	const handleShowAnimation = (event) => {
 		const clicker = event.currentTarget;
