@@ -961,24 +961,32 @@ $desktop: 1919.98px;
 
 
 // clickAnimation numbers
-.clickAnimation {
-  z-index: 1000;
-  position: absolute;
-  // transform: translate(-50%, -50%);
-  pointer-events: none;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  animation: clickEffect 1s ease-out;
-}
+// .clickAnimation {
+//   z-index: 1000;
+//   position: absolute;
+//   // transform: translate(-50%, -50%);
+//   pointer-events: none;
+//   color: #fff;
+//   font-size: 18px;
+//   font-weight: bold;
+//   animation: clickEffect 1s ease-out;
+// }
 
-@keyframes clickEffect {
-  0% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-  }
-  100% {
-      transform: translate(-50%, -50%) scale(2);
-      opacity: 0;
-  }
+// @keyframes clickEffect {
+//   0% {
+//       transform: translate(-50%, -50%) scale(1);
+//       opacity: 1;
+//   }
+//   100% {
+//       transform: translate(-50%, -50%) scale(2);
+//       opacity: 0;
+//   }
+// }
+
+.clickerAnimation {
+  position: absolute;
+  pointer-events: none;
+  font-size: 24px;
+  color: #ffffff;
+  z-index: 1000;
 }

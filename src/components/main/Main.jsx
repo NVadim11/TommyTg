@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import sadIdle from '../../img/1_idle.gif';
@@ -46,9 +46,9 @@ const Main = ({ user }) => {
 	const [gamePaused, setGamePaused] = useState(false);
 	const [timeRemaining, setTimeRemaining] = useState(0);
 
-	const [clickCount, setClickCount] = useState(0);
-	const [clickX, setClickX] = useState(null);
-	const [clickY, setClickY] = useState(null);
+	const [animationCoords, setAnimationCoords] = useState({ x: 0, y: 0 });
+	const [isAnimationActive, setIsAnimationActive] = useState(false);
+	const [animations, setAnimations] = useState([]);
 
 	const pauseGame = () => {
 		const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
@@ -270,27 +270,40 @@ const Main = ({ user }) => {
 		}
 	};
 
-	const clickerAnimation = (event) => {
-		// Получаем координаты клика
-		const x = event.pageX - event.currentTarget.offsetLeft;
-		const y = event.pageY - event.currentTarget.offsetTop;
+	// const clickerAnimation = (event) => {
+	// 	// Получаем координаты клика
+	// 	const x = event.pageX - event.currentTarget.offsetLeft;
+	// 	const y = event.pageY - event.currentTarget.offsetTop;
 
-		console.log(`Click coordinates - x: ${x}, y: ${y}`);
+	// 	console.log(`Click coordinates - x: ${x}, y: ${y}`);
 
-		setClickX(x);
-		setClickY(y);
+	// 	setClickX(x);
+	// 	setClickY(y);
 
-		// Увеличиваем счетчик кликов
-		setClickCount(clickCount + 1);
+	// 	// Увеличиваем счетчик кликов
+	// 	setClickCount(clickCount + 1);
 
-		// Удаление анимации через 1 секунду
-		// setTimeout(() => {
-		// 	setClickX(null);
-		// 	setClickY(null);
-		// }, 1000);
+	// 	// Удаление анимации через 1 секунду
+	// 	// setTimeout(() => {
+	// 	// 	setClickX(null);
+	// 	// 	setClickY(null);
+	// 	// }, 1000);
+	// };
+
+	const handleShowAnimation = (event) => {
+		const clicker = event.currentTarget;
+
+		const rect = clicker.getBoundingClientRect();
+		const x = event.clientX - rect.left;
+		const y = event.clientY - rect.top;
+
+		setAnimations((prev) => [...prev, { x, y }]);
+		setIsAnimationActive(true);
 	};
 
 	const coinClicker = (event) => {
+	
+
 		if (!event.isTrusted) return;
 		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
 			playBoostCatClick();
@@ -299,16 +312,19 @@ const Main = ({ user }) => {
 		}
 		setCurrentImage(false);
 		setCoinState(true);
-		clickerAnimation(event);
+		handleShowAnimation(event);
 		handleCoinClick();
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 		clearTimeout(timeoutRef.current);
 		clearTimeout(coinRef.current);
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
+
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
+
+		console.log("Coin Clicked");
 	};
 
 	return (
@@ -389,40 +405,66 @@ const Main = ({ user }) => {
 							<>
 								{currentImage ? (
 									<div className='mainContent__catBox' onClick={coinClicker}>
-										 {/* Анимация клика */}
-										 {clickX !== null && clickY !== null && (
-                <div 
-                    className='clickAnimation' 
-                    style={{ top: `${clickY}px`, right: `${clickX}px` }}
-                >
-                    +1
-                </div>
-            )}
-										<img
+										{animations.map((anim, index) => (
+											<AnimatePresence key={index}>
+												{isAnimationActive && (
+													<motion.div
+														className={`clickerAnimation`}
+														initial={{ opacity: 1 }}
+														animate={{ opacity: [1, 0] }}
+														exit={{ opacity: 0 }}
+														transition={{ duration: 2 }}
+														style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
+														onAnimationComplete={() => {
+															setAnimations((prev) => prev.filter((_, i) => i !== index));
+														}}
+													>
+														+{clickNewCoins}
+													</motion.div>
+												)}
+											</AnimatePresence>
+										))}
+										<motion.img
 											id='catGif'
 											className='mainContent__catIdle'
 											src={boostPhase ? goldForm : catIdle}
 											draggable='false'
 											alt='cat animation'
+											animate={{ opacity: 1 }}
+											initial={{ opacity: 0 }}
+											transition={{ duration: 0.5 }}
 										/>
 									</div>
 								) : (
 									<div className='mainContent__catBox' onClick={coinClicker}>
-										 {/* Анимация клика */}
-										 {clickX !== null && clickY !== null && (
-                <div 
-                    className='clickAnimation' 
-                    style={{ top: `${clickY}px`, right: `${clickX}px` }}
-                >
-                    +1
-                </div>
-            )}
-										<img
+										{animations.map((anim, index) => (
+											<AnimatePresence key={index}>
+												{isAnimationActive && (
+													<motion.div
+														className={`clickerAnimation`}
+														initial={{ opacity: 1 }}
+														animate={{ opacity: [1, 0] }}
+														exit={{ opacity: 0 }}
+														transition={{ duration: 2 }}
+														style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
+														onAnimationComplete={() => {
+															setAnimations((prev) => prev.filter((_, i) => i !== index));
+														}}
+													>
+														+{clickNewCoins}
+													</motion.div>
+												)}
+											</AnimatePresence>
+										))}
+										<motion.img
 											id='catGif'
 											className='mainContent__catMeow'
 											src={boostPhase ? goldForm : catSpeak}
 											draggable='false'
 											alt='cat animation'
+											animate={{ opacity: 1 }}
+											initial={{ opacity: 0 }}
+											transition={{ duration: 0.5 }}
 										/>
 									</div>
 								)}
