@@ -46,6 +46,10 @@ const Main = ({ user }) => {
 	const [gamePaused, setGamePaused] = useState(false);
 	const [timeRemaining, setTimeRemaining] = useState(0);
 
+	const [clickCount, setClickCount] = useState(0);
+	const [clickX, setClickX] = useState(null);
+	const [clickY, setClickY] = useState(null);
+
 	const pauseGame = () => {
 		const currentTimeStamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
 		const futureTimestamp = currentTimeStamp + 60 * 60; // 1h
@@ -266,6 +270,26 @@ const Main = ({ user }) => {
 		}
 	};
 
+	const clickerAnimation = (event) => {
+		// Получаем координаты клика
+		const x = event.pageX - event.currentTarget.offsetLeft;
+		const y = event.pageY - event.currentTarget.offsetTop;
+
+		console.log(`Click coordinates - x: ${x}, y: ${y}`);
+
+		setClickX(x);
+		setClickY(y);
+
+		// Увеличиваем счетчик кликов
+		setClickCount(clickCount + 1);
+
+		// Удаление анимации через 1 секунду
+		// setTimeout(() => {
+		// 	setClickX(null);
+		// 	setClickY(null);
+		// }, 1000);
+	};
+
 	const coinClicker = (event) => {
 		if (!event.isTrusted) return;
 		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
@@ -275,6 +299,7 @@ const Main = ({ user }) => {
 		}
 		setCurrentImage(false);
 		setCoinState(true);
+		clickerAnimation(event);
 		handleCoinClick();
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 		clearTimeout(timeoutRef.current);
@@ -364,6 +389,15 @@ const Main = ({ user }) => {
 							<>
 								{currentImage ? (
 									<div className='mainContent__catBox' onClick={coinClicker}>
+										 {/* Анимация клика */}
+										 {clickX !== null && clickY !== null && (
+                <div 
+                    className='clickAnimation' 
+                    style={{ top: `${clickY}px`, right: `${clickX}px` }}
+                >
+                    +1
+                </div>
+            )}
 										<img
 											id='catGif'
 											className='mainContent__catIdle'
@@ -374,6 +408,15 @@ const Main = ({ user }) => {
 									</div>
 								) : (
 									<div className='mainContent__catBox' onClick={coinClicker}>
+										 {/* Анимация клика */}
+										 {clickX !== null && clickY !== null && (
+                <div 
+                    className='clickAnimation' 
+                    style={{ top: `${clickY}px`, right: `${clickX}px` }}
+                >
+                    +1
+                </div>
+            )}
 										<img
 											id='catGif'
 											className='mainContent__catMeow'
