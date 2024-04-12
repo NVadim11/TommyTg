@@ -148,12 +148,10 @@ $desktop: 119.9988rem;
     }
     @media (max-width: $desktop) {
       font-size: 1rem;
-      margin-left: 1.25rem;
     }
     @media (max-width: $mobile) {
       // display: none;
       top: 5rem;
-      margin-left: 2.5rem;
     }
     @media (max-width: 26.25rem) {
       margin-left: 0;
