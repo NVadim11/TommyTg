@@ -253,12 +253,16 @@ const Footer = ({ user }) => {
 							</div>
 							<div className='popupTasks__coins'>
 								<div className='popupTasks__coinBox'>
-									<div className='popupTasks__coinImg' draggable='false'>
-										<img src={catCoinMove} alt='animation' draggable='false' />
-									</div>
-									<div className='popupTasks__coinAmount'>
-										<span id='coinAmount'>{user?.wallet_balance}</span>
-									</div>
+									{user?.wallet_balance && (
+										<>
+											<div className='popupTasks__coinImg' draggable='false'>
+												<img src={catCoinMove} alt='animation' draggable='false' />
+											</div>
+											<div className='popupTasks__coinAmount'>
+												<span id='coinAmount'>{user?.wallet_balance}</span>
+											</div>
+										</>
+									)}
 								</div>
 							</div>
 							<div className='popupTasks__tabs-btns'>

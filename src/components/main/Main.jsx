@@ -399,27 +399,33 @@ const Main = ({ user }) => {
 									<>
 										{currentImage ? (
 											<div className='mainContent__catBox' onClick={coinClicker}>
-												{animations.map((anim, index) => (
-													<AnimatePresence key={index}>
-														{isAnimationActive && (
-															<motion.div
-																className={`clickerAnimation`}
-																initial={{ opacity: 1 }}
-																animate={{ opacity: [1, 0] }}
-																exit={{ opacity: 0 }}
-																transition={{ duration: 2 }}
-																style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
-																onAnimationComplete={() => {
-																	setAnimations((prev) =>
-																		prev.filter((_, i) => i !== index)
-																	);
-																}}
-															>
-																+{clickNewCoins}
-															</motion.div>
-														)}
-													</AnimatePresence>
-												))}
+											{animations.map((anim, index) => (
+																	<AnimatePresence key={index}>
+																		{isAnimationActive && (
+																			<motion.div
+																				className={`clickerAnimation`}
+																				initial={{ opacity: 1, y: 0 }}
+																				animate={{ opacity: [1, 0], y: [-30, -60] }}
+																				exit={{ opacity: 0 }}
+																				transition={{ duration: 2 }}
+																				style={{
+																					left: `${anim.x}px`,
+																					top: `${anim.y}px`,
+																					position: 'absolute',
+																					color: boostPhase ? '#FFDA17' : 'white',
+																					textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)'
+																				}}
+																				onAnimationComplete={() => {
+																					setAnimations((prev) =>
+																						prev.filter((_, i) => i !== index)
+																					);
+																				}}
+																			>
+																				+{clickNewCoins}
+																			</motion.div>
+																		)}
+																	</AnimatePresence>
+																))}
 												<motion.img
 													id='catGif'
 													className='mainContent__catIdle'
@@ -434,26 +440,32 @@ const Main = ({ user }) => {
 										) : (
 											<div className='mainContent__catBox' onClick={coinClicker}>
 												{animations.map((anim, index) => (
-													<AnimatePresence key={index}>
-														{isAnimationActive && (
-															<motion.div
-																className={`clickerAnimation`}
-																initial={{ opacity: 1 }}
-																animate={{ opacity: [1, 0] }}
-																exit={{ opacity: 0 }}
-																transition={{ duration: 2 }}
-																style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
-																onAnimationComplete={() => {
-																	setAnimations((prev) =>
-																		prev.filter((_, i) => i !== index)
-																	);
-																}}
-															>
-																+{clickNewCoins}
-															</motion.div>
-														)}
-													</AnimatePresence>
-												))}
+																	<AnimatePresence key={index}>
+																		{isAnimationActive && (
+																			<motion.div
+																				className={`clickerAnimation`}
+																				initial={{ opacity: 1, y: 0 }}
+																				animate={{ opacity: [1, 0], y: [-30, -60] }}
+																				exit={{ opacity: 0 }}
+																				transition={{ duration: 2 }}
+																				style={{
+																					left: `${anim.x}px`,
+																					top: `${anim.y}px`,
+																					position: 'absolute',
+																					color: boostPhase ? '#FFDA17' : 'white',
+																					textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)'
+																				}}
+																				onAnimationComplete={() => {
+																					setAnimations((prev) =>
+																						prev.filter((_, i) => i !== index)
+																					);
+																				}}
+																			>
+																				+{clickNewCoins}
+																			</motion.div>
+																		)}
+																	</AnimatePresence>
+																))}
 												<motion.img
 													id='catGif'
 													className='mainContent__catMeow'
