@@ -55,7 +55,10 @@ const Main = ({ user }) => {
 	const placeholderTIme = futureTimestamp - currentTimeStamp;
 
 	const pauseGame = () => {
-		// setGamePaused(true);
+		setGamePaused(true);
+		const currentTimeStamp = Math.floor(Date.now() / 1000);
+		const futureTimestamp = currentTimeStamp + 60 * 60;
+
 		fetch('https://admin.prodtest1.space/api/set-activity', {
 			method: 'POST',
 			headers: {
@@ -68,7 +71,6 @@ const Main = ({ user }) => {
 		})
 			.then((response) => {
 				if (response.ok) {
-					// setGamePaused(true);
 				} else {
 					console.error('Failed to pause game');
 				}
@@ -81,24 +83,53 @@ const Main = ({ user }) => {
 	useEffect(() => {
 		if (currEnergy === 1000) {
 			pauseGame();
-			// setGamePaused(true);
-			setVisible(false);
+			setCurrEnergy(0);
+			setCatVisible(false);
 		}
 	}, [currEnergy]);
 
+	const getGameStatus = async () => {
+		try {
+			const initGameStatusCheck = await axios.get(
+				`https://admin.prodtest1.space/api/telegram-id/${userId}`
+			);
+		} catch (error) {
+			console.error('Error fetching leaderboard data:', error.message);
+		}
+	};
+
 	useEffect(() => {
-		const checkGameStatus = () => {
-			if (remainingTime <= 0) {
-				// setGamePaused(false);
-				setTimeRemaining(0);
-			} else {
-				// setGamePaused(true);
-				setCurrEnergy(0);
-				setTimeRemaining(remainingTime);
-			}
-		};
-		checkGameStatus();
-	}, []);
+		if (userId) {
+			const updateGameStatus = () => {
+				const currentTimeStamp = Math.floor(Date.now() / 1000);
+				const remainingTime = user?.active_at - currentTimeStamp;
+				if (remainingTime >= 0) {
+					if (remainingTime <= 0) {
+						setGamePaused(false);
+						setCatVisible(true);
+					} else {
+						setGamePaused(true);
+						setTimeRemaining(remainingTime);
+					}
+				}
+			};
+
+			getGameStatus();
+
+			const timeout = setTimeout(() => {
+				getGameStatus();
+			}, 1000);
+
+			const timer = setInterval(() => {
+				updateGameStatus();
+			}, 1000);
+
+			return () => {
+				clearInterval(timer);
+				clearTimeout(timeout);
+			};
+		}
+	}, [userId, user.active_at]);
 
 	const formatTime = (seconds) => {
 		const minutes = Math.floor(seconds / 60);
@@ -109,6 +140,14 @@ const Main = ({ user }) => {
 	let catSpeakImage = catSpeak;
 
 	const { incrementClickCount } = useClickCount();
+
+	const handleCoinClick = () => {
+		incrementClickCount();
+	};
+
+	const boostClickedHandler = () => {
+		handleBoostClick();
+	};
 
 	const handleBoostClick = () => {
 		const prevHappinessVal = happinessVal;
@@ -139,24 +178,24 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
-		// if (!gamePaused) {
-		if (!visible) {
-			randomizePosition();
-			const showBoostTimeout = setTimeout(() => {
+		if (!gamePaused) {
+			if (!visible) {
 				randomizePosition();
-				setVisible(true);
-			}, Math.random() * (30000 - 13000) + 13000);
+				const showBoostTimeout = setTimeout(() => {
+					randomizePosition();
+					setVisible(true);
+				}, Math.random() * (30000 - 13000) + 13000);
 
-			return () => clearTimeout(showBoostTimeout);
-		} else {
-			const hideBoostTimeout = setTimeout(() => {
-				setVisible(false);
-			}, 8300);
+				return () => clearTimeout(showBoostTimeout);
+			} else {
+				const hideBoostTimeout = setTimeout(() => {
+					setVisible(false);
+				}, 8300);
 
-			return () => clearTimeout(hideBoostTimeout);
+				return () => clearTimeout(hideBoostTimeout);
+			}
 		}
-		// }
-	}, [visible]); // gamePaused
+	}, [visible, gamePaused]);
 
 	const [bgImages] = useState({
 		bgImageFirst: 'img/bgFirst.webp',
@@ -179,13 +218,13 @@ const Main = ({ user }) => {
 	} else if (currEnergy >= 151 && currEnergy <= 300) {
 		activeImage = bgImages.bgImageSecond;
 		opacitySecond = 1;
-	} else if (currEnergy >= 301 && currEnergy <= 500) {
+	} else if (currEnergy >= 301 && currEnergy <= 550) {
 		activeImage = bgImages.bgImageThird;
 		opacityThird = 1;
-	} else if (currEnergy >= 501 && currEnergy <= 750) {
+	} else if (currEnergy >= 551 && currEnergy <= 800) {
 		activeImage = bgImages.bgImageFourth;
 		opacityFourth = 1;
-	} else if (currEnergy >= 751 && currEnergy <= 1000) {
+	} else if (currEnergy >= 801 && currEnergy <= 1000) {
 		activeImage = bgImages.bgImageFives;
 		opacityFives = 1;
 	}
@@ -203,13 +242,13 @@ const Main = ({ user }) => {
 		} else if (currEnergy >= 151 && currEnergy <= 300) {
 			catIdleImage = normalIdle;
 			catSpeakImage = normalSpeak;
-		} else if (currEnergy >= 301 && currEnergy <= 500) {
+		} else if (currEnergy >= 301 && currEnergy <= 550) {
 			catIdleImage = smileIdle;
 			catSpeakImage = smileSpeak;
-		} else if (currEnergy >= 501 && currEnergy <= 750) {
+		} else if (currEnergy >= 551 && currEnergy <= 800) {
 			catIdleImage = happyIdle;
 			catSpeakImage = happySpeak;
-		} else if (currEnergy >= 751 && currEnergy <= 1000) {
+		} else if (currEnergy >= 801 && currEnergy <= 1000) {
 			catIdleImage = happyIdle;
 			catSpeakImage = finalForm;
 		}
@@ -217,14 +256,6 @@ const Main = ({ user }) => {
 		setCatSpeak(catSpeakImage);
 		setIsCoinsChanged(true);
 		return clickNewCoins;
-	};
-
-	const handleCoinClick = () => {
-		incrementClickCount();
-	};
-
-	const boostClickedHandler = () => {
-		handleBoostClick();
 	};
 
 	useEffect(() => {
@@ -261,6 +292,14 @@ const Main = ({ user }) => {
 		setIsAnimationActive(true);
 	};
 
+	const clearAnimations = () => {
+		if (isAnimationActive) {
+			setTimeout(() => {
+				setAnimations((prev) => prev.slice(1));
+			}, 2000);
+		}
+	};
+
 	const coinClicker = (event) => {
 		if (!event.isTrusted) return;
 		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
@@ -278,6 +317,7 @@ const Main = ({ user }) => {
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
 
+		clearAnimations();
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;

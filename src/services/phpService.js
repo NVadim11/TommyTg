@@ -14,19 +14,26 @@ export const phpApi = createApi({
       }),
       providesTags: ["Php"],
     }),
-    checkCode: builder.mutation({
-      query: (code) => ({
-        url: `/check-referral-code/${code}`,
-        method: "GET",
-      }),
-      invalidatesTags: "php",
-    }),
-    generateCode: builder.mutation({
-      query: (wallet) => ({
-        url: `/generate-referral-code/${wallet}`,
-        method: "GET",
-      }),
-    }),
+    // getUserByTgIdInit: builder.mutation({
+    //   query: (id) => ({
+    //     url: `/telegram-id/${id}`,
+    //     method: "GET",
+    //   }),
+    //   providesTags: ["Php"],
+    // }),
+    // checkCode: builder.mutation({
+    //   query: (code) => ({
+    //     url: `/check-referral-code/${code}`,
+    //     method: "GET",
+    //   }),
+    //   invalidatesTags: "php",
+    // }),
+    // generateCode: builder.mutation({
+    //   query: (wallet) => ({
+    //     url: `/generate-referral-code/${wallet}`,
+    //     method: "GET",
+    //   }),
+    // }),
     getLeaderboard: builder.mutation({
       query: (id) => `/liderbord/${id}`,
       method: "GET",
@@ -69,9 +76,10 @@ export const phpApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetUserByTgIdQuery,
-  useCheckCodeMutation,
+  // useGetUserByTgIdInitMutation,
+  // useCheckCodeMutation,
   useCreateUserMutation,
-  useGenerateCodeMutation,
+  // useGenerateCodeMutation,
   useGetLeaderboardMutation,
   usePassTaskMutation,
   useUpdateBalanceMutation,

@@ -3,7 +3,6 @@ import catCoinMove from '../../img/cat_coin_move.png';
 import checkbox from '../../img/checkbox.png';
 import pet from '../../img/pet_icon.svg';
 import shop from '../../img/shop_icon.svg';
-import submit from '../../img/submit.png';
 import tasks from '../../img/tasks_icon.svg';
 import {
 	usePassTaskMutation,
@@ -65,13 +64,13 @@ const Footer = ({ user }) => {
 	const tgClickChat = async () => {
 		tg.openLink('https://t.me/tomocat_sol');
 		try {
-			await updateBalance({
-				id_telegram: user?.id_telegram,
-				score: '10000',
-			}).unwrap();
 			await passTask({
 				id_telegram: user?.id_telegram,
 				task: 'tg_chat',
+			}).unwrap();
+			await updateBalance({
+				id_telegram: user?.id_telegram,
+				score: '10000',
 			}).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));
@@ -81,13 +80,13 @@ const Footer = ({ user }) => {
 	const tgClickChannel = async () => {
 		tg.openLink('https://t.me/tomo_cat');
 		try {
-			await updateBalance({
-				id_telegram: user?.id_telegram,
-				score: '10000',
-			}).unwrap();
 			await passTask({
 				id_telegram: user?.id_telegram,
 				task: 'tg_channel',
+			}).unwrap();
+			await updateBalance({
+				id_telegram: user?.id_telegram,
+				score: '10000',
 			}).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));

@@ -1,12 +1,13 @@
-import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import envelope from '../../img/envelope.svg';
-import leaderboard_icon from '../../img/leaderboard_icon.svg';
-import link from '../../img/link.svg';
-import money from '../../img/money.svg';
-import people from '../../img/people-icon.svg';
-import { toggleMuteAllSounds } from '../../utility/Audio';
-import './Header.scss';
+import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
+import envelope from '../../img/envelope.svg'
+import leaderboard_icon from '../../img/leaderboard_icon.svg'
+import link from '../../img/link.svg'
+import money from '../../img/money.svg'
+import people from '../../img/people-icon.svg'
+import { toggleMuteAllSounds } from '../../utility/Audio'
+import { useClickCount } from '../clickContext'
+import './Header.scss'
 
 const Header = ({ user }) => {
 	const [isToggled, setIsToggled] = useState(false);
@@ -19,11 +20,15 @@ const Header = ({ user }) => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [isElementPresent, setIsElementPresent] = useState(false);
 	const initLeadersRef = useRef(null);
+
 	const popupClsTgl = isLeaderboardOpen ? 'popupLeaderboard_show' : null;
 	const popupClasses = `popupLeaderboard ${popupClsTgl}`;
 
 	const popupInvTgl = isInviteOpen ? 'popupInvite_show' : null;
 	const popupInvite = `popupInvite ${popupInvTgl}`;
+
+	const { clickCount } = useClickCount();
+	const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
 
 	useEffect(() => {
 		const observer = new MutationObserver((mutationsList) => {
@@ -62,43 +67,58 @@ const Header = ({ user }) => {
 	};
 
 	useEffect(() => {
-		fetchLeaderboardData();
-		setTotalReferrals(user?.referrals_count);
-		setTotalPoints(user?.wallet_balance);
-		initLeadersRef.current = setInterval(() => {
+		if (!user) {
 			fetchLeaderboardData();
-			setTotalReferrals(user?.referrals_count);
-			setTotalPoints(user?.wallet_balance);
-		}, 10000);
+			initLeadersRef.current = setInterval(() => {
+				fetchLeaderboardData();
+			}, 60000);
+		} else {
+			clearInterval(initLeadersRef.current);
+		}
 		return () => {
 			clearInterval(initLeadersRef.current);
 		};
 	}, [user]);
 
 	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const res = await getLeaderboard(user?.id_telegram).unwrap();
-	// 		setLeaderboardData(res);
-	// 		console.log('fetched connected DB');
-	// 		const intervalId = setInterval(() => {
-	// 			getLeaderboard(user?.id_telegram)
-	// 				.unwrap()
-	// 				.then((data) => setLeaderboardData(data))
-	// 				.catch((error) =>
-	// 					console.error('Error refreshing leaderboard:', error)
-	// 				);
-	// 			console.log('fetched connected DB with interval');
-	// 		}, 10000);
-	// 		return intervalId;
-	// 	};
-	// 	fetchData();
-
-	// 	let intervalId;
-
+	// 	fetchLeaderboardData();
+	// 	setTotalReferrals(user?.referrals_count);
+	// 	setTotalPoints(user?.wallet_balance);
+	// 	initLeadersRef.current = setInterval(() => {
+	// 		fetchLeaderboardData();
+	// 		setTotalReferrals(user?.referrals_count);
+	// 		setTotalPoints(user?.wallet_balance);
+	// 	}, 10000);
 	// 	return () => {
-	// 		clearInterval(intervalId);
+	// 		clearInterval(initLeadersRef.current);
 	// 	};
 	// }, [user]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			if (Object.keys(user).length) {
+				const res = await getLeaderboard(user?.id_telegram).unwrap();
+				setLeaderboardData(res);
+				setTotalReferrals(user?.referrals_count);
+				setTotalPoints(user?.wallet_balance);
+				const intervalId = setInterval(() => {
+					getLeaderboard(user?.id_telegram)
+						.unwrap()
+						.then((data) => setLeaderboardData(data))
+						.catch((error) => console.error('Error refreshing leaderboard:', error));
+				}, 60000);
+				return intervalId;
+			}
+		};
+
+		fetchData();
+
+		let intervalId;
+
+		return () => {
+			clearInterval(intervalId);
+		};
+	}, [user]);
 
 	useEffect(() => {
 		const handleOutsideClick = (event) => {
@@ -114,6 +134,7 @@ const Header = ({ user }) => {
 	const leaderBordBtn = () => {
 		setLeaderboardOpen(true);
 		fadeShow();
+		setIsShown(false);
 	};
 
 	const inviteCloseToggler = () => {
@@ -128,14 +149,14 @@ const Header = ({ user }) => {
 		setIsShown(false);
 	};
 
-	// useEffect(() => {
-	//   if (clickCount >= 100 && !inviteAlreadySent) {
-	//     setInviteAlreadySent(true);
-	//     setTimeout(() => {
-	//       inviteFriendsBtn();
-	//     }, 5000);
-	//   }
-	// }, [clickCount, inviteAlreadySent]);
+	useEffect(() => {
+		if (clickCount >= 100 && !inviteAlreadySent) {
+			setInviteAlreadySent(true);
+			setTimeout(() => {
+				inviteFriendsBtn();
+			}, 5000);
+		}
+	}, [clickCount, inviteAlreadySent]);
 
 	const fadeShow = () => {
 		const htmlTag = document.getElementById('html');
