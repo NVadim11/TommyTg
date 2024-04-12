@@ -95,7 +95,7 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
-		if (userId) {
+		if (user) {
 			const updateGameStatus = () => {
 				const currentTimeStamp = Math.floor(Date.now() / 1000);
 				const remainingTime = user?.active_at - currentTimeStamp;
@@ -125,7 +125,7 @@ const Main = ({ user }) => {
 				clearTimeout(timeout);
 			};
 		}
-	}, [userId, user.active_at]);
+	}, [userId, user]);
 
 	const formatTime = (seconds) => {
 		const minutes = Math.floor(seconds / 60);
