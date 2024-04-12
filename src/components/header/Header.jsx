@@ -1,13 +1,13 @@
-import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
-import envelope from '../../img/envelope.svg'
-import leaderboard_icon from '../../img/leaderboard_icon.svg'
-import link from '../../img/link.svg'
-import money from '../../img/money.svg'
-import people from '../../img/people-icon.svg'
-import { toggleMuteAllSounds } from '../../utility/Audio'
-import { useClickCount } from '../clickContext'
-import './Header.scss'
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import envelope from '../../img/envelope.svg';
+import leaderboard_icon from '../../img/leaderboard_icon.svg';
+import link from '../../img/link.svg';
+import money from '../../img/money.svg';
+import people from '../../img/people-icon.svg';
+import { toggleMuteAllSounds } from '../../utility/Audio';
+import { useClickCount } from '../clickContext';
+import './Header.scss';
 
 const Header = ({ user }) => {
 	const [isToggled, setIsToggled] = useState(false);
@@ -67,14 +67,12 @@ const Header = ({ user }) => {
 	};
 
 	useEffect(() => {
-		if (!user) {
+		fetchLeaderboardData();
+		setTotalReferrals(user?.referrals_count);
+		setTotalPoints(user?.wallet_balance);
+		initLeadersRef.current = setInterval(() => {
 			fetchLeaderboardData();
-			initLeadersRef.current = setInterval(() => {
-				fetchLeaderboardData();
-			}, 60000);
-		} else {
-			clearInterval(initLeadersRef.current);
-		}
+		}, 60000);
 		return () => {
 			clearInterval(initLeadersRef.current);
 		};
@@ -94,31 +92,31 @@ const Header = ({ user }) => {
 	// 	};
 	// }, [user]);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			if (Object.keys(user).length) {
-				const res = await getLeaderboard(user?.id_telegram).unwrap();
-				setLeaderboardData(res);
-				setTotalReferrals(user?.referrals_count);
-				setTotalPoints(user?.wallet_balance);
-				const intervalId = setInterval(() => {
-					getLeaderboard(user?.id_telegram)
-						.unwrap()
-						.then((data) => setLeaderboardData(data))
-						.catch((error) => console.error('Error refreshing leaderboard:', error));
-				}, 60000);
-				return intervalId;
-			}
-		};
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		if (Object.keys(user).length) {
+	// 			const res = await getLeaderboard(user?.id_telegram).unwrap();
+	// 			setLeaderboardData(res);
+	// 			setTotalReferrals(user?.referrals_count);
+	// 			setTotalPoints(user?.wallet_balance);
+	// 			const intervalId = setInterval(() => {
+	// 				getLeaderboard(user?.id_telegram)
+	// 					.unwrap()
+	// 					.then((data) => setLeaderboardData(data))
+	// 					.catch((error) => console.error('Error refreshing leaderboard:', error));
+	// 			}, 60000);
+	// 			return intervalId;
+	// 		}
+	// 	};
 
-		fetchData();
+	// 	fetchData();
 
-		let intervalId;
+	// 	let intervalId;
 
-		return () => {
-			clearInterval(intervalId);
-		};
-	}, [user]);
+	// 	return () => {
+	// 		clearInterval(intervalId);
+	// 	};
+	// }, [user]);
 
 	useEffect(() => {
 		const handleOutsideClick = (event) => {

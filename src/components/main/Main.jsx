@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -36,23 +37,18 @@ const Main = ({ user }) => {
 	const [position, setPosition] = useState({ x: '50%', y: '50%' });
 	const [boostPhase, setBoostPhase] = useState(false);
 	const [visible, setVisible] = useState(false);
+	const [catVisible, setCatVisible] = useState(true);
 
 	const tg = window.Telegram.WebApp;
 	const userId = tg.initDataUnsafe?.user?.id;
 
 	let [happinessVal, setHappinessVal] = useState(1);
 	let [clickNewCoins, setClickNewCoins] = useState(1);
-
 	const [gamePaused, setGamePaused] = useState(false);
-	const [timeRemaining, setTimeRemaining] = useState(0);
+	const [timeRemaining, setTimeRemaining] = useState('');
 
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
-
-	const currentTimeStamp = Math.floor(Date.now() / 1000);
-	const futureTimestamp = currentTimeStamp + 60 * 60; // 60 * 60
-	const remainingTime = user?.active_at - currentTimeStamp;
-	const placeholderTIme = futureTimestamp - currentTimeStamp;
 
 	const pauseGame = () => {
 		setGamePaused(true);
@@ -365,19 +361,19 @@ const Main = ({ user }) => {
 					<div className='gameContentBox'>
 						{gamePaused ? (
 							<div className='gameContentBox__box'>
-								<p
-									style={{
-										fontSize: '22px',
-										textAlign: 'center',
-										alignContent: 'center',
-									}}
-								>
-									Time remaining:{' '}
-									{timeRemaining
-										? formatTime(timeRemaining)
-										: formatTime(placeholderTIme)}{' '}
-									minutes
-								</p>
+								{timeRemaining ? (
+									<h4
+										style={{
+											fontSize: '22px',
+											textAlign: 'center',
+											alignContent: 'center',
+										}}
+									>
+										Time remaining: {formatTime(timeRemaining)} minutes
+									</h4>
+								) : (
+									<></>
+								)}
 								<img
 									src={catFace}
 									alt='cat face'
@@ -399,70 +395,78 @@ const Main = ({ user }) => {
 							</div>
 						) : (
 							<>
-								{currentImage ? (
-									<div className='mainContent__catBox' onClick={coinClicker}>
-										{animations.map((anim, index) => (
-											<AnimatePresence key={index}>
-												{isAnimationActive && (
-													<motion.div
-														className={`clickerAnimation`}
-														initial={{ opacity: 1 }}
-														animate={{ opacity: [1, 0] }}
-														exit={{ opacity: 0 }}
-														transition={{ duration: 2 }}
-														style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
-														onAnimationComplete={() => {
-															setAnimations((prev) => prev.filter((_, i) => i !== index));
-														}}
-													>
-														+{clickNewCoins}
-													</motion.div>
-												)}
-											</AnimatePresence>
-										))}
-										<motion.img
-											id='catGif'
-											className='mainContent__catIdle'
-											src={boostPhase ? goldForm : catIdle}
-											draggable='false'
-											alt='cat animation'
-											animate={{ opacity: 1 }}
-											initial={{ opacity: 0 }}
-											transition={{ duration: 0.5 }}
-										/>
-									</div>
-								) : (
-									<div className='mainContent__catBox' onClick={coinClicker}>
-										{animations.map((anim, index) => (
-											<AnimatePresence key={index}>
-												{isAnimationActive && (
-													<motion.div
-														className={`clickerAnimation`}
-														initial={{ opacity: 1 }}
-														animate={{ opacity: [1, 0] }}
-														exit={{ opacity: 0 }}
-														transition={{ duration: 2 }}
-														style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
-														onAnimationComplete={() => {
-															setAnimations((prev) => prev.filter((_, i) => i !== index));
-														}}
-													>
-														+{clickNewCoins}
-													</motion.div>
-												)}
-											</AnimatePresence>
-										))}
-										<motion.img
-											id='catGif'
-											className='mainContent__catMeow'
-											src={boostPhase ? goldForm : catSpeak}
-											draggable='false'
-											alt='cat animation'
-											animate={{ opacity: 1 }}
-											initial={{ opacity: 0 }}
-											transition={{ duration: 0.5 }}
-										/>
-									</div>
+								{catVisible && (
+									<>
+										{currentImage ? (
+											<div className='mainContent__catBox' onClick={coinClicker}>
+												{animations.map((anim, index) => (
+													<AnimatePresence key={index}>
+														{isAnimationActive && (
+															<motion.div
+																className={`clickerAnimation`}
+																initial={{ opacity: 1 }}
+																animate={{ opacity: [1, 0] }}
+																exit={{ opacity: 0 }}
+																transition={{ duration: 2 }}
+																style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
+																onAnimationComplete={() => {
+																	setAnimations((prev) =>
+																		prev.filter((_, i) => i !== index)
+																	);
+																}}
+															>
+																+{clickNewCoins}
+															</motion.div>
+														)}
+													</AnimatePresence>
+												))}
+												<motion.img
+													id='catGif'
+													className='mainContent__catIdle'
+													src={boostPhase ? goldForm : catIdle}
+													draggable='false'
+													alt='cat animation'
+													animate={{ opacity: 1 }}
+													initial={{ opacity: 0 }}
+													transition={{ duration: 0.5 }}
+												/>
+											</div>
+										) : (
+											<div className='mainContent__catBox' onClick={coinClicker}>
+												{animations.map((anim, index) => (
+													<AnimatePresence key={index}>
+														{isAnimationActive && (
+															<motion.div
+																className={`clickerAnimation`}
+																initial={{ opacity: 1 }}
+																animate={{ opacity: [1, 0] }}
+																exit={{ opacity: 0 }}
+																transition={{ duration: 2 }}
+																style={{ left: `${anim.x}px`, top: `${anim.y}px` }}
+																onAnimationComplete={() => {
+																	setAnimations((prev) =>
+																		prev.filter((_, i) => i !== index)
+																	);
+																}}
+															>
+																+{clickNewCoins}
+															</motion.div>
+														)}
+													</AnimatePresence>
+												))}
+												<motion.img
+													id='catGif'
+													className='mainContent__catMeow'
+													src={boostPhase ? goldForm : catSpeak}
+													draggable='false'
+													alt='cat animation'
+													animate={{ opacity: 1 }}
+													initial={{ opacity: 0 }}
+													transition={{ duration: 0.5 }}
+												/>
+											</div>
+										)}
+									</>
 								)}
 							</>
 						)}
