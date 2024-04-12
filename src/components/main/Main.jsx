@@ -55,7 +55,7 @@ const Main = ({ user }) => {
 	const placeholderTIme = futureTimestamp - currentTimeStamp;
 
 	const pauseGame = () => {
-		setGamePaused(true);
+		// setGamePaused(true);
 		fetch('https://admin.prodtest1.space/api/set-activity', {
 			method: 'POST',
 			headers: {
@@ -68,7 +68,7 @@ const Main = ({ user }) => {
 		})
 			.then((response) => {
 				if (response.ok) {
-					setGamePaused(true);
+					// setGamePaused(true);
 				} else {
 					console.error('Failed to pause game');
 				}
@@ -81,7 +81,7 @@ const Main = ({ user }) => {
 	useEffect(() => {
 		if (currEnergy === 1000) {
 			pauseGame();
-			setGamePaused(true);
+			// setGamePaused(true);
 			setVisible(false);
 		}
 	}, [currEnergy]);
@@ -89,10 +89,10 @@ const Main = ({ user }) => {
 	useEffect(() => {
 		const checkGameStatus = () => {
 			if (remainingTime <= 0) {
-				setGamePaused(false);
+				// setGamePaused(false);
 				setTimeRemaining(0);
 			} else {
-				setGamePaused(true);
+				// setGamePaused(true);
 				setCurrEnergy(0);
 				setTimeRemaining(remainingTime);
 			}
@@ -139,24 +139,24 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
-		if (!gamePaused) {
-			if (!visible) {
+		// if (!gamePaused) {
+		if (!visible) {
+			randomizePosition();
+			const showBoostTimeout = setTimeout(() => {
 				randomizePosition();
-				const showBoostTimeout = setTimeout(() => {
-					randomizePosition();
-					setVisible(true);
-				}, Math.random() * (30000 - 13000) + 13000);
+				setVisible(true);
+			}, Math.random() * (30000 - 13000) + 13000);
 
-				return () => clearTimeout(showBoostTimeout);
-			} else {
-				const hideBoostTimeout = setTimeout(() => {
-					setVisible(false);
-				}, 8300);
+			return () => clearTimeout(showBoostTimeout);
+		} else {
+			const hideBoostTimeout = setTimeout(() => {
+				setVisible(false);
+			}, 8300);
 
-				return () => clearTimeout(hideBoostTimeout);
-			}
+			return () => clearTimeout(hideBoostTimeout);
 		}
-	}, [visible, gamePaused]);
+		// }
+	}, [visible]); // gamePaused
 
 	const [bgImages] = useState({
 		bgImageFirst: 'img/bgFirst.webp',

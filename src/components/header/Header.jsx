@@ -100,11 +100,6 @@ const Header = ({ user }) => {
 	// 	};
 	// }, [user]);
 
-	const toggleVisibility = () => {
-		setIsShown(!isShown);
-		setIsToggled(!isToggled);
-	};
-
 	useEffect(() => {
 		const handleOutsideClick = (event) => {
 			if (event.target.closest('.header__mobileBurger')) return;
@@ -119,7 +114,6 @@ const Header = ({ user }) => {
 	const leaderBordBtn = () => {
 		setLeaderboardOpen(true);
 		fadeShow();
-		// setIsShown(false);
 	};
 
 	const inviteCloseToggler = () => {
