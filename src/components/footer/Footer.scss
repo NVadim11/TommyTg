@@ -356,6 +356,9 @@ body::after {
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 0.625rem;
+        width: 5.3125rem;
+        justify-content: center;
+        display: flex;
       }
     }
     &.active {
@@ -370,6 +373,7 @@ body::after {
       @media (max-width: 768px) {
         border: 1px solid #fff;
         border-radius: 10px;
+        background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
       }
     }
     .footerMain__activitiesHint {
@@ -399,10 +403,10 @@ body::after {
     }
     button {
       box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
+      background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
       border: 2px solid #fff;
       border-radius: 40px;
-      padding: 2px;
-      width: 40px;
+      width: 2.1875rem;
       position: absolute;
       height: 2.25rem;
       top: -2px;
