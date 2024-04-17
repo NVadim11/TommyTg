@@ -440,7 +440,7 @@ const Main = ({ user }) => {
 						) : (
 							<>
 								{catVisible && (
-										<>
+									<>
 										{currentImage ? (
 											<div
 												className='mainContent__catBox'
@@ -567,31 +567,36 @@ const Main = ({ user }) => {
 							</div>
 						)}
 					</motion.div>
-					<div className='mainContent__energyBox'>
-						<div className='mainContent__energyContainer'>
-							<img src={smile} alt='' />
-							<div className='mainContent__energyValue'>
-								<p className='energyCount' id='energyCount'>
-									{currEnergy}
-								</p>
-								<span>/</span>
-								<p className='maximumEnergy' id='maximumEnergy'>
-									1000
+					{!gamePaused && (
+						<div className='mainContent__energyBox'>
+							<div className='mainContent__energyContainer'>
+								<img src={smile} alt='' />
+								<div className='mainContent__energyValue'>
+									<p className='energyCount' id='energyCount'>
+										{currEnergy}
+									</p>
+									<span>/</span>
+									<p className='maximumEnergy' id='maximumEnergy'>
+										1000
+									</p>
+								</div>
+							</div>
+							<div className='mainContent__energyBar'>
+								<progress
+									className='filledBar'
+									id='filledBar'
+									max='1000'
+									value={currEnergy}
+								></progress>
+							</div>
+							<div className='mainContent__energyHint'>
+								<p>
+									The happier the cat — the more you get! Make it purr and get rewards
 								</p>
 							</div>
 						</div>
-						<div className='mainContent__energyBar'>
-							<progress
-								className='filledBar'
-								id='filledBar'
-								max='1000'
-								value={currEnergy}
-							></progress>
-						</div>
-						<div className='mainContent__energyHint'>
-							<p>The happier the cat — the more you get! Make it purr and get rewards</p>
-						</div>
-					</div>
+					)}
+
 					{!gamePaused && visible ? (
 						<motion.div
 							initial={{
@@ -666,16 +671,19 @@ const Main = ({ user }) => {
 							</motion.div>
 						</motion.div>
 					) : null}
-					<div className='mainContent__coins'>
-						<div className='mainContent__coinBox'>
-							<div className='mainContent__coinImg' draggable='false'>
-								<img src={catCoinMove} alt='coin animation' draggable='false' />
-							</div>
-							<div className='mainContent__coinAmount'>
-								<span id='coinAmount'>{currCoins}</span>
+					{!gamePaused && (
+						<div className='mainContent__coins'>
+							<div className='mainContent__coinBox'>
+								<div className='mainContent__coinImg' draggable='false'>
+									<img src={catCoinMove} alt='coin animation' draggable='false' />
+								</div>
+								<div className='mainContent__coinAmount'>
+									<span id='coinAmount'>{currCoins}</span>
+								</div>
 							</div>
 						</div>
-					</div>
+					)}
+
 					{coinState && (
 						<div className='mainContent__animation'>
 							<div className='mainContent__coinOne'>

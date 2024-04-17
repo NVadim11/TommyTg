@@ -5,9 +5,9 @@ import pet from '../../img/pet_icon.svg';
 import shop from '../../img/shop_icon.svg';
 import tasks from '../../img/tasks_icon.svg';
 import {
+	useIncreaseBalanceMutation,
 	usePassTaskMutation,
 	useSetWalletMutation,
-	useUpdateBalanceMutation,
 } from '../../services/phpService';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import './Footer.scss';
@@ -17,7 +17,7 @@ const Footer = ({ user }) => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [tasksOpen, setTasksOpen] = useState(false);
 	const [passTask] = usePassTaskMutation();
-	const [updateBalance] = useUpdateBalanceMutation();
+	const [increaseBalance] = useIncreaseBalanceMutation();
 	const [setWallet] = useSetWalletMutation();
 	const [walletVaL, setWalletVal] = useState('');
 
@@ -52,7 +52,7 @@ const Footer = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				task: 'twitter',
 			}).unwrap();
-			await updateBalance({
+			await increaseBalance({
 				id_telegram: user?.id_telegram,
 				score: '10000',
 			}).unwrap();
@@ -68,7 +68,7 @@ const Footer = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				task: 'tg_chat',
 			}).unwrap();
-			await updateBalance({
+			await increaseBalance({
 				id_telegram: user?.id_telegram,
 				score: '10000',
 			}).unwrap();
@@ -84,7 +84,7 @@ const Footer = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				task: 'tg_channel',
 			}).unwrap();
-			await updateBalance({
+			await increaseBalance({
 				id_telegram: user?.id_telegram,
 				score: '10000',
 			}).unwrap();
@@ -101,7 +101,7 @@ const Footer = ({ user }) => {
 				task: 'website',
 			}).unwrap();
 			if (res) {
-				await updateBalance({
+				await increaseBalance({
 					id_telegram: user?.id_telegram,
 					score: '3000',
 				}).unwrap();
@@ -119,7 +119,7 @@ const Footer = ({ user }) => {
 					id_telegram: user?.id_telegram,
 				}).unwrap();
 				if (res) {
-					await updateBalance({
+					await increaseBalance({
 						id_telegram: user?.id_telegram,
 						score: '20000',
 					}).unwrap();
