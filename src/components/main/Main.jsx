@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
+import { debounce } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import sadIdle from '../../img/1_idle.gif';
@@ -49,6 +50,22 @@ const Main = ({ user }) => {
 
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
+
+	const isDesktop = () => {
+		const userAgent = window.navigator.userAgent;
+		const isMobile =
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+		return !isMobile;
+	};
+
+	useEffect(() => {
+		if (!isDesktop()) {
+			const element = document.getElementById('clickableElement');
+			if (element) {
+				element.style.pointerEvents = 'none';
+			}
+		}
+	}, []);
 
 	const pauseGame = () => {
 		setGamePaused(true);
@@ -278,22 +295,19 @@ const Main = ({ user }) => {
 	};
 
 	const handleShowAnimation = (event) => {
-		const clicker = event.currentTarget;
-
+		event.stopPropagation();
+		const touch = event.touches ? event.touches[0] : event;
+		const clicker = touch.currentTarget || touch.target;
 		const rect = clicker.getBoundingClientRect();
-		const x = event.clientX - rect.left;
-		const y = event.clientY - rect.top;
+		const x = touch.clientX - rect.left;
+		const y = touch.clientY - rect.top;
 
 		setAnimations((prev) => [...prev, { x, y }]);
 		setIsAnimationActive(true);
 	};
 
 	const clearAnimations = () => {
-		if (isAnimationActive) {
-			setTimeout(() => {
-				setAnimations((prev) => prev.slice(1));
-			}, 2000);
-		}
+		setAnimations([]);
 	};
 
 	const coinClicker = (event) => {
@@ -313,10 +327,40 @@ const Main = ({ user }) => {
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
 
-		clearAnimations();
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
+	};
+
+	const debouncedHandleClick = debounce(() => {
+		const clickNewCoins = updateCurrCoins();
+		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
+		accumulatedCoinsRef.current += clickNewCoins;
+	}, 500);
+
+	const handleTouchStart = (event) => {
+		if (!event.isTrusted) return;
+		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
+			playBoostCatClick();
+		} else {
+			playSadCatClick();
+		}
+		setCurrentImage(false);
+		setCoinState(true);
+		handleShowAnimation(event);
+		handleCoinClick();
+		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
+		clearTimeout(timeoutRef.current);
+		clearTimeout(coinRef.current);
+		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
+		coinRef.current = setTimeout(() => setCoinState(false), 4000);
+	};
+
+	const handleTouchEnd = (event, e) => {
+		debouncedHandleClick();
+		if (event && event.touches) {
+			handleShowAnimation(event.touches[0]);
+		}
 	};
 
 	return (
@@ -396,36 +440,41 @@ const Main = ({ user }) => {
 						) : (
 							<>
 								{catVisible && (
-									<>
+										<>
 										{currentImage ? (
-											<div className='mainContent__catBox' onClick={coinClicker}>
-											{animations.map((anim, index) => (
-																	<AnimatePresence key={index}>
-																		{isAnimationActive && (
-																			<motion.div
-																				className={`clickerAnimation`}
-																				initial={{ opacity: 1, y: 0 }}
-																				animate={{ opacity: [1, 0], y: [-30, -60] }}
-																				exit={{ opacity: 0 }}
-																				transition={{ duration: 2 }}
-																				style={{
-																					left: `${anim.x}px`,
-																					top: `${anim.y}px`,
-																					position: 'absolute',
-																					color: boostPhase ? '#FFDA17' : 'white',
-																					textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)'
-																				}}
-																				onAnimationComplete={() => {
-																					setAnimations((prev) =>
-																						prev.filter((_, i) => i !== index)
-																					);
-																				}}
-																			>
-																				+{clickNewCoins}
-																			</motion.div>
-																		)}
-																	</AnimatePresence>
-																))}
+											<div
+												className='mainContent__catBox'
+												id='coinClicker'
+												onClick={isDesktop() ? coinClicker : null}
+												onTouchStart={handleTouchStart}
+												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
+											>
+												{animations.map((anim, index) => (
+													<AnimatePresence key={index}>
+														{isAnimationActive && (
+															<motion.div
+																className={`clickerAnimation`}
+																initial={{ opacity: 1, y: 0 }}
+																animate={{ opacity: [1, 0], y: [-30, -120] }}
+																exit={{ opacity: 0 }}
+																transition={{ duration: 2 }}
+																style={{
+																	fontSize: '45px',
+																	left: `${anim.x}px`,
+																	top: `${anim.y}px`,
+																	position: 'absolute',
+																	color: boostPhase ? '#FFDA17' : 'white',
+																	textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)',
+																}}
+																onAnimationComplete={() => {
+																	clearAnimations(index);
+																}}
+															>
+																+{clickNewCoins}
+															</motion.div>
+														)}
+													</AnimatePresence>
+												))}
 												<motion.img
 													id='catGif'
 													className='mainContent__catIdle'
@@ -438,34 +487,39 @@ const Main = ({ user }) => {
 												/>
 											</div>
 										) : (
-											<div className='mainContent__catBox' onClick={coinClicker}>
+											<div
+												className='mainContent__catBox'
+												id='coinClicker'
+												onClick={isDesktop() ? coinClicker : null}
+												onTouchStart={handleTouchStart}
+												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
+											>
 												{animations.map((anim, index) => (
-																	<AnimatePresence key={index}>
-																		{isAnimationActive && (
-																			<motion.div
-																				className={`clickerAnimation`}
-																				initial={{ opacity: 1, y: 0 }}
-																				animate={{ opacity: [1, 0], y: [-30, -60] }}
-																				exit={{ opacity: 0 }}
-																				transition={{ duration: 2 }}
-																				style={{
-																					left: `${anim.x}px`,
-																					top: `${anim.y}px`,
-																					position: 'absolute',
-																					color: boostPhase ? '#FFDA17' : 'white',
-																					textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)'
-																				}}
-																				onAnimationComplete={() => {
-																					setAnimations((prev) =>
-																						prev.filter((_, i) => i !== index)
-																					);
-																				}}
-																			>
-																				+{clickNewCoins}
-																			</motion.div>
-																		)}
-																	</AnimatePresence>
-																))}
+													<AnimatePresence key={index}>
+														{isAnimationActive && (
+															<motion.div
+																className={`clickerAnimation`}
+																initial={{ opacity: 1, y: 0 }}
+																animate={{ opacity: [1, 0], y: [-30, -120] }}
+																exit={{ opacity: 0 }}
+																transition={{ duration: 2 }}
+																style={{
+																	fontSize: '45px',
+																	left: `${anim.x}px`,
+																	top: `${anim.y}px`,
+																	position: 'absolute',
+																	color: boostPhase ? '#FFDA17' : 'white',
+																	textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)',
+																}}
+																onAnimationComplete={() => {
+																	clearAnimations(index);
+																}}
+															>
+																+{clickNewCoins}
+															</motion.div>
+														)}
+													</AnimatePresence>
+												))}
 												<motion.img
 													id='catGif'
 													className='mainContent__catMeow'
