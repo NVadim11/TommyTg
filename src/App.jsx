@@ -1,18 +1,17 @@
-import { ThemeProvider } from '@emotion/react';
 import React from 'react';
 import { Provider } from 'react-redux';
 import './App.scss';
 import AppRouter from './components/Router';
+import { ClickCountProvider } from './components/clickContext';
 import { store } from './store';
-import { theme } from './theme';
 
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
-			<Provider store={store}>
+		<Provider store={store}>
+			<ClickCountProvider>
 				<AppRouter />
-			</Provider>
-		</ThemeProvider>
+			</ClickCountProvider>
+		</Provider>
 	);
 }
 

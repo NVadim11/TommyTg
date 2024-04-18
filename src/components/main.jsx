@@ -1,5 +1,5 @@
 import AOS from 'aos';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useContext } from 'react';
 import sadIdle from '../img/1_idle.gif';
 import sadSpeak from '../img/1talk.gif';
 import normalIdle from '../img/2_idle.gif';
@@ -10,22 +10,26 @@ import happyIdle from '../img/4_idle.gif';
 import happySpeak from '../img/4talk.gif';
 import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
+import boostCoin from '../img/boost_coin_side.png'
 import { useGetUserByTgIdQuery } from '../services/phpService';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
 import Preloader from './preloader/Preloader';
+import { useGetSitInfoQuery } from "../services";
 
 const MainComponent = () => {
 	const tg = window.Telegram.WebApp;
 	const userId = tg.initDataUnsafe?.user?.id;
-	const [preloaderLoaded, setPreloaderLoaded] = useState(false);
 	const [skip, setSkip] = useState(true);
 	const { data: user } = useGetUserByTgIdQuery(userId, {
 		skip: skip,
 		pollingInterval: 10000,
 	});
+
+	const [preloaderLoaded, setPreloaderLoaded] = useState(false);
 	const imagesRef = useRef([]);
+
 
 	useEffect(() => {
 		const loadImage = (src) => {
@@ -49,6 +53,7 @@ const MainComponent = () => {
 				happySpeak,
 				finalForm,
 				goldForm,
+				boostCoin
 			];
 			const promises = imageSources.map((src) => loadImage(src));
 

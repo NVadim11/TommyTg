@@ -339,6 +339,11 @@ const Main = ({ user }) => {
 	}, 500);
 
 	const handleTouchStart = (event) => {
+		if (event.touches.length > 1) {
+			event.preventDefault();
+			return;
+		}
+
 		if (!event.isTrusted) return;
 		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
 			playBoostCatClick();
