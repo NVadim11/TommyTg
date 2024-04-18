@@ -332,11 +332,11 @@ const Main = ({ user }) => {
 		accumulatedCoinsRef.current += clickNewCoins;
 	};
 
-	const debouncedHandleClick = debounce(() => {
-		const clickNewCoins = updateCurrCoins();
-		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
-		accumulatedCoinsRef.current += clickNewCoins;
-	}, 500);
+	// const debouncedHandleClick = debounce(() => {
+	// 	const clickNewCoins = updateCurrCoins();
+	// 	setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
+	// 	accumulatedCoinsRef.current += clickNewCoins;
+	// }, 500);
 
 	const handleTouchStart = (event) => {
 		if (event.touches.length > 1) {
@@ -362,7 +362,9 @@ const Main = ({ user }) => {
 	};
 
 	const handleTouchEnd = (event, e) => {
-		debouncedHandleClick();
+		const clickNewCoins = updateCurrCoins();
+		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
+		accumulatedCoinsRef.current += clickNewCoins;
 		if (event && event.touches) {
 			handleShowAnimation(event.touches[0]);
 		}
