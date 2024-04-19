@@ -191,6 +191,20 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
+		if (gamePaused) {
+		  setCoinState(false);
+		  setBoostPhase(false);
+		  setVisible(false);
+		  setCurrentImage(false);
+		  setBoostPhase(false);
+		  setCoinState(false);
+		  clearAnimations();
+		  setHappinessVal(1);
+		  setClickNewCoins(1);
+		}
+	  }, [gamePaused]);
+
+	useEffect(() => {
 		if (!gamePaused) {
 			if (!visible) {
 				randomizePosition();
@@ -332,11 +346,11 @@ const Main = ({ user }) => {
 		accumulatedCoinsRef.current += clickNewCoins;
 	};
 
-	// const debouncedHandleClick = debounce(() => {
-	// 	const clickNewCoins = updateCurrCoins();
-	// 	setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
-	// 	accumulatedCoinsRef.current += clickNewCoins;
-	// }, 500);
+	const debouncedHandleClick = debounce(() => {
+		const clickNewCoins = updateCurrCoins();
+		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
+		accumulatedCoinsRef.current += clickNewCoins;
+	}, 500);
 
 	const handleTouchStart = (event) => {
 		if (event.touches.length > 1) {
@@ -359,12 +373,11 @@ const Main = ({ user }) => {
 		clearTimeout(coinRef.current);
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
-	};
 
-	const handleTouchEnd = (event, e) => {
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
+
 		if (event && event.touches) {
 			handleShowAnimation(event.touches[0]);
 		}
@@ -453,8 +466,7 @@ const Main = ({ user }) => {
 												className='mainContent__catBox'
 												id='coinClicker'
 												onClick={isDesktop() ? coinClicker : null}
-												onTouchStart={handleTouchStart}
-												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
+												onTouchStart={(e) => handleTouchStart(e.touches[0], e)}
 											>
 												{animations.map((anim, index) => (
 													<AnimatePresence key={index}>
@@ -498,8 +510,7 @@ const Main = ({ user }) => {
 												className='mainContent__catBox'
 												id='coinClicker'
 												onClick={isDesktop() ? coinClicker : null}
-												onTouchStart={handleTouchStart}
-												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
+												onTouchStart={(e) => handleTouchStart(e.touches[0], e)}
 											>
 												{animations.map((anim, index) => (
 													<AnimatePresence key={index}>
