@@ -368,21 +368,20 @@ const Main = ({ user }) => {
 		setCoinState(true);
 		handleShowAnimation(event);
 		handleCoinClick();
-		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 		clearTimeout(timeoutRef.current);
 		clearTimeout(coinRef.current);
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
-
-		const clickNewCoins = updateCurrCoins();
-		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
-		accumulatedCoinsRef.current += clickNewCoins;
 	};
 
 	const handleTouchEnd = (event, e) => {
 		if (event && event.touches) {
 			handleShowAnimation(event.touches[0]);
 		}
+		const clickNewCoins = updateCurrCoins();
+		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
+		accumulatedCoinsRef.current += clickNewCoins;
+		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 	};
 
 	return (
