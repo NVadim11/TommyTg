@@ -374,9 +374,11 @@ const Main = ({ user }) => {
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
 	};
 
-	const handleTouchEnd = (event, e) => {
+	const handleTouchEnd = (event) => {
 		if (event && event.touches) {
-			handleShowAnimation(event.touches[0]);
+			Array.from(event.touches).forEach((touch) => {
+				handleShowAnimation(touch);
+			});
 		}
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
