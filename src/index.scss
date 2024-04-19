@@ -1,19 +1,13 @@
 body {
-  margin: 0;
-  overflow: hidden; /* Предотвращает прокрутку */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior-y: contain;
 }
 
 #root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: auto; /* Разрешает вертикальную прокрутку содержимого */
-}
-
-.viewport-border, .viewport-stable_border {
-  /* Добавьте свои стили границы здесь */
+  height: 100%;
 }
 
 .wrapper {
