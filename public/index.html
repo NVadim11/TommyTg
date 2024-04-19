@@ -45,31 +45,31 @@
     -->
 	</body>
 	<script>
-		let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-		tg.expand(); //расширяем на все окно
+		let tg = window.Telegram.WebApp; // получаем объект webapp телеграма
+    tg.expand(); // расширяем на все окно
 
-		function setViewportData() {
-			const round = (value, decimals) => {
-				return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
-			};
+    function setViewportData() {
+        const round = (value, decimals) => {
+            return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+        };
 
-			document.querySelector('.viewport-border').innerText =
-				window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2);
-			document.querySelector('.viewport-stable_border').innerText =
-				window.innerWidth +
-				' x ' +
-				round(Telegram.WebApp.viewportStableHeight, 2) +
-				' | is_expanded: ' +
-				(Telegram.WebApp.isExpanded ? 'true' : 'false');
-		}
+        document.querySelector('.viewport-border').innerText =
+            window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2);
+        document.querySelector('.viewport-stable_border').innerText =
+            window.innerWidth +
+            ' x ' +
+            round(Telegram.WebApp.viewportStableHeight, 2) +
+            ' | is_expanded: ' +
+            (Telegram.WebApp.isExpanded ? 'true' : 'false');
+    }
 
-		// Disable pull down window
-		document.addEventListener(
-			'touchmove',
-			function (event) {
-				event.preventDefault();
-			},
-			{ passive: false }
-		);
+    function handleTouchMove(event) {
+        event.preventDefault();
+    }
+
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    window.addEventListener('resize', setViewportData);
+    setViewportData();
 	</script>
 </html>
