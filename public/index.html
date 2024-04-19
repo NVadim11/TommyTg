@@ -29,8 +29,8 @@
 	</head>
 
 	<body>
-    <div class="viewport-border"></div>
-    <div class="viewport-stable_border"></div>
+		<div class="viewport-border"></div>
+		<div class="viewport-stable_border"></div>
 
 		<div id="root"></div>
 		<!--
@@ -45,38 +45,27 @@
     -->
 	</body>
 	<script>
-		let tg = window.Telegram.WebApp; // получаем объект webapp телеграма
-    tg.setTopBarTitle('Tomo The Cat'); // устанавливаем заголовок
+		let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+		tg.expand(); //расширяем на все окно
 
-    function setViewportData() {
-        const round = (value, decimals) => {
-            return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
-        };
+		let startY;
+		document.addEventListener(
+			'touchstart',
+			function (e) {
+				startY = e.touches[0].clientY;
+			},
+			{ passive: true }
+		);
 
-        // Убираем отображение размеров экрана, если это не требуется
-        // document.querySelector('.viewport-border').innerText =
-        //     window.innerWidth + ' x ' + round(Telegram.WebApp.viewportHeight, 2);
-        // document.querySelector('.viewport-stable_border').innerText =
-        //     window.innerWidth +
-        //     ' x ' +
-        //     round(Telegram.WebApp.viewportStableHeight, 2) +
-        //     ' | is_expanded: ' +
-        //     (Telegram.WebApp.isExpanded ? 'true' : 'false');
-    }
-
-    function handleTouchMove(event) {
-        const telegramApp = document.getElementById('telegram-app');
-        const scrollTop = telegramApp.scrollTop;
-
-        if (scrollTop <= 0 && event.touches[0].clientY > 100) {
-            event.preventDefault();
-        }
-    }
-
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('resize', setViewportData);
-    setViewportData();
-
-    tg.expand(); // расширяем на все окно
+		document.addEventListener(
+			'touchmove',
+			function (e) {
+				let currentY = e.touches[0].clientY;
+				if (currentY > startY) {
+					e.preventDefault();
+				}
+			},
+			{ passive: false }
+		);
 	</script>
 </html>
