@@ -377,7 +377,9 @@ const Main = ({ user }) => {
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
+	};
 
+	const handleTouchEnd = (event, e) => {
 		if (event && event.touches) {
 			handleShowAnimation(event.touches[0]);
 		}
@@ -466,7 +468,8 @@ const Main = ({ user }) => {
 												className='mainContent__catBox'
 												id='coinClicker'
 												onClick={isDesktop() ? coinClicker : null}
-												onTouchStart={(e) => handleTouchStart(e.touches[0], e)}
+												onTouchStart={handleTouchStart}
+												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
 											>
 												{animations.map((anim, index) => (
 													<AnimatePresence key={index}>
@@ -510,7 +513,8 @@ const Main = ({ user }) => {
 												className='mainContent__catBox'
 												id='coinClicker'
 												onClick={isDesktop() ? coinClicker : null}
-												onTouchStart={(e) => handleTouchStart(e.touches[0], e)}
+												onTouchStart={handleTouchStart}
+												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
 											>
 												{animations.map((anim, index) => (
 													<AnimatePresence key={index}>
