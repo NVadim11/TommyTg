@@ -188,39 +188,27 @@ const Footer = ({ user }) => {
 						)}
 					</div>
 					<div className='footerMain__activities'>
-						<button onClick={tasksBtn}>
-							Tasks
-							<img src={tasks} />
-						</button>
-						<button
-							style={{
-								opacity: '0.5',
-								cursor: 'not-allowed',
-							}}
-							disabled
-						>
-							Pet
-							<img src={pet} />
-						</button>
-						<button
-							style={{
-								opacity: '0.5',
-								cursor: 'not-allowed',
-							}}
-							disabled
-						>
-							Shop
-							<img src={shop} />
-						</button>
-					</div>
-					<div className='footerMain__socials'>
-						<div className='footerMain__twBtn'>
-							<a href='https://twitter.com/TomoCatSol'>TW</a>
+							<div className='footerMain__activitiesBtn'>
+								<button onClick={tasksBtn}>
+									<span>Tasks</span>
+									<img src={tasks} />
+								</button>
+							</div>
+							<div className='footerMain__activitiesBtn'>
+								<button style={{ opacity: '0.5', cursor: 'not-allowed' }} disabled>
+									Pet
+									<img src={pet} />
+								</button>
+								<div className='footerMain__activitiesHint'>Coming Soon</div>
+							</div>
+							<div className='footerMain__activitiesBtn'>
+								<button style={{ opacity: '0.5', cursor: 'not-allowed' }} disabled>
+									Shop
+									<img src={shop} />
+								</button>
+								<div className='footerMain__activitiesHint'>Coming Soon</div>
+							</div>
 						</div>
-						<div className='footerMain__tgBtn'>
-							<a href='https://t.me/tomo_cat'>TG</a>
-						</div>
-					</div>
 				</div>
 			</footer>
 			{tasksOpen && (
@@ -298,6 +286,7 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
+									<div className='footerMain__activitiesHint'>Coming Soon</div>
 								</div>
 								<div className='popupTasks__tabs-btn'>
 									<button>
@@ -315,6 +304,7 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
+									<div className='footerMain__activitiesHint'>Coming Soon</div>
 								</div>
 							</div>
 							<div className='popupTasks__tasks'>

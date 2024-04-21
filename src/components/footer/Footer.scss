@@ -196,81 +196,71 @@ body::after {
     display: flex;
     align-items: center;
   }
-  &__socials {
-    display: none;
-    flex-direction: row;
-    gap: 0.75rem;
+  &__activities {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 60px;
+    background: rgba(41, 47, 79, 0.5);
+    padding: 0.625rem 0.8125rem;
+    display: flex;
+    gap: 0.9375rem;
+    margin: 15px 0 20px 0;
     @media (max-width: $mobile) {
-      display: none;
+      gap: 0.5625rem;
     }
   }
-  &__twBtn {
-    border: 0.125rem solid #fff;
-    border-radius: 3.75rem;
-    padding: 1rem 1.0625rem 0.875rem 0.8125rem;
-    width: 3.125rem;
-    height: 3.125rem;
-    font-weight: 600;
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: #fff;
-  }
-  &__twBtn:hover {
-    transition: 0.25s;
-    color: #000000;
-    background-color: #ffffff;
-    cursor: pointer;
-  }
-  &__tgBtn {
-    border: 0.125rem solid #fff;
-    border-radius: 3.75rem;
-    padding: 1rem 1.0625rem 0.875rem 0.8125rem;
-    width: 3.125rem;
-    height: 3.125rem;
-    font-weight: 600;
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: #fff;
-  }
-  &__tgBtn:hover {
-    transition: 0.25s;
-    color: #000000;
-    background-color: #ffffff;
-    cursor: pointer;
-  }
-  &__activities {
-    margin-bottom: 20px;
-    margin-top: 15px;
-    gap: 10px;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
-    border: 0.0625rem solid rgba(255, 255, 255, 0.2);
-    border-radius: 3.75rem;
-    width: 100%;
-    padding: 10px;
-    background: rgba(41, 47, 79, 0.5);
+  &__activitiesBtn {
+    position: relative;
     button {
+      display: flex;
+      align-items: center;
       border: 0.125rem solid #fff;
       border-radius: 3.75rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 90px;
-      height: fit-content;
-      padding: 10px;
-      padding-bottom: 8px;
+      height: 3.125rem;
+      padding: 0 1.25rem;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 1.125rem;
+      line-height: 0%;
       color: #fff;
-      background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
-      img {
-        scale: 80%;
-        padding-bottom: 4px;
-        margin-left: 4px;
+      @media (max-width: $mobile) {
+        padding: 0 0.875rem;
+        font-size: 1rem;
       }
+    }
+    img {
+      margin-left: 0.625rem;
+      @media (max-width: $mobile) {
+        scale: 0.8;
+        margin-left: 0.3125rem;
+      }
+    }
+  }
+  &__activitiesBtn:first-child {
+    button {
+      background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
+      transition: opacity 0.25s;
+      position: relative;
+    }
+    button::before {
+      content: "";
+      background: linear-gradient(-87deg, #691ee2 0%, #c09aff 100%);
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 3.75rem;
+      transition: opacity 0.25s ease-in-out;
+      right: 0;
+    }
+    button:hover:before {
+      opacity: 1;
+    }
+    span {
+      z-index: 10;
+      position: relative;
+    }
+    img {
+      position: relative;
+      z-index: 10;
     }
   }
   &__activitiesHint {
@@ -384,7 +374,7 @@ body::after {
       @media (max-width: 768px) {
         display: flex;
         font-size: 0.625rem;
-        padding: 0;
+        padding: 0 3px;
       }
     }
   }
