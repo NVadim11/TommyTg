@@ -71,7 +71,6 @@ const MainComponent = () => {
 				const loadedImages = await Promise.all(promises);
 				imagesRef.current = loadedImages;
 				setPreloaderLoaded(true);
-				console.log('All images are loaded:', loadedImages);
 			} catch (error) {
 				console.error(error);
 			}

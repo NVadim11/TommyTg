@@ -46,7 +46,7 @@ const Footer = ({ user }) => {
 	};
 
 	const twitterClick = async () => {
-		tg.openLink('https://api.tomocat.com/twitter/auth?version=tg');
+		tg.openLink('https://node.tomocat.com/twitter/auth?version=tg');
 		try {
 			await passTask({
 				id_telegram: user?.id_telegram,
@@ -94,7 +94,7 @@ const Footer = ({ user }) => {
 	};
 
 	const websiteClick = async () => {
-		tg.openLink('http://tomocat.com/');
+		tg.openLink('https://tomocat.com/');
 		try {
 			const res = await passTask({
 				id_telegram: user?.id_telegram,
