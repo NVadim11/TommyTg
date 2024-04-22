@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import envelope from '../../img/envelope.svg';
 import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import link from '../../img/link.svg';
@@ -8,8 +8,11 @@ import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
 import './Header.scss';
+// import { GameInfoContext } from "../../helpers/context";
+
 
 const Header = ({ user }) => {
+	// const {state} = useContext(GameInfoContext);
 	const [isToggled, setIsToggled] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [totalPoints, setTotalPoints] = useState(null);
@@ -59,7 +62,7 @@ const Header = ({ user }) => {
 
 	const fetchLeaderboardData = async () => {
 		try {
-			const response = await axios.get(`https://admin.prodtest1.space/api/liders`);
+			const response = await axios.get(`https://aws.tomocat.com/api/liders`);
 			setLeaderboardData(response.data);
 		} catch (error) {
 			console.error('Error fetching leaderboard data:', error.message);

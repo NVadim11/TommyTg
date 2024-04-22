@@ -20,6 +20,7 @@ import smile from '../../img/smile.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
+// import { GameInfoContext } from "../../helpers/context";
 import './Main.scss';
 
 const Main = ({ user }) => {
@@ -72,7 +73,7 @@ const Main = ({ user }) => {
 		const currentTimeStamp = Math.floor(Date.now() / 1000);
 		const futureTimestamp = currentTimeStamp + 60 * 60;
 
-		fetch('https://admin.prodtest1.space/api/set-activity', {
+		fetch('https://aws.tomocat.com/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -104,7 +105,7 @@ const Main = ({ user }) => {
 	const getGameStatus = async () => {
 		try {
 			const initGameStatusCheck = await axios.get(
-				`https://admin.prodtest1.space/api/telegram-id/${userId}`
+				`https://aws.tomocat.com/api/telegram-id/${userId}`
 			);
 		} catch (error) {
 			console.error('Error fetching leaderboard data:', error.message);

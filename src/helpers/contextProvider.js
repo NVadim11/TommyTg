@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GameInfoСontext } from "./context";
+import { GameInfoContext } from "./context";
 
 export const GameInfoProvider = ({ children }) => {
 	const [state, setState] = useState(null);
@@ -10,8 +10,8 @@ export const GameInfoProvider = ({ children }) => {
 	};
 
 	return (
-		<GameInfoСontext.Provider value={{ state, updateState }}>
+		<GameInfoContext.Provider value={{ state, updateState }}>
 			{children}
-		</GameInfoСontext.Provider>
+		</GameInfoContext.Provider>
 	);
 };

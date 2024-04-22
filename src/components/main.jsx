@@ -1,5 +1,5 @@
 import AOS from 'aos';
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useEffect, useRef, useState, useContext} from 'react';
 import sadIdle from '../img/1_idle.gif';
 import sadSpeak from '../img/1talk.gif';
 import normalIdle from '../img/2_idle.gif';
@@ -16,7 +16,9 @@ import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
 import Preloader from './preloader/Preloader';
-import { useGetSitInfoQuery } from "../services";
+import { useGetGameInfoQuery } from "../services";
+import { GameInfoContext } from "../helpers/context";
+
 
 const MainComponent = () => {
 	const tg = window.Telegram.WebApp;
@@ -30,6 +32,14 @@ const MainComponent = () => {
 	const [preloaderLoaded, setPreloaderLoaded] = useState(false);
 	const imagesRef = useRef([]);
 
+	const {updateState} = useContext(GameInfoContext);
+	const {data, isLoading, isError} = useGetGameInfoQuery();
+
+	// useEffect(() => {
+	// 	if (!isLoading && data) {
+	// 	  updateState(data);
+	// 	}
+	//   }, [isLoading, data, updateState]);
 
 	useEffect(() => {
 		const loadImage = (src) => {
