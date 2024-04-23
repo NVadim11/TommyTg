@@ -5,7 +5,7 @@ import pet from '../../img/pet_icon.svg';
 import shop from '../../img/shop_icon.svg';
 import tasks from '../../img/tasks_icon.svg';
 import {
-	useIncreaseBalanceMutation,
+	// useIncreaseBalanceMutation,
 	usePassTaskMutation,
 	useSetWalletMutation,
 } from '../../services/phpService';
@@ -17,7 +17,7 @@ const Footer = ({ user }) => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [tasksOpen, setTasksOpen] = useState(false);
 	const [passTask] = usePassTaskMutation();
-	const [increaseBalance] = useIncreaseBalanceMutation();
+	// const [increaseBalance] = useIncreaseBalanceMutation();
 	const [setWallet] = useSetWalletMutation();
 	const [walletVaL, setWalletVal] = useState('');
 
@@ -52,10 +52,10 @@ const Footer = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				task: 'twitter',
 			}).unwrap();
-			await increaseBalance({
-				id_telegram: user?.id_telegram,
-				score: '10000',
-			}).unwrap();
+			// await increaseBalance({
+			// 	id_telegram: user?.id_telegram,
+			// 	score: '10000',
+			// }).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));
 		}
@@ -68,10 +68,10 @@ const Footer = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				task: 'tg_chat',
 			}).unwrap();
-			await increaseBalance({
-				id_telegram: user?.id_telegram,
-				score: '10000',
-			}).unwrap();
+			// await increaseBalance({
+			// 	id_telegram: user?.id_telegram,
+			// 	score: '10000',
+			// }).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));
 		}
@@ -84,10 +84,10 @@ const Footer = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				task: 'tg_channel',
 			}).unwrap();
-			await increaseBalance({
-				id_telegram: user?.id_telegram,
-				score: '10000',
-			}).unwrap();
+			// await increaseBalance({
+			// 	id_telegram: user?.id_telegram,
+			// 	score: '10000',
+			// }).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));
 		}
@@ -100,12 +100,12 @@ const Footer = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				task: 'website',
 			}).unwrap();
-			if (res) {
-				await increaseBalance({
-					id_telegram: user?.id_telegram,
-					score: '3000',
-				}).unwrap();
-			}
+			// if (res) {
+			// 	await increaseBalance({
+			// 		id_telegram: user?.id_telegram,
+			// 		score: '3000',
+			// 	}).unwrap();
+			// }
 		} catch (e) {
 			tg.showAlert(JSON.stringify(e));
 		}
@@ -118,12 +118,12 @@ const Footer = ({ user }) => {
 					wallet_address: walletVaL,
 					id_telegram: user?.id_telegram,
 				}).unwrap();
-				if (res) {
-					await increaseBalance({
-						id_telegram: user?.id_telegram,
-						score: '20000',
-					}).unwrap();
-				}
+				// if (res) {
+				// 	await increaseBalance({
+				// 		id_telegram: user?.id_telegram,
+				// 		score: '20000',
+				// 	}).unwrap();
+				// }
 			} catch (e) {
 				tg.showAlert(JSON.stringify(e));
 			}
