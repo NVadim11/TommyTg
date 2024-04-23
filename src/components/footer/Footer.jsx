@@ -46,7 +46,7 @@ const Footer = ({ user }) => {
 	};
 
 	const twitterClick = async () => {
-		tg.openLink('https://node.tomocat.com/twitter/auth?version=tg');
+		tg.openLink('https://twitter.com/TomoCatSol');
 		try {
 			await passTask({
 				id_telegram: user?.id_telegram,
@@ -188,27 +188,27 @@ const Footer = ({ user }) => {
 						)}
 					</div>
 					<div className='footerMain__activities'>
-							<div className='footerMain__activitiesBtn'>
-								<button onClick={tasksBtn}>
-									<span>Tasks</span>
-									<img src={tasks} />
-								</button>
-							</div>
-							<div className='footerMain__activitiesBtn'>
-								<button style={{ opacity: '0.5', cursor: 'not-allowed' }} disabled>
-									Pet
-									<img src={pet} />
-								</button>
-								<div className='footerMain__activitiesHint'>Coming Soon</div>
-							</div>
-							<div className='footerMain__activitiesBtn'>
-								<button style={{ opacity: '0.5', cursor: 'not-allowed' }} disabled>
-									Shop
-									<img src={shop} />
-								</button>
-								<div className='footerMain__activitiesHint'>Coming Soon</div>
-							</div>
+						<div className='footerMain__activitiesBtn'>
+							<button onClick={tasksBtn}>
+								<span>Tasks</span>
+								<img src={tasks} />
+							</button>
 						</div>
+						<div className='footerMain__activitiesBtn'>
+							<button style={{ opacity: '0.5', cursor: 'not-allowed' }} disabled>
+								Pet
+								<img src={pet} />
+							</button>
+							<div className='footerMain__activitiesHint'>Coming Soon</div>
+						</div>
+						<div className='footerMain__activitiesBtn'>
+							<button style={{ opacity: '0.5', cursor: 'not-allowed' }} disabled>
+								Shop
+								<img src={shop} />
+							</button>
+							<div className='footerMain__activitiesHint'>Coming Soon</div>
+						</div>
+					</div>
 				</div>
 			</footer>
 			{tasksOpen && (
