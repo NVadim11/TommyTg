@@ -1,4 +1,5 @@
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import { debounce } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
@@ -52,6 +53,8 @@ const Main = ({ user }) => {
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
 
+	const secretKey = process.env.REACT_APP_SECRET_KEY;
+
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
 		const isMobile =
@@ -68,10 +71,20 @@ const Main = ({ user }) => {
 		}
 	}, []);
 
-	const pauseGame = () => {
+	const pauseGame = async () => {
 		setGamePaused(true);
 		const currentTimeStamp = Math.floor(Date.now() / 1000);
 		const futureTimestamp = currentTimeStamp + 60 * 60;
+		const now = new Date();
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false,
+		};
+		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
 		fetch('https://aws.tomocat.com/api/set-activity', {
 			method: 'POST',
@@ -79,6 +92,7 @@ const Main = ({ user }) => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: userId,
 				timestamp: futureTimestamp,
 			}),
@@ -93,6 +107,10 @@ const Main = ({ user }) => {
 				console.log('Error pausing game');
 			});
 	};
+
+	useEffect(() => {
+		if (value) setCurrEnergy(value?.energy);
+	}, [value]);
 
 	useEffect(() => {
 		if (currEnergy === 1000) {
@@ -293,14 +311,25 @@ const Main = ({ user }) => {
 				setIsCoinsChanged(false);
 				accumulatedCoinsRef.current = 0;
 			}
-		}, 3100);
+		}, 3500);
 
 		return () => clearInterval(timer);
 	}, [isCoinsChanged]);
 
 	const submitData = async (coins) => {
+		const now = new Date();
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false,
+		};
+		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			await updateBalance({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				score: coins,
 			}).unwrap();
@@ -327,7 +356,7 @@ const Main = ({ user }) => {
 
 	const coinClicker = (event) => {
 		if (!event.isTrusted) return;
-		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
+		if ((currEnergy >= 801 && currEnergy <= 1000) || boostPhase === true) {
 			playBoostCatClick();
 		} else {
 			playSadCatClick();
@@ -360,7 +389,7 @@ const Main = ({ user }) => {
 		}
 
 		if (!event.isTrusted) return;
-		if ((currEnergy >= 751 && currEnergy <= 1000) || boostPhase === true) {
+		if ((currEnergy >= 801 && currEnergy <= 1000) || boostPhase === true) {
 			playBoostCatClick();
 		} else {
 			playSadCatClick();

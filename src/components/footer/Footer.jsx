@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import React, { useState } from 'react';
 import catCoinMove from '../../img/cat_coin_move.png';
 import checkbox from '../../img/checkbox.png';
@@ -20,6 +21,8 @@ const Footer = ({ user }) => {
 	// const [increaseBalance] = useIncreaseBalanceMutation();
 	const [setWallet] = useSetWalletMutation();
 	const [walletVaL, setWalletVal] = useState('');
+
+	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
@@ -46,9 +49,20 @@ const Footer = ({ user }) => {
 	};
 
 	const twitterClick = async () => {
+		const now = new Date();
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false,
+		};
+		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		tg.openLink('https://twitter.com/TomoCatSol');
 		try {
 			await passTask({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'twitter',
 			}).unwrap();
@@ -62,9 +76,20 @@ const Footer = ({ user }) => {
 	};
 
 	const tgClickChat = async () => {
+		const now = new Date();
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false,
+		};
+		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		tg.openLink('https://t.me/tomocat_sol');
 		try {
 			await passTask({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'tg_chat',
 			}).unwrap();
@@ -78,9 +103,20 @@ const Footer = ({ user }) => {
 	};
 
 	const tgClickChannel = async () => {
+		const now = new Date();
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false,
+		};
+		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		tg.openLink('https://t.me/tomo_cat');
 		try {
 			await passTask({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'tg_channel',
 			}).unwrap();
@@ -94,9 +130,20 @@ const Footer = ({ user }) => {
 	};
 
 	const websiteClick = async () => {
+		const now = new Date();
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false,
+		};
+		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		tg.openLink('https://tomocat.com/');
 		try {
 			const res = await passTask({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'website',
 			}).unwrap();
@@ -113,8 +160,19 @@ const Footer = ({ user }) => {
 
 	const submitWallet = async () => {
 		if (walletVaL) {
+			const now = new Date();
+			const options = {
+				day: '2-digit',
+				month: '2-digit',
+				year: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit',
+				hour12: false,
+			};
+			const dateStringWithTime = now.toLocaleString('en-GB', options);
 			try {
 				const res = await setWallet({
+					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
 					id_telegram: user?.id_telegram,
 				}).unwrap();

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { GameInfoProvider } from './helpers/contextProvider';
+import '../src/dotenvConfig';
 import App from './App';
+import { GameInfoProvider } from './helpers/contextProvider';
 import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
