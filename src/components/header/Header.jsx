@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import envelope from '../../img/envelope.svg';
 import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import link from '../../img/link.svg';
@@ -9,7 +9,6 @@ import { toggleMuteAllSounds } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
 import './Header.scss';
 // import { GameInfoContext } from "../../helpers/context";
-
 
 const Header = ({ user }) => {
 	// const {state} = useContext(GameInfoContext);
@@ -64,8 +63,8 @@ const Header = ({ user }) => {
 		try {
 			const response = await axios.get(`https://aws.tomocat.com/api/liders`);
 			setLeaderboardData(response.data);
-		} catch (error) {
-			console.error('Error fetching leaderboard data:', error.message);
+		} catch (e) {
+			console.log('Error fetching leaderboard data');
 		}
 	};
 

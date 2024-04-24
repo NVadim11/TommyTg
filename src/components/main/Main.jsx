@@ -86,11 +86,11 @@ const Main = ({ user }) => {
 			.then((response) => {
 				if (response.ok) {
 				} else {
-					console.error('Failed to pause game');
+					console.log('Failed to pause game');
 				}
 			})
-			.catch((error) => {
-				console.error('Error pausing game:', error);
+			.catch((e) => {
+				console.log('Error pausing game');
 			});
 	};
 
@@ -107,8 +107,8 @@ const Main = ({ user }) => {
 			const initGameStatusCheck = await axios.get(
 				`https://aws.tomocat.com/api/telegram-id/${userId}`
 			);
-		} catch (error) {
-			console.error('Error fetching leaderboard data:', error.message);
+		} catch (e) {
+			console.log('Error fetching leaderboard data');
 		}
 	};
 
