@@ -170,7 +170,7 @@ const Main = ({ user }) => {
 		setBoostPhase(true);
 		setVisible(false);
 		setHappinessVal(4);
-		setClickNewCoins(8);
+		setClickNewCoins(4);
 
 		setTimeout(() => {
 			setHappinessVal(prevHappinessVal);
@@ -293,7 +293,7 @@ const Main = ({ user }) => {
 				setIsCoinsChanged(false);
 				accumulatedCoinsRef.current = 0;
 			}
-		}, 5100);
+		}, 3100);
 
 		return () => clearInterval(timer);
 	}, [isCoinsChanged]);
