@@ -109,8 +109,8 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
-		if (value) setCurrEnergy(value?.energy);
-	}, [value]);
+		if (user) setCurrEnergy(user?.energy);
+	}, [user]);
 
 	useEffect(() => {
 		if (currEnergy === 1000) {
