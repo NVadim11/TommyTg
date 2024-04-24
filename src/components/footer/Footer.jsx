@@ -14,7 +14,7 @@ import './Footer.scss';
 
 const Footer = ({ user }) => {
 	const tg = window.Telegram.WebApp;
-	const [isVisible, setIsVisible] = useState(true);
+	const [isVisible, setIsVisible] = useState(false);
 	const [tasksOpen, setTasksOpen] = useState(false);
 	const [passTask] = usePassTaskMutation();
 	// const [increaseBalance] = useIncreaseBalanceMutation();

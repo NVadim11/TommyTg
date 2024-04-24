@@ -7,6 +7,7 @@ const getAudioInstance = () => {
 	if (!audio) {
 		audio = new Audio();
 		audio.preload = 'auto';
+		audio.muted = true;
 	}
 	return audio;
 };
