@@ -193,17 +193,17 @@ const Main = ({ user }) => {
 
 	useEffect(() => {
 		if (gamePaused) {
-		  setCoinState(false);
-		  setBoostPhase(false);
-		  setVisible(false);
-		  setCurrentImage(false);
-		  setBoostPhase(false);
-		  setCoinState(false);
-		  clearAnimations();
-		  setHappinessVal(1);
-		  setClickNewCoins(1);
+			setCoinState(false);
+			setBoostPhase(false);
+			setVisible(false);
+			setCurrentImage(false);
+			setBoostPhase(false);
+			setCoinState(false);
+			clearAnimations();
+			setHappinessVal(1);
+			setClickNewCoins(1);
 		}
-	  }, [gamePaused]);
+	}, [gamePaused]);
 
 	useEffect(() => {
 		if (!gamePaused) {
@@ -293,7 +293,7 @@ const Main = ({ user }) => {
 				setIsCoinsChanged(false);
 				accumulatedCoinsRef.current = 0;
 			}
-		}, 4900);
+		}, 5100);
 
 		return () => clearInterval(timer);
 	}, [isCoinsChanged]);
@@ -304,8 +304,8 @@ const Main = ({ user }) => {
 				id_telegram: user?.id_telegram,
 				score: coins,
 			}).unwrap();
-		} catch (error) {
-			console.error('Error submitting coins:', error);
+		} catch (e) {
+			console.log('Error submitting coins:');
 		}
 	};
 

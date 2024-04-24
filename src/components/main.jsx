@@ -1,5 +1,6 @@
 import AOS from 'aos';
-import { useEffect, useRef, useState, useContext} from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { GameInfoContext } from '../helpers/context';
 import sadIdle from '../img/1_idle.gif';
 import sadSpeak from '../img/1talk.gif';
 import normalIdle from '../img/2_idle.gif';
@@ -8,17 +9,15 @@ import smileIdle from '../img/3_idle.gif';
 import smileSpeak from '../img/3talk.gif';
 import happyIdle from '../img/4_idle.gif';
 import happySpeak from '../img/4talk.gif';
+import boostCoin from '../img/boost_coin_side.png';
 import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
-import boostCoin from '../img/boost_coin_side.png'
+import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
 import Preloader from './preloader/Preloader';
-import { useGetGameInfoQuery } from "../services";
-import { GameInfoContext } from "../helpers/context";
-
 
 const MainComponent = () => {
 	const tg = window.Telegram.WebApp;
@@ -32,8 +31,8 @@ const MainComponent = () => {
 	const [preloaderLoaded, setPreloaderLoaded] = useState(false);
 	const imagesRef = useRef([]);
 
-	const {updateState} = useContext(GameInfoContext);
-	const {data, isLoading, isError} = useGetGameInfoQuery();
+	const { updateState } = useContext(GameInfoContext);
+	const { data, isLoading, isError } = useGetGameInfoQuery();
 
 	// useEffect(() => {
 	// 	if (!isLoading && data) {
@@ -63,7 +62,7 @@ const MainComponent = () => {
 				happySpeak,
 				finalForm,
 				goldForm,
-				boostCoin
+				boostCoin,
 			];
 			const promises = imageSources.map((src) => loadImage(src));
 
@@ -71,8 +70,8 @@ const MainComponent = () => {
 				const loadedImages = await Promise.all(promises);
 				imagesRef.current = loadedImages;
 				setPreloaderLoaded(true);
-			} catch (error) {
-				console.error(error);
+			} catch (e) {
+				console.log('problem loading images');
 			}
 		};
 
