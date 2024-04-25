@@ -109,9 +109,15 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
-		setTimeout(() => {
-			setCurrEnergy(user?.energy);
-		}, 1000);
+		if (user?.energy) {
+			const timeoutId = setTimeout(() => {
+				setCurrEnergy(user.energy);
+			}, 1000);
+
+			return () => clearTimeout(timeoutId);
+		} else {
+			setCurrEnergy(0);
+		}
 	}, []);
 
 	useEffect(() => {
