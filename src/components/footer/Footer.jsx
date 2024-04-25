@@ -59,20 +59,16 @@ const Footer = ({ user }) => {
 			hour12: false,
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
-		tg.openLink('https://twitter.com/TomoCatSol');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'twitter',
 			}).unwrap();
-			// await increaseBalance({
-			// 	id_telegram: user?.id_telegram,
-			// 	score: '10000',
-			// }).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));
 		}
+		tg.openLink('https://twitter.com/TomoCatSol');
 	};
 
 	const tgClickChat = async () => {
@@ -86,20 +82,16 @@ const Footer = ({ user }) => {
 			hour12: false,
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
-		tg.openLink('https://t.me/tomocat_sol');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'tg_chat',
 			}).unwrap();
-			// await increaseBalance({
-			// 	id_telegram: user?.id_telegram,
-			// 	score: '10000',
-			// }).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));
 		}
+		tg.openLink('https://t.me/tomocat_sol');
 	};
 
 	const tgClickChannel = async () => {
@@ -113,20 +105,17 @@ const Footer = ({ user }) => {
 			hour12: false,
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
-		tg.openLink('https://t.me/tomo_cat');
+
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'tg_channel',
 			}).unwrap();
-			// await increaseBalance({
-			// 	id_telegram: user?.id_telegram,
-			// 	score: '10000',
-			// }).unwrap();
 		} catch (e) {
 			tg.showAlert(String(e));
 		}
+		tg.openLink('https://t.me/tomo_cat');
 	};
 
 	const websiteClick = async () => {
@@ -140,22 +129,16 @@ const Footer = ({ user }) => {
 			hour12: false,
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
-		tg.openLink('https://tomocat.com/');
 		try {
 			const res = await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'website',
 			}).unwrap();
-			// if (res) {
-			// 	await increaseBalance({
-			// 		id_telegram: user?.id_telegram,
-			// 		score: '3000',
-			// 	}).unwrap();
-			// }
 		} catch (e) {
 			tg.showAlert(JSON.stringify(e));
 		}
+		tg.openLink('https://tomocat.com/');
 	};
 
 	const submitWallet = async () => {
@@ -176,12 +159,6 @@ const Footer = ({ user }) => {
 					wallet_address: walletVaL,
 					id_telegram: user?.id_telegram,
 				}).unwrap();
-				// if (res) {
-				// 	await increaseBalance({
-				// 		id_telegram: user?.id_telegram,
-				// 		score: '20000',
-				// 	}).unwrap();
-				// }
 			} catch (e) {
 				tg.showAlert(JSON.stringify(e));
 			}

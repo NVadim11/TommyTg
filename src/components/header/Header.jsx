@@ -80,46 +80,6 @@ const Header = ({ user }) => {
 		};
 	}, [user]);
 
-	// useEffect(() => {
-	// 	fetchLeaderboardData();
-	// 	setTotalReferrals(user?.referrals_count);
-	// 	setTotalPoints(user?.wallet_balance);
-	// 	initLeadersRef.current = setInterval(() => {
-	// 		fetchLeaderboardData();
-	// 		setTotalReferrals(user?.referrals_count);
-	// 		setTotalPoints(user?.wallet_balance);
-	// 	}, 10000);
-	// 	return () => {
-	// 		clearInterval(initLeadersRef.current);
-	// 	};
-	// }, [user]);
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		if (Object.keys(user).length) {
-	// 			const res = await getLeaderboard(user?.id_telegram).unwrap();
-	// 			setLeaderboardData(res);
-	// 			setTotalReferrals(user?.referrals_count);
-	// 			setTotalPoints(user?.wallet_balance);
-	// 			const intervalId = setInterval(() => {
-	// 				getLeaderboard(user?.id_telegram)
-	// 					.unwrap()
-	// 					.then((data) => setLeaderboardData(data))
-	// 					.catch((error) => console.error('Error refreshing leaderboard:', error));
-	// 			}, 60000);
-	// 			return intervalId;
-	// 		}
-	// 	};
-
-	// 	fetchData();
-
-	// 	let intervalId;
-
-	// 	return () => {
-	// 		clearInterval(intervalId);
-	// 	};
-	// }, [user]);
-
 	useEffect(() => {
 		const handleOutsideClick = (event) => {
 			if (event.target.closest('.header__mobileBurger')) return;

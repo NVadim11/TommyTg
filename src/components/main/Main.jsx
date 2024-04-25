@@ -109,8 +109,10 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
-		if (user) setCurrEnergy(user?.energy);
-	}, [user]);
+		setTimeout(() => {
+			setCurrEnergy(user?.energy);
+		}, 1000);
+	}, []);
 
 	useEffect(() => {
 		if (currEnergy === 1000) {
@@ -626,7 +628,7 @@ const Main = ({ user }) => {
 								<img src={smile} alt='' />
 								<div className='mainContent__energyValue'>
 									<p className='energyCount' id='energyCount'>
-										{currEnergy}
+										{user ? currEnergy : 0}
 									</p>
 									<span>/</span>
 									<p className='maximumEnergy' id='maximumEnergy'>
@@ -639,7 +641,7 @@ const Main = ({ user }) => {
 									className='filledBar'
 									id='filledBar'
 									max='1000'
-									value={currEnergy}
+									value={user ? currEnergy : 0}
 								></progress>
 							</div>
 							<div className='mainContent__energyHint'>
