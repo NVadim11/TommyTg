@@ -311,7 +311,7 @@ const Main = ({ user }) => {
 				setIsCoinsChanged(false);
 				accumulatedCoinsRef.current = 0;
 			}
-		}, 3500);
+		}, 3000);
 
 		return () => clearInterval(timer);
 	}, [isCoinsChanged]);
