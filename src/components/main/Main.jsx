@@ -634,7 +634,7 @@ const Main = ({ user }) => {
 								<img src={smile} alt='' />
 								<div className='mainContent__energyValue'>
 									<p className='energyCount' id='energyCount'>
-										{user ? currEnergy : 0}
+										{currEnergy}
 									</p>
 									<span>/</span>
 									<p className='maximumEnergy' id='maximumEnergy'>
@@ -647,7 +647,7 @@ const Main = ({ user }) => {
 									className='filledBar'
 									id='filledBar'
 									max='1000'
-									value={user ? currEnergy : 0}
+									value={currEnergy}
 								></progress>
 							</div>
 							<div className='mainContent__energyHint'>
