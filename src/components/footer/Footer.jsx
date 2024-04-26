@@ -57,7 +57,7 @@ const Footer = ({ user }) => {
 			hour: '2-digit',
 			minute: '2-digit',
 			hour12: false,
-			timeZone: 'UTC', // Hardcoded timezone offset to +0
+			timeZone: 'Etc/GMT-3',
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
@@ -81,7 +81,7 @@ const Footer = ({ user }) => {
 			hour: '2-digit',
 			minute: '2-digit',
 			hour12: false,
-			timeZone: 'UTC', // Hardcoded timezone offset to +0
+			timeZone: 'Etc/GMT-3',
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
@@ -105,7 +105,7 @@ const Footer = ({ user }) => {
 			hour: '2-digit',
 			minute: '2-digit',
 			hour12: false,
-			timeZone: 'UTC', // Hardcoded timezone offset to +0
+			timeZone: 'Etc/GMT-3',
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
@@ -129,7 +129,7 @@ const Footer = ({ user }) => {
 			hour: '2-digit',
 			minute: '2-digit',
 			hour12: false,
-			timeZone: 'UTC', // Hardcoded timezone offset to +0
+			timeZone: 'Etc/GMT-3',
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
@@ -154,7 +154,7 @@ const Footer = ({ user }) => {
 				hour: '2-digit',
 				minute: '2-digit',
 				hour12: false,
-				timeZone: 'UTC', // Hardcoded timezone offset to +0
+				timeZone: 'Etc/GMT-3',
 			};
 			const dateStringWithTime = now.toLocaleString('en-GB', options);
 			try {
