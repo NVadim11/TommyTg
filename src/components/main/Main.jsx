@@ -113,11 +113,19 @@ const Main = ({ user }) => {
 	}, [user]);
 
 	useEffect(() => {
-		if (currEnergy === 1000) {
-			pauseGame();
-			setCurrEnergy(0);
-			setCatVisible(false);
+		let timeoutId;
+
+		if (currEnergy >= 1000) {
+			submitData();
+			timeoutId = setTimeout(() => {
+				pauseGame();
+				setCatVisible(false);
+			}, 100);
 		}
+
+		return () => {
+			clearTimeout(timeoutId);
+		};
 	}, [currEnergy]);
 
 	const getGameStatus = async () => {
@@ -311,7 +319,7 @@ const Main = ({ user }) => {
 				setIsCoinsChanged(false);
 				accumulatedCoinsRef.current = 0;
 			}
-		}, 3000);
+		}, 3500);
 
 		return () => clearInterval(timer);
 	}, [isCoinsChanged]);
