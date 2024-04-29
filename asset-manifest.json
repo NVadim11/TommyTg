@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/TommyTg/static/css/main.cb76f3b8.css",
-    "main.js": "/TommyTg/static/js/main.7d61a36e.js",
-    "static/media/3_idle.gif": "/TommyTg/static/media/3_idle.9d181b5ef893d2e55709.gif",
-    "static/media/4_idle.gif": "/TommyTg/static/media/4_idle.02b5a7cff89325ef99e8.gif",
-    "static/media/2_idle.gif": "/TommyTg/static/media/2_idle.3fb24a4ad0f627977574.gif",
-    "static/media/1_idle.gif": "/TommyTg/static/media/1_idle.220b06ecbb2e3a42e079.gif",
-    "static/media/gold.gif": "/TommyTg/static/media/gold.c06dcccf7f6e5fb294f9.gif",
-    "static/media/3talk.gif": "/TommyTg/static/media/3talk.4f0b929a6ad068b08b11.gif",
-    "static/media/4talk.gif": "/TommyTg/static/media/4talk.cfd96fa47980895b3d4d.gif",
-    "static/media/2talk.gif": "/TommyTg/static/media/2talk.965967d2a4652fc13a5a.gif",
-    "static/media/finalForm.gif": "/TommyTg/static/media/finalForm.da765c8ece9906153069.gif",
-    "static/media/1talk.gif": "/TommyTg/static/media/1talk.1509fdd36f9c9dc8226c.gif",
-    "static/media/boost_coin_side.png": "/TommyTg/static/media/boost_coin_side.d95224648036151a0390.png",
+    "main.css": "/TommyTg/static/css/main.d6b6efc2.css",
+    "main.js": "/TommyTg/static/js/main.1f5d1791.js",
+    "static/media/4_idle.gif": "/TommyTg/static/media/4_idle.d57cafa374e8e04cc571.gif",
+    "static/media/3_idle.gif": "/TommyTg/static/media/3_idle.d35910e50d9e759498f8.gif",
+    "static/media/2_idle.gif": "/TommyTg/static/media/2_idle.9b60e5af8504711cc6df.gif",
+    "static/media/gold.gif": "/TommyTg/static/media/gold.3cfe9933633944d56049.gif",
+    "static/media/1_idle.gif": "/TommyTg/static/media/1_idle.64becd5f71833f830151.gif",
+    "static/media/4talk.gif": "/TommyTg/static/media/4talk.d577a2596000c52088fe.gif",
+    "static/media/3talk.gif": "/TommyTg/static/media/3talk.5a105df6026f0041b4e0.gif",
+    "static/media/finalForm.gif": "/TommyTg/static/media/finalForm.e8086415c48aeccaac9c.gif",
+    "static/media/2talk.gif": "/TommyTg/static/media/2talk.787376c68407cec18a5e.gif",
+    "static/media/1talk.gif": "/TommyTg/static/media/1talk.c4d60fa1dd8727873ce8.gif",
     "static/media/WorkSans-Medium.ttf": "/TommyTg/static/media/WorkSans-Medium.905f58df4c3ad21ca78d.ttf",
     "static/media/cat2.png": "/TommyTg/static/media/cat2.e1503440ffdb4bc65223.png",
     "static/media/Grandstander-ExtraLightItalic.ttf": "/TommyTg/static/media/Grandstander-ExtraLightItalic.cd374ab1c2b7dc331d80.ttf",
@@ -33,6 +32,7 @@
     "static/media/Grandstander-Light.ttf": "/TommyTg/static/media/Grandstander-Light.6b4c6de9a5cfad355695.ttf",
     "static/media/Grandstander-Black.ttf": "/TommyTg/static/media/Grandstander-Black.ebb29a8f529f3b9a58bb.ttf",
     "static/media/Grandstander-Thin.ttf": "/TommyTg/static/media/Grandstander-Thin.4db29ca9f41b7fb478b4.ttf",
+    "static/media/boost_coin_side.png": "/TommyTg/static/media/boost_coin_side.7a9731afb7e9bf50d6ac.png",
     "static/media/catFace.png": "/TommyTg/static/media/catFace.261b91ce8cbfd2cfd7e5.png",
     "static/media/boost.mp3": "/TommyTg/static/media/boost.33f654621a9e6b1b5ded.mp3",
     "static/media/4talk.mp3": "/TommyTg/static/media/4talk.192f06d7f8a8f0986397.mp3",
@@ -46,11 +46,11 @@
     "static/media/leaderboard_icon.svg": "/TommyTg/static/media/leaderboard_icon.23a4fe86c97990cb9c49266ad5f2c87e.svg",
     "static/media/pet_icon.svg": "/TommyTg/static/media/pet_icon.92314a4af098bd4cf6d3b9e2266d27c0.svg",
     "index.html": "/TommyTg/index.html",
-    "main.cb76f3b8.css.map": "/TommyTg/static/css/main.cb76f3b8.css.map",
-    "main.7d61a36e.js.map": "/TommyTg/static/js/main.7d61a36e.js.map"
+    "main.d6b6efc2.css.map": "/TommyTg/static/css/main.d6b6efc2.css.map",
+    "main.1f5d1791.js.map": "/TommyTg/static/js/main.1f5d1791.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb76f3b8.css",
-    "static/js/main.7d61a36e.js"
+    "static/css/main.d6b6efc2.css",
+    "static/js/main.1f5d1791.js"
   ]
 }
