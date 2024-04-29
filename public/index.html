@@ -26,6 +26,9 @@
     -->
 		<title>Tomo The Cat</title>
 		<script src="https://telegram.org/js/telegram-web-app.js"></script>
+		<style>
+
+		</style>
 	</head>
 
 	<body>
@@ -47,6 +50,18 @@
 	<script>
 		let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
 		tg.expand(); //расширяем на все окно
-    
+		Telegram.WebApp.expand()
+        window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+        window.scrollTo(0, 100);
+        Telegram.WebApp.ready()
+
+		
+		const overflow = 100
+document.body.style.overflowY = 'hidden'
+document.body.style.marginTop = `${overflow}px`
+document.body.style.height = window.innerHeight + overflow + "px"
+document.body.style.paddingBottom = `${overflow}px`
+window.scrollTo(0, overflow)
+
 	</script>
 </html>

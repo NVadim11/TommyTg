@@ -29,7 +29,7 @@ body::after {
   // visibility: hidden;
   pointer-events: none;
   @media (max-width: $mobile) {
-    padding: 5.4375rem 1.25rem 5.4375rem 1.25rem;
+    // padding: 5.4375rem 1.25rem 5.4375rem 1.25rem;
   }
 }
 .popupTasks_show {
@@ -49,8 +49,9 @@ body::after {
   flex: 1 1 auto;
   width: 100%;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
+  margin-top: 3.75rem;
 }
 .popupTasks__content {
   display: none;
@@ -289,14 +290,14 @@ body::after {
     align-items: center;
     button {
       margin-top: 10px;
-      width: 70%;
+      width: 0%;
       border: 0.125rem solid #fff;
       border-radius: 3.75rem;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      height: fit-content;
+      height: 48px;
       padding: 10px;
       padding-bottom: 8px;
       font-weight: 600;
@@ -386,10 +387,12 @@ body::after {
     input {
       padding-left: 10px;
       width: 150px;
+      height: 100%;
     }
     input::placeholder {
       color: #fff;
       font-size: 10px;
+      font-size: 0.875rem;
     }
     input:focus {
       outline: none;
@@ -399,14 +402,14 @@ body::after {
       background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
       border: 2px solid #fff;
       border-radius: 40px;
-      width: 2.1875rem;
       position: absolute;
-      height: 2.25rem;
+      height: 3rem;
+      width: 48px;
       top: -2px;
       right: -2px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       img {
         width: 20px;
       }
@@ -418,7 +421,7 @@ body::after {
   &__walletTask-input {
     border: 0.125rem solid #fff;
     border-radius: 60px;
-    height: 36px;
+    height: 48px;
     font-weight: 600;
     font-size: 14px;
     display: flex;
@@ -428,7 +431,7 @@ body::after {
     text-align: center;
     align-items: center;
     flex-direction: row;
-    width: 70%;
+    width: 80%;
   }
   &__walletTask-box {
     img {

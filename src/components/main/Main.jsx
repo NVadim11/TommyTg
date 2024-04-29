@@ -2,26 +2,26 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import { debounce } from 'lodash';
-import React, { useEffect, useRef, useState, useContext, useMemo } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-// import sadIdle from '../../img/1_idle.gif';
-// import sadSpeak from '../../img/1talk.gif';
-// import normalIdle from '../../img/2_idle.gif';
-// import normalSpeak from '../../img/2talk.gif';
-// import smileIdle from '../../img/3_idle.gif';
-// import smileSpeak from '../../img/3talk.gif';
-// import happyIdle from '../../img/4_idle.gif';
-// import happySpeak from '../../img/4talk.gif';
-// import boostCoin from '../../img/boost_coin_side.png';
+import sadIdle from '../../img/1_idle.gif';
+import sadSpeak from '../../img/1talk.gif';
+import normalIdle from '../../img/2_idle.gif';
+import normalSpeak from '../../img/2talk.gif';
+import smileIdle from '../../img/3_idle.gif';
+import smileSpeak from '../../img/3talk.gif';
+import happyIdle from '../../img/4_idle.gif';
+import happySpeak from '../../img/4talk.gif';
+import boostCoin from '../../img/boost_coin_side.png';
 import catFace from '../../img/catFace.png';
 import catCoinMove from '../../img/cat_coin_move.png';
-// import finalForm from '../../img/finalForm.gif';
-// import goldForm from '../../img/gold.gif';
+import finalForm from '../../img/finalForm.gif';
+import goldForm from '../../img/gold.gif';
 import smile from '../../img/smile.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
-import { GameInfoContext } from "../../helpers/context";
+// import { GameInfoContext } from "../../helpers/context";
 import './Main.scss';
 
 const Main = ({ user }) => {
@@ -31,8 +31,8 @@ const Main = ({ user }) => {
 	const [currCoins, setCurrCoins] = useState(0);
 	const [currEnergy, setCurrEnergy] = useState(0);
 	const [isCoinsChanged, setIsCoinsChanged] = useState(false);
-	const [catIdle, setCatIdle] = useState(null);
-	const [catSpeak, setCatSpeak] = useState(null);
+	const [catIdle, setCatIdle] = useState(sadIdle);
+	const [catSpeak, setCatSpeak] = useState(sadSpeak);
 	const timeoutRef = useRef(null);
 	const coinRef = useRef(null);
 	const accumulatedCoinsRef = useRef(0);
@@ -54,61 +54,6 @@ const Main = ({ user }) => {
 	const [animations, setAnimations] = useState([]);
 
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
-
-	const { state } = useContext(GameInfoContext);
-
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		const isAllImagesLoaded = Object.values(state.images).every(image => !!image);
-		if (isAllImagesLoaded) {
-			setIsLoading(false);
-		}
-	}, [state]);
-	
-	useEffect(() => {
-		if (state && state.images) {
-			if (state?.images.one_idle) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.one_idle); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.one_talk) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.one_talk); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.two_idle) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.two_idle); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.two_talk) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.two_talk); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.three_talk) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.three_talk); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.four_talk) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.four_talk); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.gold) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.gold); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.finalForm) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.finalForm); // Устанавливаем изображение в состояние
-			}
-			if (state?.images.boost_сoin) { // Проверяем, что изображение загружено
-				setCatIdle(state.images.boost_сoin); // Устанавливаем изображение в состояние
-			}
-		}
-	}, [isLoading, state]);
-
-	const sadIdle = state?.images.one_idle;
-	const sadSpeak = state?.images.one_talk;
-	const normalIdle = state?.images.two_idle;
-	const normalSpeak = state?.images.two_talk;
-	const smileIdle = state?.images.three_idle;
-	const smileSpeak = state?.images.three_talk;
-	const happyIdle = state?.images.four_idle;
-	const happySpeak = state?.images.four_talk;
-	const goldForm = state?.images.gold;
-	const finalForm = state?.images.finalForm;
-	const boostCoin = state?.images.boost_coin;
 
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
