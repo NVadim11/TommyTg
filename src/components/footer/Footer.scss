@@ -290,7 +290,7 @@ body::after {
     align-items: center;
     button {
       margin-top: 10px;
-      width: 0%;
+      width: 80%;
       border: 0.125rem solid #fff;
       border-radius: 3.75rem;
       display: flex;
@@ -386,13 +386,13 @@ body::after {
     margin-top: 10px;
     input {
       padding-left: 10px;
-      width: 150px;
+      width: 180px;
       height: 100%;
     }
     input::placeholder {
       color: #fff;
       font-size: 10px;
-      font-size: 0.875rem;
+      font-size: 0.75rem;
     }
     input:focus {
       outline: none;
