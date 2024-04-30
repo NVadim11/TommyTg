@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import envelope from '../../img/envelope.svg';
 import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import link from '../../img/link.svg';
@@ -174,28 +174,28 @@ const Header = ({ user }) => {
 
 	// console.log("123");
 
-	const referalBtn = async () => {
-		try {
-            // Подготовка данных для отправки в чат
-            const dataToSend = {
-                // Например, данные пользователя и другие нужные данные
-                // Пример:
-                userName: user.name,
-                userPoints: totalPoints,
-                userReferrals: totalReferrals
-            };
+	const refStatus = "clicked";
 
-            // HTTP-запрос к вашему API для отправки данных в чат
-            const response = await axios.post('https://your-api-url/send-message', dataToSend);
-
-            // Обработка ответа, если нужно
-            console.log('Message sent successfully:', response.data);
-        } catch (error) {
-            // Обработка ошибок
-            console.error('Error sending message:', error);
+	const onSendData = useCallback(() => {
+        const data = {
+            refStatus,
         }
-	
-	}
+        tg.sendData(JSON.stringify(data));
+    }, [refStatus])
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+		console.log('123');
+        return () => {
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
+    }, [onSendData])
+
+    useEffect(() => {
+        tg.MainButton.setParams({
+            text: 'Отправить данные'
+        })
+    }, [])
 
 	return (
 		<>
@@ -301,7 +301,7 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 				{isInviteOpen && <MainButton text="INVITE"  
-					onClick={referalBtn} />}
+					/>}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
