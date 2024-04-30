@@ -7,6 +7,8 @@ import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
+import { MainButton} from '@vkruglikov/react-telegram-web-app';
+
 import './Header.scss';
 // import { GameInfoContext } from "../../helpers/context";
 
@@ -273,6 +275,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
+				<MainButton text="SHOW POPUP" />
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
