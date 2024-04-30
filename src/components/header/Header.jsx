@@ -182,6 +182,7 @@ const Header = ({ user }) => {
         }
         tg.sendData(JSON.stringify(data));
 		tg.showAlert(JSON.stringify((data)));
+		tg.close();
     }, [refStatus])
 
     useEffect(() => {
