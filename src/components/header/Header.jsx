@@ -190,11 +190,11 @@ const Header = ({ user }) => {
         }
     }, [onSendData])
 
-    // useEffect(() => {
-    //     tg.MainButton.setParams({
-    //         text: 'Отправить данные'
-    //     })
-    // }, [])
+    useEffect(() => {
+        tg.MainButton.setParams({
+            text: 'Отправить данные'
+        })
+    }, [])
 
 	return (
 		<>
