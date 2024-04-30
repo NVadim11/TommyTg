@@ -397,13 +397,13 @@ const Header = ({ user }) => {
 							<div className='popupInvite__grid'>
 								<div className='popupInvite__gridItem'>
 									<ul className='popupInvite__list'>
-										<li className='popupInvite__list-item'>
+										{/* <li className='popupInvite__list-item'>
 											<img src={envelope} alt='' className='popupInvite__icon' />
 											<div className='popupInvite__list-itemDescr'>
 												<h5>Sign up</h5>
 												<p>Get your referral link and code</p>
 											</div>
-										</li>
+										</li> */}
 										<li className='popupInvite__list-item'>
 											<img src={link} alt='' className='popupInvite__icon' />
 											<div className='popupInvite__list-itemDescr'>
@@ -416,6 +416,15 @@ const Header = ({ user }) => {
 											<div className='popupInvite__list-itemDescr'>
 												<h5>Get rewards</h5>
 												<p>Receive 10% of your friends’ staking</p>
+											</div>
+										</li>
+										<li className='popupInvite__list-item'>
+											<div className='popupInvite__list-itemDescr'>
+												<div className="header__inviteBtn">
+													<button>
+														Invite
+													</button>
+												</div>
 											</div>
 										</li>
 									</ul>

@@ -21,6 +21,15 @@
 }
 
 @font-face {
+  font-family: gropled;
+  font-display: swap;
+  src: local("gropled"),
+    url("/fonts/gropled-bold.otf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
   font-family: Grandstander;
   font-display: swap;
   src: local("Grandstander"),
@@ -164,7 +173,6 @@
   font-weight: 100;
   font-style: normal;
 }
-
 @font-face {
   font-family: WorkSans;
   font-display: swap;
@@ -174,7 +182,7 @@
 }
 
 // variables
-$fontFamily: "Grandstander";
+$fontFamily: "gropled";
 $mainColor: #ffffff;
 $minWidth: 320;
 $maxWidth: 1920;
