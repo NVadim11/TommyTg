@@ -168,6 +168,8 @@ const Header = ({ user }) => {
 	//   }
 	// };
 
+	// console.log("123");
+
 	return (
 		<>
 			<header className='header'>
