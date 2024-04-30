@@ -175,29 +175,38 @@ const Header = ({ user }) => {
 	// console.log("123");
 
 	const refStatus = "clicked";
+	const data = {
+		refStatus,
+	}
 
-	const onSendData = useCallback(() => {
-        const data = {
-            refStatus,
-        }
-        tg.sendData(JSON.stringify(data));
-		tg.showAlert(JSON.stringify((data)));
-		tg.close();
-    }, [refStatus])
+	// const onSendData = useCallback(() => {
+      
+    //     tg.sendData(JSON.stringify(data));
+	// 	tg.close();
+    // }, [refStatus])
 
-    useEffect(() => {
-        tg.onEvent('mainButtonClicked', onSendData)
+    // useEffect(() => {
+    //     tg.onEvent('mainButtonClicked', onSendData)
+	// 	tg.showAlert("send on Event");
+    //     return () => {
+    //         tg.offEvent('mainButtonClicked', onSendData)
+    //     }
+    // }, [onSendData])
+	
+
+    // useEffect(() => {
+    //     tg.MainButton.setParams({
+    //         text: 'Отправить данные'
+    //     })
+    // }, [])
+
+	const handleSubmit = async () => {
+		
+		
+		await tg.sendData(JSON.stringify(data));
 		tg.showAlert("send on Event");
-        return () => {
-            tg.offEvent('mainButtonClicked', onSendData)
-        }
-    }, [onSendData])
-
-    useEffect(() => {
-        tg.MainButton.setParams({
-            text: 'Отправить данные'
-        })
-    }, [])
+		tg.close();
+	  }
 
 	return (
 		<>
@@ -302,7 +311,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{isInviteOpen && <MainButton text="INVITE"  
+				{isInviteOpen && <MainButton text="INVITE"  onClick={handleSubmit}
 					/>}
 			</header>
 			{isLeaderboardOpen && (
