@@ -202,7 +202,7 @@
 
 // variables
 $fontFamily: "gropled";
-$buttonText: "WorkSans";
+$text: "WorkSans";
 $mainColor: #ffffff;
 $minWidth: 320;
 $maxWidth: 1920;
@@ -238,7 +238,7 @@ body {
 body {
   color: $mainColor;
   line-height: 1;
-  font-family: $fontFamily;
+  font-family: $text;
   font-size: 14px;
   //text-rendering: optimizeLegibility;
   -ms-text-size-adjust: 100%;
@@ -263,7 +263,7 @@ body::-webkit-scrollbar-thumb {
 input,
 button,
 textarea {
-  font-family: $buttonText;
+  font-family: $text;
   font-size: inherit;
   line-height: inherit;
 }
