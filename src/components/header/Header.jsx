@@ -275,7 +275,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				<MainButton text="INVITE" />
+				{!isInviteOpen && <MainButton text="INVITE" />}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
