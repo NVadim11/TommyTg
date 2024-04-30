@@ -174,11 +174,6 @@ const Header = ({ user }) => {
 
 	// console.log("123");
 
-	const refStatus = "clicked";
-	const data = {
-		refStatus,
-	}
-
 	// const onSendData = useCallback(() => {
       
     //     tg.sendData(JSON.stringify(data));
@@ -200,6 +195,11 @@ const Header = ({ user }) => {
     //     })
     // }, [])
 
+	const refStatus = "clicked";
+	const data = {
+		refStatus,
+	}
+
 	const handleSubmit = async () => {
 		
 		
@@ -207,6 +207,16 @@ const Header = ({ user }) => {
 		tg.showAlert("send on Event");
 		tg.close();
 	  }
+
+	const handleTouchStart = async () => {
+		await tg.sendData(JSON.stringify(data));
+		tg.showAlert("start");
+	}
+
+	const handleTouchEnd = async () => {
+		tg.showAlert("end");
+		tg.close();
+	}
 
 	return (
 		<>
@@ -312,6 +322,7 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 				{isInviteOpen && <MainButton text="INVITE"  onClick={handleSubmit}
+				onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}
 					/>}
 			</header>
 			{isLeaderboardOpen && (
