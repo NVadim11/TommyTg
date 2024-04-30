@@ -50,25 +50,27 @@
 		document.body.style.paddingBottom = `${overflow}px`;
 		window.scrollTo(0, overflow);
 
-		const refStatus = "clicked";
+		Telegram.WebApp.onEvent('mainButtonClicked', function () {
+			const refStatus = 'clicked';
 
-		const onSendData = () => {
-			const data = {
-				refStatus,
+			const onSendData = () => {
+				const data = {
+					refStatus,
+				};
+				tg.sendData(JSON.stringify(data));
 			};
-			Telegram.WebApp.sendData(JSON.stringify(data));
-		};
 
-		Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
+			tg.onEvent('mainButtonClicked', onSendData);
 
-		const cleanup = () => {
-			Telegram.WebApp.offEvent('mainButtonClicked', onSendData);
-		};
+			const cleanup = () => {
+				tg.offEvent('mainButtonClicked', onSendData);
+			};
 
-		return cleanup;
+			return cleanup;
 
-		Telegram.WebApp.MainButton.setParams({
-			text: 'Отправить данные'
+			tg.MainButton.setParams({
+				text: 'Отправить данные',
+			});
 		});
 	</script>
 </html>
