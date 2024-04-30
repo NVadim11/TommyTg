@@ -58,14 +58,14 @@
 				const data = {
 					refStatus,
 				};
-				Telegram.WebApp.MainButton.sendData(JSON.stringify(data));
+				tg.MainButton.sendData(JSON.stringify(data));
 			};
 
-			Telegram.WebApp.MainButton.MainButton.setParams({
+			tg.MainButton.setParams({
 				text: 'Отправить данные',
 			});
 
-		Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
+		tg.onEvent('mainButtonClicked', onSendData);
 
 		// button.addEventListener('click', function(){ //Используем addEventListener, чтобы слушать клик по кнопке 
 //       if (tg.MainButton.isVisible){ //проверяем, видима ли кнопка, при помощи isVisible, который предоставляет нам API TG
