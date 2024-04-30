@@ -36,35 +36,25 @@
     <div class="viewport-stable_border"></div>
 
 		<div id="root"></div>
-		<!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
 	</body>
 	<script>
-		let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-		tg.expand(); //расширяем на все окно
-// 		Telegram.WebApp.expand()
-//         window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
-//         window.scrollTo(0, 100);
-//         Telegram.WebApp.ready();
+		let tg = window.Telegram.WebApp; 
+		tg.expand();
+		Telegram.WebApp.expand()
+        window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+        window.scrollTo(0, 100);
+        Telegram.WebApp.ready();
 
 		
-// 		const overflow = 100
-// document.body.style.overflowY = 'hidden'
-// document.body.style.marginTop = `${overflow}px`
-// document.body.style.height = window.innerHeight + overflow + "px"
-// document.body.style.paddingBottom = `${overflow}px`
-// window.scrollTo(0, overflow)
+		const overflow = 100
+document.body.style.overflowY = 'hidden'
+document.body.style.marginTop = `${overflow}px`
+document.body.style.height = window.innerHeight + overflow + "px"
+document.body.style.paddingBottom = `${overflow}px`
+window.scrollTo(0, overflow)
 
 Telegram.WebApp.MainButton
-        .setText('CLOSE WEBVIEW')
+        .setText('INVITE')
         .show()
         .onClick(function(){ webviewClose(); });
 
