@@ -38,17 +38,17 @@
 	<script>
 		let tg = window.Telegram.WebApp;
 		tg.expand();
-		Telegram.WebApp.expand();
-		window.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
-		window.scrollTo(0, 100);
-		Telegram.WebApp.ready();
+		// Telegram.WebApp.expand();
+		// window.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+		// window.scrollTo(0, 100);
+		// Telegram.WebApp.ready();
 
-		const overflow = 100;
-		document.body.style.overflowY = 'hidden';
-		document.body.style.marginTop = `${overflow}px`;
-		document.body.style.height = window.innerHeight + overflow + 'px';
-		document.body.style.paddingBottom = `${overflow}px`;
-		window.scrollTo(0, overflow);
+		// const overflow = 100;
+		// document.body.style.overflowY = 'hidden';
+		// document.body.style.marginTop = `${overflow}px`;
+		// document.body.style.height = window.innerHeight + overflow + 'px';
+		// document.body.style.paddingBottom = `${overflow}px`;
+		// window.scrollTo(0, overflow);
 
 		Telegram.WebApp.onEvent('mainButtonClicked', function () {
 			const refStatus = 'clicked';
@@ -60,10 +60,10 @@
 				tg.sendData(JSON.stringify(data));
 			};
 
-			tg.onEvent('mainButtonClicked', onSendData);
+			tg.addEventListener('mainButtonClicked', onSendData);
 
 			const cleanup = () => {
-				tg.offEvent('mainButtonClicked', onSendData);
+				tg.addEventListener('mainButtonClicked', onSendData);
 			};
 
 			return cleanup;
