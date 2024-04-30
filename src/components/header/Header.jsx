@@ -181,6 +181,7 @@ const Header = ({ user }) => {
             refStatus,
         }
         tg.sendData(JSON.stringify(data));
+		tg.showAlert(JSON.stringify((data)));
     }, [refStatus])
 
     useEffect(() => {
