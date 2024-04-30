@@ -200,6 +200,22 @@ const Header = ({ user }) => {
 		refStatus,
 	}
 
+	const isDesktop = () => {
+		const userAgent = window.navigator.userAgent;
+		const isMobile =
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+		return !isMobile;
+	};
+
+	useEffect(() => {
+		if (!isDesktop()) {
+			const element = document.getElementById('clickableElement');
+			if (element) {
+				element.style.pointerEvents = 'none';
+			}
+		}
+	}, []);
+
 	const handleSubmit = async () => {
 		
 		
@@ -321,7 +337,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{isInviteOpen && <MainButton text="INVITE"  onClick={handleSubmit}
+				{isInviteOpen && <MainButton text="INVITE"  onClick={isDesktop() ? handleSubmit : null}
 				onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}
 					/>}
 			</header>
