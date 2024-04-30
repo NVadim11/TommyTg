@@ -7,7 +7,7 @@ import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
-import { MainButton} from '@vkruglikov/react-telegram-web-app';
+// import { MainButton} from '@vkruglikov/react-telegram-web-app';
 
 import './Header.scss';
 // import { GameInfoContext } from "../../helpers/context";
@@ -299,8 +299,8 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{isInviteOpen && <MainButton text="INVITE"  
-					/>}
+				{/* {isInviteOpen && <MainButton text="INVITE"  
+					/>} */}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>

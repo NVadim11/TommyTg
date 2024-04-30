@@ -37,7 +37,8 @@
 	</body>
 	<script>
 		let tg = window.Telegram.WebApp;
-		tg.expand();
+		tg.MainButton.text = "ХУЙ";
+		tg.MainButton.setText("не хуй");
 		Telegram.WebApp.expand();
 		window.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
 		window.scrollTo(0, 100);
@@ -50,24 +51,40 @@
 		document.body.style.paddingBottom = `${overflow}px`;
 		window.scrollTo(0, overflow);
 		
-		Telegram.WebApp.onEvent('mainButtonClicked', function(){
-			const refStatus = 'clicked';	
-      		tg.sendData("Проверяем событие onEvent. Если был клик по кнопке, то отправляем данные при помощи sendData в виде данной строки"); 
-       });
+		button.addEventListener('click', function(){ //Используем addEventListener, чтобы слушать клик по кнопке 
+      if (tg.MainButton.isVisible){ //проверяем, видима ли кнопка, при помощи isVisible, который предоставляет нам API TG
+         tg.MainButton.hide() //прячем кнопку
+      }
+      else{ 
+        tg.MainButton.show() //если булевое значение isVisible === false, то показываем кнопку, используя show() 
+      }
+   });
 
-		// const refStatus = 'clicked';
+   let btnEdit = document.getElementById("btnEdit"); //Используем getElementById, чтобы получить кнопку и активировать/деактивировать
+   btnEdit.addEventListener('click', function(){ //Слушаем при помощи addEventListener клик на кнопку
+      if (tg.MainButton.isActive){ //Если наша кнопка активна 
+         tg.MainButton.setParams({"color": "#ffffff"}); //Заменяем цвет на белый
+       tg.MainButton.disable() //Скрываем кнопку 
+      }
+      else{ //В противном случае
+         tg.MainButton.setParams({"color": "#0000ff"}); //Заменяем цвет на синий
+         tg.MainButton.enable() //Отображаем в веб-боте TelegramWebApp
+      }
+   });
+	
+		const refStatus = 'clicked';
 
-		// const onSendData = () => {
-		// 		const data = {
-		// 			refStatus,
-		// 		};
-		// 		tg.sendData(JSON.stringify(data));
-		// 	};
+		const onSendData = () => {
+				const data = {
+					refStatus,
+				};
+				tg.sendData(JSON.stringify(data));
+			};
 
-		// 	tg.MainButton.setParams({
-		// 		text: 'Отправить данные',
-		// 	});
+			tg.MainButton.setParams({
+				text: 'Отправить данные',
+			});
 
-		// Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
+		Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
 	</script>
 </html>
