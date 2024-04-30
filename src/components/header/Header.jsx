@@ -187,6 +187,7 @@ const Header = ({ user }) => {
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
+		tg.showAlert("send on Event");
         return () => {
             tg.offEvent('mainButtonClicked', onSendData)
         }
