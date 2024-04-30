@@ -26,37 +26,67 @@
     -->
 		<title>Tomo The Cat</title>
 		<script src="https://telegram.org/js/telegram-web-app.js"></script>
-		<style>
-
-		</style>
+		<style></style>
 	</head>
 
 	<body>
-    <div class="viewport-border"></div>
-    <div class="viewport-stable_border"></div>
+		<div class="viewport-border"></div>
+		<div class="viewport-stable_border"></div>
 
 		<div id="root"></div>
 	</body>
 	<script>
-		let tg = window.Telegram.WebApp; 
+		let tg = window.Telegram.WebApp;
 		tg.expand();
-		Telegram.WebApp.expand()
-        window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
-        window.scrollTo(0, 100);
-        Telegram.WebApp.ready();
+		Telegram.WebApp.expand();
+		window.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+		window.scrollTo(0, 100);
+		Telegram.WebApp.ready();
 
-		
-		const overflow = 100
-document.body.style.overflowY = 'hidden'
-document.body.style.marginTop = `${overflow}px`
-document.body.style.height = window.innerHeight + overflow + "px"
-document.body.style.paddingBottom = `${overflow}px`
-window.scrollTo(0, overflow)
+		const overflow = 100;
+		document.body.style.overflowY = 'hidden';
+		document.body.style.marginTop = `${overflow}px`;
+		document.body.style.height = window.innerHeight + overflow + 'px';
+		document.body.style.paddingBottom = `${overflow}px`;
+		window.scrollTo(0, overflow);
 
-Telegram.WebApp.MainButton
-        .setText('INVITE')
-        .show()
-        .onClick(function(){ webviewClose(); });
+		const mainButton = Telegram.WebApp.MainButton;
 
+		function toggleMainButtonVisibility(show) {
+			if (show) {
+				mainButton.setText('INVITE');
+				mainButton.show();
+				mainButton.onClick(function () {
+					// ваше действие при нажатии на кнопку
+					webviewClose();
+				});
+			} else {
+				mainButton.hide();
+			}
+		}
+
+		function handlePopupInviteVisibility(isOpen) {
+			if (isOpen) {
+				toggleMainButtonVisibility(true); // Показать кнопку при открытии попапа
+			} else {
+				toggleMainButtonVisibility(false); // Скрыть кнопку при закрытии попапа
+			}
+		}
+
+		// Этот код должен находиться в вашем компоненте хедера
+		// Здесь нужно настроить обработчики событий для открытия/закрытия попапа
+		let popupInviteIsOpen = false; // Используйте это состояние в вашем компоненте
+
+		function openPopupInvite() {
+			// Логика открытия попапа
+			popupInviteIsOpen = true;
+			handlePopupInviteVisibility(popupInviteIsOpen);
+		}
+
+		function closePopupInvite() {
+			// Логика закрытия попапа
+			popupInviteIsOpen = false;
+			handlePopupInviteVisibility(popupInviteIsOpen);
+		}
 	</script>
 </html>
