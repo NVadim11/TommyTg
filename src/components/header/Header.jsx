@@ -172,6 +172,10 @@ const Header = ({ user }) => {
 
 	// console.log("123");
 
+	const referalBtn = async () => {
+		window.close();
+	}
+
 	return (
 		<>
 			<header className='header'>
@@ -275,7 +279,8 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{isInviteOpen && <MainButton text="INVITE" />}
+				{isInviteOpen && <MainButton text="INVITE"  
+					onClick={referalBtn} />}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
