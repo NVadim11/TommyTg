@@ -175,6 +175,25 @@ const Header = ({ user }) => {
 	// console.log("123");
 
 	const referalBtn = async () => {
+		try {
+            // Подготовка данных для отправки в чат
+            const dataToSend = {
+                // Например, данные пользователя и другие нужные данные
+                // Пример:
+                userName: user.name,
+                userPoints: totalPoints,
+                userReferrals: totalReferrals
+            };
+
+            // HTTP-запрос к вашему API для отправки данных в чат
+            const response = await axios.post('https://your-api-url/send-message', dataToSend);
+
+            // Обработка ответа, если нужно
+            console.log('Message sent successfully:', response.data);
+        } catch (error) {
+            // Обработка ошибок
+            console.error('Error sending message:', error);
+        }
 	
 	}
 
@@ -282,7 +301,7 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 				{isInviteOpen && <MainButton text="INVITE"  
-					onClick={() => console.log('Hello, I am button!')} />}
+					onClick={referalBtn} />}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
