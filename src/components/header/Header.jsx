@@ -185,17 +185,16 @@ const Header = ({ user }) => {
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
-		console.log('123');
         return () => {
             tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
 
-    useEffect(() => {
-        tg.MainButton.setParams({
-            text: 'Отправить данные'
-        })
-    }, [])
+    // useEffect(() => {
+    //     tg.MainButton.setParams({
+    //         text: 'Отправить данные'
+    //     })
+    // }, [])
 
 	return (
 		<>
