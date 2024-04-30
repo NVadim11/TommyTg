@@ -168,10 +168,7 @@ const Header = ({ user }) => {
 	//   }
 	// };
 
-	const handleButtonClick = () => {
-		window.location.href = 'https://t.me/copy_test_tom_bot';
-		window.close(); // If you need to close the current window
-	  }
+	// console.log("123");
 
 	return (
 		<>
@@ -421,15 +418,6 @@ const Header = ({ user }) => {
 											<div className='popupInvite__list-itemDescr'>
 												<h5>Get rewards</h5>
 												<p>Receive 10% of your friends’ staking</p>
-											</div>
-										</li>
-										<li className='popupInvite__list-item'>
-											<div className='popupInvite__list-itemDescr'>
-												<div className="header__inviteBtn">
-													<button onClick={handleButtonClick}>
-														Invite
-													</button>
-												</div>
 											</div>
 										</li>
 									</ul>
