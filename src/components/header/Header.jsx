@@ -168,6 +168,11 @@ const Header = ({ user }) => {
 	//   }
 	// };
 
+	const handleButtonClick = () => {
+		window.location.href = 'https://t.me/@copy_test_tom_bot';
+		window.close(); // If you need to close the current window
+	  }
+
 	return (
 		<>
 			<header className='header'>
@@ -421,7 +426,7 @@ const Header = ({ user }) => {
 										<li className='popupInvite__list-item'>
 											<div className='popupInvite__list-itemDescr'>
 												<div className="header__inviteBtn">
-													<button>
+													<button onClick={handleButtonClick}>
 														Invite
 													</button>
 												</div>
