@@ -51,26 +51,26 @@
 		document.body.style.paddingBottom = `${overflow}px`;
 		window.scrollTo(0, overflow);
 		
-		button.addEventListener('click', function(){ //Используем addEventListener, чтобы слушать клик по кнопке 
-      if (tg.MainButton.isVisible){ //проверяем, видима ли кнопка, при помощи isVisible, который предоставляет нам API TG
-         tg.MainButton.hide() //прячем кнопку
-      }
-      else{ 
-        tg.MainButton.show() //если булевое значение isVisible === false, то показываем кнопку, используя show() 
-      }
-   });
+// 		button.addEventListener('click', function(){ //Используем addEventListener, чтобы слушать клик по кнопке 
+//       if (tg.MainButton.isVisible){ //проверяем, видима ли кнопка, при помощи isVisible, который предоставляет нам API TG
+//          tg.MainButton.hide() //прячем кнопку
+//       }
+//       else{ 
+//         tg.MainButton.show() //если булевое значение isVisible === false, то показываем кнопку, используя show() 
+//       }
+//    });
 
-   let btnEdit = document.getElementById("btnEdit"); //Используем getElementById, чтобы получить кнопку и активировать/деактивировать
-   btnEdit.addEventListener('click', function(){ //Слушаем при помощи addEventListener клик на кнопку
-      if (tg.MainButton.isActive){ //Если наша кнопка активна 
-         tg.MainButton.setParams({"color": "#ffffff"}); //Заменяем цвет на белый
-       tg.MainButton.disable() //Скрываем кнопку 
-      }
-      else{ //В противном случае
-         tg.MainButton.setParams({"color": "#0000ff"}); //Заменяем цвет на синий
-         tg.MainButton.enable() //Отображаем в веб-боте TelegramWebApp
-      }
-   });
+//    let btnEdit = document.getElementById("btnEdit"); //Используем getElementById, чтобы получить кнопку и активировать/деактивировать
+//    btnEdit.addEventListener('click', function(){ //Слушаем при помощи addEventListener клик на кнопку
+//       if (tg.MainButton.isActive){ //Если наша кнопка активна 
+//          tg.MainButton.setParams({"color": "#ffffff"}); //Заменяем цвет на белый
+//        tg.MainButton.disable() //Скрываем кнопку 
+//       }
+//       else{ //В противном случае
+//          tg.MainButton.setParams({"color": "#0000ff"}); //Заменяем цвет на синий
+//          tg.MainButton.enable() //Отображаем в веб-боте TelegramWebApp
+//       }
+//    });
 	
 		const refStatus = 'clicked';
 
