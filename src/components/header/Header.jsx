@@ -169,7 +169,7 @@ const Header = ({ user }) => {
 	// };
 
 	const handleButtonClick = () => {
-		window.location.href = 'https://t.me/@copy_test_tom_bot';
+		window.location.href = 'https://t.me/copy_test_tom_bot';
 		window.close(); // If you need to close the current window
 	  }
 
