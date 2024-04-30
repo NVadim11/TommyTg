@@ -49,5 +49,10 @@
 		document.body.style.height = window.innerHeight + overflow + 'px';
 		document.body.style.paddingBottom = `${overflow}px`;
 		window.scrollTo(0, overflow);
+
+		Telegram.WebApp.onEvent('mainButtonClicked', function(){
+      	console.log("123")
+      //при клике на основную кнопку отправляем данные в строковом виде
+   });
 	</script>
 </html>

@@ -174,27 +174,27 @@ const Header = ({ user }) => {
 
 	// console.log("123");
 
-	const refStatus = "clicked";
+	// const refStatus = "clicked";
 
-	const onSendData = useCallback(() => {
-        const data = {
-            refStatus,
-        }
-        tg.sendData(JSON.stringify(data));
-    }, [refStatus])
+	// const onSendData = useCallback(() => {
+    //     const data = {
+    //         refStatus,
+    //     }
+    //     tg.sendData(JSON.stringify(data));
+    // }, [refStatus])
 
-    useEffect(() => {
-        tg.onEvent('mainButtonClicked', onSendData)
-        return () => {
-            tg.offEvent('mainButtonClicked', onSendData)
-        }
-    }, [onSendData])
+    // useEffect(() => {
+    //     tg.onEvent('mainButtonClicked', onSendData)
+    //     return () => {
+    //         tg.offEvent('mainButtonClicked', onSendData)
+    //     }
+    // }, [onSendData])
 
-    useEffect(() => {
-        tg.MainButton.setParams({
-            text: 'Отправить данные'
-        })
-    }, [])
+    // useEffect(() => {
+    //     tg.MainButton.setParams({
+    //         text: 'Отправить данные'
+    //     })
+    // }, [])
 
 	return (
 		<>
