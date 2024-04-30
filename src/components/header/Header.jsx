@@ -34,6 +34,8 @@ const Header = ({ user }) => {
 	const { clickCount } = useClickCount();
 	const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
 
+	const tg = window.Telegram.WebApp;
+
 	useEffect(() => {
 		const observer = new MutationObserver((mutationsList) => {
 			mutationsList.forEach((mutation) => {
@@ -173,7 +175,7 @@ const Header = ({ user }) => {
 	// console.log("123");
 
 	const referalBtn = async () => {
-		window.close();
+	
 	}
 
 	return (
@@ -280,7 +282,7 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 				{isInviteOpen && <MainButton text="INVITE"  
-					onClick={referalBtn} />}
+					onClick={() => console.log('Hello, I am button!')} />}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
