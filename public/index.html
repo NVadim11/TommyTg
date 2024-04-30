@@ -37,8 +37,8 @@
 	</body>
 	<script>
 		let tg = window.Telegram.WebApp;
-		tg.MainButton.text = "ХУЙ";
-		tg.MainButton.setText("не хуй");
+		// tg.MainButton.text = "ХУЙ";
+		// tg.MainButton.setText("не хуй");
 		Telegram.WebApp.expand();
 		window.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
 		window.scrollTo(0, 100);
@@ -50,8 +50,31 @@
 		document.body.style.height = window.innerHeight + overflow + 'px';
 		document.body.style.paddingBottom = `${overflow}px`;
 		window.scrollTo(0, overflow);
+
+		Telegram.WebApp.MainButton
+        .setText('[hyi]')
+        .show()
+        // .onClick(function(){ webviewClose(); 
+		// });
 		
-// 		button.addEventListener('click', function(){ //Используем addEventListener, чтобы слушать клик по кнопке 
+// 
+	
+		const refStatus = 'clicked';
+
+		const onSendData = () => {
+				const data = {
+					refStatus,
+				};
+				Telegram.WebApp.MainButton.sendData(JSON.stringify(data));
+			};
+
+			Telegram.WebApp.MainButton.MainButton.setParams({
+				text: 'Отправить данные',
+			});
+
+		Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
+
+		// button.addEventListener('click', function(){ //Используем addEventListener, чтобы слушать клик по кнопке 
 //       if (tg.MainButton.isVisible){ //проверяем, видима ли кнопка, при помощи isVisible, который предоставляет нам API TG
 //          tg.MainButton.hide() //прячем кнопку
 //       }
@@ -71,20 +94,5 @@
 //          tg.MainButton.enable() //Отображаем в веб-боте TelegramWebApp
 //       }
 //    });
-	
-		const refStatus = 'clicked';
-
-		const onSendData = () => {
-				const data = {
-					refStatus,
-				};
-				tg.sendData(JSON.stringify(data));
-			};
-
-			tg.MainButton.setParams({
-				text: 'Отправить данные',
-			});
-
-		Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
 	</script>
 </html>
