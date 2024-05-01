@@ -469,7 +469,7 @@ const Main = ({ user }) => {
 						{gamePaused ? (
 							<div className='gameContentBox__box'>
 								{timeRemaining ? (
-									<h4
+									<p
 										style={{
 											fontSize: '22px',
 											textAlign: 'center',
@@ -477,7 +477,7 @@ const Main = ({ user }) => {
 										}}
 									>
 										Time remaining: {formatTime(timeRemaining)} minutes
-									</h4>
+									</p>
 								) : (
 									<></>
 								)}
