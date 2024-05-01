@@ -175,30 +175,29 @@ const Header = ({ user }) => {
 	// console.log("123");
 
 	// const onSendData = useCallback(() => {
-      
-    //     tg.sendData(JSON.stringify(data));
+
+	//     tg.sendData(JSON.stringify(data));
 	// 	tg.close();
-    // }, [refStatus])
+	// }, [refStatus])
 
-    // useEffect(() => {
-    //     tg.onEvent('mainButtonClicked', onSendData)
+	// useEffect(() => {
+	//     tg.onEvent('mainButtonClicked', onSendData)
 	// 	tg.showAlert("send on Event");
-    //     return () => {
-    //         tg.offEvent('mainButtonClicked', onSendData)
-    //     }
-    // }, [onSendData])
-	
+	//     return () => {
+	//         tg.offEvent('mainButtonClicked', onSendData)
+	//     }
+	// }, [onSendData])
 
-    // useEffect(() => {
-    //     tg.MainButton.setParams({
-    //         text: 'Отправить данные'
-    //     })
-    // }, [])
+	// useEffect(() => {
+	//     tg.MainButton.setParams({
+	//         text: 'Отправить данные'
+	//     })
+	// }, [])
 
-	const refStatus = "clicked";
+	const refStatus = 'clicked';
 	const data = {
 		refStatus,
-	}
+	};
 
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
@@ -217,22 +216,20 @@ const Header = ({ user }) => {
 	}, []);
 
 	const handleSubmit = async () => {
-		
-		
 		await tg.sendData(JSON.stringify(data));
-		tg.showAlert("send on Event");
+		tg.showAlert('send on Event');
 		tg.close();
-	  }
+	};
 
 	const handleTouchStart = async () => {
-		tg.showAlert("end");
-	}
+		tg.showAlert('end');
+	};
 
 	const handleTouchEnd = async () => {
 		await tg.sendData(JSON.stringify(data));
-		tg.showAlert("end");
+		tg.showAlert('end');
 		tg.close();
-	}
+	};
 
 	return (
 		<>
@@ -337,9 +334,14 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{isInviteOpen && <MainButton text="INVITE"  onClick={isDesktop() ? handleSubmit : null}
-				onMouseDown={handleTouchStart} onTouchEnd={handleTouchEnd}
-					/>}
+				{isInviteOpen && (
+					<MainButton
+						text='INVITE'
+						onClick={isDesktop() ? handleSubmit : null}
+						onMouseDown={isDesktop() ? handleTouchStart : null}
+						onMouseUp={isDesktop() ? handleTouchEnd : null}
+					/>
+				)}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
