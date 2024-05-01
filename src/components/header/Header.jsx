@@ -302,7 +302,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{/* {isInviteOpen && <MainButton text='INVITE' onClick={handleSubmit} />} */}
+				{isInviteOpen && <MainButton text='INVITE' onClick={handleSubmit} />}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
@@ -450,9 +450,9 @@ const Header = ({ user }) => {
 												<p>Receive 10% of your friends’ staking</p>
 											</div>
 										</li>
-										<li className='popupInvite__list-item'>
+										{/* <li className='popupInvite__list-item'>
 											<button onClick={handleSubmit} >CLICK ME</button>
-										</li>
+										</li> */}
 									</ul>
 								</div>
 								{/* <div className='popupInvite__gridItem'>
