@@ -7,7 +7,7 @@ import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
-import { MainButton } from '@vkruglikov/react-telegram-web-app';
+// import { MainButton } from '@vkruglikov/react-telegram-web-app';
 
 import './Header.scss';
 // import { GameInfoContext } from "../../helpers/context";
@@ -193,16 +193,20 @@ const Header = ({ user }) => {
 	//         text: 'Отправить данные'
 	//     })
 	// }, [])
-	const refStatus = 'clicked';
-	const data = {
-		refStatus,
-	};
 
-	const handleSubmit = async () => {
-		await tg.sendData(JSON.stringify(data));
-		tg.showAlert('send on Event');
-		tg.close();
-	};
+
+
+
+	// const refStatus = 'clicked';
+	// const data = {
+	// 	refStatus,
+	// };
+
+	// const handleSubmit = async () => {
+	// 	await tg.sendData(JSON.stringify(data));
+	// 	tg.showAlert('send on Event');
+	// 	tg.close();
+	// };
 
 	return (
 		<>
@@ -302,7 +306,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{isInviteOpen && <MainButton text='INVITE' onClick={handleSubmit} />}
+				{/* {isInviteOpen && <MainButton text='INVITE' onClick={handleSubmit} />} */}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
