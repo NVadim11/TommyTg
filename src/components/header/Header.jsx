@@ -7,7 +7,7 @@ import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
-import { MainButton} from '@vkruglikov/react-telegram-web-app';
+import { MainButton } from '@vkruglikov/react-telegram-web-app';
 
 import './Header.scss';
 // import { GameInfoContext } from "../../helpers/context";
@@ -225,11 +225,11 @@ const Header = ({ user }) => {
 	  }
 
 	const handleTouchStart = async () => {
-		await tg.sendData(JSON.stringify(data));
-		tg.showAlert("start");
+		tg.showAlert("end");
 	}
 
 	const handleTouchEnd = async () => {
+		await tg.sendData(JSON.stringify(data));
 		tg.showAlert("end");
 		tg.close();
 	}
@@ -338,7 +338,7 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 				{isInviteOpen && <MainButton text="INVITE"  onClick={isDesktop() ? handleSubmit : null}
-				onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}
+				onMouseDown={handleTouchStart} onTouchEnd={handleTouchEnd}
 					/>}
 			</header>
 			{isLeaderboardOpen && (
