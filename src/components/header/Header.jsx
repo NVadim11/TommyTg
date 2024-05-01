@@ -193,27 +193,10 @@ const Header = ({ user }) => {
 	//         text: 'Отправить данные'
 	//     })
 	// }, [])
-
 	const refStatus = 'clicked';
 	const data = {
 		refStatus,
 	};
-
-	const isDesktop = () => {
-		const userAgent = window.navigator.userAgent;
-		const isMobile =
-			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-		return !isMobile;
-	};
-
-	useEffect(() => {
-		if (!isDesktop()) {
-			const element = document.getElementById('clickableElement');
-			if (element) {
-				element.style.pointerEvents = 'none';
-			}
-		}
-	}, []);
 
 	const handleSubmit = async () => {
 		await tg.sendData(JSON.stringify(data));
@@ -221,25 +204,10 @@ const Header = ({ user }) => {
 		tg.close();
 	};
 
-	const handleTouchStart = async () => {
-		tg.showAlert('end');
-	};
-
-	const handleTouchEnd = async () => {
-		await tg.sendData(JSON.stringify(data));
-		tg.showAlert('end');
-		tg.close();
-	};
-
 	return (
 		<>
 			<header className='header'>
 				<div className='header__container'>
-					{/* <div className="header__logo">
-            <a href="#">
-              <img src={logo} alt={logo} />
-            </a>
-          </div> */}
 					<div className='header__mobileBtns'>
 						{user && totalPoints !== null && (
 							<div id='header__totalScore' className='header__totalScore'>
@@ -334,14 +302,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{isInviteOpen && (
-					<MainButton
-						text='INVITE'
-						onClick={isDesktop() ? handleSubmit : null}
-						onMouseDown={isDesktop() ? handleTouchStart : null}
-						onMouseUp={isDesktop() ? handleTouchEnd : null}
-					/>
-				)}
+				{isInviteOpen && <MainButton text='INVITE' onClick={handleSubmit} />}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
