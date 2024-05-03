@@ -1,13 +1,11 @@
 import axios from 'axios';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import envelope from '../../img/envelope.svg';
+import React, { useEffect, useRef, useState } from 'react';
 import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import link from '../../img/link.svg';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import { useClickCount } from '../clickContext';
-// import { MainButton } from '@vkruglikov/react-telegram-web-app';
 
 import './Header.scss';
 // import { GameInfoContext } from "../../helpers/context";
@@ -138,75 +136,29 @@ const Header = ({ user }) => {
 		if (htmlTag) htmlTag.classList.remove('popupLeaderboard-show');
 	};
 
-	// const [code, setCode] = useState("");
-	// const [generateCode] = useGenerateCodeMutation();
+	const inviteLink = async () => {
+		try {
+			const response = await fetch('https://api.example.com/post', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ status: 'clicked' }),
+			});
 
-	// useEffect(() => {
-	//   if (value && value.referral_code) {
-	//     setCode(value.referral_code);
-	//   }
-	// }, [value]);
-
-	// const copyLink = async () => {
-	//   if ("clipboard" in navigator) {
-	//     return await navigator.clipboard.writeText(
-	//       `${window.location.href}${code}`
-	//     );
-	//   } else {
-	//     return document.execCommand(
-	//       "copy",
-	//       true,
-	//       `${window.location.href}${code}`
-	//     );
-	//   }
-	// };
-
-	// const generateCodeCallback = async () => {
-	//   try {
-	//     if (value.wallet_address) {
-	//       const res = await generateCode(value.wallet_address).unwrap();
-	//       res && res.code && setCode(res.code);
-	//     }
-	//   } catch (e) {
-	//     console.log(e);
-	//   }
-	// };
-
-	// console.log("123");
-
-	// const onSendData = useCallback(() => {
-
-	//     tg.sendData(JSON.stringify(data));
-	// 	tg.close();
-	// }, [refStatus])
-
-	// useEffect(() => {
-	//     tg.onEvent('mainButtonClicked', onSendData)
-	// 	tg.showAlert("send on Event");
-	//     return () => {
-	//         tg.offEvent('mainButtonClicked', onSendData)
-	//     }
-	// }, [onSendData])
-
-	// useEffect(() => {
-	//     tg.MainButton.setParams({
-	//         text: 'Отправить данные'
-	//     })
-	// }, [])
-
-
-
-
-	// const refStatus = 'clicked';
-	// const data = {
-	// 	refStatus,
-	// };
-
-	// const handleSubmit = async () => {
-	// 	await tg.sendData(JSON.stringify(data));
-	// 	tg.showAlert('send on Event');
-	// 	tg.close();
-	// };
+			if (response.ok) {
+				// Request was successful
+				const data = await response.json();
+				console.log('Post request successful:', data);
+			} else {
+				// Request failed
+				const errorData = await response.json();
+				console.error('Post request failed:', errorData);
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	};
 
 	return (
 		<>
@@ -306,7 +258,7 @@ const Header = ({ user }) => {
 						</div>
 					</div>
 				</div>
-				{/* {isInviteOpen && <MainButton text='INVITE' onClick={handleSubmit} />} */}
+				{isInviteOpen}
 			</header>
 			{isLeaderboardOpen && (
 				<div id='leaderboard' aria-hidden='true' className={popupClasses}>
@@ -433,13 +385,6 @@ const Header = ({ user }) => {
 							<div className='popupInvite__grid'>
 								<div className='popupInvite__gridItem'>
 									<ul className='popupInvite__list'>
-										{/* <li className='popupInvite__list-item'>
-											<img src={envelope} alt='' className='popupInvite__icon' />
-											<div className='popupInvite__list-itemDescr'>
-												<h5>Sign up</h5>
-												<p>Get your referral link and code</p>
-											</div>
-										</li> */}
 										<li className='popupInvite__list-item'>
 											<img src={link} alt='' className='popupInvite__icon' />
 											<div className='popupInvite__list-itemDescr'>
@@ -454,40 +399,11 @@ const Header = ({ user }) => {
 												<p>Receive 10% of your friends’ staking</p>
 											</div>
 										</li>
-										{/* <li className='popupInvite__list-item'>
-											<button onClick={handleSubmit} >CLICK ME</button>
-										</li> */}
 									</ul>
 								</div>
-								{/* <div className='popupInvite__gridItem'>
-									<div className='popupInvite__item-box'>
-										<div className='popupInvite__item-group'>
-											<p>Your link</p>
-											<p className='popupInvite__input'>
-												{code.length
-													? `${window.location.href.slice(
-															8,
-															window.location.href.length
-													  )}${code}`
-													: 'link'}
-												<button
-													onClick={() => copyLink()}
-													className='popupInvite__input-btn'
-												>
-													<img src={copy} alt='' />
-												</button>
-											</p>
-										</div>
-										<div className='popupInvite__item-group'>
-											<button
-												className='popupInvite__submit'
-												onClick={generateCodeCallback}
-											>
-												Generate
-											</button>
-										</div>
-									</div>
-								</div> */}
+							</div>
+							<div className='inviteLinkBtn'>
+								<button onClick={inviteLink}>INVITE</button>
 							</div>
 						</div>
 					</div>
