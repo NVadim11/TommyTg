@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/TommyTg/static/css/main.173d3a2c.css",
-    "main.js": "/TommyTg/static/js/main.e3011d99.js",
+    "main.css": "/TommyTg/static/css/main.92695dc4.css",
+    "main.js": "/TommyTg/static/js/main.05e0714b.js",
     "static/media/4_idle.gif": "/TommyTg/static/media/4_idle.d57cafa374e8e04cc571.gif",
     "static/media/3_idle.gif": "/TommyTg/static/media/3_idle.d35910e50d9e759498f8.gif",
     "static/media/2_idle.gif": "/TommyTg/static/media/2_idle.9b60e5af8504711cc6df.gif",
@@ -41,17 +41,16 @@
     "static/media/people-icon.svg": "/TommyTg/static/media/people-icon.f416f02a404341fe3e57ff92a082672b.svg",
     "static/media/money.svg": "/TommyTg/static/media/money.d5b8a3fc9f5b07bf9e7e0cf7d1e2328c.svg",
     "static/media/tasks_icon.svg": "/TommyTg/static/media/tasks_icon.18f97b46c808d514576c5de1d12bb42c.svg",
-    "static/media/envelope.svg": "/TommyTg/static/media/envelope.e6bc6e6b0cbba02b5eea71f68d42afc3.svg",
     "static/media/shop_icon.svg": "/TommyTg/static/media/shop_icon.ddfdbb8ab189adbd7bf887e3330dcf09.svg",
     "static/media/link.svg": "/TommyTg/static/media/link.f84ebeff315b24a5bb7fabfd3c486103.svg",
     "static/media/leaderboard_icon.svg": "/TommyTg/static/media/leaderboard_icon.23a4fe86c97990cb9c49266ad5f2c87e.svg",
     "index.html": "/TommyTg/index.html",
     "static/media/pet_icon.svg": "/TommyTg/static/media/pet_icon.92314a4af098bd4cf6d3b9e2266d27c0.svg",
-    "main.173d3a2c.css.map": "/TommyTg/static/css/main.173d3a2c.css.map",
-    "main.e3011d99.js.map": "/TommyTg/static/js/main.e3011d99.js.map"
+    "main.92695dc4.css.map": "/TommyTg/static/css/main.92695dc4.css.map",
+    "main.05e0714b.js.map": "/TommyTg/static/js/main.05e0714b.js.map"
   },
   "entrypoints": [
-    "static/css/main.173d3a2c.css",
-    "static/js/main.e3011d99.js"
+    "static/css/main.92695dc4.css",
+    "static/js/main.05e0714b.js"
   ]
 }
