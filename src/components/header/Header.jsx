@@ -138,14 +138,20 @@ const Header = ({ user }) => {
 
 	const inviteLink = async () => {
 		try {
-			const response = await fetch('https://api.example.com/post', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ status: 'clicked' }),
-			});
-
+			const response = await fetch(
+				'https://api.telegram.org/bot6396746497:AAEPBTUxHgKLSQ6ZPp34CLw1gT9X0jy9Q5o/sendMessage',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						chat_id: user.id_telegram,
+						text: 'In order to get Your referral link, use this command /referral',
+						disable_notification: true,
+					}),
+				}
+			);
 			if (response.ok) {
 				// Request was successful
 				const data = await response.json();
