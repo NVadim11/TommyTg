@@ -33,6 +33,9 @@ const Header = ({ user }) => {
 	const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
 
 	const tg = window.Telegram.WebApp;
+	const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
+
+	console.log(BOT_TOKEN);
 
 	useEffect(() => {
 		const observer = new MutationObserver((mutationsList) => {
@@ -139,14 +142,14 @@ const Header = ({ user }) => {
 	const inviteLink = async () => {
 		try {
 			const response = await fetch(
-				'https://api.telegram.org/bot6396746497:AAEPBTUxHgKLSQ6ZPp34CLw1gT9X0jy9Q5o/sendMessage',
+				`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
 				{
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
-						chat_id: user.id_telegram,
+						chat_id: 321967834, // user?.id_telegram
 						text: 'In order to get Your referral link, use this command /referral',
 						disable_notification: true,
 					}),
@@ -154,12 +157,7 @@ const Header = ({ user }) => {
 			);
 			if (response.ok) {
 				// Request was successful
-				const data = await response.json();
-				console.log('Post request successful:', data);
-			} else {
-				// Request failed
-				const errorData = await response.json();
-				console.error('Post request failed:', errorData);
+				tg.close();
 			}
 		} catch (error) {
 			console.error('Error:', error);
