@@ -373,14 +373,15 @@ const Header = ({ user }) => {
 											<h3>10</h3>
 										</div>
 									</div>
-
-									<div className='popupInvite__headerDescr'>
-										<h6>Referred Friends:</h6>
-										<div className='popupInvite__headerItem'>
-											<img src={people} alt='people' />
-											<h3>6</h3>
+									{totalReferrals >= 1 && (
+										<div className='popupInvite__headerDescr'>
+											<h6>Referred Friends:</h6>
+											<div className='popupInvite__headerItem'>
+												<img src={people} alt='people' />
+												<h3>{totalReferrals}</h3>
+											</div>
 										</div>
-									</div>
+									)}
 								</div>
 							</div>
 							<div className='popupInvite__grid'>
