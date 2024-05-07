@@ -1,4 +1,3 @@
-import { WebAppProvider } from '@vkruglikov/react-telegram-web-app';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../src/dotenvConfig';
@@ -11,9 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<GameInfoProvider>
-			<WebAppProvider>
-				<App />
-			</WebAppProvider>
+			<App />
 		</GameInfoProvider>
 	</React.StrictMode>
 );

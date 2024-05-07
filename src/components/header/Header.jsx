@@ -35,8 +35,6 @@ const Header = ({ user }) => {
 	const tg = window.Telegram.WebApp;
 	const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
 
-	console.log(BOT_TOKEN);
-
 	useEffect(() => {
 		const observer = new MutationObserver((mutationsList) => {
 			mutationsList.forEach((mutation) => {
@@ -149,7 +147,7 @@ const Header = ({ user }) => {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
-						chat_id: 321967834, // user?.id_telegram
+						chat_id: user?.id_telegram,
 						text: 'In order to get Your referral link, use this command /referral',
 						disable_notification: true,
 					}),

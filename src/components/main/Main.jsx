@@ -2,6 +2,7 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import { debounce } from 'lodash';
+import moment from 'moment-timezone';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import sadIdle from '../../img/1_idle.gif';
@@ -142,7 +143,8 @@ const Main = ({ user }) => {
 	useEffect(() => {
 		if (user) {
 			const updateGameStatus = () => {
-				const currentTimeStamp = Math.floor(Date.now() / 1000);
+				// Get the current time in Frankfurt time zone ('Etc/GMT-3')
+				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
 				const remainingTime = user?.active_at - currentTimeStamp;
 				if (remainingTime >= 0) {
 					if (remainingTime <= 0) {
