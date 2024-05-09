@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import catCoinMove from '../../img/cat_coin_move.png';
 import checkbox from '../../img/checkbox.png';
 import pet from '../../img/pet_icon.svg';
@@ -21,6 +21,8 @@ const Footer = ({ user }) => {
 	const [setWallet] = useSetWalletMutation();
 	const [changeWallet] = useChangeWalletMutation();
 	const [walletVaL, setWalletVal] = useState('');
+	const [walletInputDisabled, setWalletInputDisabled] = useState(false);
+	const [resetBtnDisabled, setResetBtnDisabled] = useState(false);
 
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
@@ -37,8 +39,14 @@ const Footer = ({ user }) => {
 		timeZone: 'Etc/GMT-3',
 	};
 
-	const testClick = () => {
-		console.log(123123);
+	useEffect(() => {
+		if (user?.update_wallet_at <= 0) {
+			setResetBtnDisabled(false);
+		}
+	}, [user?.update_wallet_at]);
+
+	const resetWalletEnabler = () => {
+		setWalletInputDisabled(false);
 	};
 
 	const tasksBtn = () => {
@@ -130,7 +138,7 @@ const Footer = ({ user }) => {
 				const res = await setWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
-					id_telegram: user?.id_telegram,
+					id_telegram: 321967834, // user?.id_telegram,
 				}).unwrap();
 			} catch (e) {
 				tg.showAlert(JSON.stringify(e));
@@ -146,7 +154,7 @@ const Footer = ({ user }) => {
 				const res = await changeWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
-					id_telegram: user?.id_telegram,
+					user_id: 30855, // user?.user_id
 				}).unwrap();
 			} catch (e) {
 				tg.showAlert(JSON.stringify(e));
@@ -344,12 +352,12 @@ const Footer = ({ user }) => {
 											}}
 											value={user?.wallet_address || walletVaL}
 											onChange={(e) => setWalletVal(e.target.value)}
-											disabled={user?.wallet_address}
+											disabled={walletInputDisabled === true}
 										/>
 										{!user?.wallet_address && (
 											<button
 												class='popupTasks__walletTask-inputBtn'
-												onClick={submitWallet}
+												onClick={!user?.wallet_address ? submitWallet() : resetWallet()}
 											>
 												<svg
 													width='15'
@@ -365,11 +373,10 @@ const Footer = ({ user }) => {
 												</svg>
 											</button>
 										)}
-										
 									</div>
 									<div className='popupTasks__walletTask-left'>
-											{!user?.wallet_address ? <p>+20000</p> : <img src={checkbox} />}
-										</div>
+										{!user?.wallet_address ? <p>+20000</p> : <img src={checkbox} />}
+									</div>
 									<div className='popupTasks__walletTask-box'>
 										<div className='popupTasks__walletTask-right'>
 											<div className='popupTasks__walletTask-rightHint'>
@@ -378,7 +385,10 @@ const Footer = ({ user }) => {
 												</span>
 											</div>
 											<div className='popupTasks__walletTask-rightBtn'>
-												<button onClick={testClick}>
+												<button
+													onClick={resetWalletEnabler}
+													disabled={resetBtnDisabled === true}
+												>
 													<svg
 														width='15'
 														height='12'

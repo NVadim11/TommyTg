@@ -291,7 +291,7 @@ body::after {
       align-items: center;
       justify-content: center;
       height: 48px;
-      padding: 10px;
+      padding: 8px 10px 10px 10px;
       padding-bottom: 8px;
       font-weight: 600;
       font-size: 14px;
@@ -434,6 +434,9 @@ body::after {
       svg {
         margin-right: 5px;
       }
+    }
+    button:disabled {
+      background-color: #691ee2;
     }
   }
   &__walletTask-right {
