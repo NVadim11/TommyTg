@@ -14,5 +14,3 @@ root.render(
 		</GameInfoProvider>
 	</React.StrictMode>
 );
-
-// test
