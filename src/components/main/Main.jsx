@@ -21,7 +21,7 @@ import goldForm from '../../img/gold.gif';
 import smile from '../../img/smile.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
-import { useClickCount } from '../clickContext';
+// import { useClickCount } from '../clickContext';
 // import { GameInfoContext } from "../../helpers/context";
 import './Main.scss';
 
@@ -182,11 +182,11 @@ const Main = ({ user }) => {
 	let catIdleImage = catIdle;
 	let catSpeakImage = catSpeak;
 
-	const { incrementClickCount } = useClickCount();
+	// const { incrementClickCount } = useClickCount();
 
-	const handleCoinClick = () => {
-		incrementClickCount();
-	};
+	// const handleCoinClick = () => {
+	// 	incrementClickCount();
+	// };
 
 	const boostClickedHandler = () => {
 		handleBoostClick();
@@ -376,7 +376,7 @@ const Main = ({ user }) => {
 		setCurrentImage(false);
 		setCoinState(true);
 		handleShowAnimation(event);
-		handleCoinClick();
+		// handleCoinClick();
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 		clearTimeout(timeoutRef.current);
 		clearTimeout(coinRef.current);
@@ -409,7 +409,7 @@ const Main = ({ user }) => {
 		setCurrentImage(false);
 		setCoinState(true);
 		handleShowAnimation(event);
-		handleCoinClick();
+		// handleCoinClick();
 		clearTimeout(timeoutRef.current);
 		clearTimeout(coinRef.current);
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
