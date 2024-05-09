@@ -14,26 +14,6 @@ export const phpApi = createApi({
       }),
       providesTags: ["Php"],
     }),
-    // getUserByTgIdInit: builder.mutation({
-    //   query: (id) => ({
-    //     url: `/telegram-id/${id}`,
-    //     method: "GET",
-    //   }),
-    //   providesTags: ["Php"],
-    // }),
-    // checkCode: builder.mutation({
-    //   query: (code) => ({
-    //     url: `/check-referral-code/${code}`,
-    //     method: "GET",
-    //   }),
-    //   invalidatesTags: "php",
-    // }),
-    // generateCode: builder.mutation({
-    //   query: (wallet) => ({
-    //     url: `/generate-referral-code/${wallet}`,
-    //     method: "GET",
-    //   }),
-    // }),
     getLeaderboard: builder.mutation({
       query: (id) => `/liderbord/${id}`,
       method: "GET",
@@ -61,17 +41,17 @@ export const phpApi = createApi({
       }),
       invalidatesTags: ["Php"],
     }),
-    // increaseBalance: builder.mutation({
-    //   query: (body) => ({
-    //     url: "/increase-balance",
-    //     method: "POST",
-    //     body,
-    //   }),
-    //   invalidatesTags: ["Php"],
-    // }),
     setWallet: builder.mutation({
       query: (body) => ({
         url: "/set-wallet-address",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Php"],
+    }),
+    changeWallet: builder.mutation({
+      query: (body) => ({
+        url: "/update-wallet-address ",
         method: "POST",
         body,
       }),
@@ -84,13 +64,10 @@ export const phpApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetUserByTgIdQuery,
-  // useGetUserByTgIdInitMutation,
-  // useCheckCodeMutation,
   useCreateUserMutation,
-  // useGenerateCodeMutation,
   useGetLeaderboardMutation,
   usePassTaskMutation,
   useUpdateBalanceMutation,
   useSetWalletMutation,
-  // useIncreaseBalanceMutation,
+  useChangeWalletMutation,
 } = phpApi;

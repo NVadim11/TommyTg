@@ -6,7 +6,7 @@ import pet from '../../img/pet_icon.svg';
 import shop from '../../img/shop_icon.svg';
 import tasks from '../../img/tasks_icon.svg';
 import {
-	// useIncreaseBalanceMutation,
+	useChangeWalletMutation,
 	usePassTaskMutation,
 	useSetWalletMutation,
 } from '../../services/phpService';
@@ -18,14 +18,28 @@ const Footer = ({ user }) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [tasksOpen, setTasksOpen] = useState(false);
 	const [passTask] = usePassTaskMutation();
-	// const [increaseBalance] = useIncreaseBalanceMutation();
 	const [setWallet] = useSetWalletMutation();
+	const [changeWallet] = useChangeWalletMutation();
 	const [walletVaL, setWalletVal] = useState('');
 
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
+
+	const options = {
+		day: '2-digit',
+		month: '2-digit',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: false,
+		timeZone: 'Etc/GMT-3',
+	};
+
+	const testClick = () => {
+		console.log(123123);
+	};
 
 	const tasksBtn = () => {
 		setTasksOpen(true);
@@ -50,15 +64,6 @@ const Footer = ({ user }) => {
 
 	const twitterClick = async () => {
 		const now = new Date();
-		const options = {
-			day: '2-digit',
-			month: '2-digit',
-			year: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false,
-			timeZone: 'Etc/GMT-3',
-		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			await passTask({
@@ -74,15 +79,6 @@ const Footer = ({ user }) => {
 
 	const tgClickChat = async () => {
 		const now = new Date();
-		const options = {
-			day: '2-digit',
-			month: '2-digit',
-			year: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false,
-			timeZone: 'Etc/GMT-3',
-		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			await passTask({
@@ -98,15 +94,6 @@ const Footer = ({ user }) => {
 
 	const tgClickChannel = async () => {
 		const now = new Date();
-		const options = {
-			day: '2-digit',
-			month: '2-digit',
-			year: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false,
-			timeZone: 'Etc/GMT-3',
-		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			await passTask({
@@ -122,15 +109,6 @@ const Footer = ({ user }) => {
 
 	const websiteClick = async () => {
 		const now = new Date();
-		const options = {
-			day: '2-digit',
-			month: '2-digit',
-			year: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false,
-			timeZone: 'Etc/GMT-3',
-		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			const res = await passTask({
@@ -147,18 +125,25 @@ const Footer = ({ user }) => {
 	const submitWallet = async () => {
 		if (walletVaL) {
 			const now = new Date();
-			const options = {
-				day: '2-digit',
-				month: '2-digit',
-				year: 'numeric',
-				hour: '2-digit',
-				minute: '2-digit',
-				hour12: false,
-				timeZone: 'Etc/GMT-3',
-			};
 			const dateStringWithTime = now.toLocaleString('en-GB', options);
 			try {
 				const res = await setWallet({
+					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
+					wallet_address: walletVaL,
+					id_telegram: user?.id_telegram,
+				}).unwrap();
+			} catch (e) {
+				tg.showAlert(JSON.stringify(e));
+			}
+		}
+	};
+
+	const resetWallet = async () => {
+		if (walletVaL) {
+			const now = new Date();
+			const dateStringWithTime = now.toLocaleString('en-GB', options);
+			try {
+				const res = await changeWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
 					id_telegram: user?.id_telegram,
@@ -362,7 +347,10 @@ const Footer = ({ user }) => {
 											disabled={user?.wallet_address}
 										/>
 										{!user?.wallet_address && (
-											<button class="popupTasks__walletTask-inputBtn" onClick={submitWallet}>
+											<button
+												class='popupTasks__walletTask-inputBtn'
+												onClick={submitWallet}
+											>
 												<svg
 													width='15'
 													height='13'
@@ -390,7 +378,7 @@ const Footer = ({ user }) => {
 												</span>
 											</div>
 											<div className='popupTasks__walletTask-rightBtn'>
-												<button>
+												<button onClick={testClick}>
 													<svg
 														width='15'
 														height='12'
