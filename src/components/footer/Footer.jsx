@@ -347,7 +347,7 @@ const Footer = ({ user }) => {
 								</div>
 							</div>
 							<div className='popupTasks__tasks'>
-							<div className='popupTasks__walletTask'>
+								<div className='popupTasks__walletTask'>
 									<div className='popupTasks__walletTask-input'>
 										<input
 											type='text'
@@ -362,7 +362,7 @@ const Footer = ({ user }) => {
 											disabled={user?.wallet_address}
 										/>
 										{!user?.wallet_address && (
-											<button onClick={submitWallet}>
+											<button class="popupTasks__walletTask-inputBtn" onClick={submitWallet}>
 												<svg
 													width='15'
 													height='13'
@@ -378,8 +378,35 @@ const Footer = ({ user }) => {
 											</button>
 										)}
 									</div>
+
 									<div className='popupTasks__walletTask-box'>
-										{!user?.wallet_address ? <p>+20000</p> : <img src={checkbox} />}
+										<div className='popupTasks__walletTask-left'>
+											{!user?.wallet_address ? <p>+20000</p> : <img src={checkbox} />}
+										</div>
+										<div className='popupTasks__walletTask-right'>
+											<div className='popupTasks__walletTask-rightHint'>
+												<span>
+													*it can be done <br /> every 3 days
+												</span>
+											</div>
+											<div className='popupTasks__walletTask-rightBtn'>
+												<button>
+													<svg
+														width='15'
+														height='12'
+														viewBox='0 0 15 12'
+														fill='none'
+														xmlns='http://www.w3.org/2000/svg'
+													>
+														<path
+															d='M8.5 12C9.68669 12 10.8467 11.6481 11.8334 10.9888C12.8201 10.3295 13.5891 9.39246 14.0433 8.2961C14.4974 7.19975 14.6162 5.99335 14.3847 4.82946C14.1532 3.66557 13.5818 2.59648 12.7426 1.75736C11.9035 0.918247 10.8344 0.346802 9.67054 0.115291C8.50665 -0.11622 7.30025 0.00259972 6.2039 0.456725C5.10754 0.910851 4.17047 1.67989 3.51118 2.66658C2.85189 3.65328 2.5 4.81331 2.5 6V9.1L0.7 7.3L0 8L3 11L6 8L5.3 7.3L3.5 9.1V6C3.5 5.0111 3.79324 4.0444 4.34265 3.22215C4.89206 2.39991 5.67295 1.75904 6.58658 1.3806C7.50021 1.00217 8.50554 0.90315 9.47545 1.09608C10.4454 1.289 11.3363 1.76521 12.0355 2.46447C12.7348 3.16373 13.211 4.05465 13.4039 5.02455C13.5968 5.99445 13.4978 6.99979 13.1194 7.91342C12.741 8.82705 12.1001 9.60794 11.2778 10.1573C10.4556 10.7068 9.4889 11 8.5 11V12Z'
+															fill='white'
+														/>
+													</svg>
+													Reset
+												</button>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div className='popupTasks__task'>
