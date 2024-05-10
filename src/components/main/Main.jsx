@@ -1,7 +1,6 @@
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { AnimatePresence, motion } from 'framer-motion';
-import { debounce } from 'lodash';
 import moment from 'moment-timezone';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -53,33 +52,11 @@ const Main = ({ user }) => {
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
 
-	const secretKey = process.env.REACT_APP_SECRET_KEY;
+	// aws
+	// const secretKey = REACT_APP_SECRET_KEY;
 
-	////////
-
-	const [time, setTime] = useState(new Date());
-
-	useEffect(() => {
-		const intervalId = setInterval(() => {
-			setTime(new Date());
-		}, 1000);
-
-		return () => clearInterval(intervalId);
-	}, []);
-
-	const options = {
-		day: '2-digit',
-		month: '2-digit',
-		year: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit',
-		hour12: false,
-		timeZone: 'Etc/GMT-3',
-	};
-
-	const dateStringWithTime = time.toLocaleString('en-GB', options);
-
-	////////
+	// prodtest
+	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
 
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
@@ -406,11 +383,11 @@ const Main = ({ user }) => {
 		accumulatedCoinsRef.current += clickNewCoins;
 	};
 
-	const debouncedHandleClick = debounce(() => {
-		const clickNewCoins = updateCurrCoins();
-		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
-		accumulatedCoinsRef.current += clickNewCoins;
-	}, 500);
+	// const debouncedHandleClick = debounce(() => {
+	// 	const clickNewCoins = updateCurrCoins();
+	// 	setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
+	// 	accumulatedCoinsRef.current += clickNewCoins;
+	// }, 500);
 
 	const handleTouchStart = (event) => {
 		if (event.touches.length > 1) {
@@ -447,9 +424,6 @@ const Main = ({ user }) => {
 
 	return (
 		<div className='mainContent'>
-			<div>
-				<p>{dateStringWithTime}</p>
-			</div>
 			<div
 				className='bgImage'
 				style={{

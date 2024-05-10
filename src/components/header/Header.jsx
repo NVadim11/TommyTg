@@ -29,7 +29,12 @@ const Header = ({ user }) => {
 	const popupInvite = `popupInvite ${popupInvTgl}`;
 
 	const tg = window.Telegram.WebApp;
-	const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
+
+	// aws
+	// const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
+
+	// prodtest
+	const BOT_TOKEN = '6396746497:AAEPBTUxHgKLSQ6ZPp34CLw1gT9X0jy9Q5o';
 
 	useEffect(() => {
 		const observer = new MutationObserver((mutationsList) => {

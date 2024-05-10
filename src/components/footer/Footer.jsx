@@ -24,7 +24,11 @@ const Footer = ({ user }) => {
 	const [walletInputDisabled, setWalletInputDisabled] = useState(false);
 	const [resetBtnDisabled, setResetBtnDisabled] = useState(false);
 
-	const secretKey = process.env.REACT_APP_SECRET_KEY;
+	// aws
+	// const secretKey = process.env.REACT_APP_SECRET_KEY;
+
+	// prodtest
+	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
@@ -88,7 +92,7 @@ const Footer = ({ user }) => {
 				task: 'twitter',
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(String(e));
+			tg.showAlert(JSON.stringify(e));
 		}
 		tg.openLink('https://twitter.com/TomoCatSol');
 	};
@@ -101,7 +105,7 @@ const Footer = ({ user }) => {
 				task: 'tg_chat',
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(String(e));
+			tg.showAlert(JSON.stringify(e));
 		}
 		tg.openLink('https://t.me/tomocat_sol');
 	};
@@ -114,7 +118,7 @@ const Footer = ({ user }) => {
 				task: 'tg_channel',
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(String(e));
+			tg.showAlert(JSON.stringify(e));
 		}
 		tg.openLink('https://t.me/tomo_cat');
 	};
