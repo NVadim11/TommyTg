@@ -21,7 +21,6 @@ import goldForm from '../../img/gold.gif';
 import smile from '../../img/smile.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
-// import { useClickCount } from '../clickContext';
 // import { GameInfoContext } from "../../helpers/context";
 import './Main.scss';
 
@@ -55,6 +54,32 @@ const Main = ({ user }) => {
 	const [animations, setAnimations] = useState([]);
 
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
+
+	////////
+
+	const [time, setTime] = useState(new Date());
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setTime(new Date());
+		}, 1000);
+
+		return () => clearInterval(intervalId);
+	}, []);
+
+	const options = {
+		day: '2-digit',
+		month: '2-digit',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: false,
+		timeZone: 'Etc/GMT-3',
+	};
+
+	const dateStringWithTime = time.toLocaleString('en-GB', options);
+
+	////////
 
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
@@ -181,12 +206,6 @@ const Main = ({ user }) => {
 
 	let catIdleImage = catIdle;
 	let catSpeakImage = catSpeak;
-
-	// const { incrementClickCount } = useClickCount();
-
-	// const handleCoinClick = () => {
-	// 	incrementClickCount();
-	// };
 
 	const boostClickedHandler = () => {
 		handleBoostClick();
@@ -376,7 +395,6 @@ const Main = ({ user }) => {
 		setCurrentImage(false);
 		setCoinState(true);
 		handleShowAnimation(event);
-		// handleCoinClick();
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 		clearTimeout(timeoutRef.current);
 		clearTimeout(coinRef.current);
@@ -409,7 +427,6 @@ const Main = ({ user }) => {
 		setCurrentImage(false);
 		setCoinState(true);
 		handleShowAnimation(event);
-		// handleCoinClick();
 		clearTimeout(timeoutRef.current);
 		clearTimeout(coinRef.current);
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
@@ -430,6 +447,9 @@ const Main = ({ user }) => {
 
 	return (
 		<div className='mainContent'>
+			<div>
+				<p>{dateStringWithTime}</p>
+			</div>
 			<div
 				className='bgImage'
 				style={{

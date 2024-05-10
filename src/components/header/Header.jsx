@@ -5,7 +5,6 @@ import link from '../../img/link.svg';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
-import { useClickCount } from '../clickContext';
 
 import './Header.scss';
 // import { GameInfoContext } from "../../helpers/context";
@@ -28,9 +27,6 @@ const Header = ({ user }) => {
 
 	const popupInvTgl = isInviteOpen ? 'popupInvite_show' : null;
 	const popupInvite = `popupInvite ${popupInvTgl}`;
-
-	const { clickCount } = useClickCount();
-	const [inviteAlreadySent, setInviteAlreadySent] = useState(false);
 
 	const tg = window.Telegram.WebApp;
 	const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
@@ -111,15 +107,6 @@ const Header = ({ user }) => {
 		fadeShowInvite();
 		setIsShown(false);
 	};
-
-	useEffect(() => {
-		if (clickCount >= 100 && !inviteAlreadySent) {
-			setInviteAlreadySent(true);
-			setTimeout(() => {
-				inviteFriendsBtn();
-			}, 5000);
-		}
-	}, [clickCount, inviteAlreadySent]);
 
 	const fadeShow = () => {
 		const htmlTag = document.getElementById('html');
