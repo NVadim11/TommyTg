@@ -38,9 +38,11 @@ const Footer = ({ user }) => {
 		hour12: false,
 		timeZone: 'Etc/GMT-3',
 	};
+	const now = new Date();
+	const dateStringWithTime = now.toLocaleString('en-GB', options);
 
 	useEffect(() => {
-		if (user?.update_wallet_at <= 0) {
+		if (user?.update_wallet_at <= 1) {
 			setResetBtnDisabled(false);
 		}
 	}, [user?.update_wallet_at]);
@@ -70,9 +72,15 @@ const Footer = ({ user }) => {
 		setIsVisible(!isVisible);
 	};
 
+	const walletSubmitHandler = () => {
+		if (!user?.wallet_address) {
+			submitWallet();
+		} else {
+			resetWallet();
+		}
+	};
+
 	const twitterClick = async () => {
-		const now = new Date();
-		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -86,8 +94,6 @@ const Footer = ({ user }) => {
 	};
 
 	const tgClickChat = async () => {
-		const now = new Date();
-		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -101,8 +107,6 @@ const Footer = ({ user }) => {
 	};
 
 	const tgClickChannel = async () => {
-		const now = new Date();
-		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -116,8 +120,6 @@ const Footer = ({ user }) => {
 	};
 
 	const websiteClick = async () => {
-		const now = new Date();
-		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
 			const res = await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -132,14 +134,14 @@ const Footer = ({ user }) => {
 
 	const submitWallet = async () => {
 		if (walletVaL) {
-			const now = new Date();
-			const dateStringWithTime = now.toLocaleString('en-GB', options);
 			try {
 				const res = await setWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
 					id_telegram: 321967834, // user?.id_telegram,
 				}).unwrap();
+				setResetBtnDisabled(true);
+				setWalletInputDisabled(true);
 			} catch (e) {
 				tg.showAlert(JSON.stringify(e));
 			}
@@ -148,14 +150,14 @@ const Footer = ({ user }) => {
 
 	const resetWallet = async () => {
 		if (walletVaL) {
-			const now = new Date();
-			const dateStringWithTime = now.toLocaleString('en-GB', options);
 			try {
 				const res = await changeWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
 					user_id: 30855, // user?.user_id
 				}).unwrap();
+				setResetBtnDisabled(true);
+				setWalletInputDisabled(true);
 			} catch (e) {
 				tg.showAlert(JSON.stringify(e));
 			}
@@ -354,25 +356,24 @@ const Footer = ({ user }) => {
 											onChange={(e) => setWalletVal(e.target.value)}
 											disabled={walletInputDisabled === true}
 										/>
-										{!user?.wallet_address && (
-											<button
-												class='popupTasks__walletTask-inputBtn'
-												onClick={!user?.wallet_address ? submitWallet() : resetWallet()}
+										<button
+											className='popupTasks__walletTask-inputBtn'
+											onClick={walletSubmitHandler}
+											disabled={walletInputDisabled === true}
+										>
+											<svg
+												width='15'
+												height='13'
+												viewBox='0 0 13 11'
+												fill='none'
+												xmlns='http://www.w3.org/2000/svg'
 											>
-												<svg
-													width='15'
-													height='13'
-													viewBox='0 0 13 11'
-													fill='none'
-													xmlns='http://www.w3.org/2000/svg'
-												>
-													<path
-														d='M0 5.25832C0 5.04901 0.0838528 4.84827 0.233109 4.70027C0.382367 4.55226 0.584803 4.46911 0.795883 4.46911L10.1205 4.46911L6.63236 1.37437C6.47645 1.23446 6.38271 1.03904 6.37162 0.830819C6.36053 0.622593 6.433 0.418478 6.57319 0.263061C6.71338 0.107645 6.9099 0.0135581 7.11982 0.00135409C7.32974 -0.0108499 7.53599 0.0598205 7.69354 0.197928L12.7341 4.6701C12.8178 4.74413 12.8847 4.83485 12.9305 4.93631C12.9763 5.03777 13 5.14768 13 5.25885C13 5.37001 12.9763 5.47993 12.9305 5.58139C12.8847 5.68285 12.8178 5.77356 12.7341 5.8476L7.69354 10.3198C7.61575 10.3896 7.52482 10.4434 7.42597 10.4783C7.32712 10.5131 7.2223 10.5282 7.11754 10.5227C7.01278 10.5172 6.91015 10.4913 6.81554 10.4463C6.72094 10.4013 6.63623 10.3383 6.56629 10.2608C6.49636 10.1832 6.44256 10.0927 6.40802 9.99451C6.37347 9.89629 6.35884 9.79226 6.36498 9.68841C6.37112 9.58457 6.39791 9.48295 6.44379 9.3894C6.48968 9.29585 6.55376 9.21222 6.63236 9.14332L10.1205 6.04753L0.795883 6.04753C0.584803 6.04753 0.382367 5.96438 0.233109 5.81637C0.0838528 5.66837 0 5.46763 0 5.25832Z'
-														fill='white'
-													/>
-												</svg>
-											</button>
-										)}
+												<path
+													d='M0 5.25832C0 5.04901 0.0838528 4.84827 0.233109 4.70027C0.382367 4.55226 0.584803 4.46911 0.795883 4.46911L10.1205 4.46911L6.63236 1.37437C6.47645 1.23446 6.38271 1.03904 6.37162 0.830819C6.36053 0.622593 6.433 0.418478 6.57319 0.263061C6.71338 0.107645 6.9099 0.0135581 7.11982 0.00135409C7.32974 -0.0108499 7.53599 0.0598205 7.69354 0.197928L12.7341 4.6701C12.8178 4.74413 12.8847 4.83485 12.9305 4.93631C12.9763 5.03777 13 5.14768 13 5.25885C13 5.37001 12.9763 5.47993 12.9305 5.58139C12.8847 5.68285 12.8178 5.77356 12.7341 5.8476L7.69354 10.3198C7.61575 10.3896 7.52482 10.4434 7.42597 10.4783C7.32712 10.5131 7.2223 10.5282 7.11754 10.5227C7.01278 10.5172 6.91015 10.4913 6.81554 10.4463C6.72094 10.4013 6.63623 10.3383 6.56629 10.2608C6.49636 10.1832 6.44256 10.0927 6.40802 9.99451C6.37347 9.89629 6.35884 9.79226 6.36498 9.68841C6.37112 9.58457 6.39791 9.48295 6.44379 9.3894C6.48968 9.29585 6.55376 9.21222 6.63236 9.14332L10.1205 6.04753L0.795883 6.04753C0.584803 6.04753 0.382367 5.96438 0.233109 5.81637C0.0838528 5.66837 0 5.46763 0 5.25832Z'
+													fill='white'
+												/>
+											</svg>
+										</button>
 									</div>
 									<div className='popupTasks__walletTask-left'>
 										{!user?.wallet_address ? <p>+20000</p> : <img src={checkbox} />}

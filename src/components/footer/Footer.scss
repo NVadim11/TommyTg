@@ -389,6 +389,12 @@ body::after {
     input:focus {
       outline: none;
     }
+    input:disabled {
+      opacity: 0.5;
+    }
+    button:disabled {
+      opacity: 0.5;
+    }
   }
   &__walletTask-inputBtn {
     box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
@@ -436,7 +442,7 @@ body::after {
       }
     }
     button:disabled {
-      background-color: #691ee2;
+      opacity: 0.5;
     }
   }
   &__walletTask-right {
