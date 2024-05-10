@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
 import catCoinMove from '../../img/cat_coin_move.png';
 import checkbox from '../../img/checkbox.png';
@@ -15,6 +16,7 @@ import './Footer.scss';
 
 const Footer = ({ user }) => {
 	const tg = window.Telegram.WebApp;
+	const userId = tg.initDataUnsafe?.user?.id;
 	const [isVisible, setIsVisible] = useState(false);
 	const [tasksOpen, setTasksOpen] = useState(false);
 	const [passTask] = usePassTaskMutation();
@@ -46,13 +48,39 @@ const Footer = ({ user }) => {
 	const dateStringWithTime = now.toLocaleString('en-GB', options);
 
 	useEffect(() => {
-		if (user?.update_wallet_at <= 1) {
-			setResetBtnDisabled(false);
+		if (user?.wallet_address) {
+			setWalletVal(user?.wallet_address);
 		}
-	}, [user?.update_wallet_at]);
+	}, [user]);
+
+	useEffect(() => {
+		if (user) {
+			const updateGameStatus = () => {
+				// Get the current time in Frankfurt time zone ('Etc/GMT-3')
+				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
+				const remainingTime = user?.update_wallet_at - currentTimeStamp;
+				if (remainingTime >= 0) {
+					if (remainingTime <= 0) {
+						setResetBtnDisabled(false);
+					} else {
+						setResetBtnDisabled(true);
+					}
+				}
+			};
+
+			const timer = setInterval(() => {
+				updateGameStatus();
+			}, 1000);
+
+			return () => {
+				clearInterval(timer);
+			};
+		}
+	}, [userId, user]);
 
 	const resetWalletEnabler = () => {
 		setWalletInputDisabled(false);
+		setWalletVal('');
 	};
 
 	const tasksBtn = () => {
@@ -158,7 +186,7 @@ const Footer = ({ user }) => {
 				const res = await changeWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
-					user_id: user?.user_id,
+					user_id: user?.id,
 				}).unwrap();
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
@@ -356,7 +384,7 @@ const Footer = ({ user }) => {
 												color: '#fff',
 												fontSize: '0.75rem!important',
 											}}
-											value={user?.wallet_address || walletVaL}
+											value={walletVaL}
 											onChange={(e) => setWalletVal(e.target.value)}
 											disabled={walletInputDisabled === true}
 										/>
