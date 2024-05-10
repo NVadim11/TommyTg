@@ -88,7 +88,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch('https://aws.tomocat.com/api/set-activity', {
+		fetch('https://admin.tomocat.com/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ const Main = ({ user }) => {
 	const getGameStatus = async () => {
 		try {
 			const initGameStatusCheck = await axios.get(
-				`https://aws.tomocat.com/api/telegram-id/${userId}`
+				`https://admin.tomocat.com/api/telegram-id/${userId}`
 			);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');

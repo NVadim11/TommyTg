@@ -138,7 +138,7 @@ const Footer = ({ user }) => {
 				const res = await setWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
-					id_telegram: 321967834, // user?.id_telegram,
+					id_telegram: user?.id_telegram,
 				}).unwrap();
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
@@ -154,7 +154,7 @@ const Footer = ({ user }) => {
 				const res = await changeWallet({
 					token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 					wallet_address: walletVaL,
-					user_id: 30855, // user?.user_id
+					user_id: user?.user_id,
 				}).unwrap();
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);

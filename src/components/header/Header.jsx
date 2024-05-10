@@ -64,7 +64,7 @@ const Header = ({ user }) => {
 
 	const fetchLeaderboardData = async () => {
 		try {
-			const response = await axios.get(`https://aws.tomocat.com/api/liders`);
+			const response = await axios.get(`https://admin.tomocat.com/api/liders`);
 			setLeaderboardData(response.data);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
