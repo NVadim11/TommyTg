@@ -32,10 +32,10 @@ const Header = ({ user }) => {
 	const tg = window.Telegram.WebApp;
 
 	// aws
-	// const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
+	const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
 
 	// prodtest
-	const BOT_TOKEN = '6396746497:AAEPBTUxHgKLSQ6ZPp34CLw1gT9X0jy9Q5o';
+	// const BOT_TOKEN = '6396746497:AAEPBTUxHgKLSQ6ZPp34CLw1gT9X0jy9Q5o';
 
 	useEffect(() => {
 		const observer = new MutationObserver((mutationsList) => {
@@ -66,7 +66,7 @@ const Header = ({ user }) => {
 
 	// const fetchLeaderboardData = async () => {
 	// 	try {
-	// 		const response = await axios.get(`https://admin.prodtest1.space/api/liders`);
+	// 		const response = await axios.get(`https://aws.tomocat.com/api/liders`);
 	// 		setLeaderboardData(response.data);
 	// 	} catch (e) {
 	// 		console.log('Error fetching leaderboard data');

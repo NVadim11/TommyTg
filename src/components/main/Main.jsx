@@ -2,8 +2,9 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import moment from 'moment-timezone';
-import React, { useEffect, useRef, useState, useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { GameInfoContext } from '../../helpers/context';
 import sadIdle from '../../img/1_idle.gif';
 import sadSpeak from '../../img/1talk.gif';
 import normalIdle from '../../img/2_idle.gif';
@@ -20,7 +21,6 @@ import goldForm from '../../img/gold.gif';
 import smile from '../../img/smile.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
-import { GameInfoContext } from "../../helpers/context";
 import './Main.scss';
 
 const Main = ({ user }) => {
@@ -55,10 +55,10 @@ const Main = ({ user }) => {
 	const [animations, setAnimations] = useState([]);
 
 	// aws
-	// const secretKey = process.env.REACT_APP_SECRET_KEY;
+	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	// prodtest
-	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
+	// const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
 
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
@@ -92,7 +92,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch('https://admin.prodtest1.space/api/set-activity', {
+		fetch('https://aws.tomocat.com/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ const Main = ({ user }) => {
 	const getGameStatus = async () => {
 		try {
 			const initGameStatusCheck = await axios.get(
-				`https://admin.prodtest1.space/api/telegram-id/${userId}`
+				`https://aws.tomocat.com/api/telegram-id/${userId}`
 			);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
@@ -651,9 +651,7 @@ const Main = ({ user }) => {
 								></progress>
 							</div>
 							<div className='mainContent__energyHint'>
-								<p>
-									{state?.info.mainContent__energyHint}
-								</p>
+								<p>{state?.info.mainContent__energyHint}</p>
 							</div>
 						</div>
 					)}
