@@ -2,7 +2,7 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import moment from 'moment-timezone';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import sadIdle from '../../img/1_idle.gif';
 import sadSpeak from '../../img/1talk.gif';
@@ -20,10 +20,12 @@ import goldForm from '../../img/gold.gif';
 import smile from '../../img/smile.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
-// import { GameInfoContext } from "../../helpers/context";
+import { GameInfoContext } from "../../helpers/context";
 import './Main.scss';
 
 const Main = ({ user }) => {
+	const { state } = useContext(GameInfoContext);
+
 	const isMobile = useMediaQuery({ maxWidth: '1439.98px' });
 	const [currentImage, setCurrentImage] = useState(true);
 	const [coinState, setCoinState] = useState(false);
@@ -650,7 +652,7 @@ const Main = ({ user }) => {
 							</div>
 							<div className='mainContent__energyHint'>
 								<p>
-									The happier the cat — the more you get! Make it purr and get rewards
+									{state?.info.mainContent__energyHint}
 								</p>
 							</div>
 						</div>

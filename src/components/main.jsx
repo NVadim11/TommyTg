@@ -34,11 +34,11 @@ const MainComponent = () => {
 	const { updateState } = useContext(GameInfoContext);
 	const { data, isLoading, isError } = useGetGameInfoQuery();
 
-	// useEffect(() => {
-	// 	if (!isLoading && data) {
-	// 	  updateState(data);
-	// 	}
-	//   }, [isLoading, data, updateState]);
+	useEffect(() => {
+		if (!isLoading && data) {
+		  updateState(data);
+		}
+	  }, [isLoading, data, updateState]);
 
 	useEffect(() => {
 		const loadImage = (src) => {

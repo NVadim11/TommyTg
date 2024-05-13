@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import link from '../../img/link.svg';
 import money from '../../img/money.svg';
@@ -7,10 +7,10 @@ import people from '../../img/people-icon.svg';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 
 import './Header.scss';
-// import { GameInfoContext } from "../../helpers/context";
+import { GameInfoContext } from "../../helpers/context";
 
 const Header = ({ user }) => {
-	// const {state} = useContext(GameInfoContext);
+	const {state} = useContext(GameInfoContext);
 	const [isToggled, setIsToggled] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [totalPoints, setTotalPoints] = useState(null);
@@ -161,19 +161,19 @@ const Header = ({ user }) => {
 					<div className='header__mobileBtns'>
 						{user && totalPoints !== null && (
 							<div id='header__totalScore' className='header__totalScore'>
-								Total Points: <span>{totalPoints}</span>
+								{state?.info.header__totalScore} <span>{totalPoints}</span>
 							</div>
 						)}
 						<div className='header__tgBtns'>
 							<div className='header__leaderboard'>
 								<button onClick={leaderBordBtn}>
-									Leaderboard
+									{state?.info.header__leaderboard}
 									<img src={leaderboard_icon} />
 								</button>
 							</div>
 							<div className='header__inviteBtn'>
 								<button onClick={inviteFriendsBtn}>
-									Referral
+									{state?.info.header__inviteBtn}
 									<svg
 										width='20'
 										height='20'
@@ -351,15 +351,13 @@ const Header = ({ user }) => {
 								</svg>
 							</button>
 							<h3>
-								Invite friends.
-								<br />
-								Get rewards together.
+								{state?.info.popupInvite__content_title}
 							</h3>
 							<div className='popupInvite__header'>
-								<h6>How it Works</h6>
+								<h6>{state?.info.popupInvite__header_title}</h6>
 								<div className='popupInvite__refInfo'>
 									<div className='popupInvite__headerDescr'>
-										<h6>Your Bonus:</h6>
+										<h6>{state?.info.popupInvite__bonus_title}</h6>
 										<div className='popupInvite__headerItem'>
 											<h3>%</h3>
 											<h3>10</h3>
@@ -367,7 +365,7 @@ const Header = ({ user }) => {
 									</div>
 									{totalReferrals >= 1 && (
 										<div className='popupInvite__headerDescr'>
-											<h6>Referred Friends:</h6>
+											<h6>{state?.info.popupInvite__ref_friends_title}</h6>
 											<div className='popupInvite__headerItem'>
 												<img src={people} alt='people' />
 												<h3>{totalReferrals}</h3>
