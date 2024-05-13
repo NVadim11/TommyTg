@@ -1,16 +1,16 @@
-import axios from 'axios';
-import React, { useEffect, useRef, useState, useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import link from '../../img/link.svg';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
+import { useGetLeaderboardMutation } from '../../services/phpService';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 
+import { GameInfoContext } from '../../helpers/context';
 import './Header.scss';
-import { GameInfoContext } from "../../helpers/context";
 
 const Header = ({ user }) => {
-	const {state} = useContext(GameInfoContext);
+	const { state } = useContext(GameInfoContext);
 	const [isToggled, setIsToggled] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [totalPoints, setTotalPoints] = useState(null);
@@ -21,6 +21,7 @@ const Header = ({ user }) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [isElementPresent, setIsElementPresent] = useState(false);
 	const initLeadersRef = useRef(null);
+	const [getLeaderboard] = useGetLeaderboardMutation();
 
 	const popupClsTgl = isLeaderboardOpen ? 'popupLeaderboard_show' : null;
 	const popupClasses = `popupLeaderboard ${popupClsTgl}`;
@@ -63,24 +64,52 @@ const Header = ({ user }) => {
 		setIsVisible(!isVisible);
 	};
 
-	const fetchLeaderboardData = async () => {
-		try {
-			const response = await axios.get(`https://admin.prodtest1.space/api/liders`);
-			setLeaderboardData(response.data);
-		} catch (e) {
-			console.log('Error fetching leaderboard data');
-		}
-	};
+	// const fetchLeaderboardData = async () => {
+	// 	try {
+	// 		const response = await axios.get(`https://admin.prodtest1.space/api/liders`);
+	// 		setLeaderboardData(response.data);
+	// 	} catch (e) {
+	// 		console.log('Error fetching leaderboard data');
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	fetchLeaderboardData();
+	// 	setTotalReferrals(user?.referrals_count);
+	// 	setTotalPoints(user?.wallet_balance);
+	// 	initLeadersRef.current = setInterval(() => {
+	// 		fetchLeaderboardData();
+	// 	}, 60000);
+	// 	return () => {
+	// 		clearInterval(initLeadersRef.current);
+	// 	};
+	// }, [user]);
 
 	useEffect(() => {
-		fetchLeaderboardData();
-		setTotalReferrals(user?.referrals_count);
-		setTotalPoints(user?.wallet_balance);
-		initLeadersRef.current = setInterval(() => {
-			fetchLeaderboardData();
-		}, 60000);
+		const fetchData = async () => {
+			if (Object.keys(user).length) {
+				const res = await getLeaderboard(user.id).unwrap();
+				setLeaderboardData(res);
+				const intervalId = setInterval(() => {
+					getLeaderboard(user.id)
+						.unwrap()
+						.then((data) => setLeaderboardData(data))
+						.catch((error) => console.error('Error refreshing leaderboard:', error));
+				}, 60000);
+				return intervalId;
+			}
+		};
+
+		let intervalId;
+
+		if (user) {
+			fetchData().then((id) => {
+				intervalId = id;
+			});
+		}
+
 		return () => {
-			clearInterval(initLeadersRef.current);
+			clearInterval(intervalId);
 		};
 	}, [user]);
 
@@ -350,9 +379,7 @@ const Header = ({ user }) => {
 									/>
 								</svg>
 							</button>
-							<h3>
-								{state?.info.popupInvite__content_title}
-							</h3>
+							<h3>{state?.info.popupInvite__content_title}</h3>
 							<div className='popupInvite__header'>
 								<h6>{state?.info.popupInvite__header_title}</h6>
 								<div className='popupInvite__refInfo'>
