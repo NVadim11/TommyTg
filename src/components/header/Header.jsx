@@ -90,6 +90,8 @@ const Header = ({ user }) => {
 			if (Object.keys(user).length) {
 				const res = await getLeaderboard(user.id).unwrap();
 				setLeaderboardData(res);
+				setTotalReferrals(user?.referrals_count);
+				setTotalPoints(user?.wallet_balance);
 				const intervalId = setInterval(() => {
 					getLeaderboard(user.id)
 						.unwrap()
