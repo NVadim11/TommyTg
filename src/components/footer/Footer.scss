@@ -275,6 +275,12 @@ body::after {
 }
 
 .popupTasks {
+&__tasks {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
   &__task {
     display: flex;
     position: relative;

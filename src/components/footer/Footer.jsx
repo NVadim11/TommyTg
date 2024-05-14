@@ -385,7 +385,7 @@ const Footer = ({ user }) => {
 									</button>
 								</div>
 							</div>
-							<div className='popupTasks__tasks'>
+							<div className={`popupTasks__tasks ${activeTab === 0 ? 'active' : ''}`}>
 								<div className='popupTasks__walletTask'>
 									<div className='popupTasks__walletTask-input'>
 										<input
@@ -473,6 +473,64 @@ const Footer = ({ user }) => {
 								<div className='popupTasks__task'>
 									<button onClick={websiteClick} disabled={user?.website === 1}>
 										Visit Website
+									</button>
+									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
+								</div>
+							</div>
+							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
+								<div className='popupTasks__task'>
+									<button onClick={twitterClick} disabled={user?.twitter === 1}>
+										Daily placeholder
+									</button>
+									{user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox} />}
+								</div>
+								<div className='popupTasks__task'>
+									<button onClick={tgClickChat} disabled={user?.tg_chat === 1}>
+										Daily placeholder
+									</button>
+									{user?.tg_chat === 0 ? <p>+10000</p> : <img src={checkbox} />}
+								</div>
+								<div className='popupTasks__task'>
+									<button onClick={tgClickChannel} disabled={user?.tg_channel === 1}>
+										Daily placeholder
+									</button>
+									{user?.tg_channel === 0 ? <p>+10000</p> : <img src={checkbox} />}
+								</div>
+								<div className='popupTasks__task'>
+									<button onClick={websiteClick} disabled={user?.website === 1}>
+										Daily placeholder
+									</button>
+									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
+								</div>
+								<div className='popupTasks__task'>
+									<button onClick={websiteClick} disabled={user?.website === 1}>
+										Daily placeholder
+									</button>
+									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
+								</div>
+							</div>
+							<div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
+								<div className='popupTasks__task'>
+									<button onClick={twitterClick} disabled={user?.twitter === 1}>
+										Partnership placeholder
+									</button>
+									{user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox} />}
+								</div>
+								<div className='popupTasks__task'>
+									<button onClick={tgClickChat} disabled={user?.tg_chat === 1}>
+										Partnership placeholder
+									</button>
+									{user?.tg_chat === 0 ? <p>+10000</p> : <img src={checkbox} />}
+								</div>
+								<div className='popupTasks__task'>
+									<button onClick={tgClickChannel} disabled={user?.tg_channel === 1}>
+										Partnership placeholder
+									</button>
+									{user?.tg_channel === 0 ? <p>+10000</p> : <img src={checkbox} />}
+								</div>
+								<div className='popupTasks__task'>
+									<button onClick={websiteClick} disabled={user?.website === 1}>
+										Partnership placeholder
 									</button>
 									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
 								</div>
