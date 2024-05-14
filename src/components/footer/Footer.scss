@@ -66,10 +66,10 @@ body::after {
     position: relative;
   }
   &__close {
-    position: absolute;
+    position: relative;
     @media (max-width: $mobile) {
-      top: 4.6875rem;
-      right: 1.25rem;
+      bottom: 20px;
+      left: 45%;
     }
     svg {
       @media (max-width: $mobile) {
