@@ -277,18 +277,19 @@ body::after {
 .popupTasks {
   &__task {
     display: flex;
+    position: relative;
     justify-content: space-between;
     text-align: center;
     align-items: center;
     button {
       margin-top: 10px;
-      width: 80%;
+      width: 100%;
       border: 0.125rem solid #fff;
       border-radius: 3.75rem;
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       height: 48px;
       padding: 8px 10px 10px 10px;
       padding-bottom: 8px;
@@ -301,8 +302,15 @@ body::after {
       opacity: 0.5;
     }
     img {
+      position: absolute;
+      right: 21px;
       margin-top: 10px;
       width: 20px;
+    }
+    p {
+      position: absolute;
+      right: 21px;
+      margin-top: 10px;
     }
   }
   &__tabs-btns {
@@ -325,6 +333,8 @@ body::after {
     z-index: 10;
     button {
       padding: 12px 19px 10px 19px;
+      height: 43px;
+      width: 85px;
       font-weight: 600;
       font-size: 1.375rem;
       color: rgba(255, 255, 255);
@@ -376,7 +386,7 @@ body::after {
     margin-top: 10px;
     position: relative;
     input {
-      padding-left: 10px;
+      padding: 10px 0 10px 10px;
       width: 180px;
       height: 100%;
     }
@@ -453,9 +463,16 @@ body::after {
   }
   &__walletTask-left {
     display: flex;  
+    align-items: center;
     position: absolute;
-    right: 0px;
-    top: 15px;
+    right: 65px;
+    top: 18px;
+    img {
+      position: absolute;
+      right: 0;
+      top: -4px;
+      width: 20px;
+    }
   }
   &__walletTask-input {
     border: 0.125rem solid #fff;
@@ -463,19 +480,19 @@ body::after {
     height: 48px;
     font-weight: 600;
     font-size: 14px;
-    display: flex;
     align-self: flex-start;
     color: #fff;
     background: #ffffff00;
+    display: flex;
     position: relative;
     text-align: center;
     flex-direction: row;
-    width: 80%;
+    width: 100%;
   }
   &__walletTask-box {
     display: flex;
-    margin: 15px 0 50px 0;
-    width: 80%;
+    margin: 10px 0 50px 0;
+    width: 100%;
     align-self: start;
     position: relative;
     img {

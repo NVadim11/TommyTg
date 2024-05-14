@@ -25,6 +25,7 @@ const Footer = ({ user }) => {
 	const [walletVaL, setWalletVal] = useState('');
 	const [walletInputDisabled, setWalletInputDisabled] = useState(false);
 	const [resetBtnDisabled, setResetBtnDisabled] = useState(false);
+	const [activeTab, setActiveTab] = useState(0);
 
 	// aws
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
@@ -34,6 +35,10 @@ const Footer = ({ user }) => {
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
+
+	const handleTabClick = (index) => {
+		setActiveTab(index);
+	};
 
 	const options = {
 		day: '2-digit',
@@ -320,7 +325,10 @@ const Footer = ({ user }) => {
 								</div>
 							</div>
 							<div className='popupTasks__tabs-btns'>
-								<div className='popupTasks__tabs-btn active'>
+								<div
+									className={`popupTasks__tabs-btn ${activeTab === 0 ? 'active' : ''}`}
+									onClick={() => handleTabClick(0)}
+								>
 									<button>
 										<svg
 											width='23'
@@ -336,7 +344,10 @@ const Footer = ({ user }) => {
 										</svg>
 									</button>
 								</div>
-								<div className='popupTasks__tabs-btn'>
+								<div
+									className={`popupTasks__tabs-btn ${activeTab === 1 ? 'active' : ''}`}
+									onClick={() => handleTabClick(1)}
+								>
 									<button>
 										<svg
 											width='20'
@@ -352,9 +363,11 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
-									<div className='footerMain__activitiesHint'>Coming Soon</div>
 								</div>
-								<div className='popupTasks__tabs-btn'>
+								<div
+									className={`popupTasks__tabs-btn ${activeTab === 2 ? 'active' : ''}`}
+									onClick={() => handleTabClick(2)}
+								>
 									<button>
 										<svg
 											width='25'
@@ -370,7 +383,6 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
-									<div className='footerMain__activitiesHint'>Coming Soon</div>
 								</div>
 							</div>
 							<div className='popupTasks__tasks'>
