@@ -28,10 +28,10 @@ const Footer = ({ user }) => {
 	const [activeTab, setActiveTab] = useState(0);
 
 	// aws
-	const secretKey = process.env.REACT_APP_SECRET_KEY;
+	// const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	// prodtest
-	// const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
+	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
