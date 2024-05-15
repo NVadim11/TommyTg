@@ -10,6 +10,8 @@ import {
 	useChangeWalletMutation,
 	usePassTaskMutation,
 	useSetWalletMutation,
+	usePassPartnersMutation,
+	usePassDailyMutation,
 } from '../../services/phpService';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import './Footer.scss';
@@ -26,6 +28,8 @@ const Footer = ({ user }) => {
 	const [walletInputDisabled, setWalletInputDisabled] = useState(false);
 	const [resetBtnDisabled, setResetBtnDisabled] = useState(false);
 	const [activeTab, setActiveTab] = useState(0);
+	const [passDaily] = usePassDailyMutation();
+	const [passPartners] = usePassPartnersMutation();
 
 	// aws
 	// const secretKey = process.env.REACT_APP_SECRET_KEY;
@@ -39,6 +43,9 @@ const Footer = ({ user }) => {
 	const handleTabClick = (index) => {
 		setActiveTab(index);
 	};
+
+	const dailyTasksObj = user?.daily_quests;
+	const partnerTaskObj = user?.partners_quests;
 
 	const options = {
 		day: '2-digit',
@@ -198,6 +205,18 @@ const Footer = ({ user }) => {
 			} catch (e) {
 				tg.showAlert(JSON.stringify(e));
 			}
+		}
+	};
+
+	const partnersTaskHandler = async (taskId) => {
+		try {
+			const res = await passPartners({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
+				user_id: user?.id,
+				partners_quest_id: taskId,
+			}).unwrap();
+		} catch (e) {
+			tg.showAlert(JSON.stringify(e));
 		}
 	};
 
@@ -478,62 +497,35 @@ const Footer = ({ user }) => {
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
-								<div className='popupTasks__task'>
-									<button onClick={twitterClick} disabled={user?.twitter === 1}>
-										Daily placeholder
-									</button>
-									{user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox} />}
-								</div>
-								<div className='popupTasks__task'>
-									<button onClick={tgClickChat} disabled={user?.tg_chat === 1}>
-										Daily placeholder
-									</button>
-									{user?.tg_chat === 0 ? <p>+10000</p> : <img src={checkbox} />}
-								</div>
-								<div className='popupTasks__task'>
-									<button onClick={tgClickChannel} disabled={user?.tg_channel === 1}>
-										Daily placeholder
-									</button>
-									{user?.tg_channel === 0 ? <p>+10000</p> : <img src={checkbox} />}
-								</div>
-								<div className='popupTasks__task'>
-									<button onClick={websiteClick} disabled={user?.website === 1}>
-										Daily placeholder
-									</button>
-									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
-								</div>
-								<div className='popupTasks__task'>
-									<button onClick={websiteClick} disabled={user?.website === 1}>
-										Daily placeholder
-									</button>
-									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
-								</div>
+								{dailyTasksObj.map((quest) => (
+									<div className='popupTasks__task' key={quest.id}>
+										<button disabled={quest.status === 1}>
+											<span>{quest.daily_quest.name}</span>
+										</button>
+										{quest.status === 0 ? (
+												<p>{quest.daily_quest.reward}</p>
+										) : (
+											<img src={checkbox} />
+										)}
+									</div>
+								))}
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
-								<div className='popupTasks__task'>
-									<button onClick={twitterClick} disabled={user?.twitter === 1}>
-										Partnership placeholder
-									</button>
-									{user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox} />}
-								</div>
-								<div className='popupTasks__task'>
-									<button onClick={tgClickChat} disabled={user?.tg_chat === 1}>
-										Partnership placeholder
-									</button>
-									{user?.tg_chat === 0 ? <p>+10000</p> : <img src={checkbox} />}
-								</div>
-								<div className='popupTasks__task'>
-									<button onClick={tgClickChannel} disabled={user?.tg_channel === 1}>
-										Partnership placeholder
-									</button>
-									{user?.tg_channel === 0 ? <p>+10000</p> : <img src={checkbox} />}
-								</div>
-								<div className='popupTasks__task'>
-									<button onClick={websiteClick} disabled={user?.website === 1}>
-										Partnership placeholder
-									</button>
-									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
-								</div>
+								{partnerTaskObj.map((quest) => (
+									<div className='popupTasks__task'>
+										<button
+											disabled={quest.status === 1}
+											onClick={() => partnersTaskHandler(quest.id)}
+										>
+											<span>{quest.partners_quest.name}</span>
+										</button>
+										{quest.status === 0 ? (
+													<p>{quest.partners_quest.reward}</p>
+												) : (
+													<img src={checkbox} alt='Completed' />
+												)}
+									</div>
+								))}
 							</div>
 						</div>
 					</div>

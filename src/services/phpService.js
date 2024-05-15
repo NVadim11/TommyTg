@@ -49,6 +49,20 @@ export const phpApi = createApi({
       }),
       invalidatesTags: ["Php"],
     }),
+    passDaily: builder.mutation({
+      query: (body) => ({
+        url: "/pass-daily-quest",        
+        method: "POST",
+        body,
+      }),
+    }),
+    passPartners: builder.mutation({
+      query: (body) => ({
+        url: "/pass-partners-quest",        
+        method: "POST",
+        body,
+      }),
+    }),
     changeWallet: builder.mutation({
       query: (body) => ({
         url: "/update-wallet-address ",
@@ -70,4 +84,6 @@ export const {
   useUpdateBalanceMutation,
   useSetWalletMutation,
   useChangeWalletMutation,
+  usePassDailyMutation,
+  usePassPartnersMutation,
 } = phpApi;
