@@ -102,7 +102,7 @@ const MainComponent = () => {
 	return (
 		<div className='wrapper'>
 			<Preloader loaded={preloaderLoaded} />
-			{!user ? (
+			{user ? (
 				<>
 					<Header user={user} />
 					<main className='main'>

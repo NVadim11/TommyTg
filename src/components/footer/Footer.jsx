@@ -32,10 +32,10 @@ const Footer = ({ user }) => {
 	const [passPartners] = usePassPartnersMutation();
 
 	// aws
-	const secretKey = process.env.REACT_APP_SECRET_KEY;
+	// const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	// prodtest
-	// const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
+	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
@@ -443,7 +443,11 @@ const Footer = ({ user }) => {
 										</button>
 									</div>
 									<div className='popupTasks__walletTask-left'>
-										{!user?.wallet_address ? <p>+ 20000</p> : <img src={checkbox} />}
+										{!user?.wallet_address ? (
+											<p style={{ marginLeft: '-25px' }}>+ 20000</p>
+										) : (
+											<img src={checkbox} />
+										)}
 									</div>
 									<div className='popupTasks__walletTask-box'>
 										<div className='popupTasks__walletTask-right'>
