@@ -56,10 +56,10 @@ const Main = ({ user }) => {
 	const [animations, setAnimations] = useState([]);
 
 	// aws
-	const secretKey = process.env.REACT_APP_SECRET_KEY;
+	// const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	// prodtest
-	// const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
+	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
 
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
@@ -93,7 +93,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch('https://aws.tomocat.com/api/set-activity', {
+		fetch('https://admin.prodtest1.space/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const Main = ({ user }) => {
 	const getGameStatus = async () => {
 		try {
 			const initGameStatusCheck = await axios.get(
-				`https://aws.tomocat.com/api/telegram-id/${userId}`
+				`https://admin.prodtest1.space/api/telegram-id/${userId}`
 			);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
@@ -385,12 +385,6 @@ const Main = ({ user }) => {
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
 	};
-
-	// const debouncedHandleClick = debounce(() => {
-	// 	const clickNewCoins = updateCurrCoins();
-	// 	setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
-	// 	accumulatedCoinsRef.current += clickNewCoins;
-	// }, 500);
 
 	const handleTouchStart = (event) => {
 		if (event.touches.length > 1) {

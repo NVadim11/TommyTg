@@ -14,6 +14,7 @@ import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
+import NotFound from './404';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
@@ -36,9 +37,9 @@ const MainComponent = () => {
 
 	useEffect(() => {
 		if (!isLoading && data) {
-		  updateState(data);
+			updateState(data);
 		}
-	  }, [isLoading, data, updateState]);
+	}, [isLoading, data, updateState]);
 
 	useEffect(() => {
 		const loadImage = (src) => {
@@ -97,6 +98,10 @@ const MainComponent = () => {
 			setSkip(false);
 		}
 	}, [tg, userId]);
+
+	if (!user) {
+		return <NotFound />;
+	}
 
 	return (
 		<div className='wrapper'>
