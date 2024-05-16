@@ -8,10 +8,10 @@ import shop from '../../img/shop_icon.svg';
 import tasks from '../../img/tasks_icon.svg';
 import {
 	useChangeWalletMutation,
+	usePassDailyMutation,
+	usePassPartnersMutation,
 	usePassTaskMutation,
 	useSetWalletMutation,
-	usePassPartnersMutation,
-	usePassDailyMutation,
 } from '../../services/phpService';
 import { toggleMuteAllSounds } from '../../utility/Audio';
 import './Footer.scss';
@@ -32,10 +32,10 @@ const Footer = ({ user }) => {
 	const [passPartners] = usePassPartnersMutation();
 
 	// aws
-	// const secretKey = process.env.REACT_APP_SECRET_KEY;
+	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	// prodtest
-	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
+	// const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
@@ -364,8 +364,9 @@ const Footer = ({ user }) => {
 									</button>
 								</div>
 								<div
-									className={`popupTasks__tabs-btn ${activeTab === 1 ? 'active' : ''}`}
-									onClick={() => handleTabClick(1)}
+									// className={`popupTasks__tabs-btn ${activeTab === 1 ? 'active' : ''}`}
+									className='popupTasks__tabs-btn'
+									// onClick={() => handleTabClick(1)}
 								>
 									<button>
 										<svg
@@ -382,10 +383,12 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
+									<div className='footerMain__activitiesHint'>Coming Soon</div>
 								</div>
 								<div
-									className={`popupTasks__tabs-btn ${activeTab === 2 ? 'active' : ''}`}
-									onClick={() => handleTabClick(2)}
+									// className={`popupTasks__tabs-btn ${activeTab === 2 ? 'active' : ''}`}
+									className='popupTasks__tabs-btn'
+									// onClick={() => handleTabClick(2)}
 								>
 									<button>
 										<svg
@@ -402,6 +405,7 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
+									<div className='footerMain__activitiesHint'>Coming Soon</div>
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 0 ? 'active' : ''}`}>
@@ -496,21 +500,21 @@ const Footer = ({ user }) => {
 									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
 								</div>
 							</div>
-							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
+							{/* <div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
 								{dailyTasksObj.map((quest) => (
 									<div className='popupTasks__task' key={quest.id}>
 										<button disabled={quest.status === 1}>
 											<span>{quest.daily_quest.name}</span>
 										</button>
 										{quest.status === 0 ? (
-												<p>{quest.daily_quest.reward}</p>
+											<p>{quest.daily_quest.reward}</p>
 										) : (
 											<img src={checkbox} />
 										)}
 									</div>
 								))}
-							</div>
-							<div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
+							</div> */}
+							{/* <div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
 								{partnerTaskObj.map((quest) => (
 									<div className='popupTasks__task'>
 										<button
@@ -520,13 +524,13 @@ const Footer = ({ user }) => {
 											<span>{quest.partners_quest.name}</span>
 										</button>
 										{quest.status === 0 ? (
-													<p>{quest.partners_quest.reward}</p>
-												) : (
-													<img src={checkbox} alt='Completed' />
-												)}
+											<p>{quest.partners_quest.reward}</p>
+										) : (
+											<img src={checkbox} alt='Completed' />
+										)}
 									</div>
 								))}
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
