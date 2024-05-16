@@ -327,9 +327,9 @@ body::after {
     align-items: center;
     position: relative;
     @media (max-width: 768px) {
-      margin-top: 1.5625rem;
       padding: 0.625rem;
-      gap: 10px;
+      width: 100%;
+      justify-content: space-between;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       margin: 0 auto;
@@ -358,7 +358,7 @@ body::after {
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 0.625rem;
-        width: 5.3125rem;
+        width: 70px;
         justify-content: center;
         display: flex;
       }

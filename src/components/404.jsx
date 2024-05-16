@@ -51,8 +51,8 @@ const NotFound = () => {
 			</p>
 			<div
 				style={{
-					scale: '65%',
-					margin: '-40px 0 0 0',
+					scale: '60%',
+					margin: '-50px 0 0 0',
 				}}
 			>
 				<img src={sadIdle} />
