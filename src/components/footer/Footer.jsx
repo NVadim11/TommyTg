@@ -443,7 +443,7 @@ const Footer = ({ user }) => {
 										</button>
 									</div>
 									<div className='popupTasks__walletTask-left'>
-										{!user?.wallet_address ? <p>+20000</p> : <img src={checkbox} />}
+										{!user?.wallet_address ? <p>+ 20000</p> : <img src={checkbox} />}
 									</div>
 									<div className='popupTasks__walletTask-box'>
 										<div className='popupTasks__walletTask-right'>
