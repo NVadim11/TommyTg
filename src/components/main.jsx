@@ -99,11 +99,9 @@ const MainComponent = () => {
 		}
 	}, [tg, userId]);
 
-	if (!user) {
-		return <NotFound />;
-	}
-
-	return (
+	return !user ? (
+		<NotFound />
+	) : (
 		<div className='wrapper'>
 			<Preloader loaded={preloaderLoaded} />
 			<Header user={user} />
