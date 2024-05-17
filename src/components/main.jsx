@@ -102,7 +102,7 @@ const MainComponent = () => {
 	return (
 		<div className='wrapper'>
 			<Preloader loaded={preloaderLoaded} />
-			{!user ? (
+			{/* {!user ? ( */}
 				<>
 					<Header user={user} />
 					<main id='main' className='main'>
@@ -110,9 +110,9 @@ const MainComponent = () => {
 					</main>
 					<Footer user={user} />
 				</>
-			) : (
+			{/* ) : (
 				<NotFound />
-			)}
+			)} */}
 		</div>
 	);
 };

@@ -155,7 +155,7 @@ const Footer = ({ user }) => {
 				task: 'twitter',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			console.log(e);
 		}
 		tg.openLink('https://twitter.com/TomoCatSol');
 	};
@@ -168,7 +168,7 @@ const Footer = ({ user }) => {
 				task: 'tg_chat',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			console.log(e);
 		}
 		tg.openLink('https://t.me/tomocat_sol');
 	};
@@ -181,7 +181,7 @@ const Footer = ({ user }) => {
 				task: 'tg_channel',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			console.log(e);
 		}
 		tg.openLink('https://t.me/tomo_cat');
 	};
@@ -194,7 +194,7 @@ const Footer = ({ user }) => {
 				task: 'website',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			console.log(e);
 		}
 		tg.openLink('https://tomocat.com/');
 	};
@@ -247,7 +247,7 @@ const Footer = ({ user }) => {
 				daily_quest_id: taskId,
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			console.log(e);
 		}
 	};
 
@@ -259,7 +259,7 @@ const Footer = ({ user }) => {
 				partners_quest_id: taskId,
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			console.log(e);
 		}
 	};
 
@@ -426,7 +426,7 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
-									<div className='footerMain__activitiesHint'>Coming Soon</div>
+									{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 								</div>
 								<div
 									// className='popupTasks__tabs-btn'
@@ -448,7 +448,7 @@ const Footer = ({ user }) => {
 											/>
 										</svg>
 									</button>
-									<div className='footerMain__activitiesHint'>Coming Soon</div>
+									{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 0 ? 'active' : ''}`}>
@@ -611,7 +611,7 @@ const Footer = ({ user }) => {
 											</svg>
 										</button>
 										<div className='popupError__title'>
-											<h4>Error , you must use another wallet</h4>
+											<h4>This wallet is already in use.</h4>
 										</div>
 									</div>
 								</div>
