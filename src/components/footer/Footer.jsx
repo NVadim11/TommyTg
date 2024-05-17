@@ -130,7 +130,8 @@ const Footer = ({ user }) => {
 
 	const errorCloseToggler = () => {
 		setErrMsgVisible(false);
-		console.log(13);
+		const popupTasks = document.getElementById('popupTasks');
+		if (htmlTag) popupTasks.classList.remove('show-blur');
 	};
 
 	const toggleVisibility = () => {
@@ -154,7 +155,7 @@ const Footer = ({ user }) => {
 				task: 'twitter',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			
 		}
 		tg.openLink('https://twitter.com/TomoCatSol');
 	};
@@ -167,7 +168,7 @@ const Footer = ({ user }) => {
 				task: 'tg_chat',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			
 		}
 		tg.openLink('https://t.me/tomocat_sol');
 	};
@@ -180,7 +181,7 @@ const Footer = ({ user }) => {
 				task: 'tg_channel',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			
 		}
 		tg.openLink('https://t.me/tomo_cat');
 	};
@@ -193,7 +194,7 @@ const Footer = ({ user }) => {
 				task: 'website',
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+		
 		}
 		tg.openLink('https://tomocat.com/');
 	};
@@ -210,6 +211,8 @@ const Footer = ({ user }) => {
 				setWalletInputDisabled(true);
 			} catch (e) {
 				setErrMsgVisible(true);
+				const popupTasks = document.getElementById('popupTasks');
+				if (htmlTag) popupTasks.classList.add('show-blur');
 			}
 		}
 	};
@@ -225,7 +228,7 @@ const Footer = ({ user }) => {
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
 			} catch (e) {
-				setErrMsgVisible(true);
+				
 			}
 		}
 	};
@@ -238,7 +241,7 @@ const Footer = ({ user }) => {
 				daily_quest_id: taskId,
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			
 		}
 	};
 
@@ -250,7 +253,7 @@ const Footer = ({ user }) => {
 				partners_quest_id: taskId,
 			}).unwrap();
 		} catch (e) {
-			setErrMsgVisible(true);
+			
 		}
 	};
 

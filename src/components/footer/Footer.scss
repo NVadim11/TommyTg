@@ -519,4 +519,22 @@ body::after {
   left: 0;
   bottom: 0;
   right: 0;
+  &__wrappper {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    padding: 0 30px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fff3;
+    border-radius: 20px;
+    display: flex;
+    padding: 20px;
+    position: relative;
+    background: #292f4f;
+    transition: transform .3s ease 0s;
+    width: 100%;
+  }
 }
