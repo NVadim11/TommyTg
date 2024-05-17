@@ -547,7 +547,7 @@ const Footer = ({ user }) => {
 									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
 								</div>
 							</div>
-							{/* <div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
+							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
 								{dailyTasksObj.map((quest) => (
 									<div className='popupTasks__task' key={quest.id}>
 										<button
@@ -580,7 +580,7 @@ const Footer = ({ user }) => {
 										)}
 									</div>
 								))}
-							</div> */}
+							</div>
 						</div>
 					</div>
 				</div>
