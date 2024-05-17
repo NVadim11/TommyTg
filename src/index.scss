@@ -2,6 +2,13 @@
   height: 100vh;
 }
 
+html,
+body {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
 .wrapper {
   background-color: #000000;
   position: relative;
