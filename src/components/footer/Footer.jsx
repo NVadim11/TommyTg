@@ -103,13 +103,34 @@ const Footer = ({ user }) => {
 
 	const fadeShow = () => {
 		const htmlTag = document.getElementById('html');
+		const headerTag = document.getElementById('header');
+		const mainTag = document.getElementById('main');
+		const footerTag = document.getElementById('footer');
+		const bgTag = document.getElementById('bgImage');
 		if (htmlTag) htmlTag.classList.add('popupTasks-show');
+		if (headerTag) headerTag.classList.add('show-blur');
+		if (mainTag) mainTag.classList.add('show-blur');
+		// if (footerTag) footerTag.classList.add('show-blur');
+		if (bgTag) bgTag.classList.add('h100');
 	};
 
 	const tasksCloseToggler = () => {
 		setTasksOpen(false);
 		const htmlTag = document.getElementById('html');
+		const headerTag = document.getElementById('header');
+		const mainTag = document.getElementById('main');
+		const footerTag = document.getElementById('footer');
+		const bgTag = document.getElementById('bgImage');
 		if (htmlTag) htmlTag.classList.remove('popupTasks-show');
+		if (headerTag) headerTag.classList.remove('show-blur');
+		if (mainTag) mainTag.classList.remove('show-blur');
+		// if (footerTag) footerTag.classList.remove('show-blur');
+		if (bgTag) bgTag.classList.remove('h100');
+	};
+
+	const errorCloseToggler = () => {
+		setErrMsgVisible(false);
+		console.log(13);
 	};
 
 	const toggleVisibility = () => {
@@ -223,7 +244,7 @@ const Footer = ({ user }) => {
 
 	return (
 		<>
-			<footer className='footerMain'>
+			<footer id="footer" className='footerMain'>
 				<div className='footerMain__container'>
 					<div className='soundToggler'>
 						{isVisible ? (
@@ -302,36 +323,6 @@ const Footer = ({ user }) => {
 					</div>
 				</div>
 			</footer>
-			{errMsgVisible && (
-				<div
-					style={{
-						position: 'absolute',
-						top: '50%',
-						right: '50%',
-					}}
-				>
-					<button onClick={tasksCloseToggler} type='button' className='popupTasks__close'>
-						<svg
-							width='19'
-							height='19'
-							viewBox='0 0 19 19'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path
-								d='M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17'
-								stroke='white'
-								strokeWidth='3'
-								strokeLinecap='round'
-								strokeLinejoin='round'
-							/>
-						</svg>
-					</button>
-					<div className='popupTasks__title'>
-						<h4>Complete tasks and get rewarded!</h4>
-					</div>
-				</div>
-			)}
 			{tasksOpen && (
 				<div id='popupTasks' aria-hidden='true' className={popupTasks}>
 					<div className='popupTasks__wrapper'>
@@ -567,6 +558,38 @@ const Footer = ({ user }) => {
 								))}
 							</div> */}
 						</div>
+						{errMsgVisible && (
+							<div id='popupError' aria-hidden='true' className='popupError'>
+								<div className='popupError__wrapper'>
+									<div className='popupError__content'>
+										<button
+											onClick={errorCloseToggler}
+											type='button'
+											className='popupError__close'
+										>
+											<svg
+												width='19'
+												height='19'
+												viewBox='0 0 19 19'
+												fill='none'
+												xmlns='http://www.w3.org/2000/svg'
+											>
+												<path
+													d='M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17'
+													stroke='white'
+													strokeWidth='3'
+													strokeLinecap='round'
+													strokeLinejoin='round'
+												/>
+											</svg>
+										</button>
+										<div className='popupTasks__title'>
+											<h4>Error , you must use another wallet</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						)}
 					</div>
 				</div>
 			)}

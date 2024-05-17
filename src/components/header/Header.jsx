@@ -166,7 +166,7 @@ const Header = ({ user }) => {
 
 	return (
 		<>
-			<header className='header'>
+			<header id="header" className='header'>
 				<div className='header__container'>
 					<div className='header__mobileBtns'>
 						{user && totalPoints !== null && (

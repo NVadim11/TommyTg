@@ -16,7 +16,7 @@ body::after {
   z-index: 149;
 }
 .popupTasks-show body::after {
-  opacity: 1;
+  // opacity: 1;
 }
 .popupTasks {
   position: fixed;
@@ -94,7 +94,6 @@ body::after {
     @media (max-width: $mobile) {
       position: relative;
       display: flex;
-      margin-bottom: 25px;
     }
   }
   &__coinBox {
@@ -185,6 +184,7 @@ body::after {
   }
   @media (max-width: $mobile) {
     padding: 0;
+    z-index: 301;
   }
   &__container {
     padding: 0 20px;
@@ -238,7 +238,7 @@ body::after {
     }
     button::before {
       content: "";
-      background: linear-gradient(-87deg, #691ee2 0%, #c09aff 100%);
+      background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
       opacity: 0;
       position: absolute;
       width: 100%;
@@ -328,9 +328,9 @@ body::after {
     align-items: center;
     position: relative;
     @media (max-width: 768px) {
+      margin-top: 1.5625rem;
       padding: 0.625rem;
-      width: 100%;
-      justify-content: space-between;
+      gap: 10px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       margin: 0 auto;
@@ -359,7 +359,7 @@ body::after {
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 0.625rem;
-        width: 70px;
+        width: 5.3125rem;
         justify-content: center;
         display: flex;
       }
@@ -446,6 +446,10 @@ body::after {
     display: flex;
     overflow: hidden;
     button {
+      border: 2px solid;
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 10px;
       width: 100%;
       height: 100%;
       font-weight: 400;
@@ -463,13 +467,14 @@ body::after {
   &__walletTask-right {
     display: flex;
     gap: 15px;
+    align-items: center;
     position: absolute;
     right: 0;
   }
   &__walletTask-left {
     position: absolute;
-    left: 0;
-    top: 63px;
+    left: 25px;
+    top: 65px;
     img {
       position: absolute;
       right: 0;
@@ -502,4 +507,16 @@ body::after {
       width: 20px;
     }
   }
+}
+
+
+.popupError {
+  z-index: 400;
+  position: absolute;
+  transition: visibility 0.8s ease 0s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

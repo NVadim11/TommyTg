@@ -421,35 +421,35 @@ const Main = ({ user }) => {
 
 	return (
 		<div className='mainContent'>
-			<div
+			<div id="bgImage"
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFirst})`,
 					opacity: opacityFirst,
 				}}
 			></div>
-			<div
+			<div id="bgImage"
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageSecond})`,
 					opacity: opacitySecond,
 				}}
 			></div>
-			<div
+			<div id="bgImage"
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageThird})`,
 					opacity: opacityThird,
 				}}
 			></div>
-			<div
+			<div id="bgImage"
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFourth})`,
 					opacity: opacityFourth,
 				}}
 			></div>
-			<div
+			<div id="bgImage"
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFives})`,

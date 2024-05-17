@@ -20,6 +20,13 @@
   }
 }
 
+.show-blur {
+  filter: blur(1rem);
+}
+
+.h100 {
+  height: 100vh!important;
+}
 
 @font-face {
   font-family: WorkSans;
