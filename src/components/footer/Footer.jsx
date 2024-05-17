@@ -30,6 +30,7 @@ const Footer = ({ user }) => {
 	const [activeTab, setActiveTab] = useState(0);
 	const [passDaily] = usePassDailyMutation();
 	const [passPartners] = usePassPartnersMutation();
+	const [errMsgVisible, setErrMsgVisible] = useState(false);
 
 	// aws
 	// const secretKey = process.env.REACT_APP_SECRET_KEY;
@@ -132,7 +133,7 @@ const Footer = ({ user }) => {
 				task: 'twitter',
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(JSON.stringify(e));
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://twitter.com/TomoCatSol');
 	};
@@ -145,7 +146,7 @@ const Footer = ({ user }) => {
 				task: 'tg_chat',
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(JSON.stringify(e));
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://t.me/tomocat_sol');
 	};
@@ -158,7 +159,7 @@ const Footer = ({ user }) => {
 				task: 'tg_channel',
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(JSON.stringify(e));
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://t.me/tomo_cat');
 	};
@@ -171,7 +172,7 @@ const Footer = ({ user }) => {
 				task: 'website',
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(JSON.stringify(e));
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://tomocat.com/');
 	};
@@ -187,7 +188,7 @@ const Footer = ({ user }) => {
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
 			} catch (e) {
-				tg.showAlert(JSON.stringify(e));
+				setErrMsgVisible(true);
 			}
 		}
 	};
@@ -203,7 +204,7 @@ const Footer = ({ user }) => {
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
 			} catch (e) {
-				tg.showAlert(JSON.stringify(e));
+				setErrMsgVisible(true);
 			}
 		}
 	};
@@ -216,7 +217,7 @@ const Footer = ({ user }) => {
 				partners_quest_id: taskId,
 			}).unwrap();
 		} catch (e) {
-			tg.showAlert(JSON.stringify(e));
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -301,6 +302,36 @@ const Footer = ({ user }) => {
 					</div>
 				</div>
 			</footer>
+			{errMsgVisible && (
+				<div
+					style={{
+						position: 'absolute',
+						top: '50%',
+						right: '50%',
+					}}
+				>
+					<button onClick={tasksCloseToggler} type='button' className='popupTasks__close'>
+						<svg
+							width='19'
+							height='19'
+							viewBox='0 0 19 19'
+							fill='none'
+							xmlns='http://www.w3.org/2000/svg'
+						>
+							<path
+								d='M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17'
+								stroke='white'
+								strokeWidth='3'
+								strokeLinecap='round'
+								strokeLinejoin='round'
+							/>
+						</svg>
+					</button>
+					<div className='popupTasks__title'>
+						<h4>Complete tasks and get rewarded!</h4>
+					</div>
+				</div>
+			)}
 			{tasksOpen && (
 				<div id='popupTasks' aria-hidden='true' className={popupTasks}>
 					<div className='popupTasks__wrapper'>
