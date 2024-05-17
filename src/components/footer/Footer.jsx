@@ -230,6 +230,18 @@ const Footer = ({ user }) => {
 		}
 	};
 
+	const passDailyHandler = async (taskId) => {
+		try {
+			const res = await passDaily({
+				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
+				user_id: user?.id,
+				daily_quest_id: taskId,
+			}).unwrap();
+		} catch (e) {
+			setErrMsgVisible(true);
+		}
+	};
+
 	const partnersTaskHandler = async (taskId) => {
 		try {
 			const res = await passPartners({
@@ -244,7 +256,7 @@ const Footer = ({ user }) => {
 
 	return (
 		<>
-			<footer id="footer" className='footerMain'>
+			<footer id='footer' className='footerMain'>
 				<div className='footerMain__container'>
 					<div className='soundToggler'>
 						{isVisible ? (
@@ -386,9 +398,9 @@ const Footer = ({ user }) => {
 									</button>
 								</div>
 								<div
-									// className={`popupTasks__tabs-btn ${activeTab === 1 ? 'active' : ''}`}
-									className='popupTasks__tabs-btn'
-									// onClick={() => handleTabClick(1)}
+									className={`popupTasks__tabs-btn ${activeTab === 1 ? 'active' : ''}`}
+									// className='popupTasks__tabs-btn'
+									onClick={() => handleTabClick(1)}
 								>
 									<button>
 										<svg
@@ -408,9 +420,9 @@ const Footer = ({ user }) => {
 									<div className='footerMain__activitiesHint'>Coming Soon</div>
 								</div>
 								<div
-									// className={`popupTasks__tabs-btn ${activeTab === 2 ? 'active' : ''}`}
-									className='popupTasks__tabs-btn'
-									// onClick={() => handleTabClick(2)}
+									// className='popupTasks__tabs-btn'
+									className={`popupTasks__tabs-btn ${activeTab === 2 ? 'active' : ''}`}
+									onClick={() => handleTabClick(2)}
 								>
 									<button>
 										<svg
@@ -526,10 +538,13 @@ const Footer = ({ user }) => {
 									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
 								</div>
 							</div>
-							{/* <div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
+							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
 								{dailyTasksObj.map((quest) => (
 									<div className='popupTasks__task' key={quest.id}>
-										<button disabled={quest.status === 1}>
+										<button
+											disabled={quest.status === 1}
+											onClick={() => passDailyHandler(quest.id)}
+										>
 											<span>{quest.daily_quest.name}</span>
 										</button>
 										{quest.status === 0 ? (
@@ -539,8 +554,8 @@ const Footer = ({ user }) => {
 										)}
 									</div>
 								))}
-							</div> */}
-							{/* <div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
+							</div>
+							<div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
 								{partnerTaskObj.map((quest) => (
 									<div className='popupTasks__task'>
 										<button
@@ -556,7 +571,7 @@ const Footer = ({ user }) => {
 										)}
 									</div>
 								))}
-							</div> */}
+							</div>
 						</div>
 						{errMsgVisible && (
 							<div id='popupError' aria-hidden='true' className='popupError'>
