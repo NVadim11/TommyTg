@@ -58,7 +58,7 @@ body::after {
 .popupTasks {
   &__wrapper {
     padding: 0 30px;
-    margin-top: 6.1875rem;
+    margin-top: 69x;
   }
   &__content {
     display: flex;
@@ -446,7 +446,6 @@ body::after {
     display: flex;
     overflow: hidden;
     button {
-      border: 2px solid;
       border-radius: 20px;
       overflow: hidden;
       padding: 10px;
@@ -519,22 +518,36 @@ body::after {
   left: 0;
   bottom: 0;
   right: 0;
-  &__wrappper {
+  &__wrapper {
     height: 100%;
     min-height: 100%;
     width: 100%;
     padding: 0 30px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
   }
   &__content {
-    display: flex;
     flex-direction: column;
     border: 1px solid #fff3;
     border-radius: 20px;
-    display: flex;
     padding: 20px;
     position: relative;
     background: #292f4f;
     transition: transform .3s ease 0s;
     width: 100%;
+  }
+  &__close {
+   position: absolute;
+   right: 20px;
+  }
+  &__title {
+    font-size: 1.25rem;
+    position: relative;
+    width: 11.875rem;
+    color: #fff;
+    font-weight: 900;
+    line-height: 100%;
+    margin-top: 20px;
   }
 }

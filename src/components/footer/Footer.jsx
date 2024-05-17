@@ -110,7 +110,6 @@ const Footer = ({ user }) => {
 		if (htmlTag) htmlTag.classList.add('popupTasks-show');
 		if (headerTag) headerTag.classList.add('show-blur');
 		if (mainTag) mainTag.classList.add('show-blur');
-		// if (footerTag) footerTag.classList.add('show-blur');
 		if (bgTag) bgTag.classList.add('h100');
 	};
 
@@ -124,14 +123,15 @@ const Footer = ({ user }) => {
 		if (htmlTag) htmlTag.classList.remove('popupTasks-show');
 		if (headerTag) headerTag.classList.remove('show-blur');
 		if (mainTag) mainTag.classList.remove('show-blur');
-		// if (footerTag) footerTag.classList.remove('show-blur');
 		if (bgTag) bgTag.classList.remove('h100');
 	};
 
 	const errorCloseToggler = () => {
 		setErrMsgVisible(false);
 		const popupTasks = document.getElementById('popupTasks');
-		if (htmlTag) popupTasks.classList.remove('show-blur');
+		if (popupTasks) popupTasks.classList.remove('show-blur');
+		const footerTag = document.getElementById('footer');
+		if (footerTag) footerTag.classList.remove('show-blur');
 	};
 
 	const toggleVisibility = () => {
@@ -155,7 +155,7 @@ const Footer = ({ user }) => {
 				task: 'twitter',
 			}).unwrap();
 		} catch (e) {
-			
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://twitter.com/TomoCatSol');
 	};
@@ -168,7 +168,7 @@ const Footer = ({ user }) => {
 				task: 'tg_chat',
 			}).unwrap();
 		} catch (e) {
-			
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://t.me/tomocat_sol');
 	};
@@ -181,7 +181,7 @@ const Footer = ({ user }) => {
 				task: 'tg_channel',
 			}).unwrap();
 		} catch (e) {
-			
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://t.me/tomo_cat');
 	};
@@ -194,10 +194,17 @@ const Footer = ({ user }) => {
 				task: 'website',
 			}).unwrap();
 		} catch (e) {
-		
+			setErrMsgVisible(true);
 		}
 		tg.openLink('https://tomocat.com/');
 	};
+
+	const blurPopupTasks = () => {
+		const popupTasks = document.getElementById('popupTasks');
+		if (popupTasks) popupTasks.classList.add('show-blur');
+		const footerTag = document.getElementById('footer');
+		if (footerTag) footerTag.classList.add('show-blur');
+	}
 
 	const submitWallet = async () => {
 		if (walletVaL) {
@@ -211,8 +218,6 @@ const Footer = ({ user }) => {
 				setWalletInputDisabled(true);
 			} catch (e) {
 				setErrMsgVisible(true);
-				const popupTasks = document.getElementById('popupTasks');
-				if (htmlTag) popupTasks.classList.add('show-blur');
 			}
 		}
 	};
@@ -228,7 +233,8 @@ const Footer = ({ user }) => {
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
 			} catch (e) {
-				
+				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		}
 	};
@@ -241,7 +247,7 @@ const Footer = ({ user }) => {
 				daily_quest_id: taskId,
 			}).unwrap();
 		} catch (e) {
-			
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -253,7 +259,7 @@ const Footer = ({ user }) => {
 				partners_quest_id: taskId,
 			}).unwrap();
 		} catch (e) {
-			
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -576,7 +582,10 @@ const Footer = ({ user }) => {
 								))}
 							</div> */}
 						</div>
-						{errMsgVisible && (
+					</div>
+				</div>
+			)}
+				{errMsgVisible && (
 							<div id='popupError' aria-hidden='true' className='popupError'>
 								<div className='popupError__wrapper'>
 									<div className='popupError__content'>
@@ -601,16 +610,13 @@ const Footer = ({ user }) => {
 												/>
 											</svg>
 										</button>
-										<div className='popupTasks__title'>
+										<div className='popupError__title'>
 											<h4>Error , you must use another wallet</h4>
 										</div>
 									</div>
 								</div>
 							</div>
 						)}
-					</div>
-				</div>
-			)}
 		</>
 	);
 };
