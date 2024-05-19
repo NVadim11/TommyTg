@@ -575,7 +575,7 @@ const Footer = ({ user }) => {
 										{!user?.wallet_address ? (
 											<p style={{ marginLeft: '-25px' }}>+ 20000</p>
 										) : (
-											<img src={checkbox} />
+											''
 										)}
 									</div>
 									<div className='popupTasks__walletTask-box'>
@@ -646,7 +646,7 @@ const Footer = ({ user }) => {
 												<span>{quest.daily_quest.name}</span>
 											</button>
 											{quest.status === 0 ? (
-												<p>+ {quest.daily_quest.reward}</p>
+												<p>+ {quest.reward}</p>
 											) : (
 												<img src={checkbox} alt='Completed' />
 											)}
@@ -666,7 +666,7 @@ const Footer = ({ user }) => {
 												<span>{quest.partners_quest.name}</span>
 											</button>
 											{quest.status === 0 ? (
-												<p>+ {quest.partners_quest.reward}</p>
+												<p>+ {quest.reward}</p>
 											) : (
 												<img src={checkbox} alt='Completed' />
 											)}
