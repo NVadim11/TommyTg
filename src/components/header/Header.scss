@@ -313,7 +313,7 @@ body::after {
   transition: visibility 0.8s ease 0s;
   pointer-events: none;
   @media (max-width: $mobile) {
-    padding: 5.4375rem 1.25rem 5.4375rem 1.25rem;
+    padding: 0 1.25rem;
   }
 }
 .popupInvite{
@@ -353,19 +353,15 @@ body::after {
   flex: 1 1 auto;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .popupInvite__wrapper{
   display: flex;
   flex-direction: column;
-  align-items: center;
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .popupLeaderboard__content{
   display: none;
@@ -375,6 +371,7 @@ body::after {
   width: 100%;
   max-width: 56.25rem;
   border-radius: 1.25rem;
+  margin-top: 69px;
 }
 .popupInvite__content{
   display: none;

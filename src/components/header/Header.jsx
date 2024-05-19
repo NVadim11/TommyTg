@@ -129,9 +129,11 @@ const Header = ({ user }) => {
 		const headerTag = document.getElementById('header');
 		const mainTag = document.getElementById('main');
 		const bgTag = document.getElementById('bgImage');
+		const footerTag = document.getElementById('footer');
 		if (headerTag) headerTag.classList.add('show-blur');
 		if (mainTag) mainTag.classList.add('show-blur');
 		if (bgTag) bgTag.classList.add('h100');
+		if (footerTag) footerTag.classList.add('show-blur');
 	};
 
 	const fadeShowInvite = () => {
@@ -146,9 +148,11 @@ const Header = ({ user }) => {
 		const headerTag = document.getElementById('header');
 		const mainTag = document.getElementById('main');
 		const bgTag = document.getElementById('bgImage');
+		const footerTag = document.getElementById('footer');
 		if (headerTag) headerTag.classList.remove('show-blur');
 		if (mainTag) mainTag.classList.remove('show-blur');
 		if (bgTag) bgTag.classList.remove('h100');
+		if (footerTag) footerTag.classList.remove('show-blur');
 	};
 
 	const inviteLink = async () => {
@@ -178,7 +182,7 @@ const Header = ({ user }) => {
 
 	return (
 		<>
-			<header id="header" className='header'>
+			<header id='header' className='header'>
 				<div className='header__container'>
 					<div className='header__mobileBtns'>
 						{user && totalPoints !== null && (

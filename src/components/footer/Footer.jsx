@@ -105,7 +105,7 @@ const Footer = ({ user }) => {
 		const htmlTag = document.getElementById('html');
 		const headerTag = document.getElementById('header');
 		const mainTag = document.getElementById('main');
-		const footerTag = document.getElementById('footer');
+		// const footerTag = document.getElementById('footer');
 		const bgTag = document.getElementById('bgImage');
 		if (htmlTag) htmlTag.classList.add('popupTasks-show');
 		if (headerTag) headerTag.classList.add('show-blur');
@@ -118,7 +118,7 @@ const Footer = ({ user }) => {
 		const htmlTag = document.getElementById('html');
 		const headerTag = document.getElementById('header');
 		const mainTag = document.getElementById('main');
-		const footerTag = document.getElementById('footer');
+		// const footerTag = document.getElementById('footer');
 		const bgTag = document.getElementById('bgImage');
 		if (htmlTag) htmlTag.classList.remove('popupTasks-show');
 		if (headerTag) headerTag.classList.remove('show-blur');
