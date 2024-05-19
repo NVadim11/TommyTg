@@ -32,11 +32,30 @@ const Footer = ({ user }) => {
 	const [passPartners] = usePassPartnersMutation();
 	const [errMsgVisible, setErrMsgVisible] = useState(false);
 
+	const dailyTasksObj = value?.daily_quests;
+	const partnerTaskObj = value?.partners_quests;
+
+	const [twitterQuest, setTwitterQuest] = useState(value?.twitter);
+	const [tgChatQuest, setTgChatQuest] = useState(value?.tg_chat);
+	const [tgChannelQuest, setTgChannelQuest] = useState(value?.tg_channel);
+	const [websiteQuest, setWebsiteQuest] = useState(value?.website);
+	const [dailyQuests, setDailyQuests] = useState(dailyTasksObj);
+	const [partnerQuests, setPartnerQuests] = useState(partnerTaskObj);
+
 	// aws
 	// const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 	// prodtest
 	const secretKey = '<sNE:pYjk>2(0W%JUKaz9v(uBa3U';
+
+	useEffect(() => {
+		setTwitterQuest(user?.twitter);
+		setTgChatQuest(user?.tg_chat);
+		setTgChannelQuest(user?.tg_channel);
+		setWebsiteQuest(user?.website);
+		setPartnerQuests(partnerTaskObj);
+		setDailyQuests(dailyTasksObj);
+	}, [user]);
 
 	const popupTasksTgl = tasksOpen ? 'popupTasks_show' : null;
 	const popupTasks = `popupTasks ${popupTasksTgl}`;
@@ -44,9 +63,6 @@ const Footer = ({ user }) => {
 	const handleTabClick = (index) => {
 		setActiveTab(index);
 	};
-
-	const dailyTasksObj = user?.daily_quests;
-	const partnerTaskObj = user?.partners_quests;
 
 	const options = {
 		day: '2-digit',
@@ -73,7 +89,7 @@ const Footer = ({ user }) => {
 				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
 				const remainingTime = user?.update_wallet_at - currentTimeStamp;
 				if (remainingTime >= 0) {
-					if (remainingTime <= 0) {
+					if (remainingTime <= 1) {
 						setResetBtnDisabled(false);
 					} else {
 						setResetBtnDisabled(true);
@@ -89,7 +105,7 @@ const Footer = ({ user }) => {
 				clearInterval(timer);
 			};
 		}
-	}, [userId, user]);
+	}, [remainingTime]);
 
 	const resetWalletEnabler = () => {
 		setWalletInputDisabled(false);
@@ -148,55 +164,87 @@ const Footer = ({ user }) => {
 	};
 
 	const twitterClick = async () => {
+		tg.openLink('https://twitter.com/TomoCatSol');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'twitter',
 			}).unwrap();
+			const res = { success: true };
+			if (res.success) {
+				// Update quest status to completed (status: 1)
+				setTwitterQuest(1);
+				console.log('Task completed successfully:');
+			} else {
+				console.log('Error completing task');
+			}
 		} catch (e) {
 			console.log(e);
 		}
-		tg.openLink('https://twitter.com/TomoCatSol');
 	};
 
 	const tgClickChat = async () => {
+		tg.openLink('https://t.me/tomocat_sol');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'tg_chat',
 			}).unwrap();
+			const res = { success: true };
+			if (res.success) {
+				// Update quest status to completed (status: 1)
+				setTgChatQuest(1);
+				console.log('Task completed successfully:');
+			} else {
+				console.log('Error completing task');
+			}
 		} catch (e) {
 			console.log(e);
 		}
-		tg.openLink('https://t.me/tomocat_sol');
 	};
 
 	const tgClickChannel = async () => {
+		tg.openLink('https://t.me/tomo_cat');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'tg_channel',
 			}).unwrap();
+			const res = { success: true };
+			if (res.success) {
+				// Update quest status to completed (status: 1)
+				setTgChannelQuest(1);
+				console.log('Task completed successfully:');
+			} else {
+				console.log('Error completing task');
+			}
 		} catch (e) {
 			console.log(e);
 		}
-		tg.openLink('https://t.me/tomo_cat');
 	};
 
 	const websiteClick = async () => {
+		tg.openLink('https://tomocat.com/');
 		try {
-			const res = await passTask({
+			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				id_telegram: user?.id_telegram,
 				task: 'website',
 			}).unwrap();
+			const res = { success: true };
+			if (res.success) {
+				// Update quest status to completed (status: 1)
+				setWebsiteQuest(1);
+				console.log('Task completed successfully:');
+			} else {
+				console.log('Error completing task');
+			}
 		} catch (e) {
 			console.log(e);
 		}
-		tg.openLink('https://tomocat.com/');
 	};
 
 	const blurPopupTasks = () => {
@@ -204,7 +252,7 @@ const Footer = ({ user }) => {
 		if (popupTasks) popupTasks.classList.add('show-blur');
 		const footerTag = document.getElementById('footer');
 		if (footerTag) footerTag.classList.add('show-blur');
-	}
+	};
 
 	const submitWallet = async () => {
 		if (walletVaL) {
@@ -241,26 +289,64 @@ const Footer = ({ user }) => {
 
 	const passDailyHandler = async (taskId) => {
 		try {
-			const res = await passDaily({
+			await passDaily({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				user_id: user?.id,
 				daily_quest_id: taskId,
 			}).unwrap();
+
+			const res = { success: true };
+
+			if (res.success) {
+				// Update quest status to completed (status: 1)
+				updateDailyQStatus(taskId, 1);
+				console.log('Task completed successfully:', taskId);
+			} else {
+				console.log('Error completing task:' + taskId);
+			}
 		} catch (e) {
-			console.log(e);
+			console.log('Error completing task:' + taskId, e);
 		}
+	};
+
+	const updateDailyQStatus = (taskId, status) => {
+		// Update the quest status in state
+		setDailyQuests((prevQuests) =>
+			prevQuests.map((quest) =>
+				quest.id === taskId ? { ...quest, status: status } : quest
+			)
+		);
 	};
 
 	const partnersTaskHandler = async (taskId) => {
 		try {
-			const res = await passPartners({
+			await passPartners({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
 				user_id: user?.id,
 				partners_quest_id: taskId,
 			}).unwrap();
+
+			const res = { success: true };
+
+			if (res.success) {
+				// Update quest status to completed (status: 1)
+				updatePartnerQStatus(taskId, 1);
+				console.log('Task completed successfully:', taskId);
+			} else {
+				console.log('Error completing task:' + taskId);
+			}
 		} catch (e) {
-			console.log(e);
+			console.log('Error completing task:' + taskId, e);
 		}
+	};
+
+	const updatePartnerQStatus = (taskId, status) => {
+		// Update the quest status in state
+		setPartnerQuests((prevQuests) =>
+			prevQuests.map((quest) =>
+				quest.id === taskId ? { ...quest, status: status } : quest
+			)
+		);
 	};
 
 	return (
@@ -523,32 +609,33 @@ const Footer = ({ user }) => {
 									</div>
 								</div>
 								<div className='popupTasks__task'>
-									<button onClick={twitterClick} disabled={user?.twitter === 1}>
+									<button onClick={twitterClick} disabled={twitterQuest === 1}>
 										Follow Twitter
 									</button>
 									{user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
-									<button onClick={tgClickChat} disabled={user?.tg_chat === 1}>
+									<button onClick={tgClickChat} disabled={tgChatQuest === 1}>
 										Follow Telegram Chat
 									</button>
 									{user?.tg_chat === 0 ? <p>+10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
-									<button onClick={tgClickChannel} disabled={user?.tg_channel === 1}>
+									<button onClick={tgClickChannel} disabled={tgChannelQuest === 1}>
 										Follow Telegram Channel
 									</button>
 									{user?.tg_channel === 0 ? <p>+10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
-									<button onClick={websiteClick} disabled={user?.website === 1}>
+									<button onClick={websiteClick} disabled={websiteQuest === 1}>
 										Visit Website
 									</button>
 									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
-								{dailyTasksObj.map((quest) => (
+								{/* Render quests dynamically based on their status */}
+								{dailyQuests.map((quest) => (
 									<div className='popupTasks__task' key={quest.id}>
 										<button
 											disabled={quest.status === 1}
@@ -565,7 +652,8 @@ const Footer = ({ user }) => {
 								))}
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
-								{partnerTaskObj.map((quest) => (
+								{/* Render quests dynamically based on their status */}
+								{partnerQuests.map((quest) => (
 									<div className='popupTasks__task'>
 										<button
 											disabled={quest.status === 1}
@@ -585,38 +673,38 @@ const Footer = ({ user }) => {
 					</div>
 				</div>
 			)}
-				{errMsgVisible && (
-							<div id='popupError' aria-hidden='true' className='popupError'>
-								<div className='popupError__wrapper'>
-									<div className='popupError__content'>
-										<button
-											onClick={errorCloseToggler}
-											type='button'
-											className='popupError__close'
-										>
-											<svg
-												width='19'
-												height='19'
-												viewBox='0 0 19 19'
-												fill='none'
-												xmlns='http://www.w3.org/2000/svg'
-											>
-												<path
-													d='M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17'
-													stroke='white'
-													strokeWidth='3'
-													strokeLinecap='round'
-													strokeLinejoin='round'
-												/>
-											</svg>
-										</button>
-										<div className='popupError__title'>
-											<h4>This wallet is already in use.</h4>
-										</div>
-									</div>
-								</div>
+			{errMsgVisible && (
+				<div id='popupError' aria-hidden='true' className='popupError'>
+					<div className='popupError__wrapper'>
+						<div className='popupError__content'>
+							<button
+								onClick={errorCloseToggler}
+								type='button'
+								className='popupError__close'
+							>
+								<svg
+									width='19'
+									height='19'
+									viewBox='0 0 19 19'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path
+										d='M9.5 9.5L2 2M9.5 9.5L17 17M9.5 9.5L17 2M9.5 9.5L2 17'
+										stroke='white'
+										strokeWidth='3'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+									/>
+								</svg>
+							</button>
+							<div className='popupError__title'>
+								<h4>This wallet is already in use.</h4>
 							</div>
-						)}
+						</div>
+					</div>
+				</div>
+			)}
 		</>
 	);
 };
