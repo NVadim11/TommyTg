@@ -32,13 +32,13 @@ const Footer = ({ user }) => {
 	const [passPartners] = usePassPartnersMutation();
 	const [errMsgVisible, setErrMsgVisible] = useState(false);
 
-	const dailyTasksObj = value?.daily_quests;
-	const partnerTaskObj = value?.partners_quests;
+	const dailyTasksObj = user?.daily_quests;
+	const partnerTaskObj = user?.partners_quests;
 
-	const [twitterQuest, setTwitterQuest] = useState(value?.twitter);
-	const [tgChatQuest, setTgChatQuest] = useState(value?.tg_chat);
-	const [tgChannelQuest, setTgChannelQuest] = useState(value?.tg_channel);
-	const [websiteQuest, setWebsiteQuest] = useState(value?.website);
+	const [twitterQuest, setTwitterQuest] = useState(user?.twitter);
+	const [tgChatQuest, setTgChatQuest] = useState(user?.tg_chat);
+	const [tgChannelQuest, setTgChannelQuest] = useState(user?.tg_channel);
+	const [websiteQuest, setWebsiteQuest] = useState(user?.website);
 	const [dailyQuests, setDailyQuests] = useState(dailyTasksObj);
 	const [partnerQuests, setPartnerQuests] = useState(partnerTaskObj);
 
@@ -105,7 +105,7 @@ const Footer = ({ user }) => {
 				clearInterval(timer);
 			};
 		}
-	}, [remainingTime]);
+	}, [user]);
 
 	const resetWalletEnabler = () => {
 		setWalletInputDisabled(false);
