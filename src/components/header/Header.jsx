@@ -126,6 +126,12 @@ const Header = ({ user }) => {
 	const fadeShow = () => {
 		const htmlTag = document.getElementById('html');
 		if (htmlTag) htmlTag.classList.add('popupLeaderboard-show');
+		const headerTag = document.getElementById('header');
+		const mainTag = document.getElementById('main');
+		const bgTag = document.getElementById('bgImage');
+		if (headerTag) headerTag.classList.add('show-blur');
+		if (mainTag) mainTag.classList.add('show-blur');
+		if (bgTag) bgTag.classList.add('h100');
 	};
 
 	const fadeShowInvite = () => {
@@ -137,6 +143,12 @@ const Header = ({ user }) => {
 		setLeaderboardOpen(false);
 		const htmlTag = document.getElementById('html');
 		if (htmlTag) htmlTag.classList.remove('popupLeaderboard-show');
+		const headerTag = document.getElementById('header');
+		const mainTag = document.getElementById('main');
+		const bgTag = document.getElementById('bgImage');
+		if (headerTag) headerTag.classList.remove('show-blur');
+		if (mainTag) mainTag.classList.remove('show-blur');
+		if (bgTag) bgTag.classList.remove('h100');
 	};
 
 	const inviteLink = async () => {
