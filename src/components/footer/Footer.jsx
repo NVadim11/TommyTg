@@ -612,25 +612,25 @@ const Footer = ({ user }) => {
 									<button onClick={twitterClick} disabled={twitterQuest === 1}>
 										Follow Twitter
 									</button>
-									{user?.twitter === 0 ? <p>+10000</p> : <img src={checkbox} />}
+									{user?.twitter === 0 ? <p>+ 10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChat} disabled={tgChatQuest === 1}>
 										Follow Telegram Chat
 									</button>
-									{user?.tg_chat === 0 ? <p>+10000</p> : <img src={checkbox} />}
+									{user?.tg_chat === 0 ? <p>+ 10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChannel} disabled={tgChannelQuest === 1}>
 										Follow Telegram Channel
 									</button>
-									{user?.tg_channel === 0 ? <p>+10000</p> : <img src={checkbox} />}
+									{user?.tg_channel === 0 ? <p>+ 10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={websiteClick} disabled={websiteQuest === 1}>
 										Visit Website
 									</button>
-									{user?.website === 0 ? <p>+3000</p> : <img src={checkbox} />}
+									{user?.website === 0 ? <p>+ 3000</p> : <img src={checkbox} />}
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
@@ -644,7 +644,7 @@ const Footer = ({ user }) => {
 											<span>{quest.daily_quest.name}</span>
 										</button>
 										{quest.status === 0 ? (
-											<p>{quest.daily_quest.reward}</p>
+											<p>+ {quest.daily_quest.reward}</p>
 										) : (
 											<img src={checkbox} />
 										)}
@@ -662,7 +662,7 @@ const Footer = ({ user }) => {
 											<span>{quest.partners_quest.name}</span>
 										</button>
 										{quest.status === 0 ? (
-											<p>{quest.partners_quest.reward}</p>
+											<p>+ {quest.partners_quest.reward}</p>
 										) : (
 											<img src={checkbox} alt='Completed' />
 										)}
