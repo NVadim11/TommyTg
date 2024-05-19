@@ -395,7 +395,7 @@ body::after {
     border-radius: 1.875rem;
     backdrop-filter: blur(18px);
     -moz-backdrop-filter: blur(18px);
-    background: rgba(124, 48, 247, 0.45);
+    background: rgba(124, 48, 247);
     box-shadow: inset -0.25rem -0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
     @media (max-width: $mobile) {
       padding: 3.25rem 1.25rem;
