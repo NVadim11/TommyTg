@@ -31,6 +31,9 @@ const Footer = ({ user }) => {
 	const [passDaily] = usePassDailyMutation();
 	const [passPartners] = usePassPartnersMutation();
 	const [errMsgVisible, setErrMsgVisible] = useState(false);
+	const [errorText, setErrorText] = useState(
+		'An error occurred. Please try again later.'
+	);
 
 	const dailyTasksObj = user?.daily_quests;
 	const partnerTaskObj = user?.partners_quests;
@@ -175,12 +178,16 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setTwitterQuest(1);
-				console.log('Task completed successfully:');
+				setErrorText('Task completed successfully');
+				setErrMsgVisible(true);
+				console.log();
 			} else {
-				console.log('Error completing task');
+				setErrorText('An error occurred. Please try again later.');
+				setErrMsgVisible(true);
 			}
 		} catch (e) {
-			console.log(e);
+			setErrorText('An error occurred. Please try again later.');
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -196,12 +203,15 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setTgChatQuest(1);
-				console.log('Task completed successfully:');
+				setErrorText('Task completed successfully');
+				setErrMsgVisible(true);
 			} else {
-				console.log('Error completing task');
+				setErrorText('An error occurred. Please try again later.');
+				setErrMsgVisible(true);
 			}
 		} catch (e) {
-			console.log(e);
+			setErrorText('An error occurred. Please try again later.');
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -217,12 +227,15 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setTgChannelQuest(1);
-				console.log('Task completed successfully:');
+				setErrorText('Task completed successfully');
+				setErrMsgVisible(true);
 			} else {
-				console.log('Error completing task');
+				setErrorText('An error occurred. Please try again later.');
+				setErrMsgVisible(true);
 			}
 		} catch (e) {
-			console.log(e);
+			setErrorText('An error occurred. Please try again later.');
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -238,12 +251,15 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setWebsiteQuest(1);
-				console.log('Task completed successfully:');
+				setErrorText('Task completed successfully');
+				setErrMsgVisible(true);
 			} else {
-				console.log('Error completing task');
+				setErrorText('An error occurred. Please try again later.');
+				setErrMsgVisible(true);
 			}
 		} catch (e) {
-			console.log(e);
+			setErrorText('An error occurred. Please try again later.');
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -264,7 +280,10 @@ const Footer = ({ user }) => {
 				}).unwrap();
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
+				setErrorText('Wallet submitted successfully.');
+				setErrMsgVisible(true);
 			} catch (e) {
+				setErrorText('This wallet is already in use.');
 				setErrMsgVisible(true);
 			}
 		}
@@ -280,7 +299,10 @@ const Footer = ({ user }) => {
 				}).unwrap();
 				setResetBtnDisabled(true);
 				setWalletInputDisabled(true);
+				setErrorText('Wallet changed successfully.');
+				setErrMsgVisible(true);
 			} catch (e) {
+				setErrorText('This wallet is already in use.');
 				setErrMsgVisible(true);
 				blurPopupTasks();
 			}
@@ -303,12 +325,15 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				updateDailyQStatus(taskId, 1);
-				console.log('Task completed successfully:', taskId);
+				setErrorText('Task completed successfully');
+				setErrMsgVisible(true);
 			} else {
-				console.log('Error completing task:' + taskId);
+				setErrorText('An error occurred. Please try again later.');
+				setErrMsgVisible(true);
 			}
 		} catch (e) {
-			console.log('Error completing task:' + taskId, e);
+			setErrorText('An error occurred. Please try again later.');
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -337,12 +362,15 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				updatePartnerQStatus(taskId, 1);
-				console.log('Task completed successfully:', taskId);
+				setErrorText('Task completed successfully');
+				setErrMsgVisible(true);
 			} else {
-				console.log('Error completing task:' + taskId);
+				setErrorText('An error occurred. Please try again later.');
+				setErrMsgVisible(true);
 			}
 		} catch (e) {
-			console.log('Error completing task:' + taskId, e);
+			setErrorText('An error occurred. Please try again later.');
+			setErrMsgVisible(true);
 		}
 	};
 
@@ -790,7 +818,7 @@ const Footer = ({ user }) => {
 								</svg>
 							</button>
 							<div className='popupError__title'>
-								<h4>This wallet is already in use.</h4>
+								<h4>{errorText}</h4>
 							</div>
 						</div>
 					</div>
