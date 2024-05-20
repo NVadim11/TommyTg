@@ -38,16 +38,16 @@
 	let tg = window.Telegram.WebApp
 	tg.expand()
 	window.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false })
-	window.scrollTo(0, 100)
-	Telegram.WebApp.ready()
+	// window.scrollTo(0, 100)
+	// Telegram.WebApp.ready()
 
 	// margin-top 100px & padding=bottom 100px
-	const overflow = 100
-	document.body.style.overflowY = 'hidden'
-	document.body.style.marginTop = `${overflow}px`
-	document.body.style.height = window.innerHeight + overflow + 'px'
-	document.body.style.paddingBottom = `${overflow}px`
-	window.scrollTo(0, overflow);
+	// const overflow = 100
+	// document.body.style.overflowY = 'hidden'
+	// document.body.style.marginTop = `${overflow}px`
+	// document.body.style.height = window.innerHeight + overflow + 'px'
+	// document.body.style.paddingBottom = `${overflow}px`
+	// window.scrollTo(0, overflow);
 </script>
 
 </html>

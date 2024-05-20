@@ -100,20 +100,20 @@ const MainComponent = () => {
 	}, [tg, userId]);
 
 	return (
-		<div className='wrapper'>
-			<Preloader loaded={preloaderLoaded} />
-			{/* {!user ? ( */}
-				<>
-					<Header user={user} />
-					<main id='main' className='main'>
-						<Main user={user} />
-					</main>
-					<Footer user={user} />
-				</>
-			{/* ) : (
-				<NotFound />
-			)} */}
-		</div>
+		<>
+        <Preloader loaded={preloaderLoaded} />
+        {/* {!user ? ( */}
+        <>
+            <Header user={user} />
+            <main id='main' className='main'>
+                <Main user={user} />
+            </main>
+            <Footer user={user} />
+        </>
+        {/* ) : (
+            <NotFound />
+        ) */}
+    </>
 	);
 };
 
