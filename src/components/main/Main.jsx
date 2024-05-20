@@ -39,7 +39,7 @@ const Main = ({ user }) => {
 	const coinRef = useRef(null);
 	const accumulatedCoinsRef = useRef(0);
 	const [updateBalance] = useUpdateBalanceMutation();
-	const [position, setPosition] = useState({ x: '50%', y: '50%' });
+	const [position, setPosition] = useState({ x: '100%', y: '100%' });
 	const [boostPhase, setBoostPhase] = useState(false);
 	const [visible, setVisible] = useState(false);
 	const [catVisible, setCatVisible] = useState(true);
@@ -208,14 +208,20 @@ const Main = ({ user }) => {
 		}, 10000);
 	};
 
+	const mainRef = useRef(null);
+
+useEffect(() => {
+    const rect = mainRef.current.getBoundingClientRect();
+    // Установка начальной позиции в пределах компонента Main
+    setPosition({ x: Math.random() * rect.width, y: Math.random() * rect.height });
+}, []);
+
 	const randomizePosition = () => {
-		const elementWidth = 150;
-		const elementHeight = 150;
-		const maxX = Math.max(0, window.innerWidth - elementWidth);
-		const maxY = Math.max(0, window.innerHeight - elementHeight);
+		const rect = mainRef.current.getBoundingClientRect();
+		const maxX = rect.width - 150; // Ширина элемента boost-element
+		const maxY = rect.height - 150; // Высота элемента boost-element
 		const x = Math.random() * maxX;
 		const y = Math.random() * maxY;
-
 		setPosition({ x, y });
 		console.log(`New position: (${x}, ${y})`);
 	};
@@ -235,23 +241,27 @@ const Main = ({ user }) => {
 	}, [gamePaused]);
 
 	useEffect(() => {
+		let showBoostTimeout;
+		let hideBoostTimeout;
+	
 		if (!gamePaused) {
 			if (!visible) {
 				randomizePosition();
-				const showBoostTimeout = setTimeout(() => {
+				showBoostTimeout = setTimeout(() => {
 					randomizePosition();
 					setVisible(true);
 				}, Math.random() * (30000 - 13000) + 13000);
-
-				return () => clearTimeout(showBoostTimeout);
 			} else {
-				const hideBoostTimeout = setTimeout(() => {
+				hideBoostTimeout = setTimeout(() => {
 					setVisible(false);
 				}, 8300);
-
-				return () => clearTimeout(hideBoostTimeout);
 			}
 		}
+	
+		return () => {
+			clearTimeout(showBoostTimeout);
+			clearTimeout(hideBoostTimeout);
+		};
 	}, [visible, gamePaused]);
 
 	const [bgImages] = useState({
@@ -421,7 +431,7 @@ const Main = ({ user }) => {
 	};
 
 	return (
-		<div className='mainContent'>
+		<div className='mainContent' ref={mainRef}>
 			<div
 				id='bgImage'
 				className='bgImage'
