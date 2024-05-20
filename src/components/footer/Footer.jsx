@@ -636,7 +636,19 @@ const Footer = ({ user }) => {
 									<button onClick={tgClickChat} disabled={tgChatQuest === 1}>
 										Follow TG Chat
 									</button>
-									{user?.tg_chat === 0 ? <p>+ 10000</p> : <img src={checkbox} />}
+									{user?.tg_chat === 0 ? (
+										<p>
+											+ 10000{' '}
+											<img
+												className='rewardCoin'
+												src={catCoinMove}
+												alt='animation'
+												draggable='false'
+											/>
+										</p>
+									) : (
+										<img src={checkbox} />
+									)}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChannel} disabled={tgChannelQuest === 1}>
@@ -660,7 +672,19 @@ const Footer = ({ user }) => {
 									<button onClick={websiteClick} disabled={websiteQuest === 1}>
 										Visit Website
 									</button>
-									{user?.website === 0 ? <p>+ 3000</p> : <img src={checkbox} />}
+									{user?.website === 0 ? (
+										<p>
+											+ 3000{' '}
+											<img
+												className='rewardCoin'
+												src={catCoinMove}
+												alt='animation'
+												draggable='false'
+											/>
+										</p>
+									) : (
+										<img src={checkbox} />
+									)}
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
