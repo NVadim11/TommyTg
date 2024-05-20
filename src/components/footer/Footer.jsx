@@ -287,7 +287,10 @@ const Footer = ({ user }) => {
 		}
 	};
 
-	const passDailyHandler = async (taskId) => {
+	const passDailyHandler = async (taskId, link) => {
+		if (link !== null) {
+			tg.openLink(link);
+		}
 		try {
 			await passDaily({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -318,7 +321,10 @@ const Footer = ({ user }) => {
 		);
 	};
 
-	const partnersTaskHandler = async (taskId) => {
+	const partnersTaskHandler = async (taskId, link) => {
+		if (link !== null) {
+			tg.openLink(link);
+		}
 		try {
 			await passPartners({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -612,19 +618,43 @@ const Footer = ({ user }) => {
 									<button onClick={twitterClick} disabled={twitterQuest === 1}>
 										Follow Twitter
 									</button>
-									{user?.twitter === 0 ? <p>+ 10000</p> : <img src={checkbox} />}
+									{user?.twitter === 0 ? (
+										<p>
+											+ 10000{' '}
+											<img
+												className='rewardCoin'
+												src={catCoinMove}
+												alt='animation'
+												draggable='false'
+											/>
+										</p>
+									) : (
+										<img src={checkbox} />
+									)}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChat} disabled={tgChatQuest === 1}>
-										Follow Telegram Chat
+										Follow TG Chat
 									</button>
 									{user?.tg_chat === 0 ? <p>+ 10000</p> : <img src={checkbox} />}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChannel} disabled={tgChannelQuest === 1}>
-										Follow Telegram Channel
+										Follow TG Channel
 									</button>
-									{user?.tg_channel === 0 ? <p>+ 10000</p> : <img src={checkbox} />}
+									{user?.twitter === 0 ? (
+										<p>
+											+ 10000{' '}
+											<img
+												className='rewardCoin'
+												src={catCoinMove}
+												alt='animation'
+												draggable='false'
+											/>
+										</p>
+									) : (
+										<img src={checkbox} />
+									)}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={websiteClick} disabled={websiteQuest === 1}>
@@ -637,23 +667,33 @@ const Footer = ({ user }) => {
 								{/* Render quests dynamically based on their status */}
 								{dailyQuests && dailyQuests.length > 0 && (
 									<>
-										{dailyQuests
-											.filter((quest) => quest.daily_quest.vis === 1)
-											.map((quest) => (
-												<div className='popupTasks__task' key={quest.id}>
+										{dailyQuests.map((quest) => (
+											<div className='popupTasks__task' key={quest.id}>
+												{/* Conditionally render button or div */}
+												{quest.required_amount === 0 && quest.required_referrals === 0 ? (
 													<button
 														disabled={quest.status === 1}
-														onClick={() => passDailyHandler(quest.id)}
+														onClick={() =>
+															passDailyHandler(quest.id, quest.daily_quest.link)
+														}
 													>
 														<span>{quest.daily_quest.name}</span>
 													</button>
-													{quest.status === 0 ? (
-														<p>+ {quest.reward}</p>
-													) : (
-														<img src={checkbox} alt='Completed' />
-													)}
-												</div>
-											))}
+												) : (
+													<button disabled={quest.status === 1}>
+														<span>{quest.daily_quest.name}</span>
+													</button>
+												)}
+												{quest.status === 0 ? (
+													<p>
+														+ {quest.reward}{' '}
+														<img src={catCoinMove} alt='animation' draggable='false' />
+													</p>
+												) : (
+													<img src={checkbox} alt='Completed' />
+												)}
+											</div>
+										))}
 									</>
 								)}
 							</div>
@@ -667,12 +707,17 @@ const Footer = ({ user }) => {
 												<div className='popupTasks__task'>
 													<button
 														disabled={quest.status === 1}
-														onClick={() => partnersTaskHandler(quest.id)}
+														onClick={() =>
+															partnersTaskHandler(quest.id, quest.partners_quest.link)
+														}
 													>
 														<span>{quest.partners_quest.name}</span>
 													</button>
 													{quest.status === 0 ? (
-														<p>+ {quest.reward}</p>
+														<p>
+															+ {quest.reward}{' '}
+															<img src={catCoinMove} alt='animation' draggable='false' />
+														</p>
 													) : (
 														<img src={checkbox} alt='Completed' />
 													)}
