@@ -548,8 +548,15 @@ const Footer = ({ user }) => {
 								</div>
 								<div
 									className={`popupTasks__tabs-btn ${activeTab === 1 ? 'active' : ''}`}
-									// className='popupTasks__tabs-btn'
-									onClick={() => handleTabClick(1)}
+									onClick={
+										user?.wallet_address
+											? () => handleTabClick(1)
+											: () => {
+													setErrorText('Submit your wallet first.');
+													setErrMsgVisible(true);
+													blurPopupTasks();
+											  }
+									}
 								>
 									<button>
 										<svg
@@ -569,9 +576,16 @@ const Footer = ({ user }) => {
 									{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 								</div>
 								<div
-									// className='popupTasks__tabs-btn'
 									className={`popupTasks__tabs-btn ${activeTab === 2 ? 'active' : ''}`}
-									onClick={() => handleTabClick(2)}
+									onClick={
+										user?.wallet_address
+											? () => handleTabClick(2)
+											: () => {
+													setErrorText('Submit your wallet first.');
+													setErrMsgVisible(true);
+													blurPopupTasks();
+											  }
+									}
 								>
 									<button>
 										<svg
@@ -702,7 +716,7 @@ const Footer = ({ user }) => {
 									<button onClick={tgClickChannel} disabled={tgChannelQuest === 1}>
 										Follow TG Channel
 									</button>
-									{user?.twitter === 0 ? (
+									{user?.tg_channel === 0 ? (
 										<p>
 											+ 10000{' '}
 											<img
