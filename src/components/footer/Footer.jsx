@@ -635,43 +635,51 @@ const Footer = ({ user }) => {
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
 								{/* Render quests dynamically based on their status */}
-								{dailyQuests
-									.filter((quest) => quest.daily_quest.vis === 1)
-									.map((quest) => (
-										<div className='popupTasks__task' key={quest.id}>
-											<button
-												disabled={quest.status === 1}
-												onClick={() => passDailyHandler(quest.id)}
-											>
-												<span>{quest.daily_quest.name}</span>
-											</button>
-											{quest.status === 0 ? (
-												<p>+ {quest.reward}</p>
-											) : (
-												<img src={checkbox} alt='Completed' />
-											)}
-										</div>
-									))}
+								{dailyQuests && dailyQuests.length > 0 && (
+									<>
+										{dailyQuests
+											.filter((quest) => quest.daily_quest.vis === 1)
+											.map((quest) => (
+												<div className='popupTasks__task' key={quest.id}>
+													<button
+														disabled={quest.status === 1}
+														onClick={() => passDailyHandler(quest.id)}
+													>
+														<span>{quest.daily_quest.name}</span>
+													</button>
+													{quest.status === 0 ? (
+														<p>+ {quest.reward}</p>
+													) : (
+														<img src={checkbox} alt='Completed' />
+													)}
+												</div>
+											))}
+									</>
+								)}
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 2 ? 'active' : ''}`}>
 								{/* Render quests dynamically based on their status */}
-								{partnerQuests
-									.filter((quest) => quest.partners_quest.vis === 1)
-									.map((quest) => (
-										<div className='popupTasks__task'>
-											<button
-												disabled={quest.status === 1}
-												onClick={() => partnersTaskHandler(quest.id)}
-											>
-												<span>{quest.partners_quest.name}</span>
-											</button>
-											{quest.status === 0 ? (
-												<p>+ {quest.reward}</p>
-											) : (
-												<img src={checkbox} alt='Completed' />
-											)}
-										</div>
-									))}
+								{partnerQuests && partnerQuests.length > 0 && (
+									<>
+										{partnerQuests
+											.filter((quest) => quest.partners_quest.vis === 1)
+											.map((quest) => (
+												<div className='popupTasks__task'>
+													<button
+														disabled={quest.status === 1}
+														onClick={() => partnersTaskHandler(quest.id)}
+													>
+														<span>{quest.partners_quest.name}</span>
+													</button>
+													{quest.status === 0 ? (
+														<p>+ {quest.reward}</p>
+													) : (
+														<img src={checkbox} alt='Completed' />
+													)}
+												</div>
+											))}
+									</>
+								)}
 							</div>
 						</div>
 					</div>
