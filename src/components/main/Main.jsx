@@ -27,7 +27,7 @@ import './Main.scss';
 const Main = ({ user }) => {
 	const { state } = useContext(GameInfoContext);
 
-	const isMobile = useMediaQuery({ maxWidth: '1439.98px' });
+	const isMedia = useMediaQuery({ maxWidth: '1439.98px' });
 	const [currentImage, setCurrentImage] = useState(true);
 	const [coinState, setCoinState] = useState(false);
 	const [currCoins, setCurrCoins] = useState(0);
@@ -209,14 +209,15 @@ const Main = ({ user }) => {
 	};
 
 	const randomizePosition = () => {
-		const elementWidth = 850;
-		const elementHeight = 850;
+		const elementWidth = 150;
+		const elementHeight = 150;
 		const maxX = Math.max(0, window.innerWidth - elementWidth);
 		const maxY = Math.max(0, window.innerHeight - elementHeight);
 		const x = Math.random() * maxX;
 		const y = Math.random() * maxY;
 
 		setPosition({ x, y });
+		console.log(`New position: (${x}, ${y})`);
 	};
 
 	useEffect(() => {
@@ -421,35 +422,40 @@ const Main = ({ user }) => {
 
 	return (
 		<div className='mainContent'>
-			<div id="bgImage"
+			<div
+				id='bgImage'
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFirst})`,
 					opacity: opacityFirst,
 				}}
 			></div>
-			<div id="bgImage"
+			<div
+				id='bgImage'
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageSecond})`,
 					opacity: opacitySecond,
 				}}
 			></div>
-			<div id="bgImage"
+			<div
+				id='bgImage'
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageThird})`,
 					opacity: opacityThird,
 				}}
 			></div>
-			<div id="bgImage"
+			<div
+				id='bgImage'
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFourth})`,
 					opacity: opacityFourth,
 				}}
 			></div>
-			<div id="bgImage"
+			<div
+				id='bgImage'
 				className='bgImage'
 				style={{
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFives})`,
@@ -593,7 +599,6 @@ const Main = ({ user }) => {
 							</>
 						)}
 					</div>
-					<div style={{ position: 'absolute' }}></div>
 					<motion.div
 						initial={{
 							y: 70,
@@ -698,7 +703,7 @@ const Main = ({ user }) => {
 										height: '150px',
 										borderRadius: '150px',
 										zIndex: 1500,
-										...(isMobile && {
+										...(isMedia && {
 											scale: '50%',
 										}),
 									}}
