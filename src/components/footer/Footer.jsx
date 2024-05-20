@@ -711,7 +711,12 @@ const Footer = ({ user }) => {
 												{quest.status === 0 ? (
 													<p>
 														+ {quest.reward}{' '}
-														<img src={catCoinMove} alt='animation' draggable='false' />
+														<img
+															className='rewardCoin'
+															src={catCoinMove}
+															alt='animation'
+															draggable='false'
+														/>
 													</p>
 												) : (
 													<img src={checkbox} alt='Completed' />
@@ -740,7 +745,12 @@ const Footer = ({ user }) => {
 													{quest.status === 0 ? (
 														<p>
 															+ {quest.reward}{' '}
-															<img src={catCoinMove} alt='animation' draggable='false' />
+															<img
+																className='rewardCoin'
+																src={catCoinMove}
+																alt='animation'
+																draggable='false'
+															/>
 														</p>
 													) : (
 														<img src={checkbox} alt='Completed' />
