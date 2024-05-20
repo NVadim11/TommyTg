@@ -180,14 +180,16 @@ const Footer = ({ user }) => {
 				setTwitterQuest(1);
 				setErrorText('Task completed successfully');
 				setErrMsgVisible(true);
-				console.log();
+				blurPopupTasks();
 			} else {
 				setErrorText('An error occurred. Please try again later.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		} catch (e) {
 			setErrorText('An error occurred. Please try again later.');
 			setErrMsgVisible(true);
+			blurPopupTasks();
 		}
 	};
 
@@ -205,13 +207,16 @@ const Footer = ({ user }) => {
 				setTgChatQuest(1);
 				setErrorText('Task completed successfully');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			} else {
 				setErrorText('An error occurred. Please try again later.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		} catch (e) {
 			setErrorText('An error occurred. Please try again later.');
 			setErrMsgVisible(true);
+			blurPopupTasks();
 		}
 	};
 
@@ -229,13 +234,16 @@ const Footer = ({ user }) => {
 				setTgChannelQuest(1);
 				setErrorText('Task completed successfully');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			} else {
 				setErrorText('An error occurred. Please try again later.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		} catch (e) {
 			setErrorText('An error occurred. Please try again later.');
 			setErrMsgVisible(true);
+			blurPopupTasks();
 		}
 	};
 
@@ -253,13 +261,16 @@ const Footer = ({ user }) => {
 				setWebsiteQuest(1);
 				setErrorText('Task completed successfully');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			} else {
 				setErrorText('An error occurred. Please try again later.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		} catch (e) {
 			setErrorText('An error occurred. Please try again later.');
 			setErrMsgVisible(true);
+			blurPopupTasks();
 		}
 	};
 
@@ -282,9 +293,11 @@ const Footer = ({ user }) => {
 				setWalletInputDisabled(true);
 				setErrorText('Wallet submitted successfully.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			} catch (e) {
 				setErrorText('This wallet is already in use.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		}
 	};
@@ -301,6 +314,7 @@ const Footer = ({ user }) => {
 				setWalletInputDisabled(true);
 				setErrorText('Wallet changed successfully.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			} catch (e) {
 				setErrorText('This wallet is already in use.');
 				setErrMsgVisible(true);
@@ -327,13 +341,16 @@ const Footer = ({ user }) => {
 				updateDailyQStatus(taskId, 1);
 				setErrorText('Task completed successfully');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			} else {
 				setErrorText('An error occurred. Please try again later.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		} catch (e) {
 			setErrorText('An error occurred. Please try again later.');
 			setErrMsgVisible(true);
+			blurPopupTasks();
 		}
 	};
 
@@ -364,13 +381,16 @@ const Footer = ({ user }) => {
 				updatePartnerQStatus(taskId, 1);
 				setErrorText('Task completed successfully');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			} else {
 				setErrorText('An error occurred. Please try again later.');
 				setErrMsgVisible(true);
+				blurPopupTasks();
 			}
 		} catch (e) {
 			setErrorText('An error occurred. Please try again later.');
 			setErrMsgVisible(true);
+			blurPopupTasks();
 		}
 	};
 

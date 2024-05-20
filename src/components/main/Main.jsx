@@ -39,7 +39,7 @@ const Main = ({ user }) => {
 	const coinRef = useRef(null);
 	const accumulatedCoinsRef = useRef(0);
 	const [updateBalance] = useUpdateBalanceMutation();
-	const [position, setPosition] = useState({ x: '100%', y: '100%' });
+	const [position, setPosition] = useState({ x: '0', y: '0' });
 	const [boostPhase, setBoostPhase] = useState(false);
 	const [visible, setVisible] = useState(false);
 	const [catVisible, setCatVisible] = useState(true);
@@ -210,21 +210,33 @@ const Main = ({ user }) => {
 
 	const mainRef = useRef(null);
 
-useEffect(() => {
-    const rect = mainRef.current.getBoundingClientRect();
-    // Установка начальной позиции в пределах компонента Main
-    setPosition({ x: Math.random() * rect.width, y: Math.random() * rect.height });
-}, []);
+	const positions = [
+		{ x: 100, y: -250 }, 
+		{ x: 100, y: -200 }, 
+		{ x: 100, y: -150 }, 
+		{ x: 100, y: -100 }, 
+		{ x: 100, y: -50 }, 
+		{ x: 100, y: 0 }, 
+		{ x: -50, y: -250 }, 
+		{ x: -50, y: -200 }, 
+		{ x: -50, y: -150 }, 
+		{ x: -50, y: -100 }, 
+		{ x: -50, y: -50 }, 
+		{ x: -50, y: 0 }, 
+		{ x: 210, y: -250 }, 
+		{ x: 210, y: -200 }, 
+		{ x: 210, y: -150 }, 
+		{ x: 210, y: -100 }, 
+		{ x: 210, y: -50 }, 
+		{ x: 210, y: 0 }, 
+	];
 
-	const randomizePosition = () => {
-		const rect = mainRef.current.getBoundingClientRect();
-		const maxX = rect.width - 150; // Ширина элемента boost-element
-		const maxY = rect.height - 150; // Высота элемента boost-element
-		const x = Math.random() * maxX;
-		const y = Math.random() * maxY;
-		setPosition({ x, y });
-		console.log(`New position: (${x}, ${y})`);
-	};
+	
+const randomizePosition = () => {
+    const randomIndex = Math.floor(Math.random() * positions.length);
+    const { x, y } = positions[randomIndex];
+    setPosition({ x, y });
+};
 
 	useEffect(() => {
 		if (gamePaused) {
@@ -431,7 +443,7 @@ useEffect(() => {
 	};
 
 	return (
-		<div className='mainContent' ref={mainRef}>
+		<div className='mainContent'>
 			<div
 				id='bgImage'
 				className='bgImage'
