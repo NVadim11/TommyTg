@@ -356,7 +356,6 @@ body::after {
     position: relative;
     z-index: 10;
     button {
-      padding: 12px 19px 10px 19px;
       height: 43px;
       width: 80px;
       font-weight: 600;
@@ -373,7 +372,7 @@ body::after {
         font-size: 0.8125rem;
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 0.625rem;
+        // padding: 0.625rem;
         width: 78px;
         justify-content: center;
         display: flex;
