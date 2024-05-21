@@ -139,7 +139,6 @@ body::after {
       text-align: center;
       align-items: center;
       justify-content: center;
-      padding-top: 4px;
       font-weight: 600;
       font-size: 24px;
       color: #fff;
@@ -319,6 +318,11 @@ body::after {
       right: 11px;
       width: 20px;
     }
+    svg {
+      position: absolute;
+      right: 11px;
+      width: 20px;
+    }
     p {
       position: absolute;
       right: 11px;
@@ -430,6 +434,9 @@ body::after {
       opacity: 0.5;
     }
   }
+  &__walletTask:first-child {
+    margin-top: 25px;
+  }
   &__walletTask-inputBtn {
     box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
     background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
@@ -455,6 +462,7 @@ body::after {
       line-height: 137%;
       text-align: left;
       color: rgba(255, 255, 255, 0.6);
+      text-align: right;
     }
   }
   &__walletTask-rightBtn {
@@ -482,7 +490,6 @@ body::after {
   }
   &__walletTask-right {
     display: flex;
-    gap: 15px;
     position: absolute;
     right: 0;
   }
@@ -547,7 +554,7 @@ body::after {
     flex-direction: column;
     border: 1px solid #fff3;
     border-radius: 20px;
-    padding: 20px;
+    padding: 20px 40px 40px 20px;
     position: relative;
     background: #292f4f;
     transition: transform .3s ease 0s;
@@ -560,10 +567,10 @@ body::after {
   &__title {
     font-size: 1.25rem;
     position: relative;
-    width: 11.875rem;
     color: #fff;
     font-weight: 900;
     line-height: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
+    word-break: break-word;
   }
 }
