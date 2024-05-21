@@ -121,7 +121,6 @@ const Main = ({ user }) => {
 
 	useEffect(() => {
 		let timeoutId;
-
 		if (currEnergy >= 1000) {
 			submitData();
 			timeoutId = setTimeout(() => {
@@ -211,32 +210,31 @@ const Main = ({ user }) => {
 	const mainRef = useRef(null);
 
 	const positions = [
-		{ x: 100, y: -250 }, 
-		{ x: 100, y: -200 }, 
-		{ x: 100, y: -150 }, 
-		{ x: 100, y: -100 }, 
-		{ x: 100, y: -50 }, 
-		{ x: 100, y: 0 }, 
-		{ x: -50, y: -250 }, 
-		{ x: -50, y: -200 }, 
-		{ x: -50, y: -150 }, 
-		{ x: -50, y: -100 }, 
-		{ x: -50, y: -50 }, 
-		{ x: -50, y: 0 }, 
-		{ x: 210, y: -250 }, 
-		{ x: 210, y: -200 }, 
-		{ x: 210, y: -150 }, 
-		{ x: 210, y: -100 }, 
-		{ x: 210, y: -50 }, 
-		{ x: 210, y: 0 }, 
+		{ x: 100, y: -250 },
+		{ x: 100, y: -200 },
+		{ x: 100, y: -150 },
+		{ x: 100, y: -100 },
+		{ x: 100, y: -50 },
+		{ x: 100, y: 0 },
+		{ x: -50, y: -250 },
+		{ x: -50, y: -200 },
+		{ x: -50, y: -150 },
+		{ x: -50, y: -100 },
+		{ x: -50, y: -50 },
+		{ x: -50, y: 0 },
+		{ x: 210, y: -250 },
+		{ x: 210, y: -200 },
+		{ x: 210, y: -150 },
+		{ x: 210, y: -100 },
+		{ x: 210, y: -50 },
+		{ x: 210, y: 0 },
 	];
 
-	
-const randomizePosition = () => {
-    const randomIndex = Math.floor(Math.random() * positions.length);
-    const { x, y } = positions[randomIndex];
-    setPosition({ x, y });
-};
+	const randomizePosition = () => {
+		const randomIndex = Math.floor(Math.random() * positions.length);
+		const { x, y } = positions[randomIndex];
+		setPosition({ x, y });
+	};
 
 	useEffect(() => {
 		if (gamePaused) {
@@ -255,7 +253,7 @@ const randomizePosition = () => {
 	useEffect(() => {
 		let showBoostTimeout;
 		let hideBoostTimeout;
-	
+
 		if (!gamePaused) {
 			if (!visible) {
 				randomizePosition();
@@ -269,7 +267,7 @@ const randomizePosition = () => {
 				}, 8300);
 			}
 		}
-	
+
 		return () => {
 			clearTimeout(showBoostTimeout);
 			clearTimeout(hideBoostTimeout);

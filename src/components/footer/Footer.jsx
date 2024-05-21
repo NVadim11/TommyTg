@@ -92,10 +92,11 @@ const Footer = ({ user }) => {
 				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
 				const remainingTime = user?.update_wallet_at - currentTimeStamp;
 				if (remainingTime >= 0) {
-					if (remainingTime <= 1) {
+					if (remainingTime <= 0) {
 						setResetBtnDisabled(false);
 					} else {
 						setResetBtnDisabled(true);
+						setWalletInputDisabled(true);
 					}
 				}
 			};
@@ -178,7 +179,7 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setTwitterQuest(1);
-				setErrorText('Task completed successfully');
+				setErrorText('Task completed successfully.');
 				setErrMsgVisible(true);
 				blurPopupTasks();
 			} else {
@@ -205,7 +206,7 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setTgChatQuest(1);
-				setErrorText('Task completed successfully');
+				setErrorText('Task completed successfully.');
 				setErrMsgVisible(true);
 				blurPopupTasks();
 			} else {
@@ -232,7 +233,7 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setTgChannelQuest(1);
-				setErrorText('Task completed successfully');
+				setErrorText('Task completed successfully.');
 				setErrMsgVisible(true);
 				blurPopupTasks();
 			} else {
@@ -259,7 +260,7 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				setWebsiteQuest(1);
-				setErrorText('Task completed successfully');
+				setErrorText('Task completed successfully.');
 				setErrMsgVisible(true);
 				blurPopupTasks();
 			} else {
@@ -339,7 +340,7 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				updateDailyQStatus(taskId, 1);
-				setErrorText('Task completed successfully');
+				setErrorText('Task completed successfully.');
 				setErrMsgVisible(true);
 				blurPopupTasks();
 			} else {
@@ -379,7 +380,7 @@ const Footer = ({ user }) => {
 			if (res.success) {
 				// Update quest status to completed (status: 1)
 				updatePartnerQStatus(taskId, 1);
-				setErrorText('Task completed successfully');
+				setErrorText('Task completed successfully.');
 				setErrMsgVisible(true);
 				blurPopupTasks();
 			} else {
