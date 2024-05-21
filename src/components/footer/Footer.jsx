@@ -679,74 +679,74 @@ const Footer = ({ user }) => {
 								<div className='popupTasks__task'>
 									<button onClick={twitterClick} disabled={twitterQuest === 1}>
 										Follow Twitter
+										{user?.twitter === 0 ? (
+											<p>
+												+ 10000{' '}
+												<img
+													className='rewardCoin'
+													src={catCoinMove}
+													alt='animation'
+													draggable='false'
+												/>
+											</p>
+										) : (
+											<img src={checkbox} />
+										)}
 									</button>
-									{user?.twitter === 0 ? (
-										<p>
-											+ 10000{' '}
-											<img
-												className='rewardCoin'
-												src={catCoinMove}
-												alt='animation'
-												draggable='false'
-											/>
-										</p>
-									) : (
-										<img src={checkbox} />
-									)}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChat} disabled={tgChatQuest === 1}>
 										Follow TG Chat
+										{user?.tg_chat === 0 ? (
+											<p>
+												+ 10000{' '}
+												<img
+													className='rewardCoin'
+													src={catCoinMove}
+													alt='animation'
+													draggable='false'
+												/>
+											</p>
+										) : (
+											<img src={checkbox} />
+										)}
 									</button>
-									{user?.tg_chat === 0 ? (
-										<p>
-											+ 10000{' '}
-											<img
-												className='rewardCoin'
-												src={catCoinMove}
-												alt='animation'
-												draggable='false'
-											/>
-										</p>
-									) : (
-										<img src={checkbox} />
-									)}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChannel} disabled={tgChannelQuest === 1}>
 										Follow TG Channel
+										{user?.tg_channel === 0 ? (
+											<p>
+												+ 10000{' '}
+												<img
+													className='rewardCoin'
+													src={catCoinMove}
+													alt='animation'
+													draggable='false'
+												/>
+											</p>
+										) : (
+											<img src={checkbox} />
+										)}
 									</button>
-									{user?.tg_channel === 0 ? (
-										<p>
-											+ 10000{' '}
-											<img
-												className='rewardCoin'
-												src={catCoinMove}
-												alt='animation'
-												draggable='false'
-											/>
-										</p>
-									) : (
-										<img src={checkbox} />
-									)}
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={websiteClick} disabled={websiteQuest === 1}>
 										Visit Website
+										{user?.website === 0 ? (
+											<p>
+												+ 3000{' '}
+												<img
+													className='rewardCoin'
+													src={catCoinMove}
+													alt='animation'
+													draggable='false'
+												/>
+											</p>
+										) : (
+											<img src={checkbox} />
+										)}
 									</button>
-									{user?.website === 0 ? (
-										<p>
-											+ 3000{' '}
-											<img
-												className='rewardCoin'
-												src={catCoinMove}
-												alt='animation'
-												draggable='false'
-											/>
-										</p>
-									) : (
-										<img src={checkbox} />
-									)}
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 1 ? 'active' : ''}`}>
@@ -764,24 +764,37 @@ const Footer = ({ user }) => {
 														}
 													>
 														<span>{quest.daily_quest.name}</span>
+														{quest.status === 0 ? (
+															<p>
+																+ {quest.reward}{' '}
+																<img
+																	className='rewardCoin'
+																	src={catCoinMove}
+																	alt='animation'
+																	draggable='false'
+																/>
+															</p>
+														) : (
+															<img src={checkbox} alt='Completed' />
+														)}
 													</button>
 												) : (
 													<button disabled={quest.status === 1}>
 														<span>{quest.daily_quest.name}</span>
+														{quest.status === 0 ? (
+															<p>
+																+ {quest.reward}{' '}
+																<img
+																	className='rewardCoin'
+																	src={catCoinMove}
+																	alt='animation'
+																	draggable='false'
+																/>
+															</p>
+														) : (
+															<img src={checkbox} alt='Completed' />
+														)}
 													</button>
-												)}
-												{quest.status === 0 ? (
-													<p>
-														+ {quest.reward}{' '}
-														<img
-															className='rewardCoin'
-															src={catCoinMove}
-															alt='animation'
-															draggable='false'
-														/>
-													</p>
-												) : (
-													<img src={checkbox} alt='Completed' />
 												)}
 											</div>
 										))}
@@ -803,20 +816,20 @@ const Footer = ({ user }) => {
 														}
 													>
 														<span>{quest.partners_quest.name}</span>
+														{quest.status === 0 ? (
+															<p>
+																+ {quest.reward}{' '}
+																<img
+																	className='rewardCoin'
+																	src={catCoinMove}
+																	alt='animation'
+																	draggable='false'
+																/>
+															</p>
+														) : (
+															<img src={checkbox} alt='Completed' />
+														)}
 													</button>
-													{quest.status === 0 ? (
-														<p>
-															+ {quest.reward}{' '}
-															<img
-																className='rewardCoin'
-																src={catCoinMove}
-																alt='animation'
-																draggable='false'
-															/>
-														</p>
-													) : (
-														<img src={checkbox} alt='Completed' />
-													)}
 												</div>
 											))}
 									</>
