@@ -78,7 +78,7 @@ const Main = ({ user }) => {
 	}, []);
 
 	const pauseGame = async () => {
-		setGamePaused(true);
+		// setGamePaused(true);
 		const currentTimeStamp = Math.floor(Date.now() / 1000);
 		const futureTimestamp = currentTimeStamp + 60 * 60;
 		const now = new Date();
@@ -121,12 +121,14 @@ const Main = ({ user }) => {
 
 	useEffect(() => {
 		let timeoutId;
+
 		if (currEnergy >= 1000) {
-			submitData();
+			setGamePaused(true);
 			timeoutId = setTimeout(() => {
+				submitData();
 				pauseGame();
 				setCatVisible(false);
-			}, 100);
+			}, 3500);
 		}
 
 		return () => {

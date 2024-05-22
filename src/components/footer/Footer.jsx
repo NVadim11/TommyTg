@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs';
 import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
 import catCoinMove from '../../img/cat_coin_move.png';
-import checkbox from '../../img/checkbox.png';
 import pet from '../../img/pet_icon.svg';
 import shop from '../../img/shop_icon.svg';
 import tasks from '../../img/tasks_icon.svg';
@@ -96,7 +95,6 @@ const Footer = ({ user }) => {
 						setResetBtnDisabled(false);
 					} else {
 						setResetBtnDisabled(true);
-						setWalletInputDisabled(true);
 					}
 				}
 			};
