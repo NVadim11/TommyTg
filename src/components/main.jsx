@@ -101,19 +101,19 @@ const MainComponent = () => {
 
 	return (
 		<>
-        <Preloader loaded={preloaderLoaded} />
-        {/* {!user ? ( */}
-        <>
-            <Header user={user} />
-            <main id='main' className='main'>
-                <Main user={user} />
-            </main>
-            <Footer user={user} />
-        </>
-        {/* ) : (
-            <NotFound />
-        ) */}
-    </>
+			<Preloader loaded={preloaderLoaded} />
+			{/* {user ? ( */}
+				<>
+					<Header user={user} />
+					<main id='main' className='main'>
+						<Main user={user} />
+					</main>
+					<Footer user={user} />
+				</>
+			{/* ) : ( */}
+				{/* <NotFound /> */}
+			{/* )} */}
+		</>
 	);
 };
 
