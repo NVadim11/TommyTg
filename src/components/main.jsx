@@ -15,6 +15,7 @@ import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
 import NotFound from './404';
+import TelegramLinking from './QRcode';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
@@ -51,28 +52,38 @@ const MainComponent = () => {
 			});
 		};
 
+		const imageSources = [
+			sadIdle,
+			sadSpeak,
+			normalIdle,
+			normalSpeak,
+			smileIdle,
+			smileSpeak,
+			happyIdle,
+			happySpeak,
+			finalForm,
+			goldForm,
+			boostCoin,
+		];
+
 		const loadImages = async () => {
-			const imageSources = [
-				sadIdle,
-				sadSpeak,
-				normalIdle,
-				normalSpeak,
-				smileIdle,
-				smileSpeak,
-				happyIdle,
-				happySpeak,
-				finalForm,
-				goldForm,
-				boostCoin,
-			];
 			const promises = imageSources.map((src) => loadImage(src));
 
 			try {
 				const loadedImages = await Promise.all(promises);
 				imagesRef.current = loadedImages;
-				setPreloaderLoaded(true);
+				checkAllLoaded();
 			} catch (e) {
 				console.log('problem loading images');
+			}
+		};
+
+		const checkAllLoaded = () => {
+			if (!isLoading && data && imagesRef.current.length === imageSources.length) {
+				setPreloaderLoaded(true);
+				AOS.init({
+					easing: 'custom',
+				});
 			}
 		};
 
@@ -80,18 +91,10 @@ const MainComponent = () => {
 			loadImages();
 		}, 2000);
 
-		const aosInitTimeout = setTimeout(() => {
-			AOS.init({
-				easing: 'custom',
-			});
-			setPreloaderLoaded(true);
-		}, 5000);
-
 		return () => {
 			clearTimeout(loadImagesTimeout);
-			clearTimeout(aosInitTimeout);
 		};
-	}, []);
+	}, [isLoading, data]);
 
 	useEffect(() => {
 		if (tg && userId) {
@@ -99,20 +102,32 @@ const MainComponent = () => {
 		}
 	}, [tg, userId]);
 
+	// Detecting if the application is opened from a mobile device
+	const isMobileDevice =
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		);
+
 	return (
 		<>
-			<Preloader loaded={preloaderLoaded} />
-			{/* {user ? ( */}
+			{!isMobileDevice ? (
+				<TelegramLinking />
+			) : (
 				<>
-					<Header user={user} />
-					<main id='main' className='main'>
-						<Main user={user} />
-					</main>
-					<Footer user={user} />
+					<Preloader loaded={preloaderLoaded} />
+					{user ? (
+						<>
+							<Header user={user} />
+							<main id='main' className='main'>
+								<Main user={user} />
+							</main>
+							<Footer user={user} />
+						</>
+					) : (
+						<NotFound />
+					)}
 				</>
-			{/* ) : ( */}
-				{/* <NotFound /> */}
-			{/* )} */}
+			)}
 		</>
 	);
 };

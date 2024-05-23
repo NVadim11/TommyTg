@@ -31,7 +31,7 @@ const Main = ({ user }) => {
 	const [currentImage, setCurrentImage] = useState(true);
 	const [coinState, setCoinState] = useState(false);
 	const [currCoins, setCurrCoins] = useState(0);
-	const [currEnergy, setCurrEnergy] = useState(0);
+	const [currEnergy, setCurrEnergy] = useState(user?.energy);
 	const [isCoinsChanged, setIsCoinsChanged] = useState(false);
 	const [catIdle, setCatIdle] = useState(sadIdle);
 	const [catSpeak, setCatSpeak] = useState(sadSpeak);
@@ -78,7 +78,7 @@ const Main = ({ user }) => {
 	}, []);
 
 	const pauseGame = async () => {
-		// setGamePaused(true);
+		setGamePaused(true);
 		const currentTimeStamp = Math.floor(Date.now() / 1000);
 		const futureTimestamp = currentTimeStamp + 60 * 60;
 		const now = new Date();
@@ -93,7 +93,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch(testURL + '/api/set-activity', {	
+		fetch(testURL + '/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -123,12 +123,11 @@ const Main = ({ user }) => {
 		let timeoutId;
 
 		if (currEnergy >= 1000) {
-			setGamePaused(true);
+			submitData();
 			timeoutId = setTimeout(() => {
-				submitData();
 				pauseGame();
 				setCatVisible(false);
-			}, 3500);
+			}, 100);
 		}
 
 		return () => {
@@ -138,9 +137,7 @@ const Main = ({ user }) => {
 
 	const getGameStatus = async () => {
 		try {
-			const initGameStatusCheck = await axios.get(
-				testURL + `/api/telegram-id/${userId}`
-			);
+			const initGameStatusCheck = await axios.get(testURL + `/api/telegram-id/${userId}`);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
 		}
