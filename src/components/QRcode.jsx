@@ -22,7 +22,14 @@ const TelegramLinking = () => {
 				backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFirst})`,
 			}}
 		>
-			<div>
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
 				<h1
 					style={{
 						display: 'flex',
@@ -34,7 +41,8 @@ const TelegramLinking = () => {
 						textAlign: 'center',
 					}}
 				>
-					Leave the desktop. Mobile gaming rocks!
+					Leave the desktop. <br />
+					Mobile gaming rocks!
 				</h1>
 				<div
 					style={{
@@ -44,7 +52,13 @@ const TelegramLinking = () => {
 						justifyContent: 'center',
 					}}
 				>
-					<img src={QRimg} alt='QR redirect' />
+					<img
+						src={QRimg}
+						alt='QR redirect'
+						style={{
+							borderRadius: '20px',
+						}}
+					/>
 				</div>
 			</div>
 		</div>
