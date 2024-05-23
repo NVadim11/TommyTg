@@ -58,6 +58,9 @@ const Main = ({ user }) => {
 	// aws
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
+	const secretURL = process.env.REACT_APP_SECRET_URL;
+	const testURL = process.env.REACT_APP_TEST_URL;
+
 	const isDesktop = () => {
 		const userAgent = window.navigator.userAgent;
 		const isMobile =
@@ -90,7 +93,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch('https://admin.prodtest1.space/api/set-activity', {
+		fetch(testURL + '/api/set-activity', {	
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -136,7 +139,7 @@ const Main = ({ user }) => {
 	const getGameStatus = async () => {
 		try {
 			const initGameStatusCheck = await axios.get(
-				`https://admin.prodtest1.space/api/telegram-id/${userId}`
+				testURL + `/api/telegram-id/${userId}`
 			);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
