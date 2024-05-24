@@ -1,4 +1,3 @@
-import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import moment from 'moment-timezone';
@@ -93,7 +92,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch(secretURL + '/api/set-activity', {
+		fetch(testURL + '/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -135,15 +134,15 @@ const Main = ({ user }) => {
 		};
 	}, [currEnergy]);
 
-	const getGameStatus = async () => {
-		try {
-			const initGameStatusCheck = await axios.get(
-				secretURL + `/api/telegram-id/${userId}`
-			);
-		} catch (e) {
-			console.log('Error fetching leaderboard data');
-		}
-	};
+	// const getGameStatus = async () => {
+	// 	try {
+	// 		const initGameStatusCheck = await axios.get(
+	// 			testURL + `/api/telegram-id/${userId}`
+	// 		);
+	// 	} catch (e) {
+	// 		console.log('Error fetching leaderboard data');
+	// 	}
+	// };
 
 	useEffect(() => {
 		if (user) {
@@ -162,11 +161,11 @@ const Main = ({ user }) => {
 				}
 			};
 
-			getGameStatus();
+			// getGameStatus();
 
-			const timeout = setTimeout(() => {
-				getGameStatus();
-			}, 1000);
+			// const timeout = setTimeout(() => {
+			// 	getGameStatus();
+			// }, 1000);
 
 			const timer = setInterval(() => {
 				updateGameStatus();
@@ -174,7 +173,7 @@ const Main = ({ user }) => {
 
 			return () => {
 				clearInterval(timer);
-				clearTimeout(timeout);
+				// clearTimeout(timeout);
 			};
 		}
 	}, [userId, user]);
@@ -284,7 +283,7 @@ const Main = ({ user }) => {
 	});
 
 	let activeImage = bgImages.bgImageFirst;
-	let opacityFirst = 0;
+	let opacityFirst = 1;
 	let opacitySecond = 0;
 	let opacityThird = 0;
 	let opacityFourth = 0;
