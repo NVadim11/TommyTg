@@ -9,7 +9,7 @@ const ProgressBar = ({ progress, rotate }) => {
 	const circumference = normalizedRadius * 2 * Math.PI;
 
 	// Calculate the strokeDashoffset based on the progress and offset
-	const strokeDashoffset = circumference - (progress / 100) * circumference;
+	const strokeDashoffset = circumference - (progress / 50) * circumference;
 
 	return (
 		<svg
@@ -46,7 +46,7 @@ const Preloader = ({ loaded }) => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setProgress((prevProgress) => (prevProgress === 75 ? 100 : prevProgress + 1));
+			setProgress((prevProgress) => (prevProgress === 0 ? 100 : prevProgress + 1));
 		}, 35);
 
 		return () => {
