@@ -69,7 +69,7 @@ const Preloader = ({ loaded }) => {
 				<h4
 					style={{
 						position: 'absolute',
-						top: '35%', // Adding a small margin for spacing
+						top: '37%', // Adding a small margin for spacing
 					}}
 				>
 					Loading . . .
@@ -84,7 +84,6 @@ const Preloader = ({ loaded }) => {
 						alignItems: 'center',
 						justifyContent: 'center',
 						paddingBottom: '20px',
-						marginTop: '10px', // Adding a small margin for spacing
 					}}
 				/>
 				<ProgressBar progress={progress} rotate={progress === 100} />
