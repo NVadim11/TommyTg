@@ -14,8 +14,8 @@ import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
-import NotFound from './404';
-import TelegramLinking from './QRcode';
+// import NotFound from './404';
+// import TelegramLinking from './QRcode';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
@@ -113,20 +113,20 @@ const MainComponent = () => {
 			{/* {!isMobileDevice ? (
 				<TelegramLinking />
 			) : ( */}
+			<>
+				<Preloader loaded={preloaderLoaded} />
+				{/* {user ? ( */}
 				<>
-					<Preloader loaded={preloaderLoaded} />
-					{/* {user ? ( */}
-						<>
-							<Header user={user} />
-							<main id='main' className='main'>
-								<Main user={user} />
-							</main>
-							<Footer user={user} />
-						</>
-					{/* ) : ( */}
-						{/* <NotFound /> */}
-					{/* )} */}
+					<Header user={user} />
+					<main id='main' className='main'>
+						<Main user={user} />
+					</main>
+					<Footer user={user} />
 				</>
+				{/* ) : ( */}
+				{/* <NotFound /> */}
+				{/* )} */}
+			</>
 			{/* )} */}
 		</>
 	);
