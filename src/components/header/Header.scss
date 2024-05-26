@@ -335,11 +335,7 @@ body::after {
   display: none;
   transition: transform 0.3s ease 0s;
   background-color: #eee;
-  padding: 1.25rem;
   width: 100%;
-  max-width: 56.25rem;
-  border-radius: 1.25rem;
-  margin-top: 69px;
 }
 .popupInvite__content{
   display: none;
@@ -354,50 +350,36 @@ body::after {
   &__wrapper {
   }
   &__content {
+    margin-top: 64px;
+    padding: 24px 12px 12px 12px;
     backdrop-filter: blur(32px);
     background: linear-gradient(180deg, rgba(11, 31, 70, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid #554a9c;
+    border-radius: 20px;
   }
   &__close {
     position: absolute;
-    top: 1.875rem;
-    right: 1.875rem;
-    @media (max-width: $mobile) {
-      top: 1.5625rem;
-      right: 1.5625rem;
-    }
-    svg {
-      @media (max-width: $mobile) {
-        height: 0.9375rem;
-        width: 0.9375rem;
-      }
-    }
+    top: 24px;
+    right: 24px;
   }
   &__title {
-    position: absolute;
-    top: 2.4375rem;
-    left: 3.0625rem;
-    font-weight: 900;
-    font-size: 2.5rem;
-    line-height: 100%;
-    color: #fff;
-    @media (max-width: $mobile) {
-      font-size: 1.375rem;
-      top: 0;
-      left: 0;
-      position: relative;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    img {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
     }
-  }
-  &__crownIcon {
-    svg {
-      @media (max-width: $mobile) {
-        width: 1.8125rem;
-        height: 1.3944rem;
-      }
+    h4 {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 100%;
+      color: #fff;
     }
   }
   &__playerList {
-    display: flex;
-    width: 100%;
+    margin-top: 28px;
   }
   &__table {
     display: flex;
@@ -409,27 +391,104 @@ body::after {
     border: 0.125rem solid #fff;
     display: flex;
     flex-direction: row;
-    border-radius: 3.75rem;
+    border-radius: 10px;
     justify-content: space-between;
-    padding: 0.9375rem 0.9375rem 0.8125rem 0.9375rem;
-    width: 423px;
-    @media (max-width: $mobile) {
-      padding: 0.6875rem 0.6875rem 0.5625rem 0.6875rem;
-      width: 17.3125rem;
+    padding-left: 20px;
+    padding-right: 10px;
+    height: 40px;
+    .popupLeaderboard__id {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 100%;
+      letter-spacing: 0.02em;
+      text-align: center;
+      svg {
+        display: none;
+        position: absolute;
+      }
+    }
+    .popupLeaderboard__playerName {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 100%;
+      letter-spacing: 0.02em;
+    }
+    .popupLeaderboard__coins {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 100%;
+      letter-spacing: 0.02em;
     }
   }
   &__tableItem:first-child {
-    border: 0.125rem solid #fff500;
+    border-bottom: 1px solid #ffe351;
+    border-left: 10px solid #ffe351;
+    border-right: 1px solid #ffe351;
+    border-top: 1px solid #ffe351;
+    padding-left: 12px;
+    span {
+      color:#ffe351;
+    }
     .popupLeaderboard__id {
-      color: #fff500;
+      svg {
+        display: block;
+        left: -9px;
+      }
     }
     .popupLeaderboard__playerName {
-      margin-left: 15px;
-      color: #fff500;
     }
     .popupLeaderboard__coins {
-      color: #fff500;
     }
+  }
+  &__tableItem:nth-child(2) {
+    border-bottom: 1px solid #cecece;
+    border-left: 10px solid #cecece;
+    border-right: 1px solid #cecece;
+    border-top: 1px solid #cecece;
+    padding-left: 12px;
+    span {
+      color: #cecece;;
+    }
+    .popupLeaderboard__id {
+      svg {
+        display: block;
+        left: -8px;
+        path {
+          fill: #ffffff;
+        }
+      }
+    }
+    .popupLeaderboard__playerName {
+    }
+    .popupLeaderboard__coins {
+    }
+  }
+  &__tableItem:nth-child(3) {
+    border-bottom: 1px solid #ff961a;
+    border-left: 10px solid #ff961a;
+    border-right: 1px solid #ff961a;
+    border-top: 1px solid #ff961a;
+    padding-left: 12px;
+    span {
+      color: #ff961a;
+    }
+    .popupLeaderboard__id {
+      svg {
+        display: block;
+        left: -8px;
+        path {
+          fill: #ff961a;;
+        }
+      }
+    }
+    .popupLeaderboard__playerName {
+    }
+    .popupLeaderboard__coins {
+    }
+  }
+  &__tableItem:last-child {
+    border: 2px solid #fff;
+    background: rgba(105, 30, 226, 0.55);
   }
   &__itemData {
     display: flex;
