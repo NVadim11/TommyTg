@@ -16,12 +16,17 @@ import happySpeak from '../../img/4talk.gif';
 import boostCoin from '../../img/boost_coin_side.png';
 import catFace from '../../img/catFace.png';
 import catCoinMove from '../../img/cat_coin_move.png';
+import catCoin from '../../img/catcoin_gold.svg';
+import star from '../../img/Star.svg';
 import finalForm from '../../img/finalForm.gif';
 import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
 import smile from '../../img/smile.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
+
+// import orangeEllipse from '../../img/ellipse-orange.png';
+// import violettEllipse from '../../img/ellipse-violett.png';
 import './Main.scss';
 
 const Main = ({ user }) => {
@@ -93,7 +98,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch(secretURL + '/api/set-activity', {
+		fetch(testURL + '/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -137,9 +142,7 @@ const Main = ({ user }) => {
 
 	const getGameStatus = async () => {
 		try {
-			const initGameStatusCheck = await axios.get(
-				secretURL + `/api/telegram-id/${userId}`
-			);
+			const initGameStatusCheck = await axios.get(testURL + `/api/telegram-id/${userId}`);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
 		}
@@ -236,6 +239,7 @@ const Main = ({ user }) => {
 		const { x, y } = positions[randomIndex];
 		setPosition({ x, y });
 	};
+	
 
 	useEffect(() => {
 		if (gamePaused) {
@@ -244,7 +248,6 @@ const Main = ({ user }) => {
 			setVisible(false);
 			setCurrentImage(false);
 			setBoostPhase(false);
-			setCoinState(false);
 			clearAnimations();
 			setHappinessVal(1);
 			setClickNewCoins(1);
@@ -275,37 +278,38 @@ const Main = ({ user }) => {
 		};
 	}, [visible, gamePaused]);
 
-	const [bgImages] = useState({
-		bgImageFirst: 'img/bgFirst.webp',
-		bgImageSecond: 'img/bgSecond.webp',
-		bgImageThird: 'img/bgThird.webp',
-		bgImageFourth: 'img/bgFourth.webp',
-		bgImageFives: 'img/bgFives.webp',
-	});
+	// bg switcher
+	// const [bgImages] = useState({
+	// 	bgImageFirst: 'img/bgFirst.webp',
+	// 	bgImageSecond: 'img/bgSecond.webp',
+	// 	bgImageThird: 'img/bgThird.webp',
+	// 	bgImageFourth: 'img/bgFourth.webp',
+	// 	bgImageFives: 'img/bgFives.webp',
+	// });
 
-	let activeImage = bgImages.bgImageFirst;
-	let opacityFirst = 0;
-	let opacitySecond = 0;
-	let opacityThird = 0;
-	let opacityFourth = 0;
-	let opacityFives = 0;
+	// let activeImage = bgImages.bgImageFirst;
+	// let opacityFirst = 0;
+	// let opacitySecond = 0;
+	// let opacityThird = 0;
+	// let opacityFourth = 0;
+	// let opacityFives = 0;
 
-	if (currEnergy >= 0 && currEnergy <= 150) {
-		activeImage = bgImages.bgImageFirst;
-		opacityFirst = 1;
-	} else if (currEnergy >= 151 && currEnergy <= 300) {
-		activeImage = bgImages.bgImageSecond;
-		opacitySecond = 1;
-	} else if (currEnergy >= 301 && currEnergy <= 550) {
-		activeImage = bgImages.bgImageThird;
-		opacityThird = 1;
-	} else if (currEnergy >= 551 && currEnergy <= 800) {
-		activeImage = bgImages.bgImageFourth;
-		opacityFourth = 1;
-	} else if (currEnergy >= 801 && currEnergy <= 1000) {
-		activeImage = bgImages.bgImageFives;
-		opacityFives = 1;
-	}
+	// if (currEnergy >= 0 && currEnergy <= 150) {
+	// 	activeImage = bgImages.bgImageFirst;
+	// 	opacityFirst = 1;
+	// } else if (currEnergy >= 151 && currEnergy <= 300) {
+	// 	activeImage = bgImages.bgImageSecond;
+	// 	opacitySecond = 1;
+	// } else if (currEnergy >= 301 && currEnergy <= 550) {
+	// 	activeImage = bgImages.bgImageThird;
+	// 	opacityThird = 1;
+	// } else if (currEnergy >= 551 && currEnergy <= 800) {
+	// 	activeImage = bgImages.bgImageFourth;
+	// 	opacityFourth = 1;
+	// } else if (currEnergy >= 801 && currEnergy <= 1000) {
+	// 	activeImage = bgImages.bgImageFives;
+	// 	opacityFives = 1;
+	// }
 
 	useEffect(() => {
 		if (currEnergy <= 0) {
@@ -443,7 +447,8 @@ const Main = ({ user }) => {
 
 	return (
 		<div className='mainContent'>
-			<div
+			{/* bg layers  */}
+			{/* <div
 				id='bgImage'
 				className='bgImage'
 				style={{
@@ -482,7 +487,74 @@ const Main = ({ user }) => {
 					backgroundImage: `url(${process.env.PUBLIC_URL}/${bgImages.bgImageFives})`,
 					opacity: opacityFives,
 				}}
-			></div>
+			></div> */}
+			<div className='orangeEllipse'>
+			<svg width="390" height="754" viewBox="0 0 655 754" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.3" filter="url(#filter0_f_5127_4548)">
+    <circle cx="-29.3449" cy="684.466" r="384.234" transform="rotate(60 -29.3449 684.466)" fill="url(#paint0_linear_5127_4548)" />
+  </g>
+  <defs>
+    <filter id="filter0_f_5127_4548" x="-713.643" y="0.16748" width="1368.6" height="1368.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="150" result="effect1_foregroundBlur_5127_4548" />
+    </filter>
+    <linearGradient id="paint0_linear_5127_4548" x1="-334.146" y1="353.187" x2="202.181" y2="1068.7" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD600" />
+      <stop offset="1" stop-color="#FF004D" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+</svg>
+			</div>
+			<div className='violettEllipse'>
+				<svg
+					width='329'
+					height='452'
+					viewBox='0 0 329 452'
+					fill='none'
+					xmlns='http://www.w3.org/2000/svg'
+				>
+					<g filter='url(#filter0_f_5127_4227)'>
+						<circle cx='344' cy='344' r='195' fill='url(#paint0_linear_5127_4227)' />
+					</g>
+					<defs>
+						<filter
+							id='filter0_f_5127_4227'
+							x='0'
+							y='0'
+							width='688'
+							height='688'
+							filterUnits='userSpaceOnUse'
+							color-interpolation-filters='sRGB'
+						>
+							<feFlood flood-opacity='0' result='BackgroundImageFix' />
+							<feBlend
+								mode='normal'
+								in='SourceGraphic'
+								in2='BackgroundImageFix'
+								result='shape'
+							/>
+							<feGaussianBlur
+								stdDeviation='74.5'
+								result='effect1_foregroundBlur_5127_4227'
+							/>
+						</filter>
+						<linearGradient
+							id='paint0_linear_5127_4227'
+							x1='-21.7531'
+							y1='13.4221'
+							x2='364.597'
+							y2='583.901'
+							gradientUnits='userSpaceOnUse'
+						>
+							<stop stop-color='#FF00A8' stop-opacity='0' />
+							<stop offset='0.9999' stop-color='#2723FE' />
+							<stop offset='1' stop-color='#23A7FE' />
+						</linearGradient>
+					</defs>
+				</svg>
+			</div>
+
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>
 					<div className='gameContentBox'>
@@ -755,7 +827,7 @@ const Main = ({ user }) => {
 						<div className='mainContent__coins'>
 							<div className='mainContent__coinBox'>
 								<div className='mainContent__coinImg' draggable='false'>
-									<img src={catCoinMove} alt='coin animation' draggable='false' />
+									<img src={catCoin} alt='coin animation' draggable='false' />
 								</div>
 								<div className='mainContent__coinAmount'>
 									<span id='coinAmount'>{currCoins}</span>
@@ -767,13 +839,25 @@ const Main = ({ user }) => {
 					{coinState && (
 						<div className='mainContent__animation'>
 							<div className='mainContent__coinOne'>
-								<img src={catCoinMove} alt='' />
+								<img src={star} alt='' />
 							</div>
 							<div className='mainContent__coinTwo'>
-								<img src={catCoinMove} alt='' />
+								<img src={star} alt='' />
 							</div>
 							<div className='mainContent__coinThree'>
-								<img src={catCoinMove} alt='' />
+								<img src={star} alt='' />
+							</div>
+							<div className='mainContent__coinFour'>
+								<img src={star} alt='' />
+							</div>
+							<div className='mainContent__coinFive'>
+								<img src={star} alt='' />
+							</div>
+							<div className='mainContent__coinSix'>
+								<img src={star} alt='' />
+							</div>
+							<div className='mainContent__coinSeven'>
+								<img src={star} alt='' />
 							</div>
 						</div>
 					)}

@@ -169,10 +169,10 @@ const Footer = ({ user }) => {
 		if (footerTag) footerTag.classList.remove('show-blur');
 	};
 
-	const toggleVisibility = () => {
-		toggleMuteAllSounds();
-		setIsVisible(!isVisible);
-	};
+	// const toggleVisibility = () => {
+	// 	toggleMuteAllSounds();
+	// 	setIsVisible(!isVisible);
+	// };
 
 	const walletSubmitHandler = () => {
 		if (!user?.wallet_address) {
@@ -425,7 +425,7 @@ const Footer = ({ user }) => {
 		<>
 			<footer id='footer' className='footerMain'>
 				<div className='footerMain__container'>
-					<div className='soundToggler'>
+					{/* <div className='soundToggler'>
 						{isVisible ? (
 							<div className='soundToggler__itemOn' onClick={toggleVisibility}>
 								<button>
@@ -477,27 +477,29 @@ const Footer = ({ user }) => {
 								</button>
 							</div>
 						)}
-					</div>
+					</div> */}
 					<div className='footerMain__activities'>
 						<div className='footerMain__activitiesBtn'>
 							<button onClick={tasksBtn}>
-								<span>Tasks</span>
 								<img src={tasks} />
+								<span>Tasks</span>
 							</button>
 						</div>
 						<div className='footerMain__activitiesBtn'>
 							<button style={{ cursor: 'not-allowed' }} disabled>
-								Pet
 								<img src={pet} />
+								Pet
+								<span>Comming soon</span>
 							</button>
-							<div className='footerMain__activitiesHint'>Coming Soon</div>
+							{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 						</div>
 						<div className='footerMain__activitiesBtn'>
 							<button style={{ cursor: 'not-allowed' }} disabled>
-								Shop
 								<img src={shop} />
+								Shop
+								<span>Comming soon</span>
 							</button>
-							<div className='footerMain__activitiesHint'>Coming Soon</div>
+							{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 						</div>
 					</div>
 				</div>

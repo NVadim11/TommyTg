@@ -4,7 +4,8 @@ import link from '../../img/link.svg';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { useGetLeaderboardMutation } from '../../services/phpService';
-import { toggleMuteAllSounds } from '../../utility/Audio';
+import logo from '../../img/logo.svg';
+// import { toggleMuteAllSounds } from '../../utility/Audio';
 
 import { GameInfoContext } from '../../helpers/context';
 import './Header.scss';
@@ -18,7 +19,7 @@ const Header = ({ user }) => {
 	const [leaderboardData, setLeaderboardData] = useState([]);
 	const [isLeaderboardOpen, setLeaderboardOpen] = useState(false);
 	const [isInviteOpen, setInviteOpen] = useState(false);
-	const [isVisible, setIsVisible] = useState(false);
+	// const [isVisible, setIsVisible] = useState(false);
 	const [isElementPresent, setIsElementPresent] = useState(false);
 	const initLeadersRef = useRef(null);
 	const [getLeaderboard] = useGetLeaderboardMutation();
@@ -28,6 +29,8 @@ const Header = ({ user }) => {
 
 	const popupInvTgl = isInviteOpen ? 'popupInvite_show' : null;
 	const popupInvite = `popupInvite ${popupInvTgl}`;
+
+	const containerRef = useRef(null);
 
 	const tg = window.Telegram.WebApp;
 
@@ -56,10 +59,15 @@ const Header = ({ user }) => {
 		return () => observer.disconnect();
 	}, []);
 
-	const toggleVisibilitySound = () => {
-		toggleMuteAllSounds();
-		setIsVisible(!isVisible);
+	const toggleVisibility = () => {
+		setIsShown(!isShown);
+		setIsToggled(!isToggled);
 	};
+
+	// const toggleVisibilitySound = () => {
+	// toggleMuteAllSounds();
+	// setIsVisible(!isVisible);
+	// };
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -181,14 +189,16 @@ const Header = ({ user }) => {
 		<>
 			<header id='header' className='header'>
 				<div className='header__container'>
+					<div className='header__logo'>
+						<img src={logo} />
+					</div>
 					<div className='header__mobileBtns'>
-						{user && totalPoints !== null && (
+						{/* {user && totalPoints !== null && (
 							<div id='header__totalScore' className='header__totalScore'>
 								{state?.info.header__totalScore} <span>{totalPoints}</span>
 							</div>
-						)}
-						<div className='header__tgBtns'>
-							<div className='header__leaderboard'>
+						)} */}
+						{/* <div className='header__leaderboard'>
 								<button onClick={leaderBordBtn}>
 									{state?.info.header__leaderboard}
 									<img src={leaderboard_icon} />
@@ -217,10 +227,141 @@ const Header = ({ user }) => {
 										</defs>
 									</svg>
 								</button>
-							</div>
+							</div> */}
+						<div className='header__mobileBtns-links'>
+							<a href='https://t.me/tomo_cat' target='_blank'>
+								<svg
+									width='24'
+									height='19'
+									viewBox='0 0 24 19'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path
+										fill-rule='evenodd'
+										clip-rule='evenodd'
+										d='M19.8625 18.078L23.544 1.81156C23.724 1.01656 22.8754 0.352279 22.0547 0.639422L21.6647 0.778707L0.49754 8.40514C0.347985 8.45228 0.218196 8.54752 0.128351 8.67603C0.0385062 8.80455 -0.00635979 8.95916 0.00072731 9.1158C0.00781441 9.27245 0.0664576 9.42237 0.16754 9.54225C0.268623 9.66214 0.406482 9.74526 0.559683 9.77871L6.03897 11.2787L7.06111 14.2787L8.08325 17.2787C8.1422 17.4256 8.2361 17.5559 8.3568 17.6583C8.47751 17.7607 8.62137 17.8321 8.77592 17.8663C8.93046 17.9005 9.09102 17.8965 9.24365 17.8546C9.39629 17.8127 9.5364 17.7342 9.65182 17.6259L12.4825 14.9494L18.0411 18.7209C18.7204 19.1859 19.689 18.8409 19.8625 18.078ZM9.78959 12.0736L19.3532 4.25651C19.5932 4.05936 19.3146 3.71651 19.0424 3.87508L17.1696 4.94651L7.21816 10.6508C7.11894 10.7037 7.04142 10.7897 6.99913 10.8938C6.95683 10.998 6.95245 11.1137 6.98673 11.2208L7.7903 13.6101L8.56816 15.9458C8.57072 15.9742 8.58446 16.0004 8.60636 16.0187C8.62826 16.037 8.65653 16.0458 8.68495 16.0433C8.71336 16.0407 8.7396 16.027 8.75788 16.0051C8.77617 15.9832 8.785 15.9549 8.78244 15.9265L9.05887 13.5908L9.15959 12.7594C9.17619 12.6343 9.24073 12.5206 9.33959 12.4422L9.78959 12.0736Z'
+										fill='white'
+									/>
+								</svg>
+							</a>
 						</div>
+						<div className='header__mobileBtns-links'>
+							<a href='https://twitter.com/TomoCatSol' target='_blank'>
+								<svg
+									width='24'
+									height='22'
+									viewBox='0 0 24 22'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path
+										d='M18.7187 0.5H22.2172L14.5739 9.2358L23.5657 21.1233H16.5252L11.0109 13.9136L4.7012 21.1233H1.20054L9.37581 11.7793L0.75 0.5H7.9692L12.9537 7.08992L18.7187 0.5ZM17.4908 19.0292H19.4294L6.91583 2.48406H4.83552L17.4908 19.0292Z'
+										fill='white'
+									/>
+								</svg>
+							</a>
+						</div>
+						<button
+							className='header__mobileBurger'
+							ref={containerRef}
+							onClick={toggleVisibility}
+						>
+							Menu
+							<svg
+								width='24'
+								height='24'
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<g clip-path='url(#clip0_5124_6838)'>
+									<path
+										d='M19.9019 1.38086C19.508 1.38086 19.188 1.70083 19.188 2.09477C19.188 2.48866 19.508 2.80867 19.9019 2.80867C20.2958 2.80867 20.6158 2.48866 20.6158 2.09477C20.6158 1.70087 20.2958 1.38086 19.9019 1.38086Z'
+										fill='white'
+									/>
+									<path
+										d='M23.6249 0.929875C23.5685 0.6475 23.3475 0.426531 23.0651 0.370047C22.1399 0.185172 21.2607 0.0693906 20.4152 0.021625C21.3477 0.253188 22.0436 1.09103 22.0436 2.09416C22.0436 3.27517 21.0828 4.23588 19.9019 4.23588C18.7208 4.23588 17.7601 3.27513 17.7601 2.09416C17.7601 1.07017 18.4833 0.214047 19.4452 0.00390625C17.3419 0.0201719 15.4294 0.486531 13.5194 1.44086C13.0868 1.65719 12.9877 2.23802 13.3339 2.58423L16.8676 6.11791L15.8315 7.15398C13.6091 5.19316 11.1183 4.45356 11.0046 4.42131C10.6268 4.30975 10.2301 4.53353 10.1234 4.91355C10.016 5.29281 10.2363 5.68741 10.6156 5.7948C10.64 5.80183 12.8538 6.45789 14.8214 8.16409L12.7942 10.1913C11.0541 8.78359 8.9901 8.45444 8.89363 8.44061C8.49834 8.37578 8.14068 8.65328 8.0842 9.04366C8.02705 9.43338 8.29682 9.79591 8.68724 9.85309C8.70571 9.85614 10.3698 10.1149 11.7837 11.2019L9.74484 13.2407C8.44673 12.3916 6.80807 12.4669 6.73232 12.4724C6.33909 12.494 6.03932 12.8286 6.05952 13.2219C6.07977 13.6158 6.42341 13.9002 6.80826 13.8981C6.81665 13.8914 7.84073 13.8592 8.69737 14.2881L6.70902 16.2765C5.97899 15.8053 5.09498 15.6187 4.22174 15.7938L0.573414 16.5237C0.0147113 16.6354 -0.192429 17.3271 0.208774 17.7284L0.800008 18.3197C1.69523 19.2148 2.84066 19.769 4.07816 19.9168C4.22596 21.1543 4.78021 22.2998 5.67543 23.195L6.26666 23.7862C6.66927 24.1888 7.35974 23.9799 7.4714 23.4216L8.20134 19.7725C8.37529 18.9005 8.18915 18.0163 7.71843 17.2862L9.70645 15.2981C10.1327 16.1532 10.0981 17.1739 10.097 17.1867C10.0781 17.5792 10.38 17.9153 10.7732 17.9355C10.7858 17.9362 10.7983 17.9362 10.8109 17.9362C11.1873 17.9362 11.5018 17.6434 11.5227 17.2627C11.5276 17.1841 11.6028 15.5473 10.7543 14.2502L12.793 12.2116C13.8722 13.6195 14.1389 15.2908 14.1419 15.3099C14.1996 15.689 14.5499 15.9666 14.9527 15.9101C15.3425 15.8523 15.6116 15.4905 15.5544 15.1014C15.5406 15.0049 15.2114 12.9409 13.8037 11.2008L15.8309 9.17369C17.5285 11.1339 18.1931 13.3565 18.2002 13.3808C18.3098 13.7622 18.7092 13.9792 19.0821 13.8709C19.4614 13.7628 19.681 13.369 19.5736 12.9904C19.5414 12.8767 18.8017 10.386 16.841 8.16353L17.877 7.12745L21.4107 10.661C21.7546 11.005 22.3356 10.9125 22.554 10.4756C24.0265 7.53072 24.357 4.58655 23.6249 0.929875Z'
+										fill='white'
+									/>
+								</g>
+								<defs>
+									<clipPath id='clip0_5124_6838'>
+										<rect width='24' height='24' fill='white' />
+									</clipPath>
+								</defs>
+							</svg>
+							{/* <div
+								className={
+									isToggled
+										? 'header__mobileBurger-btn is-active'
+										: 'header__mobileBurger-btn'
+								}
+							>
+								<span className='header__mobileBurger-line'></span>
+								<span className='header__mobileBurger-line'></span>
+								<span className='header__mobileBurger-line'></span>
+							</div> */}
+							{isShown && (
+								<div className='header__mobileMenu'>
+									<a className='header__mobileMenu-links' onClick={leaderBordBtn}>
+										Leadboard
+										<svg
+											width='24'
+											height='24'
+											viewBox='0 0 24 24'
+											fill='none'
+											xmlns='http://www.w3.org/2000/svg'
+										>
+											<g clip-path='url(#clip0_5127_4053)'>
+												<path
+													d='M17.4099 3.92878C17.3173 3.64458 17.0715 3.4373 16.7761 3.39441L13.9643 2.98575L12.7064 0.437531C12.5746 0.169687 12.3016 0 12.0026 0C11.7036 0 11.4307 0.169687 11.2988 0.437531L10.0409 2.9858L7.2287 3.39445C6.93324 3.43739 6.68738 3.64462 6.5949 3.92883C6.50242 4.21303 6.57957 4.52508 6.79374 4.73362L8.8291 6.71709L8.34817 9.51759C8.29754 9.81225 8.41871 10.11 8.66049 10.2856C8.90279 10.4619 9.22327 10.4836 9.48751 10.3454L12.0028 9.02311L14.5176 10.3454C14.7879 10.4872 15.1072 10.458 15.3446 10.2856C15.5864 10.11 15.7075 9.8123 15.657 9.51787L15.1765 6.71709L17.2113 4.73362C17.4252 4.52508 17.5019 4.21298 17.4099 3.92878Z'
+													fill='white'
+												/>
+												<path
+													d='M15.1404 11.9619H8.85957C8.42598 11.9619 8.07446 12.3134 8.07446 12.747V24.0001H15.9255V12.747C15.9255 12.3134 15.5739 11.9619 15.1404 11.9619Z'
+													fill='white'
+												/>
+												<path
+													d='M1.00862 15.1021C0.575026 15.1021 0.223511 15.4536 0.223511 15.8872V23.3791C0.223511 23.722 0.501433 23.9999 0.84423 23.9999H6.50434V15.1021H1.00862Z'
+													fill='white'
+												/>
+												<path
+													d='M22.9914 18.2427H17.4957V24.0001H23.1558C23.4987 24.0001 23.7766 23.7222 23.7766 23.3794V19.0278C23.7765 18.5942 23.425 18.2427 22.9914 18.2427Z'
+													fill='white'
+												/>
+											</g>
+											<defs>
+												<clipPath id='clip0_5127_4053'>
+													<rect width='24' height='24' fill='white' />
+												</clipPath>
+											</defs>
+										</svg>
+									</a>
+									<a
+										className='header__mobileMenu-links'
+										onClick={inviteFriendsBtn}
+										rel='noopener noreferrer'
+									>
+										Referral
+										<svg
+											width='24'
+											height='24'
+											viewBox='0 0 24 24'
+											fill='none'
+											xmlns='http://www.w3.org/2000/svg'
+										>
+											<path
+												d='M17.9999 13.9999C17.9469 13.9999 17.8999 14.0139 17.8449 14.0159L14.8169 8.83787C15.3799 8.27987 15.7643 7.5672 15.9215 6.79033C16.0787 6.01345 16.0015 5.20739 15.6998 4.47444C15.3981 3.74149 14.8854 3.11471 14.2269 2.67363C13.5683 2.23255 12.7936 1.99707 12.0009 1.99707C11.2083 1.99707 10.4336 2.23255 9.77502 2.67363C9.11646 3.11471 8.60379 3.74149 8.30208 4.47444C8.00036 5.20739 7.9232 6.01345 8.08039 6.79033C8.23757 7.5672 8.62202 8.27987 9.18494 8.83787L6.16594 14.0169C6.10894 14.0139 6.05694 13.9999 5.99994 13.9999C5.25122 13.9973 4.51679 14.2048 3.88021 14.599C3.24363 14.9931 2.73046 15.5581 2.39908 16.2295C2.0677 16.9009 1.9314 17.6518 2.00571 18.3968C2.08002 19.1419 2.36194 19.8511 2.8194 20.4438C3.27687 21.0365 3.89151 21.4889 4.59339 21.7496C5.29528 22.0103 6.05624 22.0687 6.7897 21.9183C7.52315 21.7678 8.19966 21.4145 8.74226 20.8986C9.28486 20.3827 9.67175 19.7248 9.85894 18.9999H14.1409C14.3291 19.7227 14.7162 20.3784 15.2582 20.8923C15.8003 21.4062 16.4756 21.7578 17.2074 21.9072C17.9393 22.0566 18.6984 21.9977 19.3985 21.7373C20.0986 21.4769 20.7116 21.0255 21.168 20.4342C21.6244 19.8428 21.9058 19.1354 21.9803 18.3922C22.0547 17.6489 21.9193 16.8997 21.5894 16.2296C21.2594 15.5595 20.7482 14.9953 20.1137 14.6012C19.4792 14.207 18.7469 13.9987 17.9999 13.9999ZM14.1409 16.9999H9.85894C9.60499 16.0166 8.98602 15.167 8.12794 14.6239L10.9209 9.83387C11.6242 10.0559 12.3787 10.0559 13.0819 9.83387L15.8819 14.6199C15.0189 15.1617 14.396 16.0133 14.1409 16.9999Z'
+												fill='white'
+											/>
+										</svg>
+									</a>
+								</div>
+							)}
+						</button>
 
-						<div className='soundToggler'>
+						{/* <div className='soundToggler'>
 							{isVisible ? (
 								<div className='soundToggler__itemOn' onClick={toggleVisibilitySound}>
 									<button>
@@ -272,7 +413,7 @@ const Header = ({ user }) => {
 									</button>
 								</div>
 							)}
-						</div>
+						</div> */}
 					</div>
 				</div>
 				{isInviteOpen}

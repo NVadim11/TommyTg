@@ -14,7 +14,7 @@ html, body {
 
 
 #root {
-  background-color: #000000;
+  background: linear-gradient(180deg, #0b1f46 0%, #000 100%);
   position: relative;
   min-height: 100%;
   position: relative;
@@ -30,6 +30,7 @@ html, body {
     min-width: 0;
   }
 }
+
 
 
 .wrapper {
