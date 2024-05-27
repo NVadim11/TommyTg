@@ -15,7 +15,7 @@ import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
 // import NotFound from './404';
-// import TelegramLinking from './QRcode';
+import TelegramLinking from './QRcode';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
@@ -110,24 +110,24 @@ const MainComponent = () => {
 
 	return (
 		<>
-			{/* {!isMobileDevice ? (
+			{isMobileDevice ? (
 				<TelegramLinking />
-			) : ( */}
-			<>
-				<Preloader loaded={preloaderLoaded} />
-				{/* {user ? ( */}
+			) : (
 				<>
-					<Header user={user} />
-					<main id='main' className='main'>
-						<Main user={user} />
-					</main>
-					<Footer user={user} />
+					<Preloader loaded={preloaderLoaded} />
+					{/* {user ? ( */}
+					<>
+						<Header user={user} />
+						<main id='main' className='main'>
+							<Main user={user} />
+						</main>
+						<Footer user={user} />
+					</>
+					{/* ) : ( */}
+					{/* <NotFound /> */}
+					{/* )} */}
 				</>
-				{/* ) : ( */}
-				{/* <NotFound /> */}
-				{/* )} */}
-			</>
-			{/* )} */}
+			)}
 		</>
 	);
 };
