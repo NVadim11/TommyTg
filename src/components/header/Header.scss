@@ -350,7 +350,7 @@ body::after {
   &__wrapper {
   }
   &__content {
-    margin-top: 64px;
+    margin-top: 32px;
     padding: 24px 12px 12px 12px;
     backdrop-filter: blur(32px);
     background: linear-gradient(180deg, rgba(11, 31, 70, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
@@ -535,7 +535,7 @@ body::after {
     display: flex;
   }
   &__content {
-    margin-top: 64px;
+    margin-top: 32px;
     border: 2px solid #fff;
     border-radius: 20px;
     padding: 16px 12px;
