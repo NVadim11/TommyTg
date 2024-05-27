@@ -276,8 +276,9 @@ body::after {
     justify-content: space-between;
     text-align: center;
     align-items: center;
+    margin-bottom: 5px;
     button {
-      margin-top: 10px;
+      padding: 12px 24px 12px 24px;
       width: 100%;
       border: 1px solid #3f3773;
       border-radius: 10px;
@@ -286,9 +287,6 @@ body::after {
       flex-direction: row;
       align-items: center;
       justify-content: start;
-      height: 48px;
-      padding: 8px 10px 10px 10px;
-      padding-bottom: 8px;
       font-weight: 600;
       font-size: 14px;
       color: #fff;
@@ -297,9 +295,7 @@ body::after {
       background: #292f4f;
     }
     img {
-      position: absolute;
-      right: 11px;
-      width: 20px;
+      margin-right: 12px;
     }
     svg {
       position: absolute;
@@ -318,6 +314,9 @@ body::after {
       right: 0;
       position: relative;
     }
+  }
+  &__task:last-child {
+    margin-bottom: 0;
   }
   &__tabs-btns {
     display: flex;
@@ -392,7 +391,7 @@ body::after {
     }
   }
   &__walletTask:first-child {
-    margin-top: 25px;
+    margin-top: 12px;
   }
   &__walletTask-inputBtn {
     box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
