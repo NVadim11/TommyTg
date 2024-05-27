@@ -172,7 +172,7 @@ body::after {
 
 .footerMain {
   position: relative;
-  z-index: 10;
+  z-index: 10!important;
   margin: 0 auto;
   display: flex;
   align-items: center;
