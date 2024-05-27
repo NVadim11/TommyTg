@@ -26,8 +26,6 @@ body::after {
   right: 0;
   transition: visibility 0.8s ease 0s;
   pointer-events: none;
-  @media (max-width: $mobile) {
-  }
 }
 .popupTasks_show {
   z-index: 300;
@@ -52,43 +50,141 @@ body::after {
   display: none;
   transition: transform 0.3s ease 0s;
   width: 100%;
-  background: rgba(41, 47, 79, 1);
+}
+
+.footerMain {
+  // .soundToggler {
+  //   @media (max-width: $mobile) {
+  //     display: none;
+  //   }
+  // }
+    z-index: 301;
+  &__container {
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+  }
+  &__activities {
+    display: flex;
+    margin: 24px 0 32px 0;
+    padding: 10px;
+    border: 1px solid #554a9c;
+    border-radius: 18px;
+    gap: 10px;
+  }
+  &__activitiesBtn {
+    position: relative;
+    button {
+      border: 1px solid #fff;
+      border-radius: 10px;
+      padding: 12px;
+      width: 98px;
+      height: 44px;
+      font-family: var(--font-family);
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 130%;
+      letter-spacing: 0.02em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+    button:disabled {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 100%;
+      letter-spacing: 0.02em;
+      color: #554a9c;
+      display: flex;
+      justify-content: center;
+      span {
+        position: absolute;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 100%;
+        letter-spacing: 0.03em;
+        text-align: center;
+        color: #fff;
+      }
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+  &__activitiesBtn:first-child {
+    button {
+      background: linear-gradient(270deg, #1cafee 0%, #35cf6e 71.63%, #3fdb3c 100%);
+      opacity: 0.8;
+    }
+    // button::before {
+    //   content: "";
+    //   background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
+    //   opacity: 0;
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    //   border-radius: 3.75rem;
+    //   transition: opacity 0.25s ease-in-out;
+    //   right: 0;
+    // }
+    // button:hover:before {
+    //   opacity: 1;
+    // }
+    span {
+      z-index: 10;
+      position: relative;
+    }
+    img {
+      position: relative;
+      z-index: 10;
+      margin-right: 10px;
+    }
+  }
+  &__activitiesHint {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 3.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    background: #7631e7;
+    transform: rotate(8deg);
+    font-weight: 400;
+    font-size: 0.625rem;
+    color: #fff;
+    padding: 0 0.5625rem;
+    top: -0.9375rem;
+    right: -1.5625rem;
+    z-index: 100;
+  }
 }
 
 .popupTasks {
   &__wrapper {
-    padding: 0 30px;
-    margin-top: 69px;
+    padding: 0 12px;
   }
   &__content {
-    display: flex;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 32px;
     border-radius: 20px;
-    padding: 20px;
+    padding: 22px 12px;
+    position: relative;
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    // backdrop-filter: blur(32px);
+    background: linear-gradient(180deg, rgba(11, 31, 70) 0%, rgba(0, 0, 0) 100%);
   }
   &__close {
-    position: relative;
-    @media (max-width: $mobile) {
       position: absolute;
-      right: 20px;
-    }
-    svg {
-      @media (max-width: $mobile) {
-        height: 0.9375rem;
-        width: 0.9375rem;
-      }
-    }
+      right: 12px;
   }
   &__title {
-    font-weight: 900;
-    line-height: 100%;
-    color: #fff;
-    @media (max-width: $mobile) {
-      font-size: 1.25rem;
-      width: 11.875rem;
+      width: 230px;
       position: relative;
-    }
+      h4 {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 100%;
+        color: #fff;
+      }
   }
   &__coins {
     @media (max-width: $mobile) {
@@ -168,122 +264,12 @@ body::after {
       font-size: 14px;
     }
   }
-}
-
-.footerMain {
-  // .soundToggler {
-  //   @media (max-width: $mobile) {
-  //     display: none;
-  //   }
-  // }
-    z-index: 301;
-  &__container {
-    padding: 0 12px;
-    display: flex;
-    justify-content: center;
-  }
-  &__activities {
-    display: flex;
-    margin: 24px 0 32px 0;
-    padding: 10px;
-    border: 1px solid #554a9c;
-    border-radius: 18px;
-    gap: 10px;
-  }
-  &__activitiesBtn {
-    position: relative;
-    button {
-      border: 1px solid #fff;
-      border-radius: 10px;
-      padding: 12px;
-      width: 98px;
-      height: 44px;
-      font-family: var(--font-family);
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 130%;
-      letter-spacing: 0.02em;
-      color: #fff;
-      display: flex;
-      align-items: center;
-    }
-    button:disabled {
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 100%;
-      letter-spacing: 0.02em;
-      color: #554a9c;
-      display: flex;
-      justify-content: center;
-      span {
-        position: absolute;
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 100%;
-        letter-spacing: 0.03em;
-        text-align: center;
-        color: #fff;
-      }
-      img {
-        margin-right: 10px;
-      }
+  &__tasks {
+    display: none;
+    &.active {
+      display: block;
     }
   }
-  &__activitiesBtn:first-child {
-    button {
-      background: linear-gradient(270deg, #1cafee 0%, #35cf6e 71.63%, #3fdb3c 100%);
-      opacity: 0.8;
-    }
-    button::before {
-      content: "";
-      background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
-      opacity: 0;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 3.75rem;
-      transition: opacity 0.25s ease-in-out;
-      right: 0;
-    }
-    button:hover:before {
-      opacity: 1;
-    }
-    span {
-      z-index: 10;
-      position: relative;
-    }
-    img {
-      position: relative;
-      z-index: 10;
-      margin-right: 10px;
-    }
-  }
-  &__activitiesHint {
-    position: absolute;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 3.75rem;
-    height: 1.75rem;
-    display: flex;
-    align-items: center;
-    background: #7631e7;
-    transform: rotate(8deg);
-    font-weight: 400;
-    font-size: 0.625rem;
-    color: #fff;
-    padding: 0 0.5625rem;
-    top: -0.9375rem;
-    right: -1.5625rem;
-    z-index: 100;
-  }
-}
-
-.popupTasks {
-&__tasks {
-  display: none;
-  &.active {
-    display: block;
-  }
-}
   &__task {
     display: flex;
     position: relative;
@@ -293,8 +279,9 @@ body::after {
     button {
       margin-top: 10px;
       width: 100%;
-      border: 0.125rem solid #fff;
-      border-radius: 3.75rem;
+      border: 1px solid #3f3773;
+      border-radius: 10px;
+      background: rgba(8, 18, 41, 0.6);
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -305,7 +292,6 @@ body::after {
       font-weight: 600;
       font-size: 14px;
       color: #fff;
-      background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
     }
     button:disabled {
       background: #292f4f;
@@ -334,64 +320,39 @@ body::after {
     }
   }
   &__tabs-btns {
-    margin-top: 35px;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    align-self: center;
     position: relative;
-    @media (max-width: 768px) {
-      margin-top: 1.5625rem;
-      padding: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      margin: 0 auto;
-      gap: 2px;
-      margin-top: 20px;
-    }
+    border: 1px solid #554a9c;
+    border-radius: 18px;
+    padding: 10px;
+    gap: 10px;
+    margin-top: 12px;
   }
   &__tabs-btn {
     border-radius: 10px 10px 0 0;
     position: relative;
     z-index: 10;
     button {
-      height: 43px;
-      width: 80px;
-      font-weight: 600;
-      font-size: 13px;
-      color: rgba(255, 255, 255);
-      opacity: 0.6;
-      text-align: start;
-      span {
-        @media (max-width: 768px) {
-          display: none;
-        }
-      }
-      @media (max-width: 768px) {
-        font-size: 0.8125rem;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        // padding: 0.625rem;
-        width: 78px;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        svg {
-          margin-right: 0.1563rem;
-        }
-      }
+      height: 38px;
+      width: 90px;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 100%;
+      letter-spacing: 0.02em;
+      color: #554a9c;
+      border: 1px solid #554a9c;
+      border-radius: 10px;
     }
     &.active {
-      border-bottom: 1px solid rgba(41, 47, 79);
-      border-top: 1px solid #fff;
-      border-left: 1px solid #fff;
-      border-right: 1px solid #fff;
       overflow: hidden;
       button {
         opacity: 1;
-      }
-      @media (max-width: 768px) {
+        color: #fff;
         border: 1px solid #fff;
-        border-radius: 10px;
-        background: linear-gradient(87deg, #c09aff 0%, #691ee2 90.83%);
+        background: linear-gradient(270deg, #1cafee 0%, #35cf6e 71.63%, #3fdb3c 100%);
       }
     }
     .footerMain__activitiesHint {
