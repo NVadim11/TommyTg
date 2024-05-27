@@ -395,7 +395,7 @@ body::after {
     background: rgba(124, 48, 247);
     box-shadow: inset -0.25rem -0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
     @media (max-width: $mobile) {
-      padding: 3.25rem 1.25rem;
+      padding: 32px 10px;
     }
   }
   &__close {
@@ -464,7 +464,7 @@ body::after {
       width: 17.3125rem;
     }
     @media (max-width: 360px) {
-      scale: 70%;
+      scale: 95%;
     }
   }
   &__tableItem:first-child {
