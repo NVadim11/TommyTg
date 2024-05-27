@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 // import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import link from '../../img/link.svg';
-import logo from '../../img/logo.svg';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { useGetLeaderboardMutation } from '../../services/phpService';
