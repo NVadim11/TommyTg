@@ -136,27 +136,29 @@ const Footer = ({ user }) => {
 
 	const fadeShow = () => {
 		const htmlTag = document.getElementById('html');
+		if (htmlTag) htmlTag.classList.add('popupLeaderboard-show');
 		const headerTag = document.getElementById('header');
 		const mainTag = document.getElementById('main');
-		// const footerTag = document.getElementById('footer');
 		const bgTag = document.getElementById('bgImage');
-		if (htmlTag) htmlTag.classList.add('popupTasks-show');
+		const footerTag = document.getElementById('footer');
 		if (headerTag) headerTag.classList.add('show-blur');
 		if (mainTag) mainTag.classList.add('show-blur');
 		if (bgTag) bgTag.classList.add('h100');
+		if (footerTag) footerTag.classList.add('show-blur');
 	};
 
-	const tasksCloseToggler = () => {
+	const сloseToggler = () => {
 		setTasksOpen(false);
 		const htmlTag = document.getElementById('html');
+		if (htmlTag) htmlTag.classList.remove('popupLeaderboard-show');
 		const headerTag = document.getElementById('header');
 		const mainTag = document.getElementById('main');
-		// const footerTag = document.getElementById('footer');
 		const bgTag = document.getElementById('bgImage');
-		if (htmlTag) htmlTag.classList.remove('popupTasks-show');
+		const footerTag = document.getElementById('footer');
 		if (headerTag) headerTag.classList.remove('show-blur');
 		if (mainTag) mainTag.classList.remove('show-blur');
 		if (bgTag) bgTag.classList.remove('h100');
+		if (footerTag) footerTag.classList.remove('show-blur');
 	};
 
 	const errorCloseToggler = () => {
@@ -504,11 +506,7 @@ const Footer = ({ user }) => {
 				<div id='popupTasks' aria-hidden='true' className={popupTasks}>
 					<div className='popupTasks__wrapper'>
 						<div className='popupTasks__content'>
-							<button
-								onClick={tasksCloseToggler}
-								type='button'
-								className='popupTasks__close'
-							>
+							<button onClick={сloseToggler} type='button' className='popupTasks__close'>
 								<svg
 									width='19'
 									height='19'

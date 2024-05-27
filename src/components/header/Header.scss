@@ -463,6 +463,9 @@ body::after {
       padding: 0.6875rem 0.6875rem 0.5625rem 0.6875rem;
       width: 17.3125rem;
     }
+    @media (max-width: 360px) {
+      scale: 70%;
+    }
   }
   &__tableItem:first-child {
     border: 0.125rem solid #fff500;

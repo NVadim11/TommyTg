@@ -108,15 +108,9 @@ const Header = ({ user }) => {
 		setIsShown(false);
 	};
 
-	const inviteCloseToggler = () => {
-		setInviteOpen(false);
-		const htmlTag = document.getElementById('html');
-		if (htmlTag) htmlTag.classList.remove('popupInvite-show');
-	};
-
 	const inviteFriendsBtn = () => {
 		setInviteOpen(true);
-		fadeShowInvite();
+		fadeShow();
 		setIsShown(false);
 	};
 
@@ -133,13 +127,9 @@ const Header = ({ user }) => {
 		if (footerTag) footerTag.classList.add('show-blur');
 	};
 
-	const fadeShowInvite = () => {
-		const htmlTag = document.getElementById('html');
-		if (htmlTag) htmlTag.classList.add('popupInvite-show');
-	};
-
-	const leaderboardCloseToggler = () => {
+	const сloseToggler = () => {
 		setLeaderboardOpen(false);
+		setInviteOpen(false);
 		const htmlTag = document.getElementById('html');
 		if (htmlTag) htmlTag.classList.remove('popupLeaderboard-show');
 		const headerTag = document.getElementById('header');
@@ -282,7 +272,7 @@ const Header = ({ user }) => {
 					<div className='popupLeaderboard__wrapper'>
 						<div className='popupLeaderboard__content'>
 							<button
-								onClick={leaderboardCloseToggler}
+								onClick={сloseToggler}
 								type='button'
 								className='popupLeaderboard__close'
 							>
@@ -352,11 +342,7 @@ const Header = ({ user }) => {
 				<div id='popupInvite' aria-hidden='true' className={popupInvite}>
 					<div className='popupInvite__wrapper'>
 						<div className='popupInvite__content'>
-							<button
-								onClick={inviteCloseToggler}
-								type='button'
-								className='popupInvite__close'
-							>
+							<button onClick={сloseToggler} type='button' className='popupInvite__close'>
 								<svg
 									width='19'
 									height='19'
