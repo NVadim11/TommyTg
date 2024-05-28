@@ -782,7 +782,7 @@ const Footer = ({ user }) => {
 										<img src={taskTG} />
 										Follow TG Chat
 										{user?.tg_chat === 0 ? (
-											<p>+ 10000 </p>
+											<p>+10000 </p>
 										) : (
 											// <svg
 											// 	width='24'
@@ -956,15 +956,15 @@ const Footer = ({ user }) => {
 													>
 														<span>{quest.daily_quest.name}</span>
 														{quest.status === 0 ? (
-															<div>
-																+ {quest.reward}{' '}
+															<p className='popupTasks__task-rew'>
+																+{quest.reward}{' '}
 																<img
 																	className='rewardCoin'
 																	src={catCoin}
 																	alt='animation'
 																	draggable='false'
 																/>
-															</div>
+															</p>
 														) : (
 															<svg
 																width='24'
@@ -993,15 +993,15 @@ const Footer = ({ user }) => {
 													<button disabled={quest.status === 1}>
 														<span>{quest.daily_quest.name}</span>
 														{quest.status === 0 ? (
-															<div>
-																+ {quest.reward}{' '}
+															<p className='popupTasks__task-rew'>
+																+{quest.reward}{' '}
 																<img
 																	className='rewardCoin'
 																	src={catCoin}
 																	alt='animation'
 																	draggable='false'
 																/>
-															</div>
+															</p>
 														) : (
 															<svg
 																width='24'

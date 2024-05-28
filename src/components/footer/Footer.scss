@@ -237,9 +237,12 @@ body::after {
     }
   }
   &__tasks {
+    margin-top: 12px;
     display: none;
     &.active {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      gap: 4;
     }
   }
   &__task {
@@ -293,6 +296,7 @@ body::after {
   &__task:last-child {
     margin-bottom: 0;
   }
+
   &__tabs-btns {
     display: flex;
     justify-content: center;
@@ -347,7 +351,6 @@ body::after {
       padding: 10px 0 10px 10px;
       height: 100%;
       width: 100%;
-      padding-right: 45px;
     }
     input::placeholder {
       color: #fff;
@@ -359,8 +362,6 @@ body::after {
     }
     input:disabled {
       opacity: 0.5;
-      outline: 0.125rem solid #929292;
-      padding-right: 50px;
     }
     button:disabled {
       backdrop-filter: blur(4px);
@@ -498,6 +499,21 @@ body::after {
       opacity: 0.72;
     }
   }
+}
+
+.popupTasks__task {
+  .popupTasks__task-rew {
+    border: none;
+    background: transparent;
+    width: 100px;
+    padding: 0;
+    justify-content: flex-end;
+    img {
+      margin-right: 0;
+      width: 20px;
+      height: 20px;
+    }
+}
 }
 
 
