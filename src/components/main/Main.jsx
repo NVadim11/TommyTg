@@ -1,27 +1,27 @@
-import bcrypt from 'bcryptjs';
-import { AnimatePresence, motion } from 'framer-motion';
-import moment from 'moment-timezone';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import { GameInfoContext } from '../../helpers/context';
-import sadIdle from '../../img/1_idle.gif';
-import sadSpeak from '../../img/1talk.gif';
-import normalIdle from '../../img/2_idle.gif';
-import normalSpeak from '../../img/2talk.gif';
-import smileIdle from '../../img/3_idle.gif';
-import smileSpeak from '../../img/3talk.gif';
-import happyIdle from '../../img/4_idle.gif';
-import happySpeak from '../../img/4talk.gif';
-import boostCoin from '../../img/boost_coin_side.png';
-import catFace from '../../img/catFace.png';
-import catCoinMove from '../../img/cat_coin_move.png';
-import finalForm from '../../img/finalForm.gif';
-import goldForm from '../../img/gold.gif';
-import goldIdle from '../../img/goldIdle.gif';
-import smile from '../../img/smile.png';
-import { useUpdateBalanceMutation } from '../../services/phpService';
-import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
-import './Main.scss';
+import bcrypt from 'bcryptjs'
+import { AnimatePresence, motion } from 'framer-motion'
+import moment from 'moment-timezone'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
+import { GameInfoContext } from '../../helpers/context'
+import sadIdle from '../../img/1_idle.gif'
+import sadSpeak from '../../img/1talk.gif'
+import normalIdle from '../../img/2_idle.gif'
+import normalSpeak from '../../img/2talk.gif'
+import smileIdle from '../../img/3_idle.gif'
+import smileSpeak from '../../img/3talk.gif'
+import happyIdle from '../../img/4_idle.gif'
+import happySpeak from '../../img/4talk.gif'
+import boostCoin from '../../img/boost_coin_side.png'
+import catFace from '../../img/catFace.png'
+import catCoinMove from '../../img/cat_coin_move.png'
+import finalForm from '../../img/finalForm.gif'
+import goldForm from '../../img/gold.gif'
+import goldIdle from '../../img/goldIdle.gif'
+import smile from '../../img/smile.png'
+import { useUpdateBalanceMutation } from '../../services/phpService'
+import { playBoostCatClick, playSadCatClick } from '../../utility/Audio'
+import './Main.scss'
 
 const Main = ({ user }) => {
 	const { state } = useContext(GameInfoContext);
@@ -134,16 +134,6 @@ const Main = ({ user }) => {
 		};
 	}, [currEnergy]);
 
-	// const getGameStatus = async () => {
-	// 	try {
-	// 		const initGameStatusCheck = await axios.get(
-	// 			testURL + `/api/telegram-id/${userId}`
-	// 		);
-	// 	} catch (e) {
-	// 		console.log('Error fetching leaderboard data');
-	// 	}
-	// };
-
 	useEffect(() => {
 		if (user) {
 			const updateGameStatus = () => {
@@ -161,19 +151,12 @@ const Main = ({ user }) => {
 				}
 			};
 
-			// getGameStatus();
-
-			// const timeout = setTimeout(() => {
-			// 	getGameStatus();
-			// }, 1000);
-
 			const timer = setInterval(() => {
 				updateGameStatus();
 			}, 1000);
 
 			return () => {
 				clearInterval(timer);
-				// clearTimeout(timeout);
 			};
 		}
 	}, [userId, user]);

@@ -30,7 +30,7 @@ body::after {
   }
 }
 .popupTasks_show {
-  z-index: 300;
+  z-index: 301;
   display: block;
   overflow: auto;
   pointer-events: auto;
@@ -172,7 +172,6 @@ body::after {
 
 .footerMain {
   position: relative;
-  z-index: 10!important;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -442,9 +441,9 @@ body::after {
     border: 2px solid #fff;
     border-radius: 40px;
     position: absolute;
-    height: 47px;
+    height: 46px;
     width: 48px;
-    top: -2px;
+    top: 0;
     right: -2px;
     display: flex;
     justify-content: center;

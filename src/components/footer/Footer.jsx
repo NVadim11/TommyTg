@@ -165,8 +165,8 @@ const Footer = ({ user }) => {
 		setErrMsgVisible(false);
 		const popupTasks = document.getElementById('popupTasks');
 		if (popupTasks) popupTasks.classList.remove('show-blur');
-		const footerTag = document.getElementById('footer');
-		if (footerTag) footerTag.classList.remove('show-blur');
+		// const footerTag = document.getElementById('footer');
+		// if (footerTag) footerTag.classList.remove('show-blur');
 	};
 
 	const toggleVisibility = () => {
