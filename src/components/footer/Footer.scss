@@ -28,7 +28,7 @@ body::after {
   pointer-events: none;
 }
 .popupTasks_show {
-  z-index: 300;
+  z-index: 301;
   display: block;
   overflow: auto;
   pointer-events: auto;
@@ -263,19 +263,23 @@ body::after {
       font-size: 14px;
       color: #fff;
     }
-    img {
-      margin-right: 12px;
-    }
     svg {
       position: absolute;
       right: 11px;
       width: 20px;
     }
+    img {
+      margin-right: 12px;
+    }
     p {
       position: absolute;
-      right: 11px;
+      right: 9px;
       display: flex;
       align-items: center;
+      background: linear-gradient(270deg, #1cafee 0%, #35cf6e 71.63%, #3fdb3c 100%);
+      border: 1px solid #fff;
+      border-radius: 31px;
+      padding: 6px 12px;
     }
     .rewardCoin {
       margin-left: 5px;

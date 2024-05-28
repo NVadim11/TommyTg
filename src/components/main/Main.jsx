@@ -870,7 +870,7 @@ const Main = ({ user }) => {
 							</div>
 						</div>
 					)}
-
+					
 					{coinState && (
 						<div className='mainContent__animation'>
 							<div className='mainContent__coinOne'>

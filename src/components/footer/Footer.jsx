@@ -170,8 +170,8 @@ const Footer = ({ user }) => {
 		setErrMsgVisible(false);
 		const popupTasks = document.getElementById('popupTasks');
 		if (popupTasks) popupTasks.classList.remove('show-blur');
-		const footerTag = document.getElementById('footer');
-		if (footerTag) footerTag.classList.remove('show-blur');
+		// const footerTag = document.getElementById('footer');
+		// if (footerTag) footerTag.classList.remove('show-blur');
 	};
 
 	// const toggleVisibility = () => {
@@ -617,7 +617,7 @@ const Footer = ({ user }) => {
 												onChange={(e) => setWalletVal(e.target.value)}
 												disabled={walletInputDisabled === true}
 											/>
-											{/* <button
+											<button
 												className='popupTasks__walletTask-inputBtn'
 												onClick={walletSubmitHandler}
 												// disabled={walletInputDisabled === true}
@@ -634,7 +634,7 @@ const Footer = ({ user }) => {
 														fill='white'
 													/>
 												</svg>
-											</button> */}
+											</button>
 										</div>
 										</>
 									)}
@@ -707,7 +707,7 @@ const Footer = ({ user }) => {
 										</div>
 										<div className='popupTasks__walletTask-left'>
 										{!user?.wallet_address ? (
-											<p>+ 20000</p>
+											<p>+20000</p>
 										) : (
 											''
 										)}
@@ -719,27 +719,21 @@ const Footer = ({ user }) => {
 										<img src={taskTwitter} />
 										Follow Twitter
 										{user?.twitter === 0 ? (
-											// <p>
-											// 	+ 10000{' '}
-											// 	<img
-											// 		className='rewardCoin'
-											// 		src={catCoin}
-											// 		alt='animation'
-											// 		draggable='false'
+											<p>
+												+10000{' '}
+											</p>
+											// <svg
+											// 	width='24'
+											// 	height='24'
+											// 	viewBox='0 0 24 24'
+											// 	fill='none'
+											// 	xmlns='http://www.w3.org/2000/svg'
+											// >
+											// 	<path
+											// 		d='M12 0C5.38346 0 0 5.38346 0 12C0 18.6165 5.38346 24 12 24C18.6165 24 24 18.6165 24 12C24 5.38346 18.6165 0 12 0ZM18.7068 8.84211L11.0376 16.4511C10.5865 16.9023 9.86466 16.9323 9.38346 16.4812L5.32331 12.782C4.84211 12.3308 4.81203 11.5789 5.23308 11.0977C5.68421 10.6165 6.43609 10.5865 6.91729 11.0376L10.1353 13.985L16.9925 7.12782C17.4737 6.64662 18.2256 6.64662 18.7068 7.12782C19.188 7.60902 19.188 8.3609 18.7068 8.84211Z'
+											// 		fill='white'
 											// 	/>
-											// </p>
-											<svg
-												width='24'
-												height='24'
-												viewBox='0 0 24 24'
-												fill='none'
-												xmlns='http://www.w3.org/2000/svg'
-											>
-												<path
-													d='M12 0C5.38346 0 0 5.38346 0 12C0 18.6165 5.38346 24 12 24C18.6165 24 24 18.6165 24 12C24 5.38346 18.6165 0 12 0ZM18.7068 8.84211L11.0376 16.4511C10.5865 16.9023 9.86466 16.9323 9.38346 16.4812L5.32331 12.782C4.84211 12.3308 4.81203 11.5789 5.23308 11.0977C5.68421 10.6165 6.43609 10.5865 6.91729 11.0376L10.1353 13.985L16.9925 7.12782C17.4737 6.64662 18.2256 6.64662 18.7068 7.12782C19.188 7.60902 19.188 8.3609 18.7068 8.84211Z'
-													fill='white'
-												/>
-											</svg>
+											// </svg>
 										) : (
 											// <svg
 											// 	width='24'
@@ -762,7 +756,6 @@ const Footer = ({ user }) => {
 											// 		stroke-linejoin='round'
 											// 	/>
 											// </svg>
-
 											<svg
 												width='24'
 												height='24'
@@ -801,27 +794,10 @@ const Footer = ({ user }) => {
 										<img src={taskTG} />
 										Follow TG Chat
 										{user?.tg_chat === 0 ? (
-											// <p>
-											// 	+ 10000{' '}
-											// 	<img
-											// 		className='rewardCoin'
-											// 		src={catCoin}
-											// 		alt='animation'
-											// 		draggable='false'
-											// 	/>
-											// </p>
-											<svg
-												width='24'
-												height='24'
-												viewBox='0 0 24 24'
-												fill='none'
-												xmlns='http://www.w3.org/2000/svg'
-											>
-												<path
-													d='M12 0C5.38346 0 0 5.38346 0 12C0 18.6165 5.38346 24 12 24C18.6165 24 24 18.6165 24 12C24 5.38346 18.6165 0 12 0ZM18.7068 8.84211L11.0376 16.4511C10.5865 16.9023 9.86466 16.9323 9.38346 16.4812L5.32331 12.782C4.84211 12.3308 4.81203 11.5789 5.23308 11.0977C5.68421 10.6165 6.43609 10.5865 6.91729 11.0376L10.1353 13.985L16.9925 7.12782C17.4737 6.64662 18.2256 6.64662 18.7068 7.12782C19.188 7.60902 19.188 8.3609 18.7068 8.84211Z'
-													fill='white'
-												/>
-											</svg>
+											<p>
+												+ 10000{' '}
+											</p>
+											
 										) : (
 											// <svg
 											// 	width='24'
@@ -882,27 +858,11 @@ const Footer = ({ user }) => {
 										<img src={taskTG} />
 										Follow TG Channel
 										{user?.tg_channel === 0 ? (
-											// <p>
-											// 	+ 10000{' '}
-											// 	<img
-											// 		className='rewardCoin'
-											// 		src={catCoin}
-											// 		alt='animation'
-											// 		draggable='false'
-											// 	/>
-											// </p>
-											<svg
-												width='24'
-												height='24'
-												viewBox='0 0 24 24'
-												fill='none'
-												xmlns='http://www.w3.org/2000/svg'
-											>
-												<path
-													d='M12 0C5.38346 0 0 5.38346 0 12C0 18.6165 5.38346 24 12 24C18.6165 24 24 18.6165 24 12C24 5.38346 18.6165 0 12 0ZM18.7068 8.84211L11.0376 16.4511C10.5865 16.9023 9.86466 16.9323 9.38346 16.4812L5.32331 12.782C4.84211 12.3308 4.81203 11.5789 5.23308 11.0977C5.68421 10.6165 6.43609 10.5865 6.91729 11.0376L10.1353 13.985L16.9925 7.12782C17.4737 6.64662 18.2256 6.64662 18.7068 7.12782C19.188 7.60902 19.188 8.3609 18.7068 8.84211Z'
-													fill='white'
-												/>
-											</svg>
+											<p>
+												+10000{' '}
+											
+											</p>
+											
 										) : (
 											<svg
 												width='24'
@@ -942,27 +902,9 @@ const Footer = ({ user }) => {
 										<img src={taskWeb} />
 										Visit Website
 										{user?.website === 0 ? (
-											// <p>
-											// 	+ 3000{' '}
-											// 	<img
-											// 		className='rewardCoin'
-											// 		src={catCoin}
-											// 		alt='animation'
-											// 		draggable='false'
-											// 	/>
-											// </p>
-											<svg
-												width='24'
-												height='24'
-												viewBox='0 0 24 24'
-												fill='none'
-												xmlns='http://www.w3.org/2000/svg'
-											>
-												<path
-													d='M12 0C5.38346 0 0 5.38346 0 12C0 18.6165 5.38346 24 12 24C18.6165 24 24 18.6165 24 12C24 5.38346 18.6165 0 12 0ZM18.7068 8.84211L11.0376 16.4511C10.5865 16.9023 9.86466 16.9323 9.38346 16.4812L5.32331 12.782C4.84211 12.3308 4.81203 11.5789 5.23308 11.0977C5.68421 10.6165 6.43609 10.5865 6.91729 11.0376L10.1353 13.985L16.9925 7.12782C17.4737 6.64662 18.2256 6.64662 18.7068 7.12782C19.188 7.60902 19.188 8.3609 18.7068 8.84211Z'
-													fill='white'
-												/>
-											</svg>
+											<p>
+												+3000{' '}
+											</p>
 										) : (
 											// <svg
 											// 	width='24'
