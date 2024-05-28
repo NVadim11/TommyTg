@@ -115,17 +115,7 @@ const MainComponent = () => {
 			) : (
 				<>
 					<Preloader loaded={preloaderLoaded} />
-<<<<<<< Updated upstream
 					{user ? (
-					<>
-						<Header user={user} />
-						<main id='main' className='main'>
-							<Main user={user} />
-						</main>
-						<Footer user={user} />
-					</>
-=======
-					{!user ? (
 						<>
 							<Header user={user} />
 							<main id='main' className='main'>
@@ -133,7 +123,6 @@ const MainComponent = () => {
 							</main>
 							<Footer user={user} />
 						</>
->>>>>>> Stashed changes
 					) : (
 						<NotFound />
 					)}
