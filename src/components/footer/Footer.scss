@@ -359,7 +359,20 @@ body::after {
       opacity: 0.5;
     }
     button:disabled {
-      opacity: 0.5;
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      width: 44px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      svg {
+        opacity: 0.6;
+      }
     }
   }
   &__walletTask-inputBtn {
