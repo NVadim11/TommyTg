@@ -1069,3 +1069,25 @@ $desktop: 1919.98px;
 	color: #ffffff;
 	z-index: 1000;
 }
+
+.circular-progress-container {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background: conic-gradient(#4d5bf9 var(--progress, 0%), #d9edfe var(--progress, 0%));
+  }
+
+  .circular-progress-container .inner-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }

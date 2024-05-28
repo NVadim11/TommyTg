@@ -591,6 +591,7 @@ const Main = ({ user }) => {
 
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>
+					
 					<div className='gameContentBox'>
 						{gamePaused ? (
 							<div className='gameContentBox__box'>
@@ -757,7 +758,7 @@ const Main = ({ user }) => {
 					</motion.div>
 					{!gamePaused && (
 						<div className='mainContent__energyBox'>
-							<div className='mainContent__energyContainer'>
+							{/* <div className='mainContent__energyContainer'>
 								<img src={smile} alt='' />
 								<div className='mainContent__energyValue'>
 									<p className='energyCount' id='energyCount'>
@@ -779,7 +780,7 @@ const Main = ({ user }) => {
 							</div>
 							<div className='mainContent__energyHint'>
 								<p>{state?.info.mainContent__energyHint}</p>
-							</div>
+							</div> */}
 						</div>
 					)}
 

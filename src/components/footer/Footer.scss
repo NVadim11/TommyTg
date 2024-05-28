@@ -194,36 +194,13 @@ body::after {
   }
   &__coinBox {
     display: flex;
-    flex-direction: row;
+    margin-top: 24px;
     align-items: center;
-    top: 1.25rem;
-    right: 1.25rem;
-    margin-top: 20px;
-    @media (max-width: $mobile) {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      position: relative;
-      order: 1;
-      width: fit-content;
-      align-self: center;
-      justify-content: center;
-      right: 0;
-      top: 0;
-    }
   }
   &__coinImg {
-    display: flex;
-    align-items: center;
-    margin-right: 0.625rem;
-    width: 51px;
-    height: 52px;
+    margin-right: 12px;
     img {
       width: 100%;
-    }
-    @media (max-width: $mobile) {
-      width: 20px;
-      height: 20px;
     }
   }
   &__coinAmount {
@@ -231,16 +208,11 @@ body::after {
     align-items: center;
     justify-content: center;
     span {
-      display: flex;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
+      font-weight: 400;
       font-size: 24px;
+      line-height: 100%;
+      letter-spacing: 0.01em;
       color: #fff;
-      @media (max-width: $mobile) {
-        font-size: 24px;
-      }
     }
   }
   &__tabBtns {
@@ -290,9 +262,6 @@ body::after {
       font-weight: 600;
       font-size: 14px;
       color: #fff;
-    }
-    button:disabled {
-      background: #292f4f;
     }
     img {
       margin-right: 12px;
@@ -367,7 +336,6 @@ body::after {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 10px;
     position: relative;
     input {
       padding: 10px 0 10px 10px;
@@ -389,9 +357,6 @@ body::after {
     button:disabled {
       opacity: 0.5;
     }
-  }
-  &__walletTask:first-child {
-    margin-top: 12px;
   }
   &__walletTask-inputBtn {
     box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
@@ -446,13 +411,13 @@ body::after {
   }
   &__walletTask-right {
     display: flex;
-    position: absolute;
     right: 0;
   }
   &__walletTask-left {
-    position: absolute;
-    left: 25px;
-    top: 59px;
+    border: 1px solid #fff;
+    border-radius: 31px;
+    padding: 2px 12px;
+    background: linear-gradient(270deg, #1cafee 0%, #35cf6e 71.63%, #3fdb3c 100%);
     img {
       position: absolute;
       right: 0;
@@ -461,28 +426,43 @@ body::after {
     }
   }
   &__walletTask-input {
-    border: 0.125rem solid #fff;
-    border-radius: 60px;
-    height: 48px;
-    font-weight: 600;
-    font-size: 14px;
-    align-self: flex-start;
-    color: #fff;
-    background: #ffffff00;
-    display: flex;
-    position: relative;
-    text-align: center;
-    flex-direction: row;
+    outline: 0.125rem solid #CAFFD6;
+    // font-weight: 600;
+    // font-size: 14px;
+    // align-self: flex-start;
+    // color: #fff;
+    // background: #ffffff00;
+    // display: flex;
+    // position: relative;
+    // text-align: center;
+    // flex-direction: row;
     width: 100%;
+    border-radius: 12px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.06);
+    // outline: 
   }
   &__walletTask-box {
     display: flex;
-    margin: 10px 0 40px 0;
+    margin: 10px 0 12px 0;
     width: 100%;
-    align-self: start;
     position: relative;
+    justify-content: space-between;
+    align-items: center;
     img {
       width: 20px;
+    }
+  }
+  &__walletTask-title {
+    margin: 6px 0;
+    width: 100%;
+    span {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 100%;
+      letter-spacing: 0.03em;
+      color: #fff;
+      opacity: 0.72;
     }
   }
 }
