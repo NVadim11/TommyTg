@@ -769,7 +769,7 @@ const Main = ({ user }) => {
 										1000
 									</p>
 								</div>
-							</div>
+							</div> */}
 							<div className='mainContent__energyBar'>
 								<progress
 									className='filledBar'
@@ -778,7 +778,7 @@ const Main = ({ user }) => {
 									value={currEnergy}
 								></progress>
 							</div>
-							<div className='mainContent__energyHint'>
+							{/* <div className='mainContent__energyHint'>
 								<p>{state?.info.mainContent__energyHint}</p>
 							</div> */}
 						</div>

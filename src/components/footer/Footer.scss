@@ -280,6 +280,8 @@ body::after {
       border: 1px solid #fff;
       border-radius: 31px;
       padding: 6px 12px;
+      width: 80px;
+      justify-content: center;
     }
     .rewardCoin {
       margin-left: 5px;
@@ -357,6 +359,8 @@ body::after {
     }
     input:disabled {
       opacity: 0.5;
+      outline: 0.125rem solid #929292;
+      padding-right: 50px;
     }
     button:disabled {
       backdrop-filter: blur(4px);
@@ -468,6 +472,7 @@ body::after {
     border-radius: 12px;
     height: 48px;
     background: rgba(255, 255, 255, 0.06);
+    padding-right: 50px;
     // outline: 
   }
   &__walletTask-box {

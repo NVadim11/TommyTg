@@ -699,9 +699,9 @@ const Footer = ({ user }) => {
 												<span>*it can be done once every 3 days</span>
 											</div>
 										</div>
-										<div className='popupTasks__walletTask-left'>
-											{!user?.wallet_address ? <p>+20000</p> : ''}
-										</div>
+										{!user?.wallet_address ? <div className='popupTasks__walletTask-left'>
+											 <p>+20000</p>
+										</div>: ''}
 									</div>
 								</div>
 								<div className='popupTasks__task'>
@@ -956,7 +956,7 @@ const Footer = ({ user }) => {
 													>
 														<span>{quest.daily_quest.name}</span>
 														{quest.status === 0 ? (
-															<p>
+															<div>
 																+ {quest.reward}{' '}
 																<img
 																	className='rewardCoin'
@@ -964,7 +964,7 @@ const Footer = ({ user }) => {
 																	alt='animation'
 																	draggable='false'
 																/>
-															</p>
+															</div>
 														) : (
 															<svg
 																width='24'
@@ -993,7 +993,7 @@ const Footer = ({ user }) => {
 													<button disabled={quest.status === 1}>
 														<span>{quest.daily_quest.name}</span>
 														{quest.status === 0 ? (
-															<p>
+															<div>
 																+ {quest.reward}{' '}
 																<img
 																	className='rewardCoin'
@@ -1001,7 +1001,7 @@ const Footer = ({ user }) => {
 																	alt='animation'
 																	draggable='false'
 																/>
-															</p>
+															</div>
 														) : (
 															<svg
 																width='24'
@@ -1048,7 +1048,7 @@ const Footer = ({ user }) => {
 													>
 														<span>{quest.partners_quest.name}</span>
 														{quest.status === 0 ? (
-															<p>
+															<div>
 																+ {quest.reward}{' '}
 																<img
 																	className='rewardCoin'
@@ -1056,7 +1056,7 @@ const Footer = ({ user }) => {
 																	alt='animation'
 																	draggable='false'
 																/>
-															</p>
+															</div>
 														) : (
 															<svg
 																width='24'
