@@ -114,16 +114,24 @@ const Main = ({ user }) => {
 			});
 	};
 
-	// useEffect(() => {
-	// 	if (user) setCurrEnergy(user?.energy);
-	// }, [user]);
+	useEffect(() => {
+		if (user) setCurrEnergy(user?.energy);
+	}, [user]);
 
 	useEffect(() => {
-		if (currEnergy === 1000) {
+		let timeoutId;
+
+		if (currEnergy >= 1000) {
 			submitData();
-			pauseGame();
-			setCatVisible(false);
+			timeoutId = setTimeout(() => {
+				pauseGame();
+				setCatVisible(false);
+			}, 100);
 		}
+
+		return () => {
+			clearTimeout(timeoutId);
+		};
 	}, [currEnergy]);
 
 	useEffect(() => {
@@ -281,11 +289,11 @@ const Main = ({ user }) => {
 		opacityFives = 1;
 	}
 
-	// useEffect(() => {
-	// 	if (currEnergy <= 0) {
-	// 		setCurrEnergy(0);
-	// 	}
-	// }, [currEnergy]);
+	useEffect(() => {
+		if (currEnergy <= 0) {
+			setCurrEnergy(0);
+		}
+	}, [currEnergy]);
 
 	const updateCurrCoins = () => {
 		if (currEnergy >= 0 && currEnergy <= 150) {
