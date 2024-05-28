@@ -363,21 +363,31 @@ body::after {
     }
   }
   &__walletTask-inputBtn {
-    box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
-    background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
-    border: 2px solid #fff;
-    border-radius: 40px;
-    position: absolute;
-    height: 47px;
-    width: 48px;
-    top: -2px;
-    right: -2px;
+    // box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.75);
+    // background: linear-gradient(87deg, #691ee2 0%, #c09aff 100%);
+    // border: 2px solid #fff;
+    // border-radius: 40px;
+    // position: absolute;
+    // height: 47px;
+    // width: 48px;
+    // top: -2px;
+    // right: -2px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    img {
-      width: 20px;
-    }
+    justify-content: center;
+    border-radius: 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 44px;
+    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.12);
+    // justify-content: center;
+    // align-items: center;
+    // img {
+    //   width: 20px;
+    // }
   }
   &__walletTask-rightHint {
     display: flex;
@@ -431,6 +441,7 @@ body::after {
   }
   &__walletTask-input {
     outline: 0.125rem solid #CAFFD6;
+    position: relative;
     // font-weight: 600;
     // font-size: 14px;
     // align-self: flex-start;
