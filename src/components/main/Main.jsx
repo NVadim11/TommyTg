@@ -591,7 +591,6 @@ const Main = ({ user }) => {
 
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>
-					
 					<div className='gameContentBox'>
 						{gamePaused ? (
 							<div className='gameContentBox__box'>
@@ -870,7 +869,7 @@ const Main = ({ user }) => {
 							</div>
 						</div>
 					)}
-					
+
 					{coinState && (
 						<div className='mainContent__animation'>
 							<div className='mainContent__coinOne'>

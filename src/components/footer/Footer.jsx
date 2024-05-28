@@ -3,10 +3,10 @@ import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
 // import catCoinMove from '../../img/cat_coin_move.png';
 // import checkbox from '../../img/checkbox.png';
+import catCoin from '../../img/catcoin_gold.svg';
 import pet from '../../img/pet_icon.svg';
 import shop from '../../img/shop_icon.svg';
 import tasks from '../../img/tasks_icon.svg';
-import catCoin from '../../img/catcoin_gold.svg';
 import {
 	useChangeWalletMutation,
 	usePassDailyMutation,
@@ -15,8 +15,8 @@ import {
 	useSetWalletMutation,
 } from '../../services/phpService';
 // import { toggleMuteAllSounds } from '../../utility/Audio';
-import taskTwitter from '../../img/task_twitter.svg';
 import taskTG from '../../img/task_TG.svg';
+import taskTwitter from '../../img/task_twitter.svg';
 import taskWeb from '../../img/task_web.svg';
 import './Footer.scss';
 
