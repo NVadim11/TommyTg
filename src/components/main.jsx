@@ -113,7 +113,7 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{isMobileDevice ? (
+				{!isMobileDevice ? (
 					<TelegramLinking />
 				) : (
 					<>
