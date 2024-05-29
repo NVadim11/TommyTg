@@ -420,14 +420,10 @@ $desktop: 1919.98px;
 		flex-direction: row;
 	}
 	&__energyBar {
-		margin-top: 0.625rem;
-		box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
-		background: rgba(0, 0, 0, 0.16);
 		justify-content: flex-start;
 		align-items: center;
 		position: relative;
 		display: flex;
-		border-radius: 1.25rem;
 		width: 13.3125rem;
 		height: 0.9375rem;
 		progress {

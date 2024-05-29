@@ -36,7 +36,7 @@ const Main = ({ user }) => {
 	const [currentImage, setCurrentImage] = useState(true);
 	const [coinState, setCoinState] = useState(false);
 	const [currCoins, setCurrCoins] = useState(0);
-	const [currEnergy, setCurrEnergy] = useState(user?.energy);
+	const [currEnergy, setCurrEnergy] = useState(0); //user?.energy
 	const [isCoinsChanged, setIsCoinsChanged] = useState(false);
 	const [catIdle, setCatIdle] = useState(sadIdle);
 	const [catSpeak, setCatSpeak] = useState(sadSpeak);
@@ -444,6 +444,8 @@ const Main = ({ user }) => {
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 	};
 
+	const percentage = (currEnergy / 1000) * 100;
+
 	return (
 		<div className='mainContent'>
 			{/* bg layers  */}
@@ -769,13 +771,77 @@ const Main = ({ user }) => {
 									</p>
 								</div>
 							</div> */}
-							<div className='mainContent__energyBar'>
-								<progress
-									className='filledBar'
-									id='filledBar'
-									max='1000'
-									value={currEnergy}
-								></progress>
+							<div
+								className='mainContent__energyBar'
+								style={{
+									position: 'relative',
+									width: '400px',
+									height: '400px',
+								}}
+							>
+								<svg
+									viewBox='0 0 100 100'
+									style={{
+										position: 'absolute',
+										width: '100%',
+										height: '100%',
+										borderRadius: '100%',
+										overflow: 'hidden',
+									}}
+								>
+									{/* Define the filter for the box shadow */}
+									<defs>
+										<filter id='boxShadow' x='-20%' y='-20%' width='140%' height='140%'>
+											<feGaussianBlur in='SourceAlpha' stdDeviation='3' />
+											<feOffset dx='0' dy='0' result='offsetblur' />
+											<feComponentTransfer>
+												<feFuncA type='linear' slope='0.5' />
+											</feComponentTransfer>
+											<feMerge>
+												<feMergeNode />
+												<feMergeNode in='SourceGraphic' />
+											</feMerge>
+										</filter>
+									</defs>
+
+									{/* Circle with background */}
+									<circle
+										cx='50'
+										cy='50'
+										r='45'
+										fill='none'
+										stroke='#02060c' /* color of the progress bar background */
+										strokeWidth='2' /* thickness of the progress bar */
+										filter='inset 0 0 20px 20px rgba(30, 226, 97, 0.5)' /* Apply the box shadow */
+									></circle>
+
+									{/* Circle with gradient */}
+									<circle
+										cx='50'
+										cy='50'
+										r='45'
+										fill='none'
+										stroke='url(#gradient)' /* apply linear gradient */
+										strokeWidth='2' /* thickness of the progress bar */
+										strokeLinecap='round'
+										strokeDasharray={`${percentage}, 283`}
+										style={{ transition: 'stroke-dashoffset 0.35s' }}
+										filter='inset 0 0 20px 20px rgba(30, 226, 97, 0.5)' /* Apply the box shadow */
+									></circle>
+
+									{/* Text */}
+									<text x='50%' y='50%' textAnchor='middle' dy='.3em' fill='#fff'>
+										{`${currEnergy}/1000`} {/* Display current energy */}
+									</text>
+
+									{/* Define the linear gradient */}
+									<defs>
+										<linearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='0%'>
+											<stop offset='0%' stopColor='#caffd6' />
+											<stop offset='100%' stopColor='#1ee261' />
+										</linearGradient>
+									</defs>
+								</svg>
 							</div>
 							{/* <div className='mainContent__energyHint'>
 								<p>{state?.info.mainContent__energyHint}</p>
