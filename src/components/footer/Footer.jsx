@@ -699,9 +699,13 @@ const Footer = ({ user }) => {
 												<span>*it can be done once every 3 days</span>
 											</div>
 										</div>
-										{!user?.wallet_address ? <div className='popupTasks__walletTask-left'>
-											 <p>+20000</p>
-										</div>: ''}
+										{!user?.wallet_address ? (
+											<div className='popupTasks__walletTask-left'>
+												<p>+20000</p>
+											</div>
+										) : (
+											''
+										)}
 									</div>
 								</div>
 								<div className='popupTasks__task'>
@@ -945,7 +949,10 @@ const Footer = ({ user }) => {
 								{dailyQuests && dailyQuests.length > 0 && (
 									<>
 										{dailyQuests.map((quest) => (
-											<div className='popupTasks__task' key={quest.id}>
+											<div
+												className='popupTasks__task'
+												key={quest.id}
+											>
 												{/* Conditionally render button or div */}
 												{quest.required_amount === 0 && quest.required_referrals === 0 ? (
 													<button
@@ -990,7 +997,11 @@ const Footer = ({ user }) => {
 														)}
 													</button>
 												) : (
-													<button disabled={quest.status === 1}>
+													<button disabled={quest.status === 1} style={
+														quest.required_amount > 0 || quest.required_referrals > 0
+															? { paddingBottom: '24px' }
+															: {}
+													}>
 														<span>{quest.daily_quest.name}</span>
 														{quest.status === 0 ? (
 															<p className='popupTasks__task-rew'>
@@ -1026,6 +1037,14 @@ const Footer = ({ user }) => {
 															</svg>
 														)}
 													</button>
+												)}
+												{(quest.required_amount > 0 || quest.required_referrals > 0) && (
+													<div className='popupTasks__progressBar'>
+														<progress
+															max={quest.required_amount || quest.required_referrals}
+															value={quest.amount || quest.referrals}
+														></progress>
+													</div>
 												)}
 											</div>
 										))}
