@@ -24,7 +24,7 @@ $desktop: 1919.98px;
 		width: 120rem;
 		margin: 0 auto;
 		position: relative;
-		z-index: 1000;
+		z-index: 101;
 		@media (max-width: $desktop) {
 			width: 90rem;
 		}
@@ -61,7 +61,7 @@ $desktop: 1919.98px;
 			}
 			img {
 				@media (max-width: $mobile) {
-					width: 190px;
+					width: 180px;
 					margin: 0;
 				}
 			}
@@ -457,10 +457,10 @@ $desktop: 1919.98px;
 		content: "";
 		position: absolute;
 		/* top: 0; */
-		left: 15px;
+		left: 14px;
 		margin: 0 auto;
-		width: 320px;
-		height: 320px;
+		width: 321px;
+		height: 321px;
 		background: radial-gradient(50% 50% at 50% 50%, rgba(11, 30, 67, 0.6) 71.3618576527%, rgba(21, 77, 38, 0.6) 100%);
 		z-index: -1;
 		border-radius: 50%;
