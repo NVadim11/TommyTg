@@ -1,9 +1,8 @@
 import React from 'react';
-import sadIdle from '../img/1_idle.gif';
 import star from '../img/Star.svg';
 import scullGlow from '../img/scullGlow.png';
 
-const NotFound = () => {
+const Maintenance = () => {
 	return (
 		<div
 			style={{
@@ -22,18 +21,9 @@ const NotFound = () => {
 			}}
 		>
 			<div
-				style={{
-					scale: '60%',
-					margin: '-100px 0 0 0',
-					zIndex: '1000',
-				}}
-			>
-				<img src={sadIdle} />
-			</div>
-			<div
 				className='scullGlow'
 				style={{
-					position: 'absolute',
+					position: 'relative',
 					boxSizing: 'border-box',
 					overflow: 'hidden',
 				}}
@@ -42,18 +32,24 @@ const NotFound = () => {
 			</div>
 			<h1
 				style={{
+					position: 'absolute',
 					width: 'fit-content',
-					marginTop: '-75px',
+					marginTop: '0',
 					fontWeight: '900',
-					fontSize: '24px',
+					fontSize: '64px',
 					lineHeight: '100%',
 					textAlign: 'center',
 					zIndex: '1000',
 				}}
 			>
-				Something went wrong
+				Coming Soon
 			</h1>
-			<div className='mainContent__animation'>
+			<div
+				className='mainContent__animation'
+				style={{
+					zIndex: '1000',
+				}}
+			>
 				<div className='mainContent__coinOne'>
 					<img src={star} alt='' />
 				</div>
@@ -192,4 +188,4 @@ const NotFound = () => {
 	);
 };
 
-export default NotFound;
+export default Maintenance;

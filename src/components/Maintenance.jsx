@@ -3,7 +3,7 @@ import sadIdle from '../img/1_idle.gif';
 import star from '../img/Star.svg';
 import scullGlow from '../img/scullGlow.png';
 
-const NotFound = () => {
+const Maintenance = () => {
 	return (
 		<div
 			style={{
@@ -42,18 +42,25 @@ const NotFound = () => {
 			</div>
 			<h1
 				style={{
+					zIndex: '1000',
 					width: 'fit-content',
 					marginTop: '-75px',
 					fontWeight: '900',
 					fontSize: '24px',
 					lineHeight: '100%',
 					textAlign: 'center',
+					lineHeight: '110%',
+					letterSpacing: '0.03em',
+				}}
+			>
+				Repairs and upgrades are underway
+			</h1>
+			<div
+				className='mainContent__animation'
+				style={{
 					zIndex: '1000',
 				}}
 			>
-				Something went wrong
-			</h1>
-			<div className='mainContent__animation'>
 				<div className='mainContent__coinOne'>
 					<img src={star} alt='' />
 				</div>
@@ -192,4 +199,4 @@ const NotFound = () => {
 	);
 };
 
-export default NotFound;
+export default Maintenance;

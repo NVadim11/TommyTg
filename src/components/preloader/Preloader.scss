@@ -1,38 +1,38 @@
 // variables
 $mobile: 1399.98px;
 $desktop: 1919.98px;
-[data-aos] {
-  body[data-aos-easing="custom"] &,
-  &[data-aos][data-aos-easing="custom"] {
-    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition-duration: 800ms;
-  }
-}
+// [data-aos] {
+//   body[data-aos-easing="custom"] &,
+//   &[data-aos][data-aos-easing="custom"] {
+//     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+//     transition-duration: 800ms;
+//   }
+// }
 
-[data-aos="bounce"] {
-  --animate-duration: 1s;
-  opacity: 0;
-  transition-property: transform, opacity;
+// [data-aos="bounce"] {
+//   --animate-duration: 1s;
+//   opacity: 0;
+//   transition-property: transform, opacity;
 
-  &.aos-animate {
-    animation-duration: calc(var(--animate-duration) * 0.8);
-    animation-fill-mode: both;
-    animation-name: bounceIn;
-  }
-}
+//   &.aos-animate {
+//     animation-duration: calc(var(--animate-duration) * 0.8);
+//     animation-fill-mode: both;
+//     animation-name: bounceIn;
+//   }
+// }
 
-[data-aos="jello"] {
-  --animate-duration: 2s;
-  animation-name: jello;
-  transform-origin: center;
-  transition-property: transform, opacity;
+// [data-aos="jello"] {
+//   --animate-duration: 2s;
+//   animation-name: jello;
+//   transform-origin: center;
+//   transition-property: transform, opacity;
 
-  &.aos-animate {
-    animation-duration: calc(var(--animate-duration) * 0.75);
-    animation-fill-mode: both;
-    animation-name: jello;
-  }
-}
+//   &.aos-animate {
+//     animation-duration: calc(var(--animate-duration) * 0.75);
+//     animation-fill-mode: both;
+//     animation-name: jello;
+//   }
+// }
 
 .preloader {
   position: fixed;
@@ -52,10 +52,10 @@ $desktop: 1919.98px;
   transform-origin: center center;
   z-index: 10000;
   img {
-    animation-name: pulse;
-    animation-timing-function: ease-in-out;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+    // animation-name: pulse;
+    // animation-timing-function: ease-in-out;
+    // animation-duration: 3s;
+    // animation-iteration-count: infinite;
     max-width: 200px;
     width: 100%;
   }

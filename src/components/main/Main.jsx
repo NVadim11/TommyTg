@@ -18,17 +18,18 @@ import catFace from '../../img/catFace.png';
 // import catCoinMove from '../../img/cat_coin_move.png';
 import star from '../../img/Star.png';
 import catCoin from '../../img/catcoin_gold.png';
+import energy from '../../img/energy.png';
 import finalForm from '../../img/finalForm.gif';
 import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
-import energy from '../../img/energy.png';
-import violetEllipse from '../../img/violetEllipse.webp';
 import orangeEllipse from '../../img/orangeEllipse.webp';
+import violetEllipse from '../../img/violetEllipse.webp';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
 
 // import orangeEllipse from '../../img/ellipse-orange.png';
 // import violettEllipse from '../../img/ellipse-violett.png';
+
 import './Main.scss';
 
 const Main = ({ user }) => {
@@ -492,10 +493,10 @@ const Main = ({ user }) => {
 				}}
 			></div> */}
 			<div className='orangeEllipse'>
-				<img src={orangeEllipse} alt=""/>
+				<img src={orangeEllipse} alt='' />
 			</div>
 			<div className='violettEllipse'>
-				<img src={violetEllipse} alt=""/>
+				<img src={violetEllipse} alt='' />
 			</div>
 
 			<div className='mainContent__container'>
@@ -655,7 +656,7 @@ const Main = ({ user }) => {
 									position: 'relative',
 									width: '350px',
 									height: '350px',
-									margin: '0 auto'
+									margin: '0 auto',
 								}}
 							>
 								<svg
@@ -664,7 +665,7 @@ const Main = ({ user }) => {
 										position: 'absolute',
 										width: '100%',
 										height: '100%',
-										borderRadius: '100%'
+										borderRadius: '100%',
 									}}
 								>
 									{/* Define the filter for the box shadow */}
@@ -708,7 +709,6 @@ const Main = ({ user }) => {
 									></circle>
 
 									{/* Text */}
-									
 
 									{/* Define the linear gradient */}
 									<defs>

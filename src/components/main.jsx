@@ -1,4 +1,3 @@
-import AOS from 'aos';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { GameInfoContext } from '../helpers/context';
 import sadIdle from '../img/1_idle.gif';
@@ -14,8 +13,11 @@ import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
+// import TelegramLinking from './QRcode';
+// import ComingSoon from './ComingSoon';
+// import Maintenance from './Maintenance';
+import AOS from 'aos';
 import NotFound from './404';
-import TelegramLinking from './QRcode';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
@@ -109,13 +111,16 @@ const MainComponent = () => {
 		);
 
 	return (
-		<>
-			{/* {!isMobileDevice ? (
-				<TelegramLinking />
-			) : ( */}
+		<div>
+			<div className='gameContainer'>
+				{/* {!isMobileDevice ? (
+					<TelegramLinking />
+				) : ( */}
 				<>
-					<Preloader loaded={preloaderLoaded} />
-					{!user ? (
+					{/* <ComingSoon /> */}
+					{/* <Maintenance /> */}
+					<Preloader loaded={!preloaderLoaded} />
+					{user ? (
 						<>
 							<Header user={user} />
 							<main id='main' className='main'>
@@ -124,11 +129,15 @@ const MainComponent = () => {
 							<Footer user={user} />
 						</>
 					) : (
+						// Tech related components:
+						// <ComingSoon />
+						// <Maintenance />
 						<NotFound />
 					)}
 				</>
-			{/* )} */}
-		</>
+				{/* )} */}
+			</div>
+		</div>
 	);
 };
 

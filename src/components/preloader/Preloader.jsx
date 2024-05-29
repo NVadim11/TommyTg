@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import star from '../../img/Star.svg';
 import cat from '../../img/cat2.png';
+import scullGlow from '../../img/scullGlow.png';
 import './Preloader.scss';
 
 const ProgressBar = ({ progress, rotate }) => {
@@ -59,6 +60,16 @@ const Preloader = ({ loaded }) => {
 	return (
 		<>
 			<div className={`preloader${loaded ? ' loaded' : ''}`}>
+				<div
+					className='scullGlow'
+					style={{
+						position: 'absolute',
+						boxSizing: 'border-box',
+						overflow: 'hidden',
+					}}
+				>
+					<img src={scullGlow} alt='glow' />
+				</div>
 				<div
 					className='orangeEllipse'
 					style={{
@@ -173,6 +184,7 @@ const Preloader = ({ loaded }) => {
 				<div
 					className='progress-container'
 					style={{
+						zIndex: '1000',
 						position: 'relative',
 						display: 'flex',
 						alignItems: 'center',
@@ -182,6 +194,7 @@ const Preloader = ({ loaded }) => {
 				>
 					<div
 						style={{
+							zIndex: '1000',
 							width: '205px',
 							height: '205px',
 							position: 'absolute',
@@ -195,6 +208,7 @@ const Preloader = ({ loaded }) => {
 							src={cat}
 							alt='Tim The Cat'
 							style={{
+								zIndex: '1000',
 								position: 'absolute',
 								display: 'flex',
 								alignItems: 'center',
@@ -207,7 +221,12 @@ const Preloader = ({ loaded }) => {
 					</div>
 					<ProgressBar progress={progress} rotate={progress === 100} />
 				</div>
-				<div className='mainContent__animation'>
+				<div
+					className='mainContent__animation'
+					style={{
+						zIndex: '1000',
+					}}
+				>
 					<div className='mainContent__coinOne'>
 						<img src={star} alt='' />
 					</div>
