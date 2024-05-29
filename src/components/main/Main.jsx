@@ -13,15 +13,15 @@ import smileIdle from '../../img/3_idle.gif';
 import smileSpeak from '../../img/3talk.gif';
 import happyIdle from '../../img/4_idle.gif';
 import happySpeak from '../../img/4talk.gif';
-import boostCoin from '../../img/boost_coin_side.png';
+import boostCoin from '../../img/boostCoin.png';
 import catFace from '../../img/catFace.png';
 // import catCoinMove from '../../img/cat_coin_move.png';
-import star from '../../img/Star.svg';
-import catCoin from '../../img/catcoin_gold.svg';
+import star from '../../img/Star.png';
+import catCoin from '../../img/catcoin_gold.png';
 import finalForm from '../../img/finalForm.gif';
 import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
-import smile from '../../img/smile.svg';
+import energy from '../../img/energy.png';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
 
@@ -728,39 +728,10 @@ const Main = ({ user }) => {
 							</>
 						)}
 					</div>
-					{/* <motion.div
-						initial={{
-							y: 70,
-							rotate: 0,
-						}}
-						animate={{
-							y: [0, 15, 0],
-							rotate: [0, 2, -4, 0],
-						}}
-						transition={{
-							duration: 5,
-							repeat: Infinity,
-							repeatType: 'mirror',
-							ease: 'easeInOut',
-						}}
-						style={{
-							position: 'absolute',
-							top: '340px',
-							right: '140px',
-							width: '100px',
-						}}
-					>
-						{!gamePaused && timeRemaining <= 0 && (
-							<div className='mainContent__tapCat'>
-								<p>Tap the</p>
-								<img src={smile} alt='cat icon' />
-							</div>
-						)}
-					</motion.div> */}
 					{!gamePaused && (
 						<div className='mainContent__energyBox'>
 							<div className='mainContent__energyContainer'>
-								<img src={smile} alt='' />
+								<img src={energy} alt='' />
 								<div className='mainContent__energyValue'>
 									<p className='energyCount' id='energyCount'>
 										{currEnergy}
@@ -775,8 +746,8 @@ const Main = ({ user }) => {
 								className='mainContent__energyBar'
 								style={{
 									position: 'relative',
-									width: '324px',
-									height: '324px',
+									width: '350px',
+									height: '350px',
 									margin: '0 auto'
 								}}
 							>
@@ -841,9 +812,9 @@ const Main = ({ user }) => {
 									</defs>
 								</svg>
 							</div>
-							{/* <div className='mainContent__energyHint'>
+							<div className='mainContent__energyHint'>
 								<p>{state?.info.mainContent__energyHint}</p>
-							</div> */}
+							</div>
 						</div>
 					)}
 

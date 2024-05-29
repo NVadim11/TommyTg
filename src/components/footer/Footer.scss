@@ -59,6 +59,7 @@ body::after {
   //   }
   // }
     z-index: 301;
+    margin-top: 78px;
   &__container {
     padding: 0 12px;
     display: flex;
@@ -147,7 +148,7 @@ body::after {
     height: 1.75rem;
     display: flex;
     align-items: center;
-    background: #7631e7;
+    background: linear-gradient(180deg, #0b1f46 0%, #000 100%);
     transform: rotate(8deg);
     font-weight: 400;
     font-size: 0.625rem;

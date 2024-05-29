@@ -4,7 +4,7 @@ import link from '../../img/link.svg';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { useGetLeaderboardMutation } from '../../services/phpService';
-import logo from '../../img/logo.svg';
+import logo from '../../img/logo.png';
 import crown from '../../img/crown.svg';
 // import { toggleMuteAllSounds } from '../../utility/Audio';
 
