@@ -129,7 +129,6 @@ const MainComponent = () => {
 								<Footer user={user} />
 							</>
 						) : (
-							// Tech related components:
 							// <ComingSoon />
 							// <Maintenance />
 							<NotFound />
