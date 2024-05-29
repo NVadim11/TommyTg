@@ -17,6 +17,7 @@ import { useGetUserByTgIdQuery } from '../services/phpService';
 // import Maintenance from './Maintenance';
 import AOS from 'aos';
 import NotFound from './404';
+import TelegramLinking from './QRcode';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
@@ -112,29 +113,29 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{/* {!isMobileDevice ? (
+				{isMobileDevice ? (
 					<TelegramLinking />
-				) : ( */}
-				<>
-					{/* <ComingSoon /> */}
-					{/* <Maintenance /> */}
-					<Preloader loaded={!preloaderLoaded} />
-					{!user ? (
-						<>
-							<Header user={user} />
-							<main id='main' className='main'>
-								<Main user={user} />
-							</main>
-							<Footer user={user} />
-						</>
-					) : (
-						// Tech related components:
-						// <ComingSoon />
-						// <Maintenance />
-						<NotFound />
-					)}
-				</>
-				{/* )} */}
+				) : (
+					<>
+						{/* <ComingSoon /> */}
+						{/* <Maintenance /> */}
+						<Preloader loaded={preloaderLoaded} />
+						{user ? (
+							<>
+								<Header user={user} />
+								<main id='main' className='main'>
+									<Main user={user} />
+								</main>
+								<Footer user={user} />
+							</>
+						) : (
+							// Tech related components:
+							// <ComingSoon />
+							// <Maintenance />
+							<NotFound />
+						)}
+					</>
+				)}
 			</>
 		</>
 	);
