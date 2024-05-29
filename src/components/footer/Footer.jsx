@@ -15,9 +15,9 @@ import {
 	useSetWalletMutation,
 } from '../../services/phpService';
 // import { toggleMuteAllSounds } from '../../utility/Audio';
-import taskTG from '../../img/task_TG.svg';
-import taskTwitter from '../../img/task_twitter.svg';
-import taskWeb from '../../img/task_web.svg';
+// import taskTG from '../../img/task_TG.svg';
+import taskImg from '../../img/task_twitter.png';
+import taskWeb from '../../img/task_web.png';
 import './Footer.scss';
 
 const Footer = ({ user }) => {
@@ -710,7 +710,33 @@ const Footer = ({ user }) => {
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={twitterClick} disabled={twitterQuest === 1}>
-										<img src={taskTwitter} />
+										<div className='popupTasks__task-img'>
+											<img src={taskImg} />
+											<svg
+												width='22'
+												height='22'
+												viewBox='0 0 22 22'
+												fill='none'
+												xmlns='http://www.w3.org/2000/svg'
+											>
+												<g clip-path='url(#clip0_5228_3816)'>
+													<path
+														d='M0.5 11C0.5 5.20122 5.20122 0.5 11 0.5C16.7988 0.5 21.5 5.20122 21.5 11C21.5 16.7988 16.7988 21.5 11 21.5C5.20122 21.5 0.5 16.7988 0.5 11Z'
+														fill='black'
+														stroke='white'
+													/>
+													<path
+														d='M12.2033 10.0045L16.9123 4.53076H15.7964L11.7076 9.28359L8.4419 4.53076H4.67529L9.61367 11.7179L4.67529 17.458H5.79123L10.1091 12.4388L13.5579 17.458H17.3245L12.203 10.0045H12.2033ZM6.19331 5.37083H7.90732L15.7969 16.6561H14.0829L6.19331 5.37083Z'
+														fill='white'
+													/>
+												</g>
+												<defs>
+													<clipPath id='clip0_5228_3816'>
+														<rect width='22' height='22' fill='white' />
+													</clipPath>
+												</defs>
+											</svg>
+										</div>
 										Follow Twitter
 										{user?.twitter === 0 ? (
 											<p>+10000 </p>
@@ -783,7 +809,14 @@ const Footer = ({ user }) => {
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChat} disabled={tgChatQuest === 1}>
-										<img src={taskTG} />
+										<div className='popupTasks__task-img'>
+											<img src={taskImg} />
+											<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22Z" fill="#039BE5"/>
+<path d="M5.03292 10.7609L15.6388 6.67163C16.131 6.4938 16.5609 6.79171 16.4014 7.53605L16.4023 7.53513L14.5965 16.0427C14.4627 16.6459 14.1043 16.7925 13.6028 16.5084L10.8528 14.4816L9.52642 15.7595C9.37976 15.9061 9.25601 16.0299 8.97184 16.0299L9.16709 13.2313L14.2638 8.62688C14.4856 8.43163 14.2143 8.32163 13.9218 8.51596L7.62343 12.4815L4.90826 11.6345C4.31884 11.4475 4.30601 11.045 5.03292 10.7609Z" fill="white"/>
+</svg>
+
+										</div>
 										Follow TG Chat
 										{user?.tg_chat === 0 ? (
 											<p>+10000 </p>
@@ -844,7 +877,14 @@ const Footer = ({ user }) => {
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={tgClickChannel} disabled={tgChannelQuest === 1}>
-										<img src={taskTG} />
+										<div className='popupTasks__task-img'>
+											<img src={taskImg} />
+											<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22Z" fill="#039BE5"/>
+<path d="M5.03292 10.7609L15.6388 6.67163C16.131 6.4938 16.5609 6.79171 16.4014 7.53605L16.4023 7.53513L14.5965 16.0427C14.4627 16.6459 14.1043 16.7925 13.6028 16.5084L10.8528 14.4816L9.52642 15.7595C9.37976 15.9061 9.25601 16.0299 8.97184 16.0299L9.16709 13.2313L14.2638 8.62688C14.4856 8.43163 14.2143 8.32163 13.9218 8.51596L7.62343 12.4815L4.90826 11.6345C4.31884 11.4475 4.30601 11.045 5.03292 10.7609Z" fill="white"/>
+</svg>
+
+										</div>
 										Follow TG Channel
 										{user?.tg_channel === 0 ? (
 											<p>+10000 </p>
@@ -884,7 +924,9 @@ const Footer = ({ user }) => {
 								</div>
 								<div className='popupTasks__task'>
 									<button onClick={websiteClick} disabled={websiteQuest === 1}>
-										<img src={taskWeb} />
+										<div className='popupTasks__task-img'>
+											<img src={taskWeb} />
+										</div>
 										Visit Website
 										{user?.website === 0 ? (
 											<p>+3000 </p>
@@ -949,10 +991,7 @@ const Footer = ({ user }) => {
 								{dailyQuests && dailyQuests.length > 0 && (
 									<>
 										{dailyQuests.map((quest) => (
-											<div
-												className='popupTasks__task'
-												key={quest.id}
-											>
+											<div className='popupTasks__task' key={quest.id}>
 												{/* Conditionally render button or div */}
 												{quest.required_amount === 0 && quest.required_referrals === 0 ? (
 													<button
@@ -997,11 +1036,14 @@ const Footer = ({ user }) => {
 														)}
 													</button>
 												) : (
-													<button disabled={quest.status === 1} style={
-														quest.required_amount > 0 || quest.required_referrals > 0
-															? { paddingBottom: '24px' }
-															: {}
-													}>
+													<button
+														disabled={quest.status === 1}
+														style={
+															quest.required_amount > 0 || quest.required_referrals > 0
+																? { paddingBottom: '24px' }
+																: {}
+														}
+													>
 														<span>{quest.daily_quest.name}</span>
 														{quest.status === 0 ? (
 															<p className='popupTasks__task-rew'>

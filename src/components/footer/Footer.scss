@@ -272,9 +272,6 @@ body::after {
       right: 9px;
       width: 20px;
     }
-    img {
-      margin-right: 12px;
-    }
     p {
       position: absolute;
       right: 9px;
@@ -292,6 +289,19 @@ body::after {
       margin-top: 0px;
       right: 0;
       position: relative;
+    }
+  }
+  &__task-img {
+    width:44px;
+    height: 44px;
+    margin-right: 12px;position: relative;
+    img {
+      width: 100%;
+    }
+    svg {
+      position: absolute;
+      right: 0;
+      bottom: 0;
     }
   }
   &__task:last-child {

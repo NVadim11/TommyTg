@@ -22,7 +22,10 @@ $desktop: 119.9988rem;
     position: absolute;
     top: 10px;
     left: 12px;
+    width: 44px;
+    height: 44px;
     img {
+      width: 100%;
       user-select: none;
       -moz-user-select: none;
       -webkit-user-select: none;
@@ -177,24 +180,6 @@ $desktop: 119.9988rem;
         background-color: transparent;
       }
     }
-  }
-
-  // Burger menu
-  &__mobileBurger {
-    // display: none;
-    // &.hidden {
-    //   display: block !important;
-    // }
-  }
-  &__mobileBurger-line {
-    // width: 1.875rem;
-    // height: 0.125rem;
-    // background-color: #ffffff;
-    // display: block;
-    // margin: 6px auto;
-    // -webkit-transition: all 0.3s ease-in-out;
-    // -o-transition: all 0.3s ease-in-out;
-    // transition: all 0.3s ease-in-out;
   }
   &__mobileMenu {
     display: flex;
@@ -535,7 +520,6 @@ body::after {
     display: flex;
   }
   &__content {
-    margin-top: 32px;
     border: 2px solid #fff;
     border-radius: 20px;
     padding: 16px 12px;
