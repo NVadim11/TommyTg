@@ -60,10 +60,11 @@ $desktop: 1919.98px;
 				position: relative;
 				order: 2;
 				right: 0;
+				height: 100%;
 			}
 			img {
 				@media (max-width: $mobile) {
-					width: 220px;
+					width: 160px;
 					margin: 0;
 				}
 			}
@@ -80,6 +81,7 @@ $desktop: 1919.98px;
 				order: 2;
 				right: 0;
 				justify-content: center;
+				height: 324px;
 			}
 			&__box {
 				display: flex;
@@ -389,12 +391,14 @@ $desktop: 1919.98px;
 		width: 13.75rem;
 		margin-top: 7.5rem;
 		@media (max-width: $mobile) {
-			position: relative;
+			position: absolute;
 			order: 4;
 			top: 0;
 			left: 0;
-			margin: 1.25rem 0 0 0;
+			margin: 70px 0 0 0;
 			width: 100%;
+			display: flex;
+			flex-direction: column;
 		}
 	}
 	&__energyContainer {
@@ -409,6 +413,8 @@ $desktop: 1919.98px;
 		}
 		@media (max-width: $mobile) {
 			font-size: 1.125rem;
+			order: 2;
+			justify-content: center;
 		}
 		img {
 			width: 1.9375rem;
@@ -441,6 +447,11 @@ $desktop: 1919.98px;
 			border-radius: 1.25rem;
 			box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 		}
+		svg {
+			text {
+				margin-bottom: 100px;
+			}
+		}
 		@media (max-width: $mobile) {
 			width: 100%;
 		}
@@ -459,7 +470,6 @@ $desktop: 1919.98px;
 			position: relative;
 			justify-content: center;
 			display: flex;
-			margin-top: 15px;
 		}
 	}
 	&__coinBox {
@@ -897,6 +907,7 @@ $desktop: 1919.98px;
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	margin-top: 40px;
   }
 
 .mainContent__coinOne,

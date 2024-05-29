@@ -21,7 +21,7 @@ import catCoin from '../../img/catcoin_gold.svg';
 import finalForm from '../../img/finalForm.gif';
 import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
-import smile from '../../img/smile.png';
+import smile from '../../img/smile.svg';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
 
@@ -728,7 +728,7 @@ const Main = ({ user }) => {
 							</>
 						)}
 					</div>
-					<motion.div
+					{/* <motion.div
 						initial={{
 							y: 70,
 							rotate: 0,
@@ -756,10 +756,10 @@ const Main = ({ user }) => {
 								<img src={smile} alt='cat icon' />
 							</div>
 						)}
-					</motion.div>
+					</motion.div> */}
 					{!gamePaused && (
 						<div className='mainContent__energyBox'>
-							{/* <div className='mainContent__energyContainer'>
+							<div className='mainContent__energyContainer'>
 								<img src={smile} alt='' />
 								<div className='mainContent__energyValue'>
 									<p className='energyCount' id='energyCount'>
@@ -770,13 +770,14 @@ const Main = ({ user }) => {
 										1000
 									</p>
 								</div>
-							</div> */}
+							</div>
 							<div
 								className='mainContent__energyBar'
 								style={{
 									position: 'relative',
-									width: '400px',
-									height: '400px',
+									width: '324px',
+									height: '324px',
+									margin: '0 auto'
 								}}
 							>
 								<svg
@@ -785,8 +786,7 @@ const Main = ({ user }) => {
 										position: 'absolute',
 										width: '100%',
 										height: '100%',
-										borderRadius: '100%',
-										overflow: 'hidden',
+										borderRadius: '100%'
 									}}
 								>
 									{/* Define the filter for the box shadow */}
@@ -830,9 +830,7 @@ const Main = ({ user }) => {
 									></circle>
 
 									{/* Text */}
-									<text x='50%' y='50%' textAnchor='middle' dy='.3em' fill='#fff'>
-										{`${currEnergy}/1000`} {/* Display current energy */}
-									</text>
+									
 
 									{/* Define the linear gradient */}
 									<defs>
