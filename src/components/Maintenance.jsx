@@ -2,7 +2,7 @@ import React from 'react';
 import sadIdle from '../img/1_idle.gif';
 import star from '../img/Star.svg';
 import orangeEllipse from '../img/orangeEllipse.webp';
-import scullGlow from '../img/scullGlow.png';
+import skullGlow from '../img/skullGlow.png';
 import violettEllipse from '../img/violetEllipse/webp';
 
 const Maintenance = () => {
@@ -33,14 +33,14 @@ const Maintenance = () => {
 				<img src={sadIdle} />
 			</div>
 			<div
-				className='scullGlow'
+				className='skullGlow'
 				style={{
 					position: 'absolute',
 					boxSizing: 'border-box',
 					overflow: 'hidden',
 				}}
 			>
-				<img src={scullGlow} alt='glow' />
+				<img src={skullGlow} alt='glow' />
 			</div>
 			<h1
 				style={{

@@ -23,7 +23,7 @@ import finalForm from '../../img/finalForm.gif';
 import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
 import orangeEllipse from '../../img/orangeEllipse.webp';
-import scullGlow from '../../img/scullGlow.png';
+import skullGlow from '../../img/skullGlow.png';
 import violetEllipse from '../../img/violetEllipse.webp';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
@@ -502,7 +502,7 @@ const Main = ({ user }) => {
 				<img src={violetEllipse} alt='' />
 			</div>
 			<div className='glowEllipse'>
-				<img src={scullGlow} alt='' />
+				<img src={skullGlow} alt='' />
 			</div>
 
 			<div className='mainContent__container'>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import star from '../../img/Star.svg';
 import cat from '../../img/cat2.png';
 import orangeEllipse from '../../img/orangeEllipse.webp';
-import scullGlow from '../../img/scullGlow.png';
+import skullGlow from '../../img/skullGlow.png';
 import violetEllipse from '../../img/violetEllipse.webp';
 import './Preloader.scss';
 
@@ -63,7 +63,7 @@ const Preloader = ({ loaded }) => {
 		<>
 			<div className={`preloader${loaded ? ' loaded' : ''}`}>
 				<div
-					className='scullGlow'
+					className='skullGlow'
 					style={{
 						display: 'flex',
 						position: 'absolute',
@@ -75,7 +75,7 @@ const Preloader = ({ loaded }) => {
 					}}
 				>
 					<img
-						src={scullGlow}
+						src={skullGlow}
 						alt='glow'
 						style={{
 							width: '100%',
