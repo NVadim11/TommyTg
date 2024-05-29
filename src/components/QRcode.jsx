@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import star from '../img/Star.svg';
 import QRimg from '../img/qr.png';
 const TelegramLinking = () => {
-	const [bgImages] = useState({
-		bgImageFirst: 'img/bgFirst.webp',
-	});
 	return (
 		<div
 			style={{

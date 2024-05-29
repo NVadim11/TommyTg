@@ -13,7 +13,6 @@ import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
-// import TelegramLinking from './QRcode';
 // import ComingSoon from './ComingSoon';
 // import Maintenance from './Maintenance';
 import AOS from 'aos';

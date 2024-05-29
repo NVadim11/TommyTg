@@ -26,10 +26,6 @@ import orangeEllipse from '../../img/orangeEllipse.webp';
 import violetEllipse from '../../img/violetEllipse.webp';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
-
-// import orangeEllipse from '../../img/ellipse-orange.png';
-// import violettEllipse from '../../img/ellipse-violett.png';
-
 import './Main.scss';
 
 const Main = ({ user }) => {
@@ -39,7 +35,7 @@ const Main = ({ user }) => {
 	const [currentImage, setCurrentImage] = useState(true);
 	const [coinState, setCoinState] = useState(false);
 	const [currCoins, setCurrCoins] = useState(0);
-	const [currEnergy, setCurrEnergy] = useState(0); //user?.energy
+	const [currEnergy, setCurrEnergy] = useState(user?.energy); //user?.energy
 	const [isCoinsChanged, setIsCoinsChanged] = useState(false);
 	const [catIdle, setCatIdle] = useState(sadIdle);
 	const [catSpeak, setCatSpeak] = useState(sadSpeak);
@@ -447,7 +443,13 @@ const Main = ({ user }) => {
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
 	};
 
-	const percentage = (currEnergy / 1000) * 100;
+	const maxEnergy = 1000;
+
+	const calculateStrokeDasharray = (currEnergy) => {
+		const circleCircumference = 2 * Math.PI * 45; // 2 * PI * radius
+		const percentage = (currEnergy / maxEnergy) * circleCircumference;
+		return `${percentage} ${circleCircumference}`;
+	};
 
 	return (
 		<div className='mainContent'>
@@ -646,7 +648,7 @@ const Main = ({ user }) => {
 									</p>
 									<span>/</span>
 									<p className='maximumEnergy' id='maximumEnergy'>
-										1000
+										{maxEnergy}
 									</p>
 								</div>
 							</div>
@@ -689,9 +691,9 @@ const Main = ({ user }) => {
 										cy='50'
 										r='45'
 										fill='none'
-										stroke='#02060c' /* color of the progress bar background */
-										strokeWidth='2' /* thickness of the progress bar */
-										filter='inset 0 0 20px 20px rgba(30, 226, 97, 0.5)' /* Apply the box shadow */
+										stroke='#02060c' // color of the progress bar background
+										strokeWidth='2' // thickness of the progress bar
+										filter='inset 0 0 20px 20px rgba(30, 226, 97, 0.5)' // Apply the box shadow
 									></circle>
 
 									{/* Circle with gradient */}
@@ -700,15 +702,13 @@ const Main = ({ user }) => {
 										cy='50'
 										r='45'
 										fill='none'
-										stroke='url(#gradient)' /* apply linear gradient */
-										strokeWidth='2' /* thickness of the progress bar */
+										stroke='url(#gradient)' // apply linear gradient
+										strokeWidth='2' // thickness of the progress bar
 										strokeLinecap='round'
-										strokeDasharray={`${percentage}, 283`}
-										style={{ transition: 'stroke-dashoffset 0.35s' }}
-										filter='inset 0 0 20px 20px rgba(30, 226, 97, 0.5)' /* Apply the box shadow */
+										strokeDasharray={calculateStrokeDasharray(currEnergy)}
+										style={{ transition: 'stroke-dasharray 0.35s' }}
+										filter='inset 0 0 20px 20px rgba(30, 226, 97, 0.5)' // Apply the box shadow
 									></circle>
-
-									{/* Text */}
 
 									{/* Define the linear gradient */}
 									<defs>
