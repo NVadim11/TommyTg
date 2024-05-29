@@ -134,6 +134,7 @@ $desktop: 119.9988rem;
     @media (max-width: $mobile) {
       // display: none;
       top: 5rem;
+      left: 12px;
     }
     @media (max-width: 26.25rem) {
       margin-left: 0;

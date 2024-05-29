@@ -426,6 +426,7 @@ const Footer = ({ user }) => {
 		);
 	};
 
+
 	return (
 		<>
 			<footer id='footer' className='footerMain'>

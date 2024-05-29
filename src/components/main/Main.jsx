@@ -501,6 +501,7 @@ const Main = ({ user }) => {
 				<img src={violetEllipse} alt='' />
 			</div>
 
+
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>
 					<div className='gameContentBox'>
@@ -509,9 +510,11 @@ const Main = ({ user }) => {
 								{timeRemaining ? (
 									<p
 										style={{
+
 											fontSize: '22px',
 											textAlign: 'center',
 											alignContent: 'center',
+											marginTop: '140px'
 										}}
 									>
 										Time remaining: {formatTime(timeRemaining)} minutes

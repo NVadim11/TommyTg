@@ -184,11 +184,11 @@ const Header = ({ user }) => {
 						<img src={logo} />
 					</div>
 					<div className='header__mobileBtns'>
-						{/* {user && totalPoints !== null && (
+						{user && totalPoints !== null && (
 							<div id='header__totalScore' className='header__totalScore'>
 								{state?.info.header__totalScore} <span>{totalPoints}</span>
 							</div>
-						)} */}
+						)}
 						{/* <div className='header__leaderboard'>
 								<button onClick={leaderBordBtn}>
 									{state?.info.header__leaderboard}
