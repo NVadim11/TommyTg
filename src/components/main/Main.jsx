@@ -23,6 +23,7 @@ import finalForm from '../../img/finalForm.gif';
 import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
 import orangeEllipse from '../../img/orangeEllipse.webp';
+import scullGlow from '../../img/scullGlow.png';
 import violetEllipse from '../../img/violetEllipse.webp';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
@@ -500,7 +501,9 @@ const Main = ({ user }) => {
 			<div className='violettEllipse'>
 				<img src={violetEllipse} alt='' />
 			</div>
-
+			<div className='glowEllipse'>
+				<img src={scullGlow} alt='' />
+			</div>
 
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>
@@ -510,11 +513,10 @@ const Main = ({ user }) => {
 								{timeRemaining ? (
 									<p
 										style={{
-
 											fontSize: '22px',
 											textAlign: 'center',
 											alignContent: 'center',
-											marginTop: '140px'
+											marginTop: '140px',
 										}}
 									>
 										Time remaining: {formatTime(timeRemaining)} minutes
@@ -655,9 +657,7 @@ const Main = ({ user }) => {
 									</p>
 								</div>
 							</div>
-							<div
-								className='mainContent__energyBar'
-							>
+							<div className='mainContent__energyBar'>
 								<svg
 									viewBox='0 0 100 100'
 									style={{

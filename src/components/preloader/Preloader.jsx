@@ -65,12 +65,22 @@ const Preloader = ({ loaded }) => {
 				<div
 					className='scullGlow'
 					style={{
+						display: 'flex',
 						position: 'absolute',
 						boxSizing: 'border-box',
 						overflow: 'hidden',
+						width: '555px',
+						zIndex: '1000',
+						justifyContent: 'center',
 					}}
 				>
-					<img src={scullGlow} alt='glow' />
+					<img
+						src={scullGlow}
+						alt='glow'
+						style={{
+							width: '100%',
+						}}
+					/>
 				</div>
 				<div
 					className='orangeEllipse'

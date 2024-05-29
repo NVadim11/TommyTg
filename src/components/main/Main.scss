@@ -938,6 +938,14 @@ $desktop: 1919.98px;
 	z-index: 100;
 }
 
+.glowEllipse {
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	display: flex;
+	width: 100%;
+ }
+
 .mainContent__animation {
 	position: absolute;
 	width: 100%;

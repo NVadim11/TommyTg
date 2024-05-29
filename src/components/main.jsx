@@ -110,15 +110,15 @@ const MainComponent = () => {
 		);
 
 	return (
-		<div>
-			<div className='gameContainer'>
+		<>
+			<>
 				{/* {!isMobileDevice ? (
 					<TelegramLinking />
 				) : ( */}
 				<>
 					{/* <ComingSoon /> */}
 					{/* <Maintenance /> */}
-					<Preloader loaded={preloaderLoaded} />
+					<Preloader loaded={!preloaderLoaded} />
 					{!user ? (
 						<>
 							<Header user={user} />
@@ -135,8 +135,8 @@ const MainComponent = () => {
 					)}
 				</>
 				{/* )} */}
-			</div>
-		</div>
+			</>
+		</>
 	);
 };
 
