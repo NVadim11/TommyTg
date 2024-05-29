@@ -654,12 +654,6 @@ const Main = ({ user }) => {
 							</div>
 							<div
 								className='mainContent__energyBar'
-								style={{
-									position: 'relative',
-									width: '350px',
-									height: '350px',
-									margin: '0 auto',
-								}}
 							>
 								<svg
 									viewBox='0 0 100 100'

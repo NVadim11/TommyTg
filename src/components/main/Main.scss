@@ -64,6 +64,10 @@ $desktop: 1919.98px;
 					width: 180px;
 					margin: 0;
 				}
+				@media (max-width: 359px) { 
+					width: 160px;
+				}
+
 			}
 		}
 		@media (max-width: $mobile) {
@@ -396,7 +400,18 @@ $desktop: 1919.98px;
 			width: 100%;
 			display: flex;
 			flex-direction: column;
+			// position: relative;
+			// width: 350px;
+			// height: 350px;
+			// margin: 0 auto;
 		}
+		@media (max-width: 359px) {
+			margin: 94px 0 0 0;
+		}
+		// @media (max-width: 360px) {
+		// 	width: 300px;
+		// 	height: 300px;
+		// }
 	}
 	&__energyContainer {
 		display: flex;
@@ -421,10 +436,15 @@ $desktop: 1919.98px;
 	&__energyBar {
 		justify-content: flex-start;
 		align-items: center;
-		position: relative;
 		display: flex;
-		width: 13.3125rem;
-		height: 0.9375rem;
+		position: relative;
+		width: 350px;
+		height: 350px;
+		margin: 0 auto;
+		@media (max-width: 359px) {
+			width: 300px;
+			height: 300px;
+		}
 		progress {
 			border-radius: 20px;
 			width: 100%;
@@ -464,6 +484,11 @@ $desktop: 1919.98px;
 		background: radial-gradient(50% 50% at 50% 50%, rgba(11, 30, 67, 0.6) 71.3618576527%, rgba(21, 77, 38, 0.6) 100%);
 		z-index: -1;
 		border-radius: 50%;
+		@media (max-width: 359px) {
+			width: 270px;
+			height: 270px;
+			left: 23px;
+		}
 	}
 	&__energyHint {
 		margin-top: 0.9375rem;
