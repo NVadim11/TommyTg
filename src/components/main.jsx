@@ -112,29 +112,29 @@ const MainComponent = () => {
 	return (
 		<div>
 			<div className='gameContainer'>
-				{!isMobileDevice ? (
+				{/* {!isMobileDevice ? (
 					<TelegramLinking />
-				) : (
-					<>
-						{/* <ComingSoon /> */}
-						{/* <Maintenance /> */}
-						<Preloader loaded={preloaderLoaded} />
-						{user ? (
-							<>
-								<Header user={user} />
-								<main id='main' className='main'>
-									<Main user={user} />
-								</main>
-								<Footer user={user} />
-							</>
-						) : (
-							// Tech related components:
-							// <ComingSoon />
-							// <Maintenance />
-							<NotFound />
-						)}
-					</>
-				)}
+				) : ( */}
+				<>
+					{/* <ComingSoon /> */}
+					{/* <Maintenance /> */}
+					<Preloader loaded={preloaderLoaded} />
+					{!user ? (
+						<>
+							<Header user={user} />
+							<main id='main' className='main'>
+								<Main user={user} />
+							</main>
+							<Footer user={user} />
+						</>
+					) : (
+						// Tech related components:
+						// <ComingSoon />
+						// <Maintenance />
+						<NotFound />
+					)}
+				</>
+				{/* )} */}
 			</div>
 		</div>
 	);
