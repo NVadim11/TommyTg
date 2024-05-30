@@ -88,14 +88,7 @@ const MainComponent = () => {
 				});
 			}
 		};
-
-		const loadImagesTimeout = setTimeout(() => {
-			loadImages();
-		}, 100);
-
-		return () => {
-			clearTimeout(loadImagesTimeout);
-		};
+		loadImages();
 	}, [isLoading, data]);
 
 	useEffect(() => {
@@ -120,7 +113,7 @@ const MainComponent = () => {
 						{/* <ComingSoon /> */}
 						{/* <Maintenance /> */}
 						<Preloader loaded={preloaderLoaded} />
-						{!user ? (
+						{user ? (
 							<>
 								<Header user={user} />
 								<main id='main' className='main'>

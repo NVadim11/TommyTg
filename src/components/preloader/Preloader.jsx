@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import star from '../../img/Star.svg';
-import cat from '../../img/cat2.png';
+import cat from '../../img/catFace.png';
 import orangeEllipse from '../../img/orangeEllipse.webp';
 import skullGlow from '../../img/skullGlow.png';
 import violetEllipse from '../../img/violetEllipse.webp';
