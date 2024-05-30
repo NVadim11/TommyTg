@@ -73,10 +73,6 @@ const Main = ({ user }) => {
 		return !isMobile;
 	};
 
-	// useEffect (() => {
-	// 	user?.active_at
-	// })
-
 	useEffect(() => {
 		if (!isDesktop()) {
 			const element = document.getElementById('clickableElement');
@@ -514,9 +510,11 @@ const Main = ({ user }) => {
 			<div className='violettEllipse'>
 				<img src={violetEllipse} alt='' />
 			</div>
-			<div className='glowEllipse'>
+			{!gamePaused && (
+				<div className='glowEllipse'>
 				<img src={skullGlow} alt='' />
 			</div>
+			)}
 
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>

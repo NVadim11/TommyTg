@@ -16,6 +16,7 @@ $desktop: 1919.98px;
 		margin: 0 auto;
 		position: relative;
 		z-index: 101;
+		height: 100%;
 		@media (max-width: $desktop) {
 			width: 90rem;
 		}
@@ -79,6 +80,13 @@ $desktop: 1919.98px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				justify-content: center;
+				position: fixed;
+				height: 100%;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
 				h4 {
 					position: absolute;
 				}
@@ -861,14 +869,8 @@ $desktop: 1919.98px;
 		padding: 0;
 	}
 	&__container {
-		// padding: 0 15.125rem;
 		width: 100%;
 		display: flex;
-		// justify-content: space-between;
-		// align-items: center;
-		@media (max-width: $desktop) {
-			// padding: 0 8.125rem;
-		}
 	}
 	&__socials {
 		display: flex;
