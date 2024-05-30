@@ -564,14 +564,14 @@ $desktop: 1919.98px;
 		width: fit-content;
 		align-self: center;
 		justify-content: center;
-		padding: 12px 24px;
+    padding: 10px 14px;
 	}
 	&__coinImg {
 		display: flex;
 		align-items: center;
 		margin-right: 0.625rem;
-		width: 34px;
-		height: 34px;
+		width: 28px;
+		height: 28px;
 		img {
 			width: 100%;
 		}
@@ -581,7 +581,7 @@ $desktop: 1919.98px;
 		align-items: center;
 		span {
 			font-weight: 400;
-			font-size: 36px;
+			font-size: 28px;
 			line-height: 100%;
 			letter-spacing: 0.01em;
 			color: #fff;

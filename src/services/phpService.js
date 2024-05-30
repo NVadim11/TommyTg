@@ -7,7 +7,7 @@ const testURL = process.env.REACT_APP_TEST_URL;
 // Define a service using a base URL and expected endpoints
 export const phpApi = createApi({
   reducerPath: "phpApi",
-  baseQuery: fetchBaseQuery({ baseUrl: testURL + "/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: secretURL + "/api" }),
   tagTypes: ["Php"],
   endpoints: (builder) => ({
     getUserByTgId: builder.query({

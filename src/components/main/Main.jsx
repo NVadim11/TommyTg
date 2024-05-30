@@ -99,7 +99,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch(testURL + '/api/set-activity', {
+		fetch(secretURL + '/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -143,7 +143,9 @@ const Main = ({ user }) => {
 
 	const getGameStatus = async () => {
 		try {
-			const initGameStatusCheck = await axios.get(testURL + `/api/telegram-id/${userId}`);
+			const initGameStatusCheck = await axios.get(
+				secretURL + `/api/telegram-id/${userId}`
+			);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
 		}
@@ -459,11 +461,10 @@ const Main = ({ user }) => {
 				setTotalPoints(user?.wallet_balance);
 			}
 		};
-	
+
 		if (user) {
 			fetchData();
 		}
-	
 	}, [user]);
 
 	return (
@@ -827,40 +828,40 @@ const Main = ({ user }) => {
 					{!gamePaused && (
 						<div className='mainContent__totalPoints'>
 							<div className='mainContent__totalPoints-img'>
-									<img src={catCoin} alt='' />
-								</div>
-								<div className='mainContent__totalPoints-text'>
-									<span>For Session</span>
-									<svg
-										width='82'
-										height='1'
-										viewBox='0 0 82 1'
-										fill='none'
-										xmlns='http://www.w3.org/2000/svg'
-									>
-										<line
-											y1='0.5'
-											x2='82'
-											y2='0.5'
-											stroke='url(#paint0_linear_5228_4664)'
-										/>
-										<defs>
-											<linearGradient
-												id='paint0_linear_5228_4664'
-												x1='82'
-												y1='1.5'
-												x2='0'
-												y2='1.5'
-												gradientUnits='userSpaceOnUse'
-											>
-												<stop stop-color='#999999' stop-opacity='0' />
-												<stop offset='0.5' stop-color='white' />
-												<stop offset='1' stop-color='#999999' stop-opacity='0' />
-											</linearGradient>
-										</defs>
-									</svg>
-									<div className='mainContent__totalPoints-coins'>{currCoins}</div>
-								</div>
+								<img src={catCoin} alt='' />
+							</div>
+							<div className='mainContent__totalPoints-text'>
+								<span>For Session</span>
+								<svg
+									width='82'
+									height='1'
+									viewBox='0 0 82 1'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<line
+										y1='0.5'
+										x2='82'
+										y2='0.5'
+										stroke='url(#paint0_linear_5228_4664)'
+									/>
+									<defs>
+										<linearGradient
+											id='paint0_linear_5228_4664'
+											x1='82'
+											y1='1.5'
+											x2='0'
+											y2='1.5'
+											gradientUnits='userSpaceOnUse'
+										>
+											<stop stop-color='#999999' stop-opacity='0' />
+											<stop offset='0.5' stop-color='white' />
+											<stop offset='1' stop-color='#999999' stop-opacity='0' />
+										</linearGradient>
+									</defs>
+								</svg>
+								<div className='mainContent__totalPoints-coins'>{currCoins}</div>
+							</div>
 						</div>
 					)}
 
