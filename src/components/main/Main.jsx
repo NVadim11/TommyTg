@@ -60,6 +60,7 @@ const Main = ({ user }) => {
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
 
+	const [totalPoints, setTotalPoints] = useState(user?.wallet_balance);
 	// aws
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
@@ -452,6 +453,19 @@ const Main = ({ user }) => {
 		return `${percentage} ${circleCircumference}`;
 	};
 
+	useEffect(() => {
+		const fetchData = async () => {
+			if (Object.keys(user).length) {
+				setTotalPoints(user?.wallet_balance);
+			}
+		};
+	
+		if (user) {
+			fetchData();
+		}
+	
+	}, [user]);
+
 	return (
 		<div className='mainContent'>
 			{/* bg layers  */}
@@ -717,9 +731,6 @@ const Main = ({ user }) => {
 									</defs>
 								</svg>
 							</div>
-							<div className='mainContent__energyHint'>
-								<p>{state?.info.mainContent__energyHint}</p>
-							</div>
 						</div>
 					)}
 
@@ -803,13 +814,63 @@ const Main = ({ user }) => {
 								<div className='mainContent__coinImg' draggable='false'>
 									<img src={catCoin} alt='coin animation' draggable='false' />
 								</div>
-								<div className='mainContent__coinAmount'>
-									<span id='coinAmount'>{currCoins}</span>
+
+								{user && totalPoints !== null && (
+									<div className='mainContent__coinAmount'>
+										<span>{totalPoints}</span>
+									</div>
+								)}
+							</div>
+						</div>
+					)}
+
+					{!gamePaused && (
+						<div className='mainContent__totalPoints'>
+							<div className='mainContent__inner'>
+								<div className='mainContent__totalPoints-img'>
+									<img src={catCoin} alt='' />
+								</div>
+								<div className='mainContent__totalPoints-text'>
+									<span>For Session</span>
+									<svg
+										width='82'
+										height='1'
+										viewBox='0 0 82 1'
+										fill='none'
+										xmlns='http://www.w3.org/2000/svg'
+									>
+										<line
+											y1='0.5'
+											x2='82'
+											y2='0.5'
+											stroke='url(#paint0_linear_5228_4664)'
+										/>
+										<defs>
+											<linearGradient
+												id='paint0_linear_5228_4664'
+												x1='82'
+												y1='1.5'
+												x2='0'
+												y2='1.5'
+												gradientUnits='userSpaceOnUse'
+											>
+												<stop stop-color='#999999' stop-opacity='0' />
+												<stop offset='0.5' stop-color='white' />
+												<stop offset='1' stop-color='#999999' stop-opacity='0' />
+											</linearGradient>
+										</defs>
+									</svg>
+									<div className='mainContent__totalPoints-coins'>{currCoins}</div>
 								</div>
 							</div>
 						</div>
 					)}
 
+					{!gamePaused && (
+						<div className='mainContent__energyHint'>
+							<p>{state?.info.mainContent__energyHint}</p>
+						</div>
+					)}
 					{coinState && (
 						<div className='mainContent__animation'>
 							<div className='mainContent__coinOne'>

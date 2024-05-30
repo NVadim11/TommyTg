@@ -70,11 +70,15 @@ $desktop: 1919.98px;
 			align-items: center;
 			// margin: 0 auto;
 			@media (max-width: $mobile) {
-				position: relative;
+				position: absolute;
 				order: 2;
-				right: 0;
+				width: 100%;
+				margin: 62px 0 0 0;
 				justify-content: center;
 				height: 324px;
+			}
+			@media (max-width: 359px) {
+				margin: 42px 0 0 0;
 			}
 			&__box {
 				display: flex;
@@ -387,14 +391,11 @@ $desktop: 1919.98px;
 		cursor: pointer;
 	}
 	&__energyBox {
-		position: absolute;
 		width: 13.75rem;
 		@media (max-width: $mobile) {
-			position: absolute;
-			order: 4;
+			order: 3;
 			top: 0;
 			left: 0;
-			margin: 62px 0 0 0;
 			width: 100%;
 			display: flex;
 			flex-direction: column;
@@ -402,9 +403,6 @@ $desktop: 1919.98px;
 			// width: 350px;
 			// height: 350px;
 			// margin: 0 auto;
-		}
-		@media (max-width: 359px) {
-			margin: 87px 0 0 0;
 		}
 		// @media (max-width: 360px) {
 		// 	width: 300px;
@@ -488,7 +486,7 @@ $desktop: 1919.98px;
 	&__energyHint {
 		margin-top: 0.9375rem;
 		padding: 0 1.25rem;
-		order: 3;
+		order: 5;
 		p {
 			font-weight: 500;
 			font-size: 12px;
@@ -502,6 +500,64 @@ $desktop: 1919.98px;
 			position: relative;
 			justify-content: center;
 			display: flex;
+		}
+	}
+	&__totalPoints {
+		order: 4;
+		margin: 16px 16px 0 16px;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		background: transparent;
+		position: relative;
+	}
+	&__totalPoints-coins {
+		font-weight: 600;
+		font-size: 22px;
+		line-height: 100%;
+		text-align: center;
+		color: #fff;
+	}
+	&__totalPoints-text {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 4px;
+	}
+	&__inner {
+		border-radius: 12px; 
+		display: flex;
+		justify-content: center;
+		gap: 12px;
+		padding: 8px 18px;
+		position: relative;
+		height: 64px;
+		width: 178px;
+		background: linear-gradient(180deg, #0b1f46 0%, #000 100%);
+		span {
+			font-weight: 600;
+			font-size: 12px;
+			line-height: 130%;
+			text-align: center;
+			color: #868686;
+		}
+	}
+	&__inner::before {
+		position: absolute;
+		content: '';
+		height: 62px;
+		width: 176px;
+		top: 0;
+		background-image: -webkit-linear-gradient(to right, #DECAFF, #691EE2);
+		background-image: linear-gradient(to right, #DECAFF, #691EE2);
+		border-radius: 12px;
+		z-index: -1;
+	}
+	&__totalPoints-img {
+		width: 48px;
+		height: 48px;
+		img {
+			width: 100%;
 		}
 	}
 	&__coinBox {

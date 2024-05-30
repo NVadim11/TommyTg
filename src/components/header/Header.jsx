@@ -14,7 +14,7 @@ const Header = ({ user }) => {
 	const { state } = useContext(GameInfoContext);
 	const [isToggled, setIsToggled] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [totalPoints, setTotalPoints] = useState(user?.wallet_balance);
+	// const [totalPoints, setTotalPoints] = useState(user?.wallet_balance);
 	const [totalReferrals, setTotalReferrals] = useState(user?.referrals_count);
 	const [leaderboardData, setLeaderboardData] = useState([]);
 	const [isLeaderboardOpen, setLeaderboardOpen] = useState(false);
@@ -75,7 +75,7 @@ const Header = ({ user }) => {
 				const res = await getLeaderboard(user.id).unwrap();
 				setLeaderboardData(res);
 				setTotalReferrals(user?.referrals_count);
-				setTotalPoints(user?.wallet_balance);
+				// setTotalPoints(user?.wallet_balance);
 				const intervalId = setInterval(() => {
 					getLeaderboard(user.id)
 						.unwrap()
@@ -238,11 +238,11 @@ const Header = ({ user }) => {
 						</a>
 					</div>
 					<div className='header__mobileBtns'>
-						{user && totalPoints !== null && (
+						{/* {user && totalPoints !== null && (
 							<div id='header__totalScore' className='header__totalScore'>
 								{state?.info.header__totalScore} <span>{totalPoints}</span>
 							</div>
-						)}
+						)} */}
 
 						{/* <div className='header__leaderboard'>
 								<button onClick={leaderBordBtn}>
