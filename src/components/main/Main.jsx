@@ -780,7 +780,7 @@ const Main = ({ user }) => {
 										borderRadius: '150px',
 										zIndex: 1500,
 										...(isMedia && {
-											scale: '50%',
+											scale: '100%',
 										}),
 									}}
 									onClick={boostClickedHandler}
