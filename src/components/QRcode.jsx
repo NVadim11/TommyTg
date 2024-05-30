@@ -79,7 +79,7 @@ const TelegramLinking = () => {
 				</svg>
 			</div>
 			<div
-				className='violettEllipse'
+				className='violetEllipse'
 				style={{
 					zIndex: '100',
 				}}

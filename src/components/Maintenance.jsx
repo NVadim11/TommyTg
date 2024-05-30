@@ -88,7 +88,7 @@ const Maintenance = () => {
 				<img src={orangeEllipse} alt='orangeEllipse' />
 			</div>
 			<div
-				className='violettEllipse'
+				className='violetEllipse'
 				style={{
 					zIndex: '100',
 				}}

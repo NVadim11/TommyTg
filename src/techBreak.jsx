@@ -1,11 +1,12 @@
 import React from 'react';
-import sadIdle from '../img/1_idle.gif';
-import star from '../img/Star.svg';
-import orangeEllipse from '../img/orangeEllipse.webp';
-import skullGlow from '../img/skullGlow.png';
-import violetEllipse from '../img/violetEllipse.webp';
+import sadIdle from '../src/img/1_idle.gif';
+import star from '../src/img/Star.svg';
+import orangeEllipse from '../src/img/orangeEllipse.webp';
+import skullGlow from '../src/img/skullGlow.png';
+import violetEllipse from '../src/img/violetEllipse.webp';
+import './techBreak.scss';
 
-const NotFound = () => {
+const TechBreak = () => {
 	return (
 		<div
 			style={{
@@ -53,7 +54,7 @@ const NotFound = () => {
 					zIndex: '1000',
 				}}
 			>
-				Something went wrong
+				Repairs and upgrades are underway
 			</h1>
 			<div className='mainContent__animation'>
 				<div className='mainContent__coinOne'>
@@ -99,4 +100,4 @@ const NotFound = () => {
 	);
 };
 
-export default NotFound;
+export default TechBreak;

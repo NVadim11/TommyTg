@@ -4,7 +4,7 @@ import orangeEllipse from '../img/orangeEllipse.webp';
 import skullGlow from '../img/skullGlow.png';
 import violetEllipse from '../img/violetEllipse.webp';
 
-const Maintenance = () => {
+const ComingSoon = () => {
 	return (
 		<div
 			style={{
@@ -84,7 +84,7 @@ const Maintenance = () => {
 				<img src={orangeEllipse} alt='orangeEllipse' />
 			</div>
 			<div
-				className='violettEllipse'
+				className='violetEllipse'
 				style={{
 					zIndex: '100',
 				}}
@@ -95,4 +95,4 @@ const Maintenance = () => {
 	);
 };
 
-export default Maintenance;
+export default ComingSoon;

@@ -1,3 +1,4 @@
+import AOS from 'aos';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { GameInfoContext } from '../helpers/context';
 import sadIdle from '../img/1_idle.gif';
@@ -14,7 +15,6 @@ import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
 // import ComingSoon from './ComingSoon';
-import AOS from 'aos';
 // import Maintenance from './Maintenance';
 import NotFound from './404';
 import TelegramLinking from './QRcode';
@@ -110,9 +110,6 @@ const MainComponent = () => {
 					<TelegramLinking />
 				) : (
 					<>
-						{/* <NotFound /> */}
-						{/* <ComingSoon /> */}
-						{/* <Maintenance /> */}
 						<Preloader loaded={preloaderLoaded} />
 						{user ? (
 							<>

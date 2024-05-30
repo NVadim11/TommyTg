@@ -498,7 +498,7 @@ const Main = ({ user }) => {
 			<div className='orangeEllipse'>
 				<img src={orangeEllipse} alt='' />
 			</div>
-			<div className='violettEllipse'>
+			<div className='violetEllipse'>
 				<img src={violetEllipse} alt='' />
 			</div>
 			{!gamePaused && (

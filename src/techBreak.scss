@@ -1,0 +1,108 @@
+.orangeEllipse {
+  left: 0;
+	bottom: 0;
+	position: absolute;
+	z-index: 100;
+}
+.violetEllipse {
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	z-index: 100;
+}
+
+.glowEllipse {
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	display: flex;
+	width: 100%;
+	img {
+		width: 525px;
+		@media (max-width: 359px) {
+			width: 485px;
+		}
+	}
+ }
+
+.mainContent__animation {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin-top: 110px;
+  }
+
+.mainContent__coinOne,
+.mainContent__coinTwo,
+.mainContent__coinThree,
+.mainContent__coinFour,
+.mainContent__coinFive,
+.mainContent__coinSix,
+.mainContent__coinSeven {
+  position: absolute;
+  animation: pulse 1.5s infinite;
+}
+
+.mainContent__coinOne {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0;
+	animation-duration: 3s;
+  }
+  
+  .mainContent__coinTwo {
+	top: 0;
+    left: 80%;
+    animation-delay: 0;
+	animation-duration: 4s;
+  }
+  
+  .mainContent__coinThree {
+	top: 60%;
+    left: 30%;
+    animation-delay: 0;
+	animation-duration: 2.5s;
+  }
+  
+  .mainContent__coinFour {
+	top: 20%;
+    right: 20%;
+    animation-delay: 0;
+	animation-duration: 2s;
+  }
+  
+  .mainContent__coinFive {
+	bottom: 20%;
+    left: 5%;
+    animation-delay: 0;
+	animation-duration: 3.5s;
+  }
+  
+  .mainContent__coinSix {
+	bottom: 10%;
+    right: 30%;
+    animation-delay: 0;
+	animation-duration: 3s;
+  }
+  
+  .mainContent__coinSeven {
+	bottom: 40%;
+	right: 10%;
+	animation-delay: 0;
+	animation-duration: 4.5s;
+  }
+
+@keyframes pulse {
+	0% {
+	  opacity: 0;
+	  transform: scale(0);
+	}
+	50% {
+	  opacity: 1;
+	  transform: scale(0.8);
+	}
+	100% {
+	  opacity: 0;
+	  transform: scale(0.3);
+	}
+  }
