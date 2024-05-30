@@ -3,7 +3,7 @@ import sadIdle from '../img/1_idle.gif';
 import star from '../img/Star.svg';
 import orangeEllipse from '../img/orangeEllipse.webp';
 import skullGlow from '../img/skullGlow.png';
-import violettEllipse from '../img/violetEllipse/webp';
+import violetEllipse from '../img/violetEllipse.webp';
 
 const Maintenance = () => {
 	return (
@@ -44,25 +44,18 @@ const Maintenance = () => {
 			</div>
 			<h1
 				style={{
-					zIndex: '1000',
 					width: 'fit-content',
 					marginTop: '-75px',
 					fontWeight: '900',
 					fontSize: '24px',
 					lineHeight: '100%',
 					textAlign: 'center',
-					lineHeight: '110%',
-					letterSpacing: '0.03em',
+					zIndex: '1000',
 				}}
 			>
 				Repairs and upgrades are underway
 			</h1>
-			<div
-				className='mainContent__animation'
-				style={{
-					zIndex: '1000',
-				}}
-			>
+			<div className='mainContent__animation'>
 				<div className='mainContent__coinOne'>
 					<img src={star} alt='' />
 				</div>
@@ -100,7 +93,7 @@ const Maintenance = () => {
 					zIndex: '100',
 				}}
 			>
-				<img src={violettEllipse} alt='violettEllipse' />
+				<img src={violetEllipse} alt='violetEllipse' />
 			</div>
 		</div>
 	);
