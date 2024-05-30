@@ -401,6 +401,10 @@ const Main = ({ user }) => {
 		} else {
 			playSadCatClick();
 		}
+		if (navigator.vibrate) {
+			// Вибрация на 200 мс
+			navigator.vibrate(1);
+		  }
 		setCurrentImage(false);
 		setCoinState(true);
 		handleShowAnimation(event);
@@ -427,6 +431,10 @@ const Main = ({ user }) => {
 		} else {
 			playSadCatClick();
 		}
+		if (navigator.vibrate) {
+			// Вибрация на 200 мс
+			navigator.vibrate(1);
+		  }
 		setCurrentImage(false);
 		setCoinState(true);
 		handleShowAnimation(event);
@@ -442,6 +450,7 @@ const Main = ({ user }) => {
 				handleShowAnimation(touch);
 			});
 		}
+	
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
@@ -520,7 +529,6 @@ const Main = ({ user }) => {
 											fontSize: '22px',
 											textAlign: 'center',
 											alignContent: 'center',
-											marginTop: '80px'
 										}}
 									>
 										Time remaining: {formatTime(timeRemaining)} minutes
