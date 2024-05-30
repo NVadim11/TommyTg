@@ -826,8 +826,7 @@ const Main = ({ user }) => {
 
 					{!gamePaused && (
 						<div className='mainContent__totalPoints'>
-							<div className='mainContent__inner'>
-								<div className='mainContent__totalPoints-img'>
+							<div className='mainContent__totalPoints-img'>
 									<img src={catCoin} alt='' />
 								</div>
 								<div className='mainContent__totalPoints-text'>
@@ -862,15 +861,14 @@ const Main = ({ user }) => {
 									</svg>
 									<div className='mainContent__totalPoints-coins'>{currCoins}</div>
 								</div>
-							</div>
 						</div>
 					)}
 
-					{!gamePaused && (
+					{/* {!gamePaused && (
 						<div className='mainContent__energyHint'>
 							<p>{state?.info.mainContent__energyHint}</p>
 						</div>
-					)}
+					)} */}
 					{coinState && (
 						<div className='mainContent__animation'>
 							<div className='mainContent__coinOne'>
