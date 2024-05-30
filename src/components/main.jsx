@@ -91,7 +91,7 @@ const MainComponent = () => {
 
 		const loadImagesTimeout = setTimeout(() => {
 			loadImages();
-		}, 2000);
+		}, 100);
 
 		return () => {
 			clearTimeout(loadImagesTimeout);
@@ -113,9 +113,9 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{/* {isMobileDevice ? (
+				{!isMobileDevice ? (
 					<TelegramLinking />
-				) : ( */}
+				) : (
 					<>
 						{/* <ComingSoon /> */}
 						{/* <Maintenance /> */}
@@ -134,7 +134,7 @@ const MainComponent = () => {
 							<NotFound />
 						)}
 					</>
-				{/* )} */}
+				)}
 			</>
 		</>
 	);

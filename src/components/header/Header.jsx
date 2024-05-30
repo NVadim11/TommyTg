@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 // import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import crown from '../../img/crown.svg';
 import link from '../../img/link.svg';
-import logo from '../../img/logo.png';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { useGetLeaderboardMutation } from '../../services/phpService';
@@ -244,7 +243,7 @@ const Header = ({ user }) => {
 								{state?.info.header__totalScore} <span>{totalPoints}</span>
 							</div>
 						)}
-						
+
 						{/* <div className='header__leaderboard'>
 								<button onClick={leaderBordBtn}>
 									{state?.info.header__leaderboard}
@@ -338,7 +337,7 @@ const Header = ({ user }) => {
 									</clipPath>
 								</defs>
 							</svg> */}
-							{/* <div
+						{/* <div
 								className={
 									isToggled
 										? 'header__mobileBurger-btn is-active'
@@ -349,7 +348,7 @@ const Header = ({ user }) => {
 								<span className='header__mobileBurger-line'></span>
 								<span className='header__mobileBurger-line'></span>
 							</div> */}
-							{/* {isShown && (
+						{/* {isShown && (
 								<div className='header__mobileMenu'>
 									<a className='header__mobileMenu-links' onClick={leaderBordBtn}>
 										Leadboard
@@ -631,7 +630,7 @@ const Header = ({ user }) => {
 								<h6>How it Works</h6>
 								<div className='popupInvite__refInfo'>
 									<div className='popupInvite__headerDescr'>
-										<p>Your Bonus:</p>
+										<p>Bonus:</p>
 										<div className='popupInvite__headerItem'>
 											<p>% 10</p>
 										</div>
@@ -671,12 +670,12 @@ const Header = ({ user }) => {
 											</defs>
 										</svg>
 									</div>
-									{totalReferrals >= 1 && (
+									{totalReferrals >= 0 && (
 										<div className='popupInvite__headerDescr'>
 											<p>Referrals:</p>
 											<div className='popupInvite__headerItem'>
 												<img src={people} alt='people' />
-												<p>{totalReferrals}</p>
+												<p>{totalReferrals}12</p>
 											</div>
 											<svg
 												width='24'

@@ -314,7 +314,6 @@ body::after {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
 }
 .popupLeaderboard__content{
   display: none;
@@ -327,7 +326,6 @@ body::after {
   transition: transform 0.3s ease 0s;
   background-color: #eee;
   width: 100%;
-  height: 100%;
 }
 
 // Leaderboard popup
@@ -520,16 +518,6 @@ body::after {
     display: flex;
   }
   &__content {
-    // border: 2px solid #fff;
-    // border-radius: 20px;
-    // padding: 16px 12px;
-    // height: auto;
-    // backdrop-filter: blur(1.125rem);
-    // background: linear-gradient(180deg, rgb(11, 31, 70) 0%, rgb(0, 0, 0) 100%);
-    // display: flex;
-    // justify-content: center;
-    // flex-direction: column;
-    // align-items: center;
     margin-top: 32px;
     padding: 24px 12px 12px 12px;
     -webkit-backdrop-filter: blur(32px);
@@ -563,34 +551,29 @@ body::after {
     font-size: 1.25rem;
     line-height: 100%;
     color: #fff;
-    margin-top: 51px;
-    margin-bottom: 32px;
-    @media (max-width: $mobile) {
+    margin-top: 27px;
+
       font-size: 32px;
-    }
+
   }
   &__header {
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: space-between;
-    @media (max-width: $mobile) {
-      margin-top: 1.25rem;
-    }
+    margin-top: 32px;
     h6 {
       font-weight: 700;
-      font-size: 32px;
       line-height: 100%;
       color: #fff;
       display: flex;
-      @media (max-width: $mobile) {
-        order: 2;
-        font-size: 32px;
-        margin-top: 50px;
-      }
+      order: 2;
+      font-size: 32px;
+      margin-top: 50px;
     }
     @media (max-width: $mobile) {
       flex-direction: column;
+      width: 100%;
     }
   }
   &__refInfo {
@@ -605,12 +588,10 @@ body::after {
     border: 1px solid #3f3773;
     border-radius: 10px;
     width: 100%;
-    height: 124px;
-    padding: 16px 5px 0px;
+    padding: 16px 5px 16px;
     flex-direction: column;
     background: rgba(43, 47, 82, 0.3);
     p {
-      margin-bottom: 10px;
       @media (max-width: $mobile) {
         font-weight: 700;
         font-size: 22px;
@@ -622,14 +603,10 @@ body::after {
     }
     @media (max-width: 767.98px) {
     }
-    img {
-      margin-bottom: 10px;
-    }
-    svg {
-    }
   }
   &__headerItem {
     margin-top: 5px;
+    margin-bottom: 5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
