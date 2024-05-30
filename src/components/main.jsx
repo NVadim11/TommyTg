@@ -106,12 +106,12 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{isMobileDevice ? (
+				{!isMobileDevice ? (
 					<TelegramLinking />
 				) : (
 					<>
-						<Preloader loaded={!preloaderLoaded} />
-						{!user ? (
+						<Preloader loaded={preloaderLoaded} />
+						{user ? (
 							<>
 								<Header user={user} />
 								<main id='main' className='main'>

@@ -349,6 +349,8 @@ body::after {
     width: fit-content;
     display: flex;
     align-items: center;
+    justify-content: center;
+    height: 24px;
     img {
       width: 24px;
       height: 24px;

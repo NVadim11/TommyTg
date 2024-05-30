@@ -675,7 +675,7 @@ const Header = ({ user }) => {
 											<p>Referrals:</p>
 											<div className='popupInvite__headerItem'>
 												<img src={people} alt='people' />
-												<p>{totalReferrals}12</p>
+												<p>{totalReferrals}</p>
 											</div>
 											<svg
 												width='24'
