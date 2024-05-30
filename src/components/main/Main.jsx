@@ -501,9 +501,11 @@ const Main = ({ user }) => {
 			<div className='violettEllipse'>
 				<img src={violetEllipse} alt='' />
 			</div>
-			<div className='glowEllipse'>
-				<img src={skullGlow} alt='' />
-			</div>
+			{!gamePaused && (
+				<div className='glowEllipse'>
+					<img src={skullGlow} alt='' />
+				</div>
+			)}
 
 			<div className='mainContent__container'>
 				<div className='mainContent__phaseTwo'>
@@ -516,7 +518,6 @@ const Main = ({ user }) => {
 											fontSize: '22px',
 											textAlign: 'center',
 											alignContent: 'center',
-											marginTop: '80px',
 										}}
 									>
 										Time remaining: {formatTime(timeRemaining)} minutes

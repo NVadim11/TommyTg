@@ -14,8 +14,8 @@ const Header = ({ user }) => {
 	const { state } = useContext(GameInfoContext);
 	const [isToggled, setIsToggled] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [totalPoints, setTotalPoints] = useState(null);
-	const [totalReferrals, setTotalReferrals] = useState(null);
+	const [totalPoints, setTotalPoints] = useState(user?.wallet_balance);
+	const [totalReferrals, setTotalReferrals] = useState(user?.referrals_count);
 	const [leaderboardData, setLeaderboardData] = useState([]);
 	const [isLeaderboardOpen, setLeaderboardOpen] = useState(false);
 	const [isInviteOpen, setInviteOpen] = useState(false);
