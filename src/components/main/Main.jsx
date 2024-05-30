@@ -73,6 +73,10 @@ const Main = ({ user }) => {
 		return !isMobile;
 	};
 
+	// useEffect (() => {
+	// 	user?.active_at
+	// })
+
 	useEffect(() => {
 		if (!isDesktop()) {
 			const element = document.getElementById('clickableElement');
@@ -516,7 +520,7 @@ const Main = ({ user }) => {
 											fontSize: '22px',
 											textAlign: 'center',
 											alignContent: 'center',
-											marginTop: '140px',
+											marginTop: '80px'
 										}}
 									>
 										Time remaining: {formatTime(timeRemaining)} minutes

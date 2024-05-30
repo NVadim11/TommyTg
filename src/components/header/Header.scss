@@ -513,8 +513,7 @@ body::after {
 }
 
 .popupInvite {
-  padding: 0 16px;
-  margin: 32px 0 0 0;
+  padding: 0 12px;
   &__wrapper {
     flex-direction: column;
     align-items: center;
@@ -523,16 +522,27 @@ body::after {
     display: flex;
   }
   &__content {
-    border: 2px solid #fff;
+    // border: 2px solid #fff;
+    // border-radius: 20px;
+    // padding: 16px 12px;
+    // height: auto;
+    // backdrop-filter: blur(1.125rem);
+    // background: linear-gradient(180deg, rgb(11, 31, 70) 0%, rgb(0, 0, 0) 100%);
+    // display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+    // align-items: center;
+    margin-top: 32px;
+    padding: 24px 12px 12px 12px;
+    -webkit-backdrop-filter: blur(32px);
+    backdrop-filter: blur(32px);
+    background: linear-gradient(180deg, rgba(11, 31, 70, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid #554a9c;
     border-radius: 20px;
-    padding: 16px 12px;
-    height: auto;
-    backdrop-filter: blur(1.125rem);
-    background: linear-gradient(180deg, rgb(11, 31, 70) 0%, rgb(0, 0, 0) 100%);
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
   &__close {
     position: absolute;
