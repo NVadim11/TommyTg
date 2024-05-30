@@ -180,8 +180,63 @@ const Header = ({ user }) => {
 		<>
 			<header id='header' className='header'>
 				<div className='header__container'>
-					<div className='header__logo'>
+					{/* <div className='header__logo'>
 						<img src={logo} />
+					</div> */}
+					<div className='header__mobileMenu'>
+						<a className='header__mobileMenu-links' onClick={leaderBordBtn}>
+							Leadboard
+							<svg
+								width='24'
+								height='24'
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<g clip-path='url(#clip0_5127_4053)'>
+									<path
+										d='M17.4099 3.92878C17.3173 3.64458 17.0715 3.4373 16.7761 3.39441L13.9643 2.98575L12.7064 0.437531C12.5746 0.169687 12.3016 0 12.0026 0C11.7036 0 11.4307 0.169687 11.2988 0.437531L10.0409 2.9858L7.2287 3.39445C6.93324 3.43739 6.68738 3.64462 6.5949 3.92883C6.50242 4.21303 6.57957 4.52508 6.79374 4.73362L8.8291 6.71709L8.34817 9.51759C8.29754 9.81225 8.41871 10.11 8.66049 10.2856C8.90279 10.4619 9.22327 10.4836 9.48751 10.3454L12.0028 9.02311L14.5176 10.3454C14.7879 10.4872 15.1072 10.458 15.3446 10.2856C15.5864 10.11 15.7075 9.8123 15.657 9.51787L15.1765 6.71709L17.2113 4.73362C17.4252 4.52508 17.5019 4.21298 17.4099 3.92878Z'
+										fill='white'
+									/>
+									<path
+										d='M15.1404 11.9619H8.85957C8.42598 11.9619 8.07446 12.3134 8.07446 12.747V24.0001H15.9255V12.747C15.9255 12.3134 15.5739 11.9619 15.1404 11.9619Z'
+										fill='white'
+									/>
+									<path
+										d='M1.00862 15.1021C0.575026 15.1021 0.223511 15.4536 0.223511 15.8872V23.3791C0.223511 23.722 0.501433 23.9999 0.84423 23.9999H6.50434V15.1021H1.00862Z'
+										fill='white'
+									/>
+									<path
+										d='M22.9914 18.2427H17.4957V24.0001H23.1558C23.4987 24.0001 23.7766 23.7222 23.7766 23.3794V19.0278C23.7765 18.5942 23.425 18.2427 22.9914 18.2427Z'
+										fill='white'
+									/>
+								</g>
+								<defs>
+									<clipPath id='clip0_5127_4053'>
+										<rect width='24' height='24' fill='white' />
+									</clipPath>
+								</defs>
+							</svg>
+						</a>
+						<a
+							className='header__mobileMenu-links'
+							onClick={inviteFriendsBtn}
+							rel='noopener noreferrer'
+						>
+							Referral
+							<svg
+								width='24'
+								height='24'
+								viewBox='0 0 24 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<path
+									d='M17.9999 13.9999C17.9469 13.9999 17.8999 14.0139 17.8449 14.0159L14.8169 8.83787C15.3799 8.27987 15.7643 7.5672 15.9215 6.79033C16.0787 6.01345 16.0015 5.20739 15.6998 4.47444C15.3981 3.74149 14.8854 3.11471 14.2269 2.67363C13.5683 2.23255 12.7936 1.99707 12.0009 1.99707C11.2083 1.99707 10.4336 2.23255 9.77502 2.67363C9.11646 3.11471 8.60379 3.74149 8.30208 4.47444C8.00036 5.20739 7.9232 6.01345 8.08039 6.79033C8.23757 7.5672 8.62202 8.27987 9.18494 8.83787L6.16594 14.0169C6.10894 14.0139 6.05694 13.9999 5.99994 13.9999C5.25122 13.9973 4.51679 14.2048 3.88021 14.599C3.24363 14.9931 2.73046 15.5581 2.39908 16.2295C2.0677 16.9009 1.9314 17.6518 2.00571 18.3968C2.08002 19.1419 2.36194 19.8511 2.8194 20.4438C3.27687 21.0365 3.89151 21.4889 4.59339 21.7496C5.29528 22.0103 6.05624 22.0687 6.7897 21.9183C7.52315 21.7678 8.19966 21.4145 8.74226 20.8986C9.28486 20.3827 9.67175 19.7248 9.85894 18.9999H14.1409C14.3291 19.7227 14.7162 20.3784 15.2582 20.8923C15.8003 21.4062 16.4756 21.7578 17.2074 21.9072C17.9393 22.0566 18.6984 21.9977 19.3985 21.7373C20.0986 21.4769 20.7116 21.0255 21.168 20.4342C21.6244 19.8428 21.9058 19.1354 21.9803 18.3922C22.0547 17.6489 21.9193 16.8997 21.5894 16.2296C21.2594 15.5595 20.7482 14.9953 20.1137 14.6012C19.4792 14.207 18.7469 13.9987 17.9999 13.9999ZM14.1409 16.9999H9.85894C9.60499 16.0166 8.98602 15.167 8.12794 14.6239L10.9209 9.83387C11.6242 10.0559 12.3787 10.0559 13.0819 9.83387L15.8819 14.6199C15.0189 15.1617 14.396 16.0133 14.1409 16.9999Z'
+									fill='white'
+								/>
+							</svg>
+						</a>
 					</div>
 					<div className='header__mobileBtns'>
 						{user && totalPoints !== null && (
@@ -189,6 +244,7 @@ const Header = ({ user }) => {
 								{state?.info.header__totalScore} <span>{totalPoints}</span>
 							</div>
 						)}
+						
 						{/* <div className='header__leaderboard'>
 								<button onClick={leaderBordBtn}>
 									{state?.info.header__leaderboard}
@@ -219,7 +275,7 @@ const Header = ({ user }) => {
 									</svg>
 								</button>
 							</div> */}
-						<div className='header__mobileBtns-links'>
+						{/* <div className='header__mobileBtns-links'>
 							<a href='https://t.me/tomo_cat' target='_blank'>
 								<svg
 									width='24'
@@ -252,8 +308,8 @@ const Header = ({ user }) => {
 									/>
 								</svg>
 							</a>
-						</div>
-						<button
+						</div> */}
+						{/* <button
 							className='header__mobileBurger'
 							ref={containerRef}
 							onClick={toggleVisibility}
@@ -281,7 +337,7 @@ const Header = ({ user }) => {
 										<rect width='24' height='24' fill='white' />
 									</clipPath>
 								</defs>
-							</svg>
+							</svg> */}
 							{/* <div
 								className={
 									isToggled
@@ -293,7 +349,7 @@ const Header = ({ user }) => {
 								<span className='header__mobileBurger-line'></span>
 								<span className='header__mobileBurger-line'></span>
 							</div> */}
-							{isShown && (
+							{/* {isShown && (
 								<div className='header__mobileMenu'>
 									<a className='header__mobileMenu-links' onClick={leaderBordBtn}>
 										Leadboard
@@ -349,8 +405,8 @@ const Header = ({ user }) => {
 										</svg>
 									</a>
 								</div>
-							)}
-						</button>
+							)} */}
+						{/* </button> */}
 
 						{/* <div className='soundToggler'>
 							{isVisible ? (

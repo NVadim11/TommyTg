@@ -185,18 +185,16 @@ $desktop: 119.9988rem;
   }
   &__mobileMenu {
     display: flex;
-    position: absolute;
-    margin-top: 70px;
-    flex-direction: column;
     z-index: 200;
     top: 0;
     right: 12px;
     backdrop-filter: blur(24px);
-    background: rgba(17, 16, 30);
-    border: 1px solid #554a9c;
+    // background: rgba(17, 16, 30);
     border-radius: 20px; 
-    padding: 12px; 
-    gap: 5px;
+    padding: 12px 0; 
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
   }
   &__mobileMenu-links {
     background: rgba(43, 47, 82, 0.3);
