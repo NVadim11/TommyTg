@@ -82,10 +82,12 @@ const MainComponent = () => {
 
 		const checkAllLoaded = () => {
 			if (!isLoading && data && imagesRef.current.length === imageSources.length) {
-				setPreloaderLoaded(true);
-				AOS.init({
-					easing: 'custom',
-				});
+				setTimeout(() => {
+					setPreloaderLoaded(true);
+					AOS.init({
+						easing: 'custom',
+					});
+				}, 2000);
 			}
 		};
 		loadImages();
