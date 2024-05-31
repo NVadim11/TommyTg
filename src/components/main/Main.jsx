@@ -99,7 +99,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch(secretURL + '/api/set-activity', {
+		fetch(testURL + '/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ const Main = ({ user }) => {
 	const getGameStatus = async () => {
 		try {
 			const initGameStatusCheck = await axios.get(
-				secretURL + `/api/telegram-id/${userId}`
+				testURL + `/api/telegram-id/${userId}`
 			);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
