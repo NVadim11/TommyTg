@@ -1,7 +1,6 @@
 import bcrypt from 'bcryptjs';
 import moment from 'moment-timezone';
 import React, { useEffect, useState } from 'react';
-// import catCoinMove from '../../img/cat_coin_move.png';
 // import checkbox from '../../img/checkbox.png';
 import catCoin from '../../img/catcoin_gold.svg';
 import pet from '../../img/pet_icon.svg';

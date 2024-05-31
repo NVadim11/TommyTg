@@ -13,10 +13,9 @@ import smileIdle from '../../img/3_idle.gif';
 import smileSpeak from '../../img/3talk.gif';
 import happyIdle from '../../img/4_idle.gif';
 import happySpeak from '../../img/4talk.gif';
+import star from '../../img/Star.png';
 import boostCoin from '../../img/boostCoin.png';
 import catFace from '../../img/catFace.png';
-// import catCoinMove from '../../img/cat_coin_move.png';
-import star from '../../img/Star.png';
 import catCoin from '../../img/catcoin_gold.png';
 import energy from '../../img/energy.png';
 import finalForm from '../../img/finalForm.gif';
@@ -36,7 +35,7 @@ const Main = ({ user }) => {
 	const [currentImage, setCurrentImage] = useState(true);
 	const [coinState, setCoinState] = useState(false);
 	const [currCoins, setCurrCoins] = useState(0);
-	const [currEnergy, setCurrEnergy] = useState(user?.energy); //user?.energy
+	const [currEnergy, setCurrEnergy] = useState(0); //user?.energy
 	const [isCoinsChanged, setIsCoinsChanged] = useState(false);
 	const [catIdle, setCatIdle] = useState(sadIdle);
 	const [catSpeak, setCatSpeak] = useState(sadSpeak);
@@ -122,8 +121,12 @@ const Main = ({ user }) => {
 	};
 
 	useEffect(() => {
-		if (user) setCurrEnergy(user?.energy);
-	}, [user]);
+		if (user) {
+			setTimeout(() => {
+				setCurrEnergy(user.energy);
+			}, 500);
+		}
+	}, []);
 
 	useEffect(() => {
 		let timeoutId;

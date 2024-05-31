@@ -9,7 +9,7 @@ import smileIdle from '../img/3_idle.gif';
 import smileSpeak from '../img/3talk.gif';
 import happyIdle from '../img/4_idle.gif';
 import happySpeak from '../img/4talk.gif';
-import boostCoin from '../img/boost_coin_side.png';
+import boostCoin from '../img/boostCoin.png';
 import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
 import { useGetGameInfoQuery } from '../services';
