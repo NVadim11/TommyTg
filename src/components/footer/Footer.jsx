@@ -494,7 +494,7 @@ const Footer = ({ user }) => {
 							<button style={{ cursor: 'not-allowed' }} disabled>
 								<img src={pet} />
 								Pet
-								<span>Comming soon</span>
+								<span>Coming soon</span>
 							</button>
 							{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 						</div>
@@ -502,7 +502,7 @@ const Footer = ({ user }) => {
 							<button style={{ cursor: 'not-allowed' }} disabled>
 								<img src={shop} />
 								Shop
-								<span>Comming soon</span>
+								<span>Coming soon</span>
 							</button>
 							{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 						</div>
