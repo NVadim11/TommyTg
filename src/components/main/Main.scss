@@ -487,12 +487,16 @@ $desktop: 1919.98px;
 		margin-top: 0.9375rem;
 		padding: 0 1.25rem;
 		order: 5;
+		display: block;
 		p {
 			font-weight: 500;
 			font-size: 12px;
 			line-height: 130%;
 			color: #868686;
 			text-align: center;
+		}
+		@media (max-height: 730px) {
+			display: none;
 		}
 	}
 	&__coins {

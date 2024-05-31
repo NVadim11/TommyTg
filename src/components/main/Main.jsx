@@ -865,11 +865,11 @@ const Main = ({ user }) => {
 						</div>
 					)}
 
-					{/* {!gamePaused && (
+					{!gamePaused && (
 						<div className='mainContent__energyHint'>
 							<p>{state?.info.mainContent__energyHint}</p>
 						</div>
-					)} */}
+					)}
 					{coinState && (
 						<div className='mainContent__animation'>
 							<div className='mainContent__coinOne'>
