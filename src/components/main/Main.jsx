@@ -128,19 +128,27 @@ const Main = ({ user }) => {
 	}, []);
 
 	useEffect(() => {
-		let timeoutId;
+		let submitTimeoutId;
+		let pauseTimeoutId;
 
 		if (currEnergy >= 1000) {
 			setGamePaused(true);
 			setCatVisible(false);
-			timeoutId = setTimeout(() => {
+
+			// Call submitData after 2.5 seconds
+			submitTimeoutId = setTimeout(() => {
 				submitData();
-				pauseGame();
 			}, 2500);
+
+			// Call pauseGame after 3 seconds
+			pauseTimeoutId = setTimeout(() => {
+				pauseGame();
+			}, 3000);
 		}
 
 		return () => {
-			clearTimeout(timeoutId);
+			clearTimeout(submitTimeoutId);
+			clearTimeout(pauseTimeoutId);
 		};
 	}, [currEnergy]);
 
