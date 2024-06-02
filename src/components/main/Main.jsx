@@ -14,15 +14,15 @@ import smileSpeak from '../../img/3talk.gif';
 import happyIdle from '../../img/4_idle.gif';
 import happySpeak from '../../img/4talk.gif';
 import star from '../../img/Star.png';
-import boostCoin from '../../img/boostCoin.png';
-import catFace from '../../img/catFace.png';
-import catCoin from '../../img/catcoin_gold.png';
+import boostCoin from '../../img/boostCoin.webp';
+import catFace from '../../img/catFace.webp';
+import catCoin from '../../img/catcoin_gold.webp';
 import energy from '../../img/energy.png';
 import finalForm from '../../img/finalForm.gif';
 import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
 import orangeEllipse from '../../img/orangeEllipse.webp';
-import skullGlow from '../../img/skullGlow.png';
+import skullGlow from '../../img/skullGlow.webp';
 import violetEllipse from '../../img/violetEllipse.webp';
 import { useUpdateBalanceMutation } from '../../services/phpService';
 import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
@@ -398,6 +398,8 @@ const Main = ({ user }) => {
 
 		setAnimations((prev) => [...prev, { x, y }]);
 		setIsAnimationActive(true);
+
+		
 	};
 
 	const clearAnimations = () => {
@@ -588,7 +590,7 @@ const Main = ({ user }) => {
 															<motion.div
 																className={`clickerAnimation`}
 																initial={{ opacity: 1, y: 0 }}
-																animate={{ opacity: [1, 0], y: [-30, -120] }}
+																animate={{ opacity: [1, 0], y: [0, 0] }}
 																exit={{ opacity: 0 }}
 																transition={{ duration: 2 }}
 																style={{

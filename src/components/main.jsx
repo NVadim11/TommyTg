@@ -9,9 +9,20 @@ import smileIdle from '../img/3_idle.gif';
 import smileSpeak from '../img/3talk.gif';
 import happyIdle from '../img/4_idle.gif';
 import happySpeak from '../img/4talk.gif';
-import boostCoin from '../img/boostCoin.png';
 import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
+
+
+import star from '../img/Star.png';
+import boostCoin from '../img/boostCoin.webp';
+import catFace from '../img/catFace.webp';
+import catCoin from '../img/catcoin_gold.webp';
+import energy from '../img/energy.png';
+import goldIdle from '../img/goldIdle.gif';
+import orangeEllipse from '../img/orangeEllipse.webp';
+import skullGlow from '../img/skullGlow.webp';
+import violetEllipse from '../img/violetEllipse.webp';
+
 import { useGetGameInfoQuery } from '../services';
 import { useGetUserByTgIdQuery } from '../services/phpService';
 // import ComingSoon from './ComingSoon';
@@ -66,6 +77,14 @@ const MainComponent = () => {
 			finalForm,
 			goldForm,
 			boostCoin,
+			star,
+			catFace,
+			catCoin,
+			energy,
+			goldIdle,
+			orangeEllipse,
+			skullGlow,
+			violetEllipse
 		];
 
 		const loadImages = async () => {
@@ -108,12 +127,12 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{!isMobileDevice ? (
+				{/* {!isMobileDevice ? (
 					<TelegramLinking />
-				) : (
+				) : ( */}
 					<>
 						<Preloader loaded={preloaderLoaded} />
-						{user ? (
+						{!user ? (
 							<>
 								<Header user={user} />
 								<main id='main' className='main'>
@@ -127,7 +146,7 @@ const MainComponent = () => {
 							<NotFound />
 						)}
 					</>
-				)}
+				{/* )} */}
 			</>
 		</>
 	);
