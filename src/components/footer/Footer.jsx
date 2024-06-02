@@ -108,7 +108,7 @@ const Footer = ({ user }) => {
 				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
 				const remainingTime = user?.update_wallet_at - currentTimeStamp;
 				if (remainingTime >= 0) {
-					if (remainingTime <= 0) {
+					if (remainingTime <= 0 || null) {
 						setResetBtnDisabled(false);
 					} else {
 						setResetBtnDisabled(true);
