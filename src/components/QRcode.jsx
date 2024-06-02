@@ -5,20 +5,21 @@ const TelegramLinking = () => {
 	return (
 		<div
 			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
+				position: 'fixed',
+				top: '0',
+				left: '0',
+				width: '100vw',
 				height: '100vh',
-				zIndex: '1001',
-				width: '100%',
-				position: 'absolute',
-				backgroundRepeat: 'no-repeat',
-				backgroundPosition: 'center',
-				backgroundSize: 'cover',
-				flexDirection: 'column',
-				justifyContent: 'center',
-				backgroundColor: '#000',
 				background: 'linear-gradient(180deg, #0b1f46 0%, #000 100%)',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				transition: 'opacity 1s ease-out, visibility 0s 1s, transform 1s ease-in-out',
+				opacity: '1',
+				visibility: 'visible',
+				overflow: 'hidden',
+				transformOrigin: 'center center',
+				zIndex: '10000'
 			}}
 		>
 			<div

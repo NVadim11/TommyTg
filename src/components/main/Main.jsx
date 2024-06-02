@@ -388,20 +388,6 @@ const Main = ({ user }) => {
 		}
 	};
 
-	const handleShowAnimation = (event) => {
-		event.stopPropagation();
-		const touch = event.touches ? event.touches[0] : event;
-		const clicker = touch.currentTarget || touch.target;
-		const rect = clicker.getBoundingClientRect();
-		const x = touch.clientX - rect.left;
-		const y = touch.clientY - rect.top;
-
-		setAnimations((prev) => [...prev, { x, y }]);
-		setIsAnimationActive(true);
-
-		
-	};
-
 	const clearAnimations = () => {
 		setAnimations([]);
 	};
@@ -428,20 +414,22 @@ const Main = ({ user }) => {
 	};
 
 	const handleTouchStart = (event) => {
-		if (event.touches.length > 1) {
+		if (event.touches && event.touches.length > 1) {
 			event.preventDefault();
 			return;
 		}
 
 		if (!event.isTrusted) return;
+
 		if ((currEnergy >= 801 && currEnergy <= 1000) || boostPhase === true) {
 			playBoostCatClick();
 		} else {
 			playSadCatClick();
 		}
+
 		setCurrentImage(false);
 		setCoinState(true);
-		handleShowAnimation(event);
+		handleShowAnimation(event); // Передаем само событие
 		clearTimeout(timeoutRef.current);
 		clearTimeout(coinRef.current);
 		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
@@ -449,15 +437,46 @@ const Main = ({ user }) => {
 	};
 
 	const handleTouchEnd = (event) => {
-		if (event && event.touches) {
-			Array.from(event.touches).forEach((touch) => {
-				handleShowAnimation(touch);
+		if (event && event.changedTouches && event.changedTouches.length > 0) {
+			Array.from(event.changedTouches).forEach((touch) => {
+				handleShowAnimation({
+					touches: [touch],
+					target: event.target,
+					currentTarget: event.currentTarget,
+				});
 			});
+		} else {
+			handleShowAnimation(event); // Обработка для не-touch событий
 		}
+
 		const clickNewCoins = updateCurrCoins();
 		setCurrCoins((prevCoins) => prevCoins + clickNewCoins);
 		accumulatedCoinsRef.current += clickNewCoins;
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
+	};
+
+	const handleShowAnimation = (event) => {
+		if (!event) return;
+
+		if (event.stopPropagation) {
+			event.stopPropagation();
+		}
+
+		const touch = event.touches ? event.touches[0] : event;
+		const clicker = event.currentTarget || touch.target;
+		if (!clicker) return;
+
+		const rect = clicker.getBoundingClientRect();
+		const x = touch.clientX - rect.left;
+		const y = touch.clientY - rect.top;
+
+		console.log('Touch event:', touch);
+		console.log('Clicker element:', clicker);
+		console.log('Bounding rect:', rect);
+		console.log('Calculated coordinates:', { x, y });
+
+		setAnimations((prev) => [...prev, { x, y }]);
+		setIsAnimationActive(true);
 	};
 
 	const maxEnergy = 1000;
@@ -584,7 +603,7 @@ const Main = ({ user }) => {
 												onTouchStart={handleTouchStart}
 												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
 											>
-												{animations.map((anim, index) => (
+												{/* {animations.map((anim, index) => (
 													<AnimatePresence key={index}>
 														{isAnimationActive && (
 															<motion.div
@@ -599,6 +618,34 @@ const Main = ({ user }) => {
 																	top: `${anim.y}px`,
 																	position: 'absolute',
 																	color: boostPhase ? '#FFDA17' : 'white',
+																	zIndex: 0,
+																	textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)',
+																}}
+																onAnimationComplete={() => {
+																	clearAnimations(index);
+																}}
+															>
+																+{clickNewCoins}
+															</motion.div>
+														)}
+													</AnimatePresence>
+												))} */}
+												{animations.map((anim, index) => (
+													<AnimatePresence key={index}>
+														{isAnimationActive && (
+															<motion.div
+																className='clickerAnimation'
+																initial={{ opacity: 1, y: 0 }}
+																animate={{ opacity: [1, 0], y: [-30, -120] }}
+																exit={{ opacity: 0 }}
+																transition={{ duration: 2 }}
+																style={{
+																	fontSize: '45px',
+																	left: `${anim.x}px`,
+																	top: `${anim.y}px`,
+																	position: 'absolute',
+																	color: boostPhase ? '#FFDA17' : 'white',
+																	zIndex: 0,
 																	textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)',
 																}}
 																onAnimationComplete={() => {
@@ -610,15 +657,12 @@ const Main = ({ user }) => {
 														)}
 													</AnimatePresence>
 												))}
-												<motion.img
+												<img
 													id='catGif'
 													className='mainContent__catIdle'
 													src={boostPhase ? goldIdle : catIdle}
 													draggable='false'
 													alt='cat animation'
-													animate={{ opacity: 1 }}
-													initial={{ opacity: 0 }}
-													transition={{ duration: 0.5 }}
 												/>
 											</div>
 										) : (
@@ -629,7 +673,7 @@ const Main = ({ user }) => {
 												onTouchStart={handleTouchStart}
 												onTouchEnd={(e) => handleTouchEnd(e.touches[0], e)}
 											>
-												{animations.map((anim, index) => (
+												{/* {animations.map((anim, index) => (
 													<AnimatePresence key={index}>
 														{isAnimationActive && (
 															<motion.div
@@ -654,16 +698,42 @@ const Main = ({ user }) => {
 															</motion.div>
 														)}
 													</AnimatePresence>
+												))} */}
+
+												{animations.map((anim, index) => (
+													<AnimatePresence key={index}>
+														{isAnimationActive && (
+															<motion.div
+																className='clickerAnimation'
+																initial={{ opacity: 1, y: 0 }}
+																animate={{ opacity: [1, 0], y: [-30, -120] }}
+																exit={{ opacity: 0 }}
+																transition={{ duration: 2 }}
+																style={{
+																	fontSize: '45px',
+																	left: `${anim.x}px`,
+																	top: `${anim.y}px`,
+																	position: 'absolute',
+																	color: boostPhase ? '#FFDA17' : 'white',
+																	zIndex: 0,
+																	textShadow: '0px 4px 6px rgba(0, 0, 0, 0.5)',
+																}}
+																onAnimationComplete={() => {
+																	clearAnimations(index);
+																}}
+															>
+																+{clickNewCoins}
+															</motion.div>
+														)}
+													</AnimatePresence>
 												))}
-												<motion.img
+
+												<img
 													id='catGif'
 													className='mainContent__catMeow'
 													src={boostPhase ? goldForm : catSpeak}
 													draggable='false'
 													alt='cat animation'
-													animate={{ opacity: 1 }}
-													initial={{ opacity: 0 }}
-													transition={{ duration: 0.5 }}
 												/>
 											</div>
 										)}
