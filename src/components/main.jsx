@@ -12,7 +12,6 @@ import happySpeak from '../img/4talk.gif';
 import finalForm from '../img/finalForm.gif';
 import goldForm from '../img/gold.gif';
 
-
 import star from '../img/Star.png';
 import boostCoin from '../img/boostCoin.webp';
 import catFace from '../img/catFace.webp';
@@ -28,7 +27,6 @@ import { useGetUserByTgIdQuery } from '../services/phpService';
 // import ComingSoon from './ComingSoon';
 // import Maintenance from './Maintenance';
 import NotFound from './404';
-import TelegramLinking from './QRcode';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Main from './main/Main';
@@ -84,7 +82,7 @@ const MainComponent = () => {
 			goldIdle,
 			orangeEllipse,
 			skullGlow,
-			violetEllipse
+			violetEllipse,
 		];
 
 		const loadImages = async () => {
@@ -127,26 +125,26 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{!isMobileDevice ? (
+				{/* {!isMobileDevice ? (
 					<TelegramLinking />
-				) : (
-					<>
-						<Preloader loaded={preloaderLoaded} />
-						{user ? (
-							<>
-								<Header user={user} />
-								<main id='main' className='main'>
-									<Main user={user} />
-								</main>
-								<Footer user={user} />
-							</>
-						) : (
-							// <ComingSoon />
-							// <Maintenance />
-							<NotFound />
-						)}
-					</>
-				)}
+				) : ( */}
+				<>
+					<Preloader loaded={preloaderLoaded} />
+					{user ? (
+						<>
+							<Header user={user} />
+							<main id='main' className='main'>
+								<Main user={user} />
+							</main>
+							<Footer user={user} />
+						</>
+					) : (
+						// <ComingSoon />
+						// <Maintenance />
+						<NotFound />
+					)}
+				</>
+				{/* )} */}
 			</>
 		</>
 	);

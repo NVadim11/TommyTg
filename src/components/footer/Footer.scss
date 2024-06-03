@@ -258,7 +258,7 @@ body::after {
     align-items: center;
     margin-bottom: 5px;
     button {
-      padding: 12px 24px 12px 24px;
+      padding: 12px 16px;
       width: 100%;
       border: 1px solid #3f3773;
       border-radius: 10px;
@@ -266,26 +266,28 @@ body::after {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: start;
+      justify-content: space-between;
       font-weight: 600;
       font-size: 14px;
       color: #fff;
+      text-align: start;
+    }
+    span {
+      text-align: start;
+      width: 75%;
+      margin-right: 10px;
     }
     svg {
-      position: absolute;
-      right: 9px;
       width: 20px;
     }
     p {
-      position: absolute;
-      right: 9px;
       display: flex;
       align-items: center;
       background: linear-gradient(270deg, #1cafee 0%, #35cf6e 71.63%, #3fdb3c 100%);
       border: 1px solid #fff;
       border-radius: 31px;
       padding: 6px 12px;
-      width: 80px;
+      width: 25%;
       justify-content: center;
     }
     .rewardCoin {

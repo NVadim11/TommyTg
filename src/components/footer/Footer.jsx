@@ -29,7 +29,7 @@ const Footer = ({ user }) => {
 	const [changeWallet] = useChangeWalletMutation();
 	const [walletVaL, setWalletVal] = useState('');
 	const [walletInputDisabled, setWalletInputDisabled] = useState(false);
-	const [resetBtnDisabled, setResetBtnDisabled] = useState(true);
+	const [resetBtnDisabled, setResetBtnDisabled] = useState(true); // false?
 	const [activeTab, setActiveTab] = useState(0);
 	const [passDaily] = usePassDailyMutation();
 	const [passPartners] = usePassPartnersMutation();
@@ -107,8 +107,8 @@ const Footer = ({ user }) => {
 				// Get the current time in Frankfurt time zone ('Etc/GMT-3')
 				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
 				const remainingTime = user?.update_wallet_at - currentTimeStamp;
-				if (remainingTime >= 0) {
-					if (remainingTime <= 0 || null) {
+				if (remainingTime >= 1) {
+					if (remainingTime <= 0 || user.update_wallet_at === null) {
 						setResetBtnDisabled(false);
 					} else {
 						setResetBtnDisabled(true);
@@ -579,18 +579,18 @@ const Footer = ({ user }) => {
 								</div>
 								<div
 									className={`popupTasks__tabs-btn ${activeTab === 2 ? 'active' : ''}`}
-									// onClick={
-									// 	user?.wallet_address
-									// 		? () => handleTabClick(2)
-									// 		: () => {
-									// 				setErrorText('Submit your wallet first.');
-									// 				setErrMsgVisible(true);
-									// 				blurPopupTasks();
-									// 		  }
-									// }
+									onClick={
+										user?.wallet_address
+											? () => handleTabClick(2)
+											: () => {
+													setErrorText('Submit your wallet first.');
+													setErrMsgVisible(true);
+													blurPopupTasks();
+											  }
+									}
 								>
 									<button>Partnership</button>
-									<div className='footerMain__activitiesHint'>Coming Soon</div>
+									{/* <div className='footerMain__activitiesHint'>Coming Soon</div> */}
 								</div>
 							</div>
 							<div className={`popupTasks__tasks ${activeTab === 0 ? 'active' : ''}`}>
@@ -1130,15 +1130,15 @@ const Footer = ({ user }) => {
 													>
 														<span>{quest.partners_quest.name}</span>
 														{quest.status === 0 ? (
-															<div>
-																+ {quest.reward}{' '}
+															<p className='popupTasks__task-rew'>
+																+{quest.reward}{' '}
 																<img
 																	className='rewardCoin'
 																	src={catCoin}
 																	alt='animation'
 																	draggable='false'
 																/>
-															</div>
+															</p>
 														) : (
 															<svg
 																width='24'
