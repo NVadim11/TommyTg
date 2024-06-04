@@ -134,8 +134,10 @@ const Footer = ({ user }) => {
 	};
 
 	const tasksBtn = () => {
-		setTasksOpen(true);
 		fadeShow();
+		setTimeout(() => {
+			setTasksOpen(true);
+		}, 250);
 	};
 
 	const fadeShow = () => {
@@ -651,7 +653,7 @@ const Footer = ({ user }) => {
 													disabled
 												/>
 												<button
-												className='popupTasks__walletTask-inputBtn'
+													className='popupTasks__walletTask-inputBtn'
 													onClick={resetWalletEnabler}
 													disabled={resetBtnDisabled === true}
 												>

@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-// import leaderboard_icon from '../../img/leaderboard_icon.svg';
 import crown from '../../img/crown.svg';
 import link from '../../img/link.svg';
 import money from '../../img/money.svg';
 import people from '../../img/people-icon.svg';
 import { useGetLeaderboardMutation } from '../../services/phpService';
-// import { toggleMuteAllSounds } from '../../utility/Audio';
 
 import { GameInfoContext } from '../../helpers/context';
 import './Header.scss';
@@ -14,12 +12,10 @@ const Header = ({ user }) => {
 	const { state } = useContext(GameInfoContext);
 	const [isToggled, setIsToggled] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	// const [totalPoints, setTotalPoints] = useState(user?.wallet_balance);
 	const [totalReferrals, setTotalReferrals] = useState(user?.referrals_count);
 	const [leaderboardData, setLeaderboardData] = useState([]);
 	const [isLeaderboardOpen, setLeaderboardOpen] = useState(false);
 	const [isInviteOpen, setInviteOpen] = useState(false);
-	// const [isVisible, setIsVisible] = useState(false);
 	const [isElementPresent, setIsElementPresent] = useState(false);
 	const initLeadersRef = useRef(null);
 	const [getLeaderboard] = useGetLeaderboardMutation();
@@ -59,44 +55,8 @@ const Header = ({ user }) => {
 		return () => observer.disconnect();
 	}, []);
 
-	const toggleVisibility = () => {
-		setIsShown(!isShown);
-		setIsToggled(!isToggled);
-	};
-
-	// const toggleVisibilitySound = () => {
-	// toggleMuteAllSounds();
-	// setIsVisible(!isVisible);
-	// };
-
 	useEffect(() => {
-		const fetchData = async () => {
-			if (Object.keys(user).length) {
-				const res = await getLeaderboard(user.id).unwrap();
-				setLeaderboardData(res);
-				setTotalReferrals(user?.referrals_count);
-				// setTotalPoints(user?.wallet_balance);
-				const intervalId = setInterval(() => {
-					getLeaderboard(user.id)
-						.unwrap()
-						.then((data) => setLeaderboardData(data))
-						.catch((error) => console.error('Error refreshing leaderboard:', error));
-				}, 60000);
-				return intervalId;
-			}
-		};
-
-		let intervalId;
-
-		if (user) {
-			fetchData().then((id) => {
-				intervalId = id;
-			});
-		}
-
-		return () => {
-			clearInterval(intervalId);
-		};
+		setTotalReferrals(user?.referrals_count);
 	}, [user]);
 
 	useEffect(() => {
@@ -111,15 +71,27 @@ const Header = ({ user }) => {
 	}, []);
 
 	const leaderBordBtn = () => {
-		setLeaderboardOpen(true);
+		const fetchData = async () => {
+			if (Object.keys(user).length) {
+				const res = await getLeaderboard(user.id).unwrap();
+				setLeaderboardData(res);
+			}
+		};
+		fetchData();
+
 		fadeShow();
 		setIsShown(false);
+		setTimeout(() => {
+			setLeaderboardOpen(true);
+		}, 250);
 	};
 
 	const inviteFriendsBtn = () => {
-		setInviteOpen(true);
 		fadeShow();
 		setIsShown(false);
+		setTimeout(() => {
+			setInviteOpen(true);
+		}, 250);
 	};
 
 	const fadeShow = () => {
