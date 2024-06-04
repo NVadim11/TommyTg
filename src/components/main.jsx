@@ -125,26 +125,26 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{/* {!isMobileDevice ? (
+				{!isMobileDevice ? (
 					<TelegramLinking />
-				) : ( */}
-				<>
-					<Preloader loaded={preloaderLoaded} />
-					{user ? (
-						<>
-							<Header user={user} />
-							<main id='main' className='main'>
-								<Main user={user} />
-							</main>
-							<Footer user={user} />
-						</>
-					) : (
-						// <ComingSoon />
-						// <Maintenance />
-						<NotFound />
-					)}
-				</>
-				{/* )} */}
+				) : (
+					<>
+						<Preloader loaded={preloaderLoaded} />
+						{user ? (
+							<>
+								<Header user={user} />
+								<main id='main' className='main'>
+									<Main user={user} />
+								</main>
+								<Footer user={user} />
+							</>
+						) : (
+							// <ComingSoon />
+							// <Maintenance />
+							<NotFound />
+						)}
+					</>
+				)}
 			</>
 		</>
 	);
