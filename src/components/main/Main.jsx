@@ -25,7 +25,6 @@ import orangeEllipse from '../../img/orangeEllipse.webp';
 import skullGlow from '../../img/skullGlow.webp';
 import violetEllipse from '../../img/violetEllipse.webp';
 import { useUpdateBalanceMutation } from '../../services/phpService';
-import { playBoostCatClick, playSadCatClick } from '../../utility/Audio';
 import './Main.scss';
 
 const Main = ({ user }) => {
@@ -36,12 +35,9 @@ const Main = ({ user }) => {
 	const [coinState, setCoinState] = useState(false);
 	const [currCoins, setCurrCoins] = useState(0);
 	const [currEnergy, setCurrEnergy] = useState(0); //user?.energy
-	const [isCoinsChanged, setIsCoinsChanged] = useState(false);
 	const [catIdle, setCatIdle] = useState(sadIdle);
 	const [catSpeak, setCatSpeak] = useState(sadSpeak);
-	const timeoutRef = useRef(null);
 	const coinRef = useRef(null);
-	const accumulatedCoinsRef = useRef(0);
 	const [updateBalance] = useUpdateBalanceMutation();
 	const [position, setPosition] = useState({ x: '0', y: '0' });
 	const [boostPhase, setBoostPhase] = useState(false);
@@ -55,11 +51,17 @@ const Main = ({ user }) => {
 	let [clickNewCoins, setClickNewCoins] = useState(1);
 	const [gamePaused, setGamePaused] = useState(false);
 	const [timeRemaining, setTimeRemaining] = useState('');
-
 	const [isAnimationActive, setIsAnimationActive] = useState(false);
 	const [animations, setAnimations] = useState([]);
-
 	const [totalPoints, setTotalPoints] = useState(user?.wallet_balance);
+
+	const accumulatedCoinsRef = useRef(0);
+	const [isCoinsChanged, setIsCoinsChanged] = useState(false);
+	const isCoinsChangedRef = useRef(isCoinsChanged);
+	const [resetCoinsCalled, setResetCoinsCalled] = useState(false);
+	const timeoutRef = useRef(null);
+	const catImgRef = useRef(null);
+
 	// aws
 	const secretKey = process.env.REACT_APP_SECRET_KEY;
 
@@ -97,7 +99,7 @@ const Main = ({ user }) => {
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
-		fetch(secretURL + '/api/set-activity', {
+		fetch(testURL + '/api/set-activity', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -128,35 +130,26 @@ const Main = ({ user }) => {
 	}, []);
 
 	useEffect(() => {
-		let submitTimeoutId;
 		let pauseTimeoutId;
 
 		if (currEnergy >= 1000) {
 			setGamePaused(true);
 			setCatVisible(false);
 
-			// Call submitData after 2.5 seconds
-			submitTimeoutId = setTimeout(() => {
-				submitData();
-			}, 2500);
-
 			// Call pauseGame after 3 seconds
 			pauseTimeoutId = setTimeout(() => {
 				pauseGame();
-			}, 3000);
+			}, 1000);
 		}
 
 		return () => {
-			clearTimeout(submitTimeoutId);
 			clearTimeout(pauseTimeoutId);
 		};
 	}, [currEnergy]);
 
 	const getGameStatus = async () => {
 		try {
-			const initGameStatusCheck = await axios.get(
-				secretURL + `/api/telegram-id/${userId}`
-			);
+			const initGameStatusCheck = await axios.get(testURL + `/api/telegram-id/${userId}`);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
 		}
@@ -337,7 +330,9 @@ const Main = ({ user }) => {
 		} else if (currEnergy >= 151 && currEnergy <= 300) {
 			catIdleImage = normalIdle;
 			catSpeakImage = normalSpeak;
-		} else if (currEnergy >= 301 && currEnergy <= 550) {
+		} else if (currEnergy >= 301 && currEnergy <= 550 && !resetCoinsCalled) {
+			setResetCoinsCalled(true); // Set the state to true
+			resetCoins(); // Call resetCoins only once
 			catIdleImage = smileIdle;
 			catSpeakImage = smileSpeak;
 		} else if (currEnergy >= 551 && currEnergy <= 800) {
@@ -350,19 +345,33 @@ const Main = ({ user }) => {
 		setCatIdle(catIdleImage);
 		setCatSpeak(catSpeakImage);
 		setIsCoinsChanged(true);
+		resetTimeout();
 		return clickNewCoins;
 	};
 
-	useEffect(() => {
-		const timer = setInterval(() => {
-			if (isCoinsChanged) {
-				submitData(accumulatedCoinsRef.current);
-				setIsCoinsChanged(false);
-				accumulatedCoinsRef.current = 0;
-			}
-		}, 3000);
+	const resetCoins = () => {
+		submitData(accumulatedCoinsRef.current);
+		accumulatedCoinsRef.current = 0;
+	};
 
-		return () => clearInterval(timer);
+	const resetTimeout = () => {
+		if (timeoutRef.current) {
+			clearTimeout(timeoutRef.current);
+		}
+		timeoutRef.current = setTimeout(() => {
+			submitData(accumulatedCoinsRef.current);
+			setIsCoinsChanged(false);
+			accumulatedCoinsRef.current = 0;
+		}, 500);
+	};
+
+	useEffect(() => {
+		isCoinsChangedRef.current = isCoinsChanged;
+		return () => {
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current);
+			}
+		};
 	}, [isCoinsChanged]);
 
 	const submitData = async (coins) => {
@@ -394,18 +403,13 @@ const Main = ({ user }) => {
 
 	const coinClicker = (event) => {
 		if (!event.isTrusted) return;
-		if ((currEnergy >= 801 && currEnergy <= 1000) || boostPhase === true) {
-			playBoostCatClick();
-		} else {
-			playSadCatClick();
-		}
 		setCurrentImage(false);
 		setCoinState(true);
 		handleShowAnimation(event);
 		setCurrEnergy((prevEnergy) => Math.min(prevEnergy + happinessVal, 1000));
-		clearTimeout(timeoutRef.current);
+		clearTimeout(catImgRef.current);
 		clearTimeout(coinRef.current);
-		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
+		catImgRef.current = setTimeout(() => setCurrentImage(true), 1100);
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
 
 		const clickNewCoins = updateCurrCoins();
@@ -418,21 +422,13 @@ const Main = ({ user }) => {
 			event.preventDefault();
 			return;
 		}
-
 		if (!event.isTrusted) return;
-
-		if ((currEnergy >= 801 && currEnergy <= 1000) || boostPhase === true) {
-			playBoostCatClick();
-		} else {
-			playSadCatClick();
-		}
-
 		setCurrentImage(false);
 		setCoinState(true);
-		handleShowAnimation(event); // Передаем само событие
-		clearTimeout(timeoutRef.current);
+		handleShowAnimation(event);
+		clearTimeout(catImgRef.current);
 		clearTimeout(coinRef.current);
-		timeoutRef.current = setTimeout(() => setCurrentImage(true), 1100);
+		catImgRef.current = setTimeout(() => setCurrentImage(true), 1100);
 		coinRef.current = setTimeout(() => setCoinState(false), 4000);
 	};
 
