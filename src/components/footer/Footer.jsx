@@ -29,7 +29,7 @@ const Footer = ({ user }) => {
 	const [changeWallet] = useChangeWalletMutation();
 	const [walletVaL, setWalletVal] = useState('');
 	const [walletInputDisabled, setWalletInputDisabled] = useState(false);
-	const [resetBtnDisabled, setResetBtnDisabled] = useState(true); // false?
+	const [resetBtnDisabled, setResetBtnDisabled] = useState(false); // false?
 	const [activeTab, setActiveTab] = useState(0);
 	const [passDaily] = usePassDailyMutation();
 	const [passPartners] = usePassPartnersMutation();
@@ -651,6 +651,7 @@ const Footer = ({ user }) => {
 													disabled
 												/>
 												<button
+												className='popupTasks__walletTask-inputBtn'
 													onClick={resetWalletEnabler}
 													disabled={resetBtnDisabled === true}
 												>
