@@ -19,7 +19,7 @@ const TelegramLinking = () => {
 				visibility: 'visible',
 				overflow: 'hidden',
 				transformOrigin: 'center center',
-				zIndex: '10000'
+				zIndex: '10000',
 			}}
 		>
 			<div

@@ -3,20 +3,14 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import TelegramLinking from '../components/QRcode';
 import { GameInfoContext } from '../helpers/context';
 import sadIdle from '../img/1_idle.gif';
-import sadSpeak from '../img/1talk.gif';
 import normalIdle from '../img/2_idle.gif';
-import normalSpeak from '../img/2talk.gif';
 import smileIdle from '../img/3_idle.gif';
-import smileSpeak from '../img/3talk.gif';
 import happyIdle from '../img/4_idle.gif';
-import happySpeak from '../img/4talk.gif';
 import star from '../img/Star.png';
 import boostCoin from '../img/boostCoin.webp';
 import catFace from '../img/catFace.webp';
 import catCoin from '../img/catcoin_gold.webp';
 import energy from '../img/energy.png';
-import finalForm from '../img/finalForm.gif';
-import goldForm from '../img/gold.gif';
 import goldIdle from '../img/goldIdle.gif';
 import orangeEllipse from '../img/orangeEllipse.webp';
 import skullGlow from '../img/skullGlow.webp';
@@ -64,15 +58,9 @@ const MainComponent = () => {
 
 		const imageSources = [
 			sadIdle,
-			sadSpeak,
 			normalIdle,
-			normalSpeak,
 			smileIdle,
-			smileSpeak,
 			happyIdle,
-			happySpeak,
-			finalForm,
-			goldForm,
 			boostCoin,
 			star,
 			catFace,
@@ -103,7 +91,7 @@ const MainComponent = () => {
 					AOS.init({
 						easing: 'custom',
 					});
-				}, 2000);
+				}, 500);
 			}
 		};
 		loadImages();
