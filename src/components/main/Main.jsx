@@ -554,7 +554,7 @@ const Main = ({ user }) => {
 										marginTop: '15px',
 									}}
 								>
-									Tomo is tired, come back when timer is over.
+									Blackie is tired, come back when timer is over.
 								</p>
 							</div>
 						) : (

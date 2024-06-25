@@ -1,5 +1,6 @@
 import AOS from 'aos';
 import { useContext, useEffect, useRef, useState } from 'react';
+import TelegramLinking from '../components/QRcode';
 import { GameInfoContext } from '../helpers/context';
 import sadIdle from '../img/1_idle.gif';
 import sadSpeak from '../img/1talk.gif';
@@ -123,26 +124,26 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{/* {!isMobileDevice ? (
+				{!isMobileDevice ? (
 					<TelegramLinking />
-				) : ( */}
-				<>
-					<Preloader loaded={preloaderLoaded} />
-					{user ? (
-						<>
-							<Header user={user} />
-							<main id='main' className='main'>
-								<Main user={user} />
-							</main>
-							<Footer user={user} />
-						</>
-					) : (
-						// <ComingSoon />
-						// <Maintenance />
-						<NotFound />
-					)}
-				</>
-				{/* )} */}
+				) : (
+					<>
+						<Preloader loaded={preloaderLoaded} />
+						{user ? (
+							<>
+								<Header user={user} />
+								<main id='main' className='main'>
+									<Main user={user} />
+								</main>
+								<Footer user={user} />
+							</>
+						) : (
+							// <ComingSoon />
+							// <Maintenance />
+							<NotFound />
+						)}
+					</>
+				)}
 			</>
 		</>
 	);
