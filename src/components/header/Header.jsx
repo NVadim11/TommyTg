@@ -761,8 +761,7 @@ const Header = ({ user }) => {
 								</div>
 							</div>
 							<div className='inviteLinkBtn'>
-							{/* <button onClick={inviteLink}>Invite</button> */}
-								<button>Invite</button>
+								<button onClick={inviteLink}>Invite</button>
 							</div>
 						</div>
 					</div>
