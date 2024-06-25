@@ -87,7 +87,7 @@ const Footer = ({ user }) => {
 		hour: '2-digit',
 		minute: '2-digit',
 		hour12: false,
-		timeZone: 'Etc/GMT-3',
+		timeZone: 'UTC',
 	};
 	const now = new Date();
 	const dateStringWithTime = now.toLocaleString('en-GB', options);
@@ -105,7 +105,7 @@ const Footer = ({ user }) => {
 		if (user) {
 			const updateGameStatus = () => {
 				// Get the current time in Frankfurt time zone ('Etc/GMT-3')
-				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
+				const currentTimeStamp = moment.tz('UTC').unix();
 				const remainingTime = user?.update_wallet_at - currentTimeStamp;
 				if (remainingTime >= 1) {
 					if (remainingTime <= 0 || user.update_wallet_at === null) {
@@ -189,7 +189,7 @@ const Footer = ({ user }) => {
 	};
 
 	const twitterClick = async () => {
-		tg.openLink('https://twitter.com/TomoCatSol');
+		// tg.openLink('#');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -216,7 +216,7 @@ const Footer = ({ user }) => {
 	};
 
 	const tgClickChat = async () => {
-		tg.openLink('https://t.me/tomocat_sol');
+		// tg.openLink('#');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -243,7 +243,7 @@ const Footer = ({ user }) => {
 	};
 
 	const tgClickChannel = async () => {
-		tg.openLink('https://t.me/tomo_cat');
+		// tg.openLink('#');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),
@@ -270,7 +270,7 @@ const Footer = ({ user }) => {
 	};
 
 	const websiteClick = async () => {
-		tg.openLink('https://tomocat.com/');
+		// tg.openLink('#');
 		try {
 			await passTask({
 				token: await bcrypt.hash(secretKey + dateStringWithTime, 10),

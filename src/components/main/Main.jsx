@@ -95,7 +95,7 @@ const Main = ({ user }) => {
 			hour: '2-digit',
 			minute: '2-digit',
 			hour12: false,
-			timeZone: 'Etc/GMT-3',
+			timeZone: 'UTC',
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 
@@ -161,7 +161,7 @@ const Main = ({ user }) => {
 		if (user) {
 			const updateGameStatus = () => {
 				// Get the current time in Frankfurt time zone ('Etc/GMT-3')
-				const currentTimeStamp = moment.tz('Etc/GMT-3').unix();
+				const currentTimeStamp = moment.tz('UTC').unix();
 				const remainingTime = user?.active_at - currentTimeStamp;
 				if (remainingTime >= 0) {
 					if (remainingTime <= 0) {
@@ -353,7 +353,7 @@ const Main = ({ user }) => {
 			hour: '2-digit',
 			minute: '2-digit',
 			hour12: false,
-			timeZone: 'Etc/GMT-3',
+			timeZone: 'UTC',
 		};
 		const dateStringWithTime = now.toLocaleString('en-GB', options);
 		try {
