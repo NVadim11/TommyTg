@@ -6,14 +6,20 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { GameInfoContext } from '../../helpers/context';
 import sadIdle from '../../img/1_idle.gif';
+import sadSpeak from '../../img/1talk.gif';
 import normalIdle from '../../img/2_idle.gif';
+import normalSpeak from '../../img/2talk.gif';
 import smileIdle from '../../img/3_idle.gif';
+import smileSpeak from '../../img/3talk.gif';
 import happyIdle from '../../img/4_idle.gif';
+import happySpeak from '../../img/4talk.gif';
 import star from '../../img/Star.png';
 import boostCoin from '../../img/boostCoin.webp';
 import catFace from '../../img/catFace.webp';
 import catCoin from '../../img/catcoin_gold.webp';
 import energy from '../../img/energy.png';
+import finalForm from '../../img/finalForm.gif';
+import goldForm from '../../img/gold.gif';
 import goldIdle from '../../img/goldIdle.gif';
 import orangeEllipse from '../../img/orangeEllipse.webp';
 import skullGlow from '../../img/skullGlow.webp';
@@ -30,6 +36,7 @@ const Main = ({ user }) => {
 	const [currCoins, setCurrCoins] = useState(0);
 	const [currEnergy, setCurrEnergy] = useState(0); //user?.energy
 	const [catIdle, setCatIdle] = useState(sadIdle);
+	const [catSpeak, setCatSpeak] = useState(sadSpeak);
 	const coinRef = useRef(null);
 	const [updateBalance] = useUpdateBalanceMutation();
 	const [position, setPosition] = useState({ x: '0', y: '0' });
@@ -142,7 +149,9 @@ const Main = ({ user }) => {
 
 	const getGameStatus = async () => {
 		try {
-			const initGameStatusCheck = await axios.get(secretURL + `/api/telegram-id/${userId}`);
+			const initGameStatusCheck = await axios.get(
+				secretURL + `/api/telegram-id/${userId}`
+			);
 		} catch (e) {
 			console.log('Error fetching leaderboard data');
 		}
@@ -188,6 +197,7 @@ const Main = ({ user }) => {
 	};
 
 	let catIdleImage = catIdle;
+	let catSpeakImage = catSpeak;
 
 	const boostClickedHandler = () => {
 		handleBoostClick();
@@ -285,18 +295,24 @@ const Main = ({ user }) => {
 	const updateCurrCoins = () => {
 		if (currEnergy >= 0 && currEnergy <= 150) {
 			catIdleImage = sadIdle;
+			catSpeakImage = sadSpeak;
 		} else if (currEnergy >= 151 && currEnergy <= 300) {
 			catIdleImage = normalIdle;
+			catSpeakImage = normalSpeak;
 		} else if (currEnergy >= 301 && currEnergy <= 550 && !resetCoinsCalled) {
 			setResetCoinsCalled(true); // Set the state to true
 			resetCoins(); // Call resetCoins only once
 			catIdleImage = smileIdle;
+			catSpeakImage = smileSpeak;
 		} else if (currEnergy >= 551 && currEnergy <= 800) {
 			catIdleImage = happyIdle;
+			catSpeakImage = happySpeak;
 		} else if (currEnergy >= 801 && currEnergy <= 1000) {
 			catIdleImage = happyIdle;
+			catSpeakImage = finalForm;
 		}
 		setCatIdle(catIdleImage);
+		setCatSpeak(catSpeakImage);
 		setIsCoinsChanged(true);
 		resetTimeout();
 		return clickNewCoins;
@@ -681,7 +697,7 @@ const Main = ({ user }) => {
 												<img
 													id='catGif'
 													className='mainContent__catMeow'
-													src={boostPhase ? goldIdle : catIdle}
+													src={boostPhase ? goldForm : catSpeak}
 													draggable='false'
 													alt='cat animation'
 												/>
