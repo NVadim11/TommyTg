@@ -112,9 +112,9 @@ const MainComponent = () => {
 	return (
 		<>
 			<>
-				{!isMobileDevice ? (
+				{/* {!isMobileDevice ? (
 					<TelegramLinking />
-				) : (
+				) : ( */}
 					<>
 						<Preloader loaded={preloaderLoaded} />
 						{user ? (
@@ -131,7 +131,7 @@ const MainComponent = () => {
 							<NotFound />
 						)}
 					</>
-				)}
+				{/* )} */}
 			</>
 		</>
 	);
