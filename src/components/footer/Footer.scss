@@ -70,7 +70,7 @@ body::after {
   }
   &__activities {
     display: flex;
-    margin: 24px 0 32px 0;
+    margin: 5px 0 10px 0;
     padding: 10px;
     border: 1px solid #554a9c;
     border-radius: 18px;
@@ -315,7 +315,7 @@ body::after {
     margin-bottom: 0;
   }
 
-  &__tabs-btns {
+&__tabs-btns {
     display: flex;
     justify-content: center;
     width: fit-content;
@@ -528,15 +528,15 @@ body::after {
       height: 100%;
     }
     progress::-webkit-progress-bar {
-			background-color: #383A69;
-			border-radius: 30px;
-			// box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
-		}
-		progress::-webkit-progress-value {
-			background: linear-gradient(270deg, #1cafee, #35cf6e 71.63%, #3fdb3c);
-			border-radius: 30px;
-			// box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
-		}
+   background-color: #383A69;
+   border-radius: 30px;
+   // box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  }
+  progress::-webkit-progress-value {
+   background: linear-gradient(270deg, #1cafee, #35cf6e 71.63%, #3fdb3c);
+   border-radius: 30px;
+   // box-shadow: inset 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  }
   }
 }
 
