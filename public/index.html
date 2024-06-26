@@ -41,6 +41,31 @@
 
 	Telegram.WebApp.ready()
 
+	const initData = Telegram.WebApp.initDataUnsafe;
+     console.log('Init Data:', JSON.stringify(initData, null, 2));
+
+	//   if (initData.user) {
+    //         console.log('User ID:', initData.user.id);
+    //         console.log('User First Name:', initData.user.first_name);
+    //         console.log('User Last Name:', initData.user.last_name);
+    //         console.log('User Username:', initData.user.username);
+    //         console.log('User Language Code:', initData.user.language_code);
+    //         console.log('Auth Date:', initData.auth_date);
+    //         console.log('Query ID:', initData.query_id);
+    //         console.log('Hash:', initData.hash);
+
+            // Отправка данных на сервер (пример с использованием fetch)
+        //     fetch('/save_user_info', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(initData)
+        //     });
+        // } else {
+        //     console.log('No user data available');
+        // }
+
 	// margin-top 100px & padding=bottom 100px
 	const overflow = 100
 	document.body.style.overflowY = 'hidden'
