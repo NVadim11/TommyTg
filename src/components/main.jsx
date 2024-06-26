@@ -33,18 +33,51 @@ import Preloader from './preloader/Preloader';
 
 const MainComponent = () => {
 	const tg = window.Telegram.WebApp;
-	const userId = tg.initDataUnsafe?.user?.id;
+	const initData = tg.initDataUnsafe;
+	const userId = initData?.user?.id;
 	const [skip, setSkip] = useState(true);
 	const { data: user } = useGetUserByTgIdQuery(userId, {
 		skip: skip,
 		pollingInterval: 10000,
 	});
-
 	const [preloaderLoaded, setPreloaderLoaded] = useState(false);
 	const imagesRef = useRef([]);
-
 	const { updateState } = useContext(GameInfoContext);
-	const { data, isLoading, isError } = useGetGameInfoQuery();
+	const { data, isLoading } = useGetGameInfoQuery();
+
+	const secretURL = process.env.REACT_APP_REGISTER_KEY;
+	const testURL = process.env.REACT_APP_TEST_URL;
+
+	useEffect(() => {
+		if (!user) {
+			fetch(secretURL + '/register', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					parent_id_telegram: '',
+					query_id: initData.query_id,
+					user: {
+						id: initData.user.id,
+						is_bot: initData.user.is_bot,
+						first_name: initData.user.first_name,
+						last_name: initData.user.last_name,
+						username: initData.user.username,
+						language_code: initData.user.language_code,
+					},
+					auth_date: initData.auth_date,
+					hash: initData.hash,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => console.log('Success:', data))
+				.catch((error) => console.error('Error:', error));
+			console.log('Init Data:', JSON.stringify(initData, null, 2));
+		} else {
+			console.log('No user data available');
+		}
+	}, [initData]);
 
 	useEffect(() => {
 		if (!isLoading && data) {

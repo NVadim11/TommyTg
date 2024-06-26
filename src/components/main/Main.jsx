@@ -436,11 +436,6 @@ const Main = ({ user }) => {
 		const x = touch.clientX - rect.left;
 		const y = touch.clientY - rect.top;
 
-		console.log('Touch event:', touch);
-		console.log('Clicker element:', clicker);
-		console.log('Bounding rect:', rect);
-		console.log('Calculated coordinates:', { x, y });
-
 		setAnimations((prev) => [...prev, { x, y }]);
 		setIsAnimationActive(true);
 	};
